@@ -48,10 +48,7 @@ open class RequestBuilder<T> {
         }
     }
 
-    @discardableResult
-    open func execute(_ apiResponseQueue: DispatchQueue = JellyfinAPIAPI.apiResponseQueue, _ completion: @escaping (_ result: Swift.Result<Response<T>, ErrorResponse>) -> Void) -> URLSessionTask? {
-        return nil
-    }
+    open func execute(_ apiResponseQueue: DispatchQueue = JellyfinAPIAPI.apiResponseQueue, _ completion: @escaping (_ result: Swift.Result<Response<T>, ErrorResponse>) -> Void) { }
 
     public func addHeader(name: String, value: String) -> Self {
         if !value.isEmpty {

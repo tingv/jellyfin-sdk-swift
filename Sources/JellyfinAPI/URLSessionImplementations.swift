@@ -19,26 +19,15 @@ class URLSessionRequestBuilderFactory: RequestBuilderFactory {
     }
 }
 
-public typealias JellyfinAPIAPIChallengeHandler = ((URLSession, URLSessionTask, URLAuthenticationChallenge) -> (URLSession.AuthChallengeDisposition, URLCredential?))
-
-// Store the URLSession's delegate to retain its reference
-private let sessionDelegate = SessionDelegate()
-
 // Store the URLSession to retain its reference
-private let defaultURLSession = URLSession(configuration: .default, delegate: sessionDelegate, delegateQueue: nil)
-
-// Store current taskDidReceiveChallenge for every URLSessionTask
-private var challengeHandlerStore = SynchronizedDictionary<Int, JellyfinAPIAPIChallengeHandler>()
-
-// Store current URLCredential for every URLSessionTask
-private var credentialStore = SynchronizedDictionary<Int, URLCredential>()
+private var urlSessionStore = SynchronizedDictionary<String, URLSession>()
 
 open class URLSessionRequestBuilder<T>: RequestBuilder<T> {
 
     /**
      May be assigned if you want to control the authentication challenges.
      */
-    public var taskDidReceiveChallenge: JellyfinAPIAPIChallengeHandler?
+    public var taskDidReceiveChallenge: ((URLSession, URLSessionTask, URLAuthenticationChallenge) -> (URLSession.AuthChallengeDisposition, URLCredential?))?
 
     /**
      May be assigned if you want to do any of those things:
@@ -58,7 +47,12 @@ open class URLSessionRequestBuilder<T>: RequestBuilder<T> {
      configuration.
      */
     open func createURLSession() -> URLSession {
-        return defaultURLSession
+        let configuration = URLSessionConfiguration.default
+        configuration.httpAdditionalHeaders = buildHeaders()
+        let sessionDelegate = SessionDelegate()
+        sessionDelegate.credential = credential
+        sessionDelegate.taskDidReceiveChallenge = taskDidReceiveChallenge
+        return URLSession(configuration: configuration, delegate: sessionDelegate, delegateQueue: nil)
     }
 
     /**
@@ -99,9 +93,11 @@ open class URLSessionRequestBuilder<T>: RequestBuilder<T> {
         return modifiedRequest
     }
 
-    @discardableResult
-    override open func execute(_ apiResponseQueue: DispatchQueue = JellyfinAPIAPI.apiResponseQueue, _ completion: @escaping (_ result: Swift.Result<Response<T>, ErrorResponse>) -> Void) -> URLSessionTask? {
+    override open func execute(_ apiResponseQueue: DispatchQueue = JellyfinAPIAPI.apiResponseQueue, _ completion: @escaping (_ result: Swift.Result<Response<T>, ErrorResponse>) -> Void) {
+        let urlSessionId = UUID().uuidString
+        // Create a new manager for each request to customize its request header
         let urlSession = createURLSession()
+        urlSessionStore[urlSessionId] = urlSession
 
         guard let xMethod = HTTPMethod(rawValue: method) else {
             fatalError("Unsupported Http method - \(method)")
@@ -127,16 +123,13 @@ open class URLSessionRequestBuilder<T>: RequestBuilder<T> {
             }
         }
 
+        let cleanupRequest = {
+            urlSessionStore[urlSessionId]?.finishTasksAndInvalidate()
+            urlSessionStore[urlSessionId] = nil
+        }
+
         do {
             let request = try createURLRequest(urlSession: urlSession, method: xMethod, encoding: encoding, headers: headers)
-
-            var taskIdentifier: Int?
-             let cleanupRequest = {
-                 if let taskIdentifier = taskIdentifier {
-                     challengeHandlerStore[taskIdentifier] = nil
-                     credentialStore[taskIdentifier] = nil
-                 }
-             }
 
             let dataTask = urlSession.dataTask(with: request) { data, response, error in
 
@@ -166,19 +159,13 @@ open class URLSessionRequestBuilder<T>: RequestBuilder<T> {
                 onProgressReady?(dataTask.progress)
             }
 
-            taskIdentifier = dataTask.taskIdentifier
-            challengeHandlerStore[dataTask.taskIdentifier] = taskDidReceiveChallenge
-            credentialStore[dataTask.taskIdentifier] = credential
-
             dataTask.resume()
 
-            return dataTask
         } catch {
             apiResponseQueue.async {
+                cleanupRequest()
                 completion(.failure(ErrorResponse.error(415, nil, nil, error)))
             }
-
-            return nil
         }
     }
 
@@ -200,12 +187,60 @@ open class URLSessionRequestBuilder<T>: RequestBuilder<T> {
         }
 
         switch T.self {
+        case is String.Type:
+
+            let body = data.flatMap { String(data: $0, encoding: .utf8) } ?? ""
+
+            completion(.success(Response<T>(response: httpResponse, body: body as? T)))
+
+        case is URL.Type:
+            do {
+
+                guard error == nil else {
+                    throw DownloadException.responseFailed
+                }
+
+                guard let data = data else {
+                    throw DownloadException.responseDataMissing
+                }
+
+                let fileManager = FileManager.default
+                let cachesDirectory = fileManager.urls(for: .cachesDirectory, in: .userDomainMask)[0]
+                let requestURL = try getURL(from: urlRequest)
+
+                var requestPath = try getPath(from: requestURL)
+
+                if let headerFileName = getFileName(fromContentDisposition: httpResponse.allHeaderFields["Content-Disposition"] as? String) {
+                    requestPath = requestPath.appending("/\(headerFileName)")
+                } else {
+                    requestPath = requestPath.appending("/tmp.JellyfinAPI.\(UUID().uuidString)")
+                }
+
+                let filePath = cachesDirectory.appendingPathComponent(requestPath)
+                let directoryPath = filePath.deletingLastPathComponent().path
+
+                try fileManager.createDirectory(atPath: directoryPath, withIntermediateDirectories: true, attributes: nil)
+                try data.write(to: filePath, options: .atomic)
+
+                completion(.success(Response(response: httpResponse, body: filePath as? T)))
+
+            } catch let requestParserError as DownloadException {
+                completion(.failure(ErrorResponse.error(400, data, response, requestParserError)))
+            } catch {
+                completion(.failure(ErrorResponse.error(400, data, response, error)))
+            }
+
         case is Void.Type:
 
-            completion(.success(Response(response: httpResponse, body: () as! T)))
+            completion(.success(Response(response: httpResponse, body: nil)))
+
+        case is Data.Type:
+
+            completion(.success(Response(response: httpResponse, body: data as? T)))
 
         default:
-            fatalError("Unsupported Response Body Type - \(String(describing: T.self))")
+
+            completion(.success(Response(response: httpResponse, body: data as? T)))
         }
 
     }
@@ -297,7 +332,7 @@ open class URLSessionDecodableRequestBuilder<T: Decodable>: URLSessionRequestBui
 
             let body = data.flatMap { String(data: $0, encoding: .utf8) } ?? ""
 
-            completion(.success(Response<T>(response: httpResponse, body: body as! T)))
+            completion(.success(Response<T>(response: httpResponse, body: body as? T)))
 
         case is URL.Type:
             do {
@@ -328,7 +363,7 @@ open class URLSessionDecodableRequestBuilder<T: Decodable>: URLSessionRequestBui
                 try fileManager.createDirectory(atPath: directoryPath, withIntermediateDirectories: true, attributes: nil)
                 try data.write(to: filePath, options: .atomic)
 
-                completion(.success(Response(response: httpResponse, body: filePath as! T)))
+                completion(.success(Response(response: httpResponse, body: filePath as? T)))
 
             } catch let requestParserError as DownloadException {
                 completion(.failure(ErrorResponse.error(400, data, response, requestParserError)))
@@ -338,11 +373,11 @@ open class URLSessionDecodableRequestBuilder<T: Decodable>: URLSessionRequestBui
 
         case is Void.Type:
 
-            completion(.success(Response(response: httpResponse, body: () as! T)))
+            completion(.success(Response(response: httpResponse, body: nil)))
 
         case is Data.Type:
 
-            completion(.success(Response(response: httpResponse, body: data as! T)))
+            completion(.success(Response(response: httpResponse, body: data as? T)))
 
         default:
 
@@ -363,20 +398,25 @@ open class URLSessionDecodableRequestBuilder<T: Decodable>: URLSessionRequestBui
     }
 }
 
-private class SessionDelegate: NSObject, URLSessionTaskDelegate {
+private class SessionDelegate: NSObject, URLSessionDelegate, URLSessionDataDelegate {
+
+    var credential: URLCredential?
+
+    var taskDidReceiveChallenge: ((URLSession, URLSessionTask, URLAuthenticationChallenge) -> (URLSession.AuthChallengeDisposition, URLCredential?))?
+
     func urlSession(_ session: URLSession, task: URLSessionTask, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
 
         var disposition: URLSession.AuthChallengeDisposition = .performDefaultHandling
 
         var credential: URLCredential?
 
-        if let taskDidReceiveChallenge = challengeHandlerStore[task.taskIdentifier] {
+        if let taskDidReceiveChallenge = taskDidReceiveChallenge {
             (disposition, credential) = taskDidReceiveChallenge(session, task, challenge)
         } else {
             if challenge.previousFailureCount > 0 {
                 disposition = .rejectProtectionSpace
             } else {
-                credential = credentialStore[task.taskIdentifier] ?? session.configuration.urlCredentialStorage?.defaultCredential(for: challenge.protectionSpace)
+                credential = self.credential ?? session.configuration.urlCredentialStorage?.defaultCredential(for: challenge.protectionSpace)
 
                 if credential != nil {
                     disposition = .useCredential
