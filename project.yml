@@ -1,6 +1,6 @@
-name: JellyfinAPI
+name: JellyfinClient
 targets:
-  JellyfinAPI:
+  JellyfinClient:
     type: framework
     platform: iOS
     deploymentTarget: "9.0"
