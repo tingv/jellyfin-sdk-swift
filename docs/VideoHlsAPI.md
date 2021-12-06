@@ -9,12 +9,12 @@ Method | HTTP request | Description
 
 # **getLiveHlsStream**
 ```swift
-    open class func getLiveHlsStream(itemId: String, container: String? = nil, _static: Bool? = nil, params: String? = nil, tag: String? = nil, deviceProfileId: String? = nil, playSessionId: String? = nil, segmentContainer: String? = nil, segmentLength: Int? = nil, minSegments: Int? = nil, mediaSourceId: String? = nil, deviceId: String? = nil, audioCodec: String? = nil, enableAutoStreamCopy: Bool? = nil, allowVideoStreamCopy: Bool? = nil, allowAudioStreamCopy: Bool? = nil, breakOnNonKeyFrames: Bool? = nil, audioSampleRate: Int? = nil, maxAudioBitDepth: Int? = nil, audioBitRate: Int? = nil, audioChannels: Int? = nil, maxAudioChannels: Int? = nil, profile: String? = nil, level: String? = nil, framerate: Float? = nil, maxFramerate: Float? = nil, copyTimestamps: Bool? = nil, startTimeTicks: Int64? = nil, width: Int? = nil, height: Int? = nil, videoBitRate: Int? = nil, subtitleStreamIndex: Int? = nil, subtitleMethod: SubtitleDeliveryMethod? = nil, maxRefFrames: Int? = nil, maxVideoBitDepth: Int? = nil, requireAvc: Bool? = nil, deInterlace: Bool? = nil, requireNonAnamorphic: Bool? = nil, transcodingMaxAudioChannels: Int? = nil, cpuCoreLimit: Int? = nil, liveStreamId: String? = nil, enableMpegtsM2TsMode: Bool? = nil, videoCodec: String? = nil, subtitleCodec: String? = nil, transcodeReasons: String? = nil, audioStreamIndex: Int? = nil, videoStreamIndex: Int? = nil, context: EncodingContext? = nil, streamOptions: [String: String]? = nil, maxWidth: Int? = nil, maxHeight: Int? = nil, enableSubtitlesInManifest: Bool? = nil, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func getLiveHlsStream( itemId: String,  container: String? = nil,  _static: Bool? = nil,  params: String? = nil,  tag: String? = nil,  deviceProfileId: String? = nil,  playSessionId: String? = nil,  segmentContainer: String? = nil,  segmentLength: Int? = nil,  minSegments: Int? = nil,  mediaSourceId: String? = nil,  deviceId: String? = nil,  audioCodec: String? = nil,  enableAutoStreamCopy: Bool? = nil,  allowVideoStreamCopy: Bool? = nil,  allowAudioStreamCopy: Bool? = nil,  breakOnNonKeyFrames: Bool? = nil,  audioSampleRate: Int? = nil,  maxAudioBitDepth: Int? = nil,  audioBitRate: Int? = nil,  audioChannels: Int? = nil,  maxAudioChannels: Int? = nil,  profile: String? = nil,  level: String? = nil,  framerate: Float? = nil,  maxFramerate: Float? = nil,  copyTimestamps: Bool? = nil,  startTimeTicks: Int64? = nil,  width: Int? = nil,  height: Int? = nil,  videoBitRate: Int? = nil,  subtitleStreamIndex: Int? = nil,  subtitleMethod: SubtitleDeliveryMethod? = nil,  maxRefFrames: Int? = nil,  maxVideoBitDepth: Int? = nil,  requireAvc: Bool? = nil,  deInterlace: Bool? = nil,  requireNonAnamorphic: Bool? = nil,  transcodingMaxAudioChannels: Int? = nil,  cpuCoreLimit: Int? = nil,  liveStreamId: String? = nil,  enableMpegtsM2TsMode: Bool? = nil,  videoCodec: String? = nil,  subtitleCodec: String? = nil,  transcodeReasons: String? = nil,  audioStreamIndex: Int? = nil,  videoStreamIndex: Int? = nil,  context: EncodingContext? = nil,  streamOptions: [String: String]? = nil,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  enableSubtitlesInManifest: Bool? = nil) -> Promise<URL>
 ```
 
 Gets a hls live stream.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -73,15 +73,12 @@ let maxHeight = 987 // Int | Optional. The max height. (optional)
 let enableSubtitlesInManifest = true // Bool | Optional. Whether to enable subtitles in the manifest. (optional)
 
 // Gets a hls live stream.
-VideoHlsAPI.getLiveHlsStream(itemId: itemId, container: container, _static: _static, params: params, tag: tag, deviceProfileId: deviceProfileId, playSessionId: playSessionId, segmentContainer: segmentContainer, segmentLength: segmentLength, minSegments: minSegments, mediaSourceId: mediaSourceId, deviceId: deviceId, audioCodec: audioCodec, enableAutoStreamCopy: enableAutoStreamCopy, allowVideoStreamCopy: allowVideoStreamCopy, allowAudioStreamCopy: allowAudioStreamCopy, breakOnNonKeyFrames: breakOnNonKeyFrames, audioSampleRate: audioSampleRate, maxAudioBitDepth: maxAudioBitDepth, audioBitRate: audioBitRate, audioChannels: audioChannels, maxAudioChannels: maxAudioChannels, profile: profile, level: level, framerate: framerate, maxFramerate: maxFramerate, copyTimestamps: copyTimestamps, startTimeTicks: startTimeTicks, width: width, height: height, videoBitRate: videoBitRate, subtitleStreamIndex: subtitleStreamIndex, subtitleMethod: subtitleMethod, maxRefFrames: maxRefFrames, maxVideoBitDepth: maxVideoBitDepth, requireAvc: requireAvc, deInterlace: deInterlace, requireNonAnamorphic: requireNonAnamorphic, transcodingMaxAudioChannels: transcodingMaxAudioChannels, cpuCoreLimit: cpuCoreLimit, liveStreamId: liveStreamId, enableMpegtsM2TsMode: enableMpegtsM2TsMode, videoCodec: videoCodec, subtitleCodec: subtitleCodec, transcodeReasons: transcodeReasons, audioStreamIndex: audioStreamIndex, videoStreamIndex: videoStreamIndex, context: context, streamOptions: streamOptions, maxWidth: maxWidth, maxHeight: maxHeight, enableSubtitlesInManifest: enableSubtitlesInManifest) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+VideoHlsAPI.getLiveHlsStream(itemId: itemId, container: container, _static: _static, params: params, tag: tag, deviceProfileId: deviceProfileId, playSessionId: playSessionId, segmentContainer: segmentContainer, segmentLength: segmentLength, minSegments: minSegments, mediaSourceId: mediaSourceId, deviceId: deviceId, audioCodec: audioCodec, enableAutoStreamCopy: enableAutoStreamCopy, allowVideoStreamCopy: allowVideoStreamCopy, allowAudioStreamCopy: allowAudioStreamCopy, breakOnNonKeyFrames: breakOnNonKeyFrames, audioSampleRate: audioSampleRate, maxAudioBitDepth: maxAudioBitDepth, audioBitRate: audioBitRate, audioChannels: audioChannels, maxAudioChannels: maxAudioChannels, profile: profile, level: level, framerate: framerate, maxFramerate: maxFramerate, copyTimestamps: copyTimestamps, startTimeTicks: startTimeTicks, width: width, height: height, videoBitRate: videoBitRate, subtitleStreamIndex: subtitleStreamIndex, subtitleMethod: subtitleMethod, maxRefFrames: maxRefFrames, maxVideoBitDepth: maxVideoBitDepth, requireAvc: requireAvc, deInterlace: deInterlace, requireNonAnamorphic: requireNonAnamorphic, transcodingMaxAudioChannels: transcodingMaxAudioChannels, cpuCoreLimit: cpuCoreLimit, liveStreamId: liveStreamId, enableMpegtsM2TsMode: enableMpegtsM2TsMode, videoCodec: videoCodec, subtitleCodec: subtitleCodec, transcodeReasons: transcodeReasons, audioStreamIndex: audioStreamIndex, videoStreamIndex: videoStreamIndex, context: context, streamOptions: streamOptions, maxWidth: maxWidth, maxHeight: maxHeight, enableSubtitlesInManifest: enableSubtitlesInManifest).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -89,7 +86,7 @@ VideoHlsAPI.getLiveHlsStream(itemId: itemId, container: container, _static: _sta
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | [**String**](.md) | The item id. | 
+ **itemId** | **String** | The item id. | 
  **container** | **String** | The audio container. | [optional] 
  **_static** | **Bool** | Optional. If true, the original file will be streamed statically without any encoding. Use either no url extension or the original file extension. true/false. | [optional] 
  **params** | **String** | The streaming parameters. | [optional] 

@@ -24,12 +24,12 @@ Method | HTTP request | Description
 
 # **getConnectionManager**
 ```swift
-    open class func getConnectionManager(serverId: String, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func getConnectionManager( serverId: String) -> Promise<URL>
 ```
 
 Gets Dlna media receiver registrar xml.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -37,15 +37,12 @@ import JellyfinAPI
 let serverId = "serverId_example" // String | Server UUID.
 
 // Gets Dlna media receiver registrar xml.
-DlnaServerAPI.getConnectionManager(serverId: serverId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+DlnaServerAPI.getConnectionManager(serverId: serverId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -72,12 +69,12 @@ No authorization required
 
 # **getConnectionManager2**
 ```swift
-    open class func getConnectionManager2(serverId: String, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func getConnectionManager2( serverId: String) -> Promise<URL>
 ```
 
 Gets Dlna media receiver registrar xml.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -85,15 +82,12 @@ import JellyfinAPI
 let serverId = "serverId_example" // String | Server UUID.
 
 // Gets Dlna media receiver registrar xml.
-DlnaServerAPI.getConnectionManager2(serverId: serverId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+DlnaServerAPI.getConnectionManager2(serverId: serverId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -120,12 +114,12 @@ No authorization required
 
 # **getConnectionManager3**
 ```swift
-    open class func getConnectionManager3(serverId: String, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func getConnectionManager3( serverId: String) -> Promise<URL>
 ```
 
 Gets Dlna media receiver registrar xml.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -133,15 +127,12 @@ import JellyfinAPI
 let serverId = "serverId_example" // String | Server UUID.
 
 // Gets Dlna media receiver registrar xml.
-DlnaServerAPI.getConnectionManager3(serverId: serverId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+DlnaServerAPI.getConnectionManager3(serverId: serverId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -168,12 +159,12 @@ No authorization required
 
 # **getContentDirectory**
 ```swift
-    open class func getContentDirectory(serverId: String, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func getContentDirectory( serverId: String) -> Promise<URL>
 ```
 
 Gets Dlna content directory xml.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -181,15 +172,12 @@ import JellyfinAPI
 let serverId = "serverId_example" // String | Server UUID.
 
 // Gets Dlna content directory xml.
-DlnaServerAPI.getContentDirectory(serverId: serverId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+DlnaServerAPI.getContentDirectory(serverId: serverId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -216,12 +204,12 @@ No authorization required
 
 # **getContentDirectory2**
 ```swift
-    open class func getContentDirectory2(serverId: String, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func getContentDirectory2( serverId: String) -> Promise<URL>
 ```
 
 Gets Dlna content directory xml.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -229,15 +217,12 @@ import JellyfinAPI
 let serverId = "serverId_example" // String | Server UUID.
 
 // Gets Dlna content directory xml.
-DlnaServerAPI.getContentDirectory2(serverId: serverId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+DlnaServerAPI.getContentDirectory2(serverId: serverId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -264,12 +249,12 @@ No authorization required
 
 # **getContentDirectory3**
 ```swift
-    open class func getContentDirectory3(serverId: String, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func getContentDirectory3( serverId: String) -> Promise<URL>
 ```
 
 Gets Dlna content directory xml.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -277,15 +262,12 @@ import JellyfinAPI
 let serverId = "serverId_example" // String | Server UUID.
 
 // Gets Dlna content directory xml.
-DlnaServerAPI.getContentDirectory3(serverId: serverId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+DlnaServerAPI.getContentDirectory3(serverId: serverId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -312,12 +294,12 @@ No authorization required
 
 # **getDescriptionXml**
 ```swift
-    open class func getDescriptionXml(serverId: String, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func getDescriptionXml( serverId: String) -> Promise<URL>
 ```
 
 Get Description Xml.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -325,15 +307,12 @@ import JellyfinAPI
 let serverId = "serverId_example" // String | Server UUID.
 
 // Get Description Xml.
-DlnaServerAPI.getDescriptionXml(serverId: serverId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+DlnaServerAPI.getDescriptionXml(serverId: serverId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -360,12 +339,12 @@ No authorization required
 
 # **getDescriptionXml2**
 ```swift
-    open class func getDescriptionXml2(serverId: String, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func getDescriptionXml2( serverId: String) -> Promise<URL>
 ```
 
 Get Description Xml.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -373,15 +352,12 @@ import JellyfinAPI
 let serverId = "serverId_example" // String | Server UUID.
 
 // Get Description Xml.
-DlnaServerAPI.getDescriptionXml2(serverId: serverId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+DlnaServerAPI.getDescriptionXml2(serverId: serverId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -408,12 +384,12 @@ No authorization required
 
 # **getIcon**
 ```swift
-    open class func getIcon(fileName: String, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func getIcon( fileName: String) -> Promise<URL>
 ```
 
 Gets a server icon.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -421,15 +397,12 @@ import JellyfinAPI
 let fileName = "fileName_example" // String | The icon filename.
 
 // Gets a server icon.
-DlnaServerAPI.getIcon(fileName: fileName) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+DlnaServerAPI.getIcon(fileName: fileName).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -456,12 +429,12 @@ No authorization required
 
 # **getIconId**
 ```swift
-    open class func getIconId(serverId: String, fileName: String, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func getIconId( serverId: String,  fileName: String) -> Promise<URL>
 ```
 
 Gets a server icon.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -470,15 +443,12 @@ let serverId = "serverId_example" // String | Server UUID.
 let fileName = "fileName_example" // String | The icon filename.
 
 // Gets a server icon.
-DlnaServerAPI.getIconId(serverId: serverId, fileName: fileName) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+DlnaServerAPI.getIconId(serverId: serverId, fileName: fileName).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -506,12 +476,12 @@ No authorization required
 
 # **getMediaReceiverRegistrar**
 ```swift
-    open class func getMediaReceiverRegistrar(serverId: String, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func getMediaReceiverRegistrar( serverId: String) -> Promise<URL>
 ```
 
 Gets Dlna media receiver registrar xml.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -519,15 +489,12 @@ import JellyfinAPI
 let serverId = "serverId_example" // String | Server UUID.
 
 // Gets Dlna media receiver registrar xml.
-DlnaServerAPI.getMediaReceiverRegistrar(serverId: serverId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+DlnaServerAPI.getMediaReceiverRegistrar(serverId: serverId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -554,12 +521,12 @@ No authorization required
 
 # **getMediaReceiverRegistrar2**
 ```swift
-    open class func getMediaReceiverRegistrar2(serverId: String, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func getMediaReceiverRegistrar2( serverId: String) -> Promise<URL>
 ```
 
 Gets Dlna media receiver registrar xml.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -567,15 +534,12 @@ import JellyfinAPI
 let serverId = "serverId_example" // String | Server UUID.
 
 // Gets Dlna media receiver registrar xml.
-DlnaServerAPI.getMediaReceiverRegistrar2(serverId: serverId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+DlnaServerAPI.getMediaReceiverRegistrar2(serverId: serverId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -602,12 +566,12 @@ No authorization required
 
 # **getMediaReceiverRegistrar3**
 ```swift
-    open class func getMediaReceiverRegistrar3(serverId: String, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func getMediaReceiverRegistrar3( serverId: String) -> Promise<URL>
 ```
 
 Gets Dlna media receiver registrar xml.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -615,15 +579,12 @@ import JellyfinAPI
 let serverId = "serverId_example" // String | Server UUID.
 
 // Gets Dlna media receiver registrar xml.
-DlnaServerAPI.getMediaReceiverRegistrar3(serverId: serverId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+DlnaServerAPI.getMediaReceiverRegistrar3(serverId: serverId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -650,12 +611,12 @@ No authorization required
 
 # **processConnectionManagerControlRequest**
 ```swift
-    open class func processConnectionManagerControlRequest(serverId: String, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func processConnectionManagerControlRequest( serverId: String) -> Promise<URL>
 ```
 
 Process a connection manager control request.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -663,15 +624,12 @@ import JellyfinAPI
 let serverId = "serverId_example" // String | Server UUID.
 
 // Process a connection manager control request.
-DlnaServerAPI.processConnectionManagerControlRequest(serverId: serverId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+DlnaServerAPI.processConnectionManagerControlRequest(serverId: serverId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -698,12 +656,12 @@ No authorization required
 
 # **processContentDirectoryControlRequest**
 ```swift
-    open class func processContentDirectoryControlRequest(serverId: String, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func processContentDirectoryControlRequest( serverId: String) -> Promise<URL>
 ```
 
 Process a content directory control request.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -711,15 +669,12 @@ import JellyfinAPI
 let serverId = "serverId_example" // String | Server UUID.
 
 // Process a content directory control request.
-DlnaServerAPI.processContentDirectoryControlRequest(serverId: serverId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+DlnaServerAPI.processContentDirectoryControlRequest(serverId: serverId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -746,12 +701,12 @@ No authorization required
 
 # **processMediaReceiverRegistrarControlRequest**
 ```swift
-    open class func processMediaReceiverRegistrarControlRequest(serverId: String, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func processMediaReceiverRegistrarControlRequest( serverId: String) -> Promise<URL>
 ```
 
 Process a media receiver registrar control request.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -759,15 +714,12 @@ import JellyfinAPI
 let serverId = "serverId_example" // String | Server UUID.
 
 // Process a media receiver registrar control request.
-DlnaServerAPI.processMediaReceiverRegistrarControlRequest(serverId: serverId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+DlnaServerAPI.processMediaReceiverRegistrarControlRequest(serverId: serverId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 

@@ -12,27 +12,24 @@ Method | HTTP request | Description
 
 # **getCountries**
 ```swift
-    open class func getCountries(completion: @escaping (_ data: [CountryInfo]?, _ error: Error?) -> Void)
+    open class func getCountries() -> Promise<[CountryInfo]>
 ```
 
 Gets known countries.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
 
 
 // Gets known countries.
-LocalizationAPI.getCountries() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+LocalizationAPI.getCountries().then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -56,27 +53,24 @@ This endpoint does not need any parameter.
 
 # **getCultures**
 ```swift
-    open class func getCultures(completion: @escaping (_ data: [CultureDto]?, _ error: Error?) -> Void)
+    open class func getCultures() -> Promise<[CultureDto]>
 ```
 
 Gets known cultures.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
 
 
 // Gets known cultures.
-LocalizationAPI.getCultures() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+LocalizationAPI.getCultures().then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -100,27 +94,24 @@ This endpoint does not need any parameter.
 
 # **getLocalizationOptions**
 ```swift
-    open class func getLocalizationOptions(completion: @escaping (_ data: [LocalizationOption]?, _ error: Error?) -> Void)
+    open class func getLocalizationOptions() -> Promise<[LocalizationOption]>
 ```
 
 Gets localization options.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
 
 
 // Gets localization options.
-LocalizationAPI.getLocalizationOptions() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+LocalizationAPI.getLocalizationOptions().then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -144,27 +135,24 @@ This endpoint does not need any parameter.
 
 # **getParentalRatings**
 ```swift
-    open class func getParentalRatings(completion: @escaping (_ data: [ParentalRating]?, _ error: Error?) -> Void)
+    open class func getParentalRatings() -> Promise<[ParentalRating]>
 ```
 
 Gets known parental ratings.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
 
 
 // Gets known parental ratings.
-LocalizationAPI.getParentalRatings() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+LocalizationAPI.getParentalRatings().then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 

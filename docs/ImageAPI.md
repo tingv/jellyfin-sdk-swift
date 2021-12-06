@@ -46,12 +46,12 @@ Method | HTTP request | Description
 
 # **deleteItemImage**
 ```swift
-    open class func deleteItemImage(itemId: String, imageType: ImageType, imageIndex: Int? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func deleteItemImage( itemId: String,  imageType: ImageType,  imageIndex: Int? = nil) -> Promise<Void>
 ```
 
 Delete an item's image.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -61,15 +61,12 @@ let imageType = ImageType() // ImageType | Image type.
 let imageIndex = 987 // Int | The image index. (optional)
 
 // Delete an item's image.
-ImageAPI.deleteItemImage(itemId: itemId, imageType: imageType, imageIndex: imageIndex) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ImageAPI.deleteItemImage(itemId: itemId, imageType: imageType, imageIndex: imageIndex).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -77,7 +74,7 @@ ImageAPI.deleteItemImage(itemId: itemId, imageType: imageType, imageIndex: image
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | [**String**](.md) | Item id. | 
+ **itemId** | **String** | Item id. | 
  **imageType** | [**ImageType**](.md) | Image type. | 
  **imageIndex** | **Int** | The image index. | [optional] 
 
@@ -98,12 +95,12 @@ Void (empty response body)
 
 # **deleteItemImageByIndex**
 ```swift
-    open class func deleteItemImageByIndex(itemId: String, imageType: ImageType, imageIndex: Int, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func deleteItemImageByIndex( itemId: String,  imageType: ImageType,  imageIndex: Int) -> Promise<Void>
 ```
 
 Delete an item's image.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -113,15 +110,12 @@ let imageType = ImageType() // ImageType | Image type.
 let imageIndex = 987 // Int | The image index.
 
 // Delete an item's image.
-ImageAPI.deleteItemImageByIndex(itemId: itemId, imageType: imageType, imageIndex: imageIndex) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ImageAPI.deleteItemImageByIndex(itemId: itemId, imageType: imageType, imageIndex: imageIndex).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -129,7 +123,7 @@ ImageAPI.deleteItemImageByIndex(itemId: itemId, imageType: imageType, imageIndex
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | [**String**](.md) | Item id. | 
+ **itemId** | **String** | Item id. | 
  **imageType** | [**ImageType**](.md) | Image type. | 
  **imageIndex** | **Int** | The image index. | 
 
@@ -150,12 +144,12 @@ Void (empty response body)
 
 # **deleteUserImage**
 ```swift
-    open class func deleteUserImage(userId: String, imageType: ImageType, index: Int? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func deleteUserImage( userId: String,  imageType: ImageType,  index: Int? = nil) -> Promise<Void>
 ```
 
 Delete the user's image.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -165,15 +159,12 @@ let imageType = ImageType() // ImageType | (Unused) Image type.
 let index = 987 // Int | (Unused) Image index. (optional)
 
 // Delete the user's image.
-ImageAPI.deleteUserImage(userId: userId, imageType: imageType, index: index) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ImageAPI.deleteUserImage(userId: userId, imageType: imageType, index: index).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -181,7 +172,7 @@ ImageAPI.deleteUserImage(userId: userId, imageType: imageType, index: index) { (
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**String**](.md) | User Id. | 
+ **userId** | **String** | User Id. | 
  **imageType** | [**ImageType**](.md) | (Unused) Image type. | 
  **index** | **Int** | (Unused) Image index. | [optional] 
 
@@ -202,12 +193,12 @@ Void (empty response body)
 
 # **deleteUserImageByIndex**
 ```swift
-    open class func deleteUserImageByIndex(userId: String, imageType: ImageType, index: Int, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func deleteUserImageByIndex( userId: String,  imageType: ImageType,  index: Int) -> Promise<Void>
 ```
 
 Delete the user's image.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -217,15 +208,12 @@ let imageType = ImageType() // ImageType | (Unused) Image type.
 let index = 987 // Int | (Unused) Image index.
 
 // Delete the user's image.
-ImageAPI.deleteUserImageByIndex(userId: userId, imageType: imageType, index: index) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ImageAPI.deleteUserImageByIndex(userId: userId, imageType: imageType, index: index).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -233,7 +221,7 @@ ImageAPI.deleteUserImageByIndex(userId: userId, imageType: imageType, index: ind
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**String**](.md) | User Id. | 
+ **userId** | **String** | User Id. | 
  **imageType** | [**ImageType**](.md) | (Unused) Image type. | 
  **index** | **Int** | (Unused) Image index. | 
 
@@ -254,12 +242,12 @@ Void (empty response body)
 
 # **getArtistImage**
 ```swift
-    open class func getArtistImage(name: String, imageType: ImageType, imageIndex: Int, tag: String? = nil, format: ImageFormat? = nil, maxWidth: Int? = nil, maxHeight: Int? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func getArtistImage( name: String,  imageType: ImageType,  imageIndex: Int,  tag: String? = nil,  format: ImageFormat? = nil,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil) -> Promise<URL>
 ```
 
 Get artist image by name.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -285,15 +273,12 @@ let backgroundColor = "backgroundColor_example" // String | Optional. Apply a ba
 let foregroundLayer = "foregroundLayer_example" // String | Optional. Apply a foreground layer on top of the image. (optional)
 
 // Get artist image by name.
-ImageAPI.getArtistImage(name: name, imageType: imageType, imageIndex: imageIndex, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ImageAPI.getArtistImage(name: name, imageType: imageType, imageIndex: imageIndex, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -338,12 +323,12 @@ No authorization required
 
 # **getGenreImage**
 ```swift
-    open class func getGenreImage(name: String, imageType: ImageType, tag: String? = nil, format: ImageFormat? = nil, maxWidth: Int? = nil, maxHeight: Int? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, imageIndex: Int? = nil, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func getGenreImage( name: String,  imageType: ImageType,  tag: String? = nil,  format: ImageFormat? = nil,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil,  imageIndex: Int? = nil) -> Promise<URL>
 ```
 
 Get genre image by name.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -369,15 +354,12 @@ let foregroundLayer = "foregroundLayer_example" // String | Optional. Apply a fo
 let imageIndex = 987 // Int | Image index. (optional)
 
 // Get genre image by name.
-ImageAPI.getGenreImage(name: name, imageType: imageType, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer, imageIndex: imageIndex) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ImageAPI.getGenreImage(name: name, imageType: imageType, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer, imageIndex: imageIndex).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -422,12 +404,12 @@ No authorization required
 
 # **getGenreImageByIndex**
 ```swift
-    open class func getGenreImageByIndex(name: String, imageType: ImageType, imageIndex: Int, tag: String? = nil, format: ImageFormat? = nil, maxWidth: Int? = nil, maxHeight: Int? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func getGenreImageByIndex( name: String,  imageType: ImageType,  imageIndex: Int,  tag: String? = nil,  format: ImageFormat? = nil,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil) -> Promise<URL>
 ```
 
 Get genre image by name.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -453,15 +435,12 @@ let backgroundColor = "backgroundColor_example" // String | Optional. Apply a ba
 let foregroundLayer = "foregroundLayer_example" // String | Optional. Apply a foreground layer on top of the image. (optional)
 
 // Get genre image by name.
-ImageAPI.getGenreImageByIndex(name: name, imageType: imageType, imageIndex: imageIndex, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ImageAPI.getGenreImageByIndex(name: name, imageType: imageType, imageIndex: imageIndex, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -506,12 +485,12 @@ No authorization required
 
 # **getItemImage**
 ```swift
-    open class func getItemImage(itemId: String, imageType: ImageType, maxWidth: Int? = nil, maxHeight: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, tag: String? = nil, cropWhitespace: Bool? = nil, format: ImageFormat? = nil, addPlayedIndicator: Bool? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, imageIndex: Int? = nil, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func getItemImage( itemId: String,  imageType: ImageType,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  tag: String? = nil,  cropWhitespace: Bool? = nil,  format: ImageFormat? = nil,  addPlayedIndicator: Bool? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil,  imageIndex: Int? = nil) -> Promise<URL>
 ```
 
 Gets the item's image.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -537,15 +516,12 @@ let foregroundLayer = "foregroundLayer_example" // String | Optional. Apply a fo
 let imageIndex = 987 // Int | Image index. (optional)
 
 // Gets the item's image.
-ImageAPI.getItemImage(itemId: itemId, imageType: imageType, maxWidth: maxWidth, maxHeight: maxHeight, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, tag: tag, cropWhitespace: cropWhitespace, format: format, addPlayedIndicator: addPlayedIndicator, percentPlayed: percentPlayed, unplayedCount: unplayedCount, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer, imageIndex: imageIndex) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ImageAPI.getItemImage(itemId: itemId, imageType: imageType, maxWidth: maxWidth, maxHeight: maxHeight, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, tag: tag, cropWhitespace: cropWhitespace, format: format, addPlayedIndicator: addPlayedIndicator, percentPlayed: percentPlayed, unplayedCount: unplayedCount, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer, imageIndex: imageIndex).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -553,7 +529,7 @@ ImageAPI.getItemImage(itemId: itemId, imageType: imageType, maxWidth: maxWidth, 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | [**String**](.md) | Item id. | 
+ **itemId** | **String** | Item id. | 
  **imageType** | [**ImageType**](.md) | Image type. | 
  **maxWidth** | **Int** | The maximum image width to return. | [optional] 
  **maxHeight** | **Int** | The maximum image height to return. | [optional] 
@@ -590,12 +566,12 @@ No authorization required
 
 # **getItemImage2**
 ```swift
-    open class func getItemImage2(itemId: String, imageType: ImageType, maxWidth: Int, maxHeight: Int, tag: String, format: ImageFormat, percentPlayed: Double, unplayedCount: Int, imageIndex: Int, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func getItemImage2( itemId: String,  imageType: ImageType,  maxWidth: Int,  maxHeight: Int,  tag: String,  format: ImageFormat,  percentPlayed: Double,  unplayedCount: Int,  imageIndex: Int,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil) -> Promise<URL>
 ```
 
 Gets the item's image.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -621,15 +597,12 @@ let backgroundColor = "backgroundColor_example" // String | Optional. Apply a ba
 let foregroundLayer = "foregroundLayer_example" // String | Optional. Apply a foreground layer on top of the image. (optional)
 
 // Gets the item's image.
-ImageAPI.getItemImage2(itemId: itemId, imageType: imageType, maxWidth: maxWidth, maxHeight: maxHeight, tag: tag, format: format, percentPlayed: percentPlayed, unplayedCount: unplayedCount, imageIndex: imageIndex, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ImageAPI.getItemImage2(itemId: itemId, imageType: imageType, maxWidth: maxWidth, maxHeight: maxHeight, tag: tag, format: format, percentPlayed: percentPlayed, unplayedCount: unplayedCount, imageIndex: imageIndex, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -637,7 +610,7 @@ ImageAPI.getItemImage2(itemId: itemId, imageType: imageType, maxWidth: maxWidth,
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | [**String**](.md) | Item id. | 
+ **itemId** | **String** | Item id. | 
  **imageType** | [**ImageType**](.md) | Image type. | 
  **maxWidth** | **Int** | The maximum image width to return. | 
  **maxHeight** | **Int** | The maximum image height to return. | 
@@ -674,12 +647,12 @@ No authorization required
 
 # **getItemImageByIndex**
 ```swift
-    open class func getItemImageByIndex(itemId: String, imageType: ImageType, imageIndex: Int, maxWidth: Int? = nil, maxHeight: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, tag: String? = nil, cropWhitespace: Bool? = nil, format: ImageFormat? = nil, addPlayedIndicator: Bool? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func getItemImageByIndex( itemId: String,  imageType: ImageType,  imageIndex: Int,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  tag: String? = nil,  cropWhitespace: Bool? = nil,  format: ImageFormat? = nil,  addPlayedIndicator: Bool? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil) -> Promise<URL>
 ```
 
 Gets the item's image.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -705,15 +678,12 @@ let backgroundColor = "backgroundColor_example" // String | Optional. Apply a ba
 let foregroundLayer = "foregroundLayer_example" // String | Optional. Apply a foreground layer on top of the image. (optional)
 
 // Gets the item's image.
-ImageAPI.getItemImageByIndex(itemId: itemId, imageType: imageType, imageIndex: imageIndex, maxWidth: maxWidth, maxHeight: maxHeight, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, tag: tag, cropWhitespace: cropWhitespace, format: format, addPlayedIndicator: addPlayedIndicator, percentPlayed: percentPlayed, unplayedCount: unplayedCount, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ImageAPI.getItemImageByIndex(itemId: itemId, imageType: imageType, imageIndex: imageIndex, maxWidth: maxWidth, maxHeight: maxHeight, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, tag: tag, cropWhitespace: cropWhitespace, format: format, addPlayedIndicator: addPlayedIndicator, percentPlayed: percentPlayed, unplayedCount: unplayedCount, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -721,7 +691,7 @@ ImageAPI.getItemImageByIndex(itemId: itemId, imageType: imageType, imageIndex: i
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | [**String**](.md) | Item id. | 
+ **itemId** | **String** | Item id. | 
  **imageType** | [**ImageType**](.md) | Image type. | 
  **imageIndex** | **Int** | Image index. | 
  **maxWidth** | **Int** | The maximum image width to return. | [optional] 
@@ -758,12 +728,12 @@ No authorization required
 
 # **getItemImageInfos**
 ```swift
-    open class func getItemImageInfos(itemId: String, completion: @escaping (_ data: [ImageInfo]?, _ error: Error?) -> Void)
+    open class func getItemImageInfos( itemId: String) -> Promise<[ImageInfo]>
 ```
 
 Get item image infos.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -771,15 +741,12 @@ import JellyfinAPI
 let itemId = "itemId_example" // String | Item id.
 
 // Get item image infos.
-ImageAPI.getItemImageInfos(itemId: itemId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ImageAPI.getItemImageInfos(itemId: itemId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -787,7 +754,7 @@ ImageAPI.getItemImageInfos(itemId: itemId) { (response, error) in
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | [**String**](.md) | Item id. | 
+ **itemId** | **String** | Item id. | 
 
 ### Return type
 
@@ -806,12 +773,12 @@ Name | Type | Description  | Notes
 
 # **getMusicGenreImage**
 ```swift
-    open class func getMusicGenreImage(name: String, imageType: ImageType, tag: String? = nil, format: ImageFormat? = nil, maxWidth: Int? = nil, maxHeight: Int? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, imageIndex: Int? = nil, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func getMusicGenreImage( name: String,  imageType: ImageType,  tag: String? = nil,  format: ImageFormat? = nil,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil,  imageIndex: Int? = nil) -> Promise<URL>
 ```
 
 Get music genre image by name.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -837,15 +804,12 @@ let foregroundLayer = "foregroundLayer_example" // String | Optional. Apply a fo
 let imageIndex = 987 // Int | Image index. (optional)
 
 // Get music genre image by name.
-ImageAPI.getMusicGenreImage(name: name, imageType: imageType, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer, imageIndex: imageIndex) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ImageAPI.getMusicGenreImage(name: name, imageType: imageType, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer, imageIndex: imageIndex).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -890,12 +854,12 @@ No authorization required
 
 # **getMusicGenreImageByIndex**
 ```swift
-    open class func getMusicGenreImageByIndex(name: String, imageType: ImageType, imageIndex: Int, tag: String? = nil, format: ImageFormat? = nil, maxWidth: Int? = nil, maxHeight: Int? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func getMusicGenreImageByIndex( name: String,  imageType: ImageType,  imageIndex: Int,  tag: String? = nil,  format: ImageFormat? = nil,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil) -> Promise<URL>
 ```
 
 Get music genre image by name.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -921,15 +885,12 @@ let backgroundColor = "backgroundColor_example" // String | Optional. Apply a ba
 let foregroundLayer = "foregroundLayer_example" // String | Optional. Apply a foreground layer on top of the image. (optional)
 
 // Get music genre image by name.
-ImageAPI.getMusicGenreImageByIndex(name: name, imageType: imageType, imageIndex: imageIndex, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ImageAPI.getMusicGenreImageByIndex(name: name, imageType: imageType, imageIndex: imageIndex, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -974,12 +935,12 @@ No authorization required
 
 # **getPersonImage**
 ```swift
-    open class func getPersonImage(name: String, imageType: ImageType, tag: String? = nil, format: ImageFormat? = nil, maxWidth: Int? = nil, maxHeight: Int? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, imageIndex: Int? = nil, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func getPersonImage( name: String,  imageType: ImageType,  tag: String? = nil,  format: ImageFormat? = nil,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil,  imageIndex: Int? = nil) -> Promise<URL>
 ```
 
 Get person image by name.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -1005,15 +966,12 @@ let foregroundLayer = "foregroundLayer_example" // String | Optional. Apply a fo
 let imageIndex = 987 // Int | Image index. (optional)
 
 // Get person image by name.
-ImageAPI.getPersonImage(name: name, imageType: imageType, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer, imageIndex: imageIndex) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ImageAPI.getPersonImage(name: name, imageType: imageType, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer, imageIndex: imageIndex).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -1058,12 +1016,12 @@ No authorization required
 
 # **getPersonImageByIndex**
 ```swift
-    open class func getPersonImageByIndex(name: String, imageType: ImageType, imageIndex: Int, tag: String? = nil, format: ImageFormat? = nil, maxWidth: Int? = nil, maxHeight: Int? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func getPersonImageByIndex( name: String,  imageType: ImageType,  imageIndex: Int,  tag: String? = nil,  format: ImageFormat? = nil,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil) -> Promise<URL>
 ```
 
 Get person image by name.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -1089,15 +1047,12 @@ let backgroundColor = "backgroundColor_example" // String | Optional. Apply a ba
 let foregroundLayer = "foregroundLayer_example" // String | Optional. Apply a foreground layer on top of the image. (optional)
 
 // Get person image by name.
-ImageAPI.getPersonImageByIndex(name: name, imageType: imageType, imageIndex: imageIndex, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ImageAPI.getPersonImageByIndex(name: name, imageType: imageType, imageIndex: imageIndex, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -1142,12 +1097,12 @@ No authorization required
 
 # **getStudioImage**
 ```swift
-    open class func getStudioImage(name: String, imageType: ImageType, tag: String? = nil, format: ImageFormat? = nil, maxWidth: Int? = nil, maxHeight: Int? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, imageIndex: Int? = nil, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func getStudioImage( name: String,  imageType: ImageType,  tag: String? = nil,  format: ImageFormat? = nil,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil,  imageIndex: Int? = nil) -> Promise<URL>
 ```
 
 Get studio image by name.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -1173,15 +1128,12 @@ let foregroundLayer = "foregroundLayer_example" // String | Optional. Apply a fo
 let imageIndex = 987 // Int | Image index. (optional)
 
 // Get studio image by name.
-ImageAPI.getStudioImage(name: name, imageType: imageType, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer, imageIndex: imageIndex) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ImageAPI.getStudioImage(name: name, imageType: imageType, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer, imageIndex: imageIndex).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -1226,12 +1178,12 @@ No authorization required
 
 # **getStudioImageByIndex**
 ```swift
-    open class func getStudioImageByIndex(name: String, imageType: ImageType, imageIndex: Int, tag: String? = nil, format: ImageFormat? = nil, maxWidth: Int? = nil, maxHeight: Int? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func getStudioImageByIndex( name: String,  imageType: ImageType,  imageIndex: Int,  tag: String? = nil,  format: ImageFormat? = nil,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil) -> Promise<URL>
 ```
 
 Get studio image by name.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -1257,15 +1209,12 @@ let backgroundColor = "backgroundColor_example" // String | Optional. Apply a ba
 let foregroundLayer = "foregroundLayer_example" // String | Optional. Apply a foreground layer on top of the image. (optional)
 
 // Get studio image by name.
-ImageAPI.getStudioImageByIndex(name: name, imageType: imageType, imageIndex: imageIndex, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ImageAPI.getStudioImageByIndex(name: name, imageType: imageType, imageIndex: imageIndex, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -1310,12 +1259,12 @@ No authorization required
 
 # **getUserImage**
 ```swift
-    open class func getUserImage(userId: String, imageType: ImageType, tag: String? = nil, format: ImageFormat? = nil, maxWidth: Int? = nil, maxHeight: Int? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, imageIndex: Int? = nil, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func getUserImage( userId: String,  imageType: ImageType,  tag: String? = nil,  format: ImageFormat? = nil,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil,  imageIndex: Int? = nil) -> Promise<URL>
 ```
 
 Get user profile image.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -1341,15 +1290,12 @@ let foregroundLayer = "foregroundLayer_example" // String | Optional. Apply a fo
 let imageIndex = 987 // Int | Image index. (optional)
 
 // Get user profile image.
-ImageAPI.getUserImage(userId: userId, imageType: imageType, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer, imageIndex: imageIndex) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ImageAPI.getUserImage(userId: userId, imageType: imageType, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer, imageIndex: imageIndex).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -1357,7 +1303,7 @@ ImageAPI.getUserImage(userId: userId, imageType: imageType, tag: tag, format: fo
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**String**](.md) | User id. | 
+ **userId** | **String** | User id. | 
  **imageType** | [**ImageType**](.md) | Image type. | 
  **tag** | **String** | Optional. Supply the cache tag from the item object to receive strong caching headers. | [optional] 
  **format** | [**ImageFormat**](.md) | Determines the output format of the image - original,gif,jpg,png. | [optional] 
@@ -1394,12 +1340,12 @@ No authorization required
 
 # **getUserImageByIndex**
 ```swift
-    open class func getUserImageByIndex(userId: String, imageType: ImageType, imageIndex: Int, tag: String? = nil, format: ImageFormat? = nil, maxWidth: Int? = nil, maxHeight: Int? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func getUserImageByIndex( userId: String,  imageType: ImageType,  imageIndex: Int,  tag: String? = nil,  format: ImageFormat? = nil,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil) -> Promise<URL>
 ```
 
 Get user profile image.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -1425,15 +1371,12 @@ let backgroundColor = "backgroundColor_example" // String | Optional. Apply a ba
 let foregroundLayer = "foregroundLayer_example" // String | Optional. Apply a foreground layer on top of the image. (optional)
 
 // Get user profile image.
-ImageAPI.getUserImageByIndex(userId: userId, imageType: imageType, imageIndex: imageIndex, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ImageAPI.getUserImageByIndex(userId: userId, imageType: imageType, imageIndex: imageIndex, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -1441,7 +1384,7 @@ ImageAPI.getUserImageByIndex(userId: userId, imageType: imageType, imageIndex: i
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**String**](.md) | User id. | 
+ **userId** | **String** | User id. | 
  **imageType** | [**ImageType**](.md) | Image type. | 
  **imageIndex** | **Int** | Image index. | 
  **tag** | **String** | Optional. Supply the cache tag from the item object to receive strong caching headers. | [optional] 
@@ -1478,12 +1421,12 @@ No authorization required
 
 # **headArtistImage**
 ```swift
-    open class func headArtistImage(name: String, imageType: ImageType, imageIndex: Int, tag: String? = nil, format: ImageFormat? = nil, maxWidth: Int? = nil, maxHeight: Int? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func headArtistImage( name: String,  imageType: ImageType,  imageIndex: Int,  tag: String? = nil,  format: ImageFormat? = nil,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil) -> Promise<URL>
 ```
 
 Get artist image by name.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -1509,15 +1452,12 @@ let backgroundColor = "backgroundColor_example" // String | Optional. Apply a ba
 let foregroundLayer = "foregroundLayer_example" // String | Optional. Apply a foreground layer on top of the image. (optional)
 
 // Get artist image by name.
-ImageAPI.headArtistImage(name: name, imageType: imageType, imageIndex: imageIndex, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ImageAPI.headArtistImage(name: name, imageType: imageType, imageIndex: imageIndex, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -1562,12 +1502,12 @@ No authorization required
 
 # **headGenreImage**
 ```swift
-    open class func headGenreImage(name: String, imageType: ImageType, tag: String? = nil, format: ImageFormat? = nil, maxWidth: Int? = nil, maxHeight: Int? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, imageIndex: Int? = nil, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func headGenreImage( name: String,  imageType: ImageType,  tag: String? = nil,  format: ImageFormat? = nil,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil,  imageIndex: Int? = nil) -> Promise<URL>
 ```
 
 Get genre image by name.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -1593,15 +1533,12 @@ let foregroundLayer = "foregroundLayer_example" // String | Optional. Apply a fo
 let imageIndex = 987 // Int | Image index. (optional)
 
 // Get genre image by name.
-ImageAPI.headGenreImage(name: name, imageType: imageType, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer, imageIndex: imageIndex) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ImageAPI.headGenreImage(name: name, imageType: imageType, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer, imageIndex: imageIndex).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -1646,12 +1583,12 @@ No authorization required
 
 # **headGenreImageByIndex**
 ```swift
-    open class func headGenreImageByIndex(name: String, imageType: ImageType, imageIndex: Int, tag: String? = nil, format: ImageFormat? = nil, maxWidth: Int? = nil, maxHeight: Int? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func headGenreImageByIndex( name: String,  imageType: ImageType,  imageIndex: Int,  tag: String? = nil,  format: ImageFormat? = nil,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil) -> Promise<URL>
 ```
 
 Get genre image by name.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -1677,15 +1614,12 @@ let backgroundColor = "backgroundColor_example" // String | Optional. Apply a ba
 let foregroundLayer = "foregroundLayer_example" // String | Optional. Apply a foreground layer on top of the image. (optional)
 
 // Get genre image by name.
-ImageAPI.headGenreImageByIndex(name: name, imageType: imageType, imageIndex: imageIndex, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ImageAPI.headGenreImageByIndex(name: name, imageType: imageType, imageIndex: imageIndex, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -1730,12 +1664,12 @@ No authorization required
 
 # **headItemImage**
 ```swift
-    open class func headItemImage(itemId: String, imageType: ImageType, maxWidth: Int? = nil, maxHeight: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, tag: String? = nil, cropWhitespace: Bool? = nil, format: ImageFormat? = nil, addPlayedIndicator: Bool? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, imageIndex: Int? = nil, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func headItemImage( itemId: String,  imageType: ImageType,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  tag: String? = nil,  cropWhitespace: Bool? = nil,  format: ImageFormat? = nil,  addPlayedIndicator: Bool? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil,  imageIndex: Int? = nil) -> Promise<URL>
 ```
 
 Gets the item's image.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -1761,15 +1695,12 @@ let foregroundLayer = "foregroundLayer_example" // String | Optional. Apply a fo
 let imageIndex = 987 // Int | Image index. (optional)
 
 // Gets the item's image.
-ImageAPI.headItemImage(itemId: itemId, imageType: imageType, maxWidth: maxWidth, maxHeight: maxHeight, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, tag: tag, cropWhitespace: cropWhitespace, format: format, addPlayedIndicator: addPlayedIndicator, percentPlayed: percentPlayed, unplayedCount: unplayedCount, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer, imageIndex: imageIndex) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ImageAPI.headItemImage(itemId: itemId, imageType: imageType, maxWidth: maxWidth, maxHeight: maxHeight, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, tag: tag, cropWhitespace: cropWhitespace, format: format, addPlayedIndicator: addPlayedIndicator, percentPlayed: percentPlayed, unplayedCount: unplayedCount, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer, imageIndex: imageIndex).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -1777,7 +1708,7 @@ ImageAPI.headItemImage(itemId: itemId, imageType: imageType, maxWidth: maxWidth,
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | [**String**](.md) | Item id. | 
+ **itemId** | **String** | Item id. | 
  **imageType** | [**ImageType**](.md) | Image type. | 
  **maxWidth** | **Int** | The maximum image width to return. | [optional] 
  **maxHeight** | **Int** | The maximum image height to return. | [optional] 
@@ -1814,12 +1745,12 @@ No authorization required
 
 # **headItemImage2**
 ```swift
-    open class func headItemImage2(itemId: String, imageType: ImageType, maxWidth: Int, maxHeight: Int, tag: String, format: ImageFormat, percentPlayed: Double, unplayedCount: Int, imageIndex: Int, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func headItemImage2( itemId: String,  imageType: ImageType,  maxWidth: Int,  maxHeight: Int,  tag: String,  format: ImageFormat,  percentPlayed: Double,  unplayedCount: Int,  imageIndex: Int,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil) -> Promise<URL>
 ```
 
 Gets the item's image.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -1845,15 +1776,12 @@ let backgroundColor = "backgroundColor_example" // String | Optional. Apply a ba
 let foregroundLayer = "foregroundLayer_example" // String | Optional. Apply a foreground layer on top of the image. (optional)
 
 // Gets the item's image.
-ImageAPI.headItemImage2(itemId: itemId, imageType: imageType, maxWidth: maxWidth, maxHeight: maxHeight, tag: tag, format: format, percentPlayed: percentPlayed, unplayedCount: unplayedCount, imageIndex: imageIndex, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ImageAPI.headItemImage2(itemId: itemId, imageType: imageType, maxWidth: maxWidth, maxHeight: maxHeight, tag: tag, format: format, percentPlayed: percentPlayed, unplayedCount: unplayedCount, imageIndex: imageIndex, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -1861,7 +1789,7 @@ ImageAPI.headItemImage2(itemId: itemId, imageType: imageType, maxWidth: maxWidth
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | [**String**](.md) | Item id. | 
+ **itemId** | **String** | Item id. | 
  **imageType** | [**ImageType**](.md) | Image type. | 
  **maxWidth** | **Int** | The maximum image width to return. | 
  **maxHeight** | **Int** | The maximum image height to return. | 
@@ -1898,12 +1826,12 @@ No authorization required
 
 # **headItemImageByIndex**
 ```swift
-    open class func headItemImageByIndex(itemId: String, imageType: ImageType, imageIndex: Int, maxWidth: Int? = nil, maxHeight: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, tag: String? = nil, cropWhitespace: Bool? = nil, format: ImageFormat? = nil, addPlayedIndicator: Bool? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func headItemImageByIndex( itemId: String,  imageType: ImageType,  imageIndex: Int,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  tag: String? = nil,  cropWhitespace: Bool? = nil,  format: ImageFormat? = nil,  addPlayedIndicator: Bool? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil) -> Promise<URL>
 ```
 
 Gets the item's image.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -1929,15 +1857,12 @@ let backgroundColor = "backgroundColor_example" // String | Optional. Apply a ba
 let foregroundLayer = "foregroundLayer_example" // String | Optional. Apply a foreground layer on top of the image. (optional)
 
 // Gets the item's image.
-ImageAPI.headItemImageByIndex(itemId: itemId, imageType: imageType, imageIndex: imageIndex, maxWidth: maxWidth, maxHeight: maxHeight, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, tag: tag, cropWhitespace: cropWhitespace, format: format, addPlayedIndicator: addPlayedIndicator, percentPlayed: percentPlayed, unplayedCount: unplayedCount, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ImageAPI.headItemImageByIndex(itemId: itemId, imageType: imageType, imageIndex: imageIndex, maxWidth: maxWidth, maxHeight: maxHeight, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, tag: tag, cropWhitespace: cropWhitespace, format: format, addPlayedIndicator: addPlayedIndicator, percentPlayed: percentPlayed, unplayedCount: unplayedCount, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -1945,7 +1870,7 @@ ImageAPI.headItemImageByIndex(itemId: itemId, imageType: imageType, imageIndex: 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | [**String**](.md) | Item id. | 
+ **itemId** | **String** | Item id. | 
  **imageType** | [**ImageType**](.md) | Image type. | 
  **imageIndex** | **Int** | Image index. | 
  **maxWidth** | **Int** | The maximum image width to return. | [optional] 
@@ -1982,12 +1907,12 @@ No authorization required
 
 # **headMusicGenreImage**
 ```swift
-    open class func headMusicGenreImage(name: String, imageType: ImageType, tag: String? = nil, format: ImageFormat? = nil, maxWidth: Int? = nil, maxHeight: Int? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, imageIndex: Int? = nil, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func headMusicGenreImage( name: String,  imageType: ImageType,  tag: String? = nil,  format: ImageFormat? = nil,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil,  imageIndex: Int? = nil) -> Promise<URL>
 ```
 
 Get music genre image by name.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -2013,15 +1938,12 @@ let foregroundLayer = "foregroundLayer_example" // String | Optional. Apply a fo
 let imageIndex = 987 // Int | Image index. (optional)
 
 // Get music genre image by name.
-ImageAPI.headMusicGenreImage(name: name, imageType: imageType, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer, imageIndex: imageIndex) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ImageAPI.headMusicGenreImage(name: name, imageType: imageType, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer, imageIndex: imageIndex).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -2066,12 +1988,12 @@ No authorization required
 
 # **headMusicGenreImageByIndex**
 ```swift
-    open class func headMusicGenreImageByIndex(name: String, imageType: ImageType, imageIndex: Int, tag: String? = nil, format: ImageFormat? = nil, maxWidth: Int? = nil, maxHeight: Int? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func headMusicGenreImageByIndex( name: String,  imageType: ImageType,  imageIndex: Int,  tag: String? = nil,  format: ImageFormat? = nil,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil) -> Promise<URL>
 ```
 
 Get music genre image by name.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -2097,15 +2019,12 @@ let backgroundColor = "backgroundColor_example" // String | Optional. Apply a ba
 let foregroundLayer = "foregroundLayer_example" // String | Optional. Apply a foreground layer on top of the image. (optional)
 
 // Get music genre image by name.
-ImageAPI.headMusicGenreImageByIndex(name: name, imageType: imageType, imageIndex: imageIndex, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ImageAPI.headMusicGenreImageByIndex(name: name, imageType: imageType, imageIndex: imageIndex, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -2150,12 +2069,12 @@ No authorization required
 
 # **headPersonImage**
 ```swift
-    open class func headPersonImage(name: String, imageType: ImageType, tag: String? = nil, format: ImageFormat? = nil, maxWidth: Int? = nil, maxHeight: Int? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, imageIndex: Int? = nil, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func headPersonImage( name: String,  imageType: ImageType,  tag: String? = nil,  format: ImageFormat? = nil,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil,  imageIndex: Int? = nil) -> Promise<URL>
 ```
 
 Get person image by name.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -2181,15 +2100,12 @@ let foregroundLayer = "foregroundLayer_example" // String | Optional. Apply a fo
 let imageIndex = 987 // Int | Image index. (optional)
 
 // Get person image by name.
-ImageAPI.headPersonImage(name: name, imageType: imageType, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer, imageIndex: imageIndex) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ImageAPI.headPersonImage(name: name, imageType: imageType, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer, imageIndex: imageIndex).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -2234,12 +2150,12 @@ No authorization required
 
 # **headPersonImageByIndex**
 ```swift
-    open class func headPersonImageByIndex(name: String, imageType: ImageType, imageIndex: Int, tag: String? = nil, format: ImageFormat? = nil, maxWidth: Int? = nil, maxHeight: Int? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func headPersonImageByIndex( name: String,  imageType: ImageType,  imageIndex: Int,  tag: String? = nil,  format: ImageFormat? = nil,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil) -> Promise<URL>
 ```
 
 Get person image by name.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -2265,15 +2181,12 @@ let backgroundColor = "backgroundColor_example" // String | Optional. Apply a ba
 let foregroundLayer = "foregroundLayer_example" // String | Optional. Apply a foreground layer on top of the image. (optional)
 
 // Get person image by name.
-ImageAPI.headPersonImageByIndex(name: name, imageType: imageType, imageIndex: imageIndex, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ImageAPI.headPersonImageByIndex(name: name, imageType: imageType, imageIndex: imageIndex, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -2318,12 +2231,12 @@ No authorization required
 
 # **headStudioImage**
 ```swift
-    open class func headStudioImage(name: String, imageType: ImageType, tag: String? = nil, format: ImageFormat? = nil, maxWidth: Int? = nil, maxHeight: Int? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, imageIndex: Int? = nil, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func headStudioImage( name: String,  imageType: ImageType,  tag: String? = nil,  format: ImageFormat? = nil,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil,  imageIndex: Int? = nil) -> Promise<URL>
 ```
 
 Get studio image by name.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -2349,15 +2262,12 @@ let foregroundLayer = "foregroundLayer_example" // String | Optional. Apply a fo
 let imageIndex = 987 // Int | Image index. (optional)
 
 // Get studio image by name.
-ImageAPI.headStudioImage(name: name, imageType: imageType, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer, imageIndex: imageIndex) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ImageAPI.headStudioImage(name: name, imageType: imageType, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer, imageIndex: imageIndex).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -2402,12 +2312,12 @@ No authorization required
 
 # **headStudioImageByIndex**
 ```swift
-    open class func headStudioImageByIndex(name: String, imageType: ImageType, imageIndex: Int, tag: String? = nil, format: ImageFormat? = nil, maxWidth: Int? = nil, maxHeight: Int? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func headStudioImageByIndex( name: String,  imageType: ImageType,  imageIndex: Int,  tag: String? = nil,  format: ImageFormat? = nil,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil) -> Promise<URL>
 ```
 
 Get studio image by name.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -2433,15 +2343,12 @@ let backgroundColor = "backgroundColor_example" // String | Optional. Apply a ba
 let foregroundLayer = "foregroundLayer_example" // String | Optional. Apply a foreground layer on top of the image. (optional)
 
 // Get studio image by name.
-ImageAPI.headStudioImageByIndex(name: name, imageType: imageType, imageIndex: imageIndex, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ImageAPI.headStudioImageByIndex(name: name, imageType: imageType, imageIndex: imageIndex, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -2486,12 +2393,12 @@ No authorization required
 
 # **headUserImage**
 ```swift
-    open class func headUserImage(userId: String, imageType: ImageType, tag: String? = nil, format: ImageFormat? = nil, maxWidth: Int? = nil, maxHeight: Int? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, imageIndex: Int? = nil, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func headUserImage( userId: String,  imageType: ImageType,  tag: String? = nil,  format: ImageFormat? = nil,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil,  imageIndex: Int? = nil) -> Promise<URL>
 ```
 
 Get user profile image.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -2517,15 +2424,12 @@ let foregroundLayer = "foregroundLayer_example" // String | Optional. Apply a fo
 let imageIndex = 987 // Int | Image index. (optional)
 
 // Get user profile image.
-ImageAPI.headUserImage(userId: userId, imageType: imageType, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer, imageIndex: imageIndex) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ImageAPI.headUserImage(userId: userId, imageType: imageType, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer, imageIndex: imageIndex).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -2533,7 +2437,7 @@ ImageAPI.headUserImage(userId: userId, imageType: imageType, tag: tag, format: f
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**String**](.md) | User id. | 
+ **userId** | **String** | User id. | 
  **imageType** | [**ImageType**](.md) | Image type. | 
  **tag** | **String** | Optional. Supply the cache tag from the item object to receive strong caching headers. | [optional] 
  **format** | [**ImageFormat**](.md) | Determines the output format of the image - original,gif,jpg,png. | [optional] 
@@ -2570,12 +2474,12 @@ No authorization required
 
 # **headUserImageByIndex**
 ```swift
-    open class func headUserImageByIndex(userId: String, imageType: ImageType, imageIndex: Int, tag: String? = nil, format: ImageFormat? = nil, maxWidth: Int? = nil, maxHeight: Int? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func headUserImageByIndex( userId: String,  imageType: ImageType,  imageIndex: Int,  tag: String? = nil,  format: ImageFormat? = nil,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil) -> Promise<URL>
 ```
 
 Get user profile image.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -2601,15 +2505,12 @@ let backgroundColor = "backgroundColor_example" // String | Optional. Apply a ba
 let foregroundLayer = "foregroundLayer_example" // String | Optional. Apply a foreground layer on top of the image. (optional)
 
 // Get user profile image.
-ImageAPI.headUserImageByIndex(userId: userId, imageType: imageType, imageIndex: imageIndex, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ImageAPI.headUserImageByIndex(userId: userId, imageType: imageType, imageIndex: imageIndex, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -2617,7 +2518,7 @@ ImageAPI.headUserImageByIndex(userId: userId, imageType: imageType, imageIndex: 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**String**](.md) | User id. | 
+ **userId** | **String** | User id. | 
  **imageType** | [**ImageType**](.md) | Image type. | 
  **imageIndex** | **Int** | Image index. | 
  **tag** | **String** | Optional. Supply the cache tag from the item object to receive strong caching headers. | [optional] 
@@ -2654,12 +2555,12 @@ No authorization required
 
 # **postUserImage**
 ```swift
-    open class func postUserImage(userId: String, imageType: ImageType, index: Int? = nil, body: URL? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func postUserImage( userId: String,  imageType: ImageType,  index: Int? = nil,  body: URL? = nil) -> Promise<Void>
 ```
 
 Sets the user image.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -2670,15 +2571,12 @@ let index = 987 // Int | (Unused) Image index. (optional)
 let body = URL(string: "https://example.com")! // URL |  (optional)
 
 // Sets the user image.
-ImageAPI.postUserImage(userId: userId, imageType: imageType, index: index, body: body) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ImageAPI.postUserImage(userId: userId, imageType: imageType, index: index, body: body).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -2686,7 +2584,7 @@ ImageAPI.postUserImage(userId: userId, imageType: imageType, index: index, body:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**String**](.md) | User Id. | 
+ **userId** | **String** | User Id. | 
  **imageType** | [**ImageType**](.md) | (Unused) Image type. | 
  **index** | **Int** | (Unused) Image index. | [optional] 
  **body** | **URL** |  | [optional] 
@@ -2708,12 +2606,12 @@ Void (empty response body)
 
 # **postUserImageByIndex**
 ```swift
-    open class func postUserImageByIndex(userId: String, imageType: ImageType, index: Int, body: URL? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func postUserImageByIndex( userId: String,  imageType: ImageType,  index: Int,  body: URL? = nil) -> Promise<Void>
 ```
 
 Sets the user image.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -2724,15 +2622,12 @@ let index = 987 // Int | (Unused) Image index.
 let body = URL(string: "https://example.com")! // URL |  (optional)
 
 // Sets the user image.
-ImageAPI.postUserImageByIndex(userId: userId, imageType: imageType, index: index, body: body) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ImageAPI.postUserImageByIndex(userId: userId, imageType: imageType, index: index, body: body).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -2740,7 +2635,7 @@ ImageAPI.postUserImageByIndex(userId: userId, imageType: imageType, index: index
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**String**](.md) | User Id. | 
+ **userId** | **String** | User Id. | 
  **imageType** | [**ImageType**](.md) | (Unused) Image type. | 
  **index** | **Int** | (Unused) Image index. | 
  **body** | **URL** |  | [optional] 
@@ -2762,12 +2657,12 @@ Void (empty response body)
 
 # **setItemImage**
 ```swift
-    open class func setItemImage(itemId: String, imageType: ImageType, body: URL? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func setItemImage( itemId: String,  imageType: ImageType,  body: URL? = nil) -> Promise<Void>
 ```
 
 Set item image.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -2777,15 +2672,12 @@ let imageType = ImageType() // ImageType | Image type.
 let body = URL(string: "https://example.com")! // URL |  (optional)
 
 // Set item image.
-ImageAPI.setItemImage(itemId: itemId, imageType: imageType, body: body) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ImageAPI.setItemImage(itemId: itemId, imageType: imageType, body: body).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -2793,7 +2685,7 @@ ImageAPI.setItemImage(itemId: itemId, imageType: imageType, body: body) { (respo
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | [**String**](.md) | Item id. | 
+ **itemId** | **String** | Item id. | 
  **imageType** | [**ImageType**](.md) | Image type. | 
  **body** | **URL** |  | [optional] 
 
@@ -2814,12 +2706,12 @@ Void (empty response body)
 
 # **setItemImageByIndex**
 ```swift
-    open class func setItemImageByIndex(itemId: String, imageType: ImageType, imageIndex: Int, body: URL? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func setItemImageByIndex( itemId: String,  imageType: ImageType,  imageIndex: Int,  body: URL? = nil) -> Promise<Void>
 ```
 
 Set item image.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -2830,15 +2722,12 @@ let imageIndex = 987 // Int | (Unused) Image index.
 let body = URL(string: "https://example.com")! // URL |  (optional)
 
 // Set item image.
-ImageAPI.setItemImageByIndex(itemId: itemId, imageType: imageType, imageIndex: imageIndex, body: body) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ImageAPI.setItemImageByIndex(itemId: itemId, imageType: imageType, imageIndex: imageIndex, body: body).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -2846,7 +2735,7 @@ ImageAPI.setItemImageByIndex(itemId: itemId, imageType: imageType, imageIndex: i
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | [**String**](.md) | Item id. | 
+ **itemId** | **String** | Item id. | 
  **imageType** | [**ImageType**](.md) | Image type. | 
  **imageIndex** | **Int** | (Unused) Image index. | 
  **body** | **URL** |  | [optional] 
@@ -2868,12 +2757,12 @@ Void (empty response body)
 
 # **updateItemImageIndex**
 ```swift
-    open class func updateItemImageIndex(itemId: String, imageType: ImageType, imageIndex: Int, newIndex: Int, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func updateItemImageIndex( itemId: String,  imageType: ImageType,  imageIndex: Int,  newIndex: Int) -> Promise<Void>
 ```
 
 Updates the index for an item image.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -2884,15 +2773,12 @@ let imageIndex = 987 // Int | Old image index.
 let newIndex = 987 // Int | New image index.
 
 // Updates the index for an item image.
-ImageAPI.updateItemImageIndex(itemId: itemId, imageType: imageType, imageIndex: imageIndex, newIndex: newIndex) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ImageAPI.updateItemImageIndex(itemId: itemId, imageType: imageType, imageIndex: imageIndex, newIndex: newIndex).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -2900,7 +2786,7 @@ ImageAPI.updateItemImageIndex(itemId: itemId, imageType: imageType, imageIndex: 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | [**String**](.md) | Item id. | 
+ **itemId** | **String** | Item id. | 
  **imageType** | [**ImageType**](.md) | Image type. | 
  **imageIndex** | **Int** | Old image index. | 
  **newIndex** | **Int** | New image index. | 

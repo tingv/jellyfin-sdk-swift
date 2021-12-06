@@ -24,12 +24,12 @@ Method | HTTP request | Description
 
 # **authenticateUser**
 ```swift
-    open class func authenticateUser(userId: String, pw: String, password: String? = nil, completion: @escaping (_ data: AuthenticationResult?, _ error: Error?) -> Void)
+    open class func authenticateUser( userId: String,  pw: String,  password: String? = nil) -> Promise<AuthenticationResult>
 ```
 
 Authenticates a user.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -39,15 +39,12 @@ let pw = "pw_example" // String | The password as plain text.
 let password = "password_example" // String | The password sha1-hash. (optional)
 
 // Authenticates a user.
-UserAPI.authenticateUser(userId: userId, pw: pw, password: password) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+UserAPI.authenticateUser(userId: userId, pw: pw, password: password).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -55,7 +52,7 @@ UserAPI.authenticateUser(userId: userId, pw: pw, password: password) { (response
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**String**](.md) | The user id. | 
+ **userId** | **String** | The user id. | 
  **pw** | **String** | The password as plain text. | 
  **password** | **String** | The password sha1-hash. | [optional] 
 
@@ -76,12 +73,12 @@ No authorization required
 
 # **authenticateUserByName**
 ```swift
-    open class func authenticateUserByName(authenticateUserByName: AuthenticateUserByName, completion: @escaping (_ data: AuthenticationResult?, _ error: Error?) -> Void)
+    open class func authenticateUserByName( authenticateUserByName: AuthenticateUserByName) -> Promise<AuthenticationResult>
 ```
 
 Authenticates a user by name.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -89,15 +86,12 @@ import JellyfinAPI
 let authenticateUserByName = AuthenticateUserByName(username: "username_example", pw: "pw_example", password: "password_example") // AuthenticateUserByName | The M:Jellyfin.Api.Controllers.UserController.AuthenticateUserByName(Jellyfin.Api.Models.UserDtos.AuthenticateUserByName) request.
 
 // Authenticates a user by name.
-UserAPI.authenticateUserByName(authenticateUserByName: authenticateUserByName) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+UserAPI.authenticateUserByName(authenticateUserByName: authenticateUserByName).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -124,12 +118,12 @@ No authorization required
 
 # **authenticateWithQuickConnect**
 ```swift
-    open class func authenticateWithQuickConnect(quickConnectDto: QuickConnectDto, completion: @escaping (_ data: AuthenticationResult?, _ error: Error?) -> Void)
+    open class func authenticateWithQuickConnect( quickConnectDto: QuickConnectDto) -> Promise<AuthenticationResult>
 ```
 
 Authenticates a user with quick connect.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -137,15 +131,12 @@ import JellyfinAPI
 let quickConnectDto = QuickConnectDto(token: "token_example") // QuickConnectDto | The Jellyfin.Api.Models.UserDtos.QuickConnectDto request.
 
 // Authenticates a user with quick connect.
-UserAPI.authenticateWithQuickConnect(quickConnectDto: quickConnectDto) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+UserAPI.authenticateWithQuickConnect(quickConnectDto: quickConnectDto).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -172,12 +163,12 @@ No authorization required
 
 # **createUserByName**
 ```swift
-    open class func createUserByName(createUserByName: CreateUserByName, completion: @escaping (_ data: UserDto?, _ error: Error?) -> Void)
+    open class func createUserByName( createUserByName: CreateUserByName) -> Promise<UserDto>
 ```
 
 Creates a user.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -185,15 +176,12 @@ import JellyfinAPI
 let createUserByName = CreateUserByName(name: "name_example", password: "password_example") // CreateUserByName | The create user by name request body.
 
 // Creates a user.
-UserAPI.createUserByName(createUserByName: createUserByName) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+UserAPI.createUserByName(createUserByName: createUserByName).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -220,12 +208,12 @@ Name | Type | Description  | Notes
 
 # **deleteUser**
 ```swift
-    open class func deleteUser(userId: String, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func deleteUser( userId: String) -> Promise<Void>
 ```
 
 Deletes a user.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -233,15 +221,12 @@ import JellyfinAPI
 let userId = "userId_example" // String | The user id.
 
 // Deletes a user.
-UserAPI.deleteUser(userId: userId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+UserAPI.deleteUser(userId: userId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -249,7 +234,7 @@ UserAPI.deleteUser(userId: userId) { (response, error) in
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**String**](.md) | The user id. | 
+ **userId** | **String** | The user id. | 
 
 ### Return type
 
@@ -268,12 +253,12 @@ Void (empty response body)
 
 # **forgotPassword**
 ```swift
-    open class func forgotPassword(forgotPasswordDto: ForgotPasswordDto, completion: @escaping (_ data: ForgotPasswordResult?, _ error: Error?) -> Void)
+    open class func forgotPassword( forgotPasswordDto: ForgotPasswordDto) -> Promise<ForgotPasswordResult>
 ```
 
 Initiates the forgot password process for a local user.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -281,15 +266,12 @@ import JellyfinAPI
 let forgotPasswordDto = ForgotPasswordDto(enteredUsername: "enteredUsername_example") // ForgotPasswordDto | The forgot password request containing the entered username.
 
 // Initiates the forgot password process for a local user.
-UserAPI.forgotPassword(forgotPasswordDto: forgotPasswordDto) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+UserAPI.forgotPassword(forgotPasswordDto: forgotPasswordDto).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -316,12 +298,12 @@ No authorization required
 
 # **forgotPasswordPin**
 ```swift
-    open class func forgotPasswordPin(forgotPasswordPinDto: ForgotPasswordPinDto, completion: @escaping (_ data: PinRedeemResult?, _ error: Error?) -> Void)
+    open class func forgotPasswordPin( forgotPasswordPinDto: ForgotPasswordPinDto) -> Promise<PinRedeemResult>
 ```
 
 Redeems a forgot password pin.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -329,15 +311,12 @@ import JellyfinAPI
 let forgotPasswordPinDto = ForgotPasswordPinDto(pin: "pin_example") // ForgotPasswordPinDto | The forgot password pin request containing the entered pin.
 
 // Redeems a forgot password pin.
-UserAPI.forgotPasswordPin(forgotPasswordPinDto: forgotPasswordPinDto) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+UserAPI.forgotPasswordPin(forgotPasswordPinDto: forgotPasswordPinDto).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -364,27 +343,24 @@ No authorization required
 
 # **getCurrentUser**
 ```swift
-    open class func getCurrentUser(completion: @escaping (_ data: UserDto?, _ error: Error?) -> Void)
+    open class func getCurrentUser() -> Promise<UserDto>
 ```
 
 Gets the user based on auth token.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
 
 
 // Gets the user based on auth token.
-UserAPI.getCurrentUser() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+UserAPI.getCurrentUser().then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -408,27 +384,24 @@ This endpoint does not need any parameter.
 
 # **getPublicUsers**
 ```swift
-    open class func getPublicUsers(completion: @escaping (_ data: [UserDto]?, _ error: Error?) -> Void)
+    open class func getPublicUsers() -> Promise<[UserDto]>
 ```
 
 Gets a list of publicly visible users for display on a login screen.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
 
 
 // Gets a list of publicly visible users for display on a login screen.
-UserAPI.getPublicUsers() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+UserAPI.getPublicUsers().then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -452,12 +425,12 @@ No authorization required
 
 # **getUserById**
 ```swift
-    open class func getUserById(userId: String, completion: @escaping (_ data: UserDto?, _ error: Error?) -> Void)
+    open class func getUserById( userId: String) -> Promise<UserDto>
 ```
 
 Gets a user by Id.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -465,15 +438,12 @@ import JellyfinAPI
 let userId = "userId_example" // String | The user id.
 
 // Gets a user by Id.
-UserAPI.getUserById(userId: userId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+UserAPI.getUserById(userId: userId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -481,7 +451,7 @@ UserAPI.getUserById(userId: userId) { (response, error) in
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**String**](.md) | The user id. | 
+ **userId** | **String** | The user id. | 
 
 ### Return type
 
@@ -500,12 +470,12 @@ Name | Type | Description  | Notes
 
 # **getUsers**
 ```swift
-    open class func getUsers(isHidden: Bool? = nil, isDisabled: Bool? = nil, completion: @escaping (_ data: [UserDto]?, _ error: Error?) -> Void)
+    open class func getUsers( isHidden: Bool? = nil,  isDisabled: Bool? = nil) -> Promise<[UserDto]>
 ```
 
 Gets a list of users.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -514,15 +484,12 @@ let isHidden = true // Bool | Optional filter by IsHidden=true or false. (option
 let isDisabled = true // Bool | Optional filter by IsDisabled=true or false. (optional)
 
 // Gets a list of users.
-UserAPI.getUsers(isHidden: isHidden, isDisabled: isDisabled) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+UserAPI.getUsers(isHidden: isHidden, isDisabled: isDisabled).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -550,12 +517,12 @@ Name | Type | Description  | Notes
 
 # **updateUser**
 ```swift
-    open class func updateUser(userId: String, userDto: UserDto, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func updateUser( userId: String,  userDto: UserDto) -> Promise<Void>
 ```
 
 Updates a user.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -564,15 +531,12 @@ let userId = "userId_example" // String | The user id.
 let userDto = UserDto(name: "name_example", serverId: "serverId_example", serverName: "serverName_example", id: "id_example", primaryImageTag: "primaryImageTag_example", hasPassword: false, hasConfiguredPassword: false, hasConfiguredEasyPassword: false, enableAutoLogin: false, lastLoginDate: Date(), lastActivityDate: Date(), configuration: UserConfiguration(audioLanguagePreference: "audioLanguagePreference_example", playDefaultAudioTrack: false, subtitleLanguagePreference: "subtitleLanguagePreference_example", displayMissingEpisodes: false, groupedFolders: ["groupedFolders_example"], subtitleMode: SubtitlePlaybackMode(), displayCollectionsView: false, enableLocalPassword: false, orderedViews: ["orderedViews_example"], latestItemsExcludes: ["latestItemsExcludes_example"], myMediaExcludes: ["myMediaExcludes_example"], hidePlayedInLatest: false, rememberAudioSelections: false, rememberSubtitleSelections: false, enableNextEpisodeAutoPlay: false), policy: UserPolicy(isAdministrator: false, isHidden: false, isDisabled: false, maxParentalRating: 123, blockedTags: ["blockedTags_example"], enableUserPreferenceAccess: false, accessSchedules: [AccessSchedule(id: 123, userId: "userId_example", dayOfWeek: DynamicDayOfWeek(), startHour: 123, endHour: 123)], blockUnratedItems: [UnratedItem()], enableRemoteControlOfOtherUsers: false, enableSharedDeviceControl: false, enableRemoteAccess: false, enableLiveTvManagement: false, enableLiveTvAccess: false, enableMediaPlayback: false, enableAudioPlaybackTranscoding: false, enableVideoPlaybackTranscoding: false, enablePlaybackRemuxing: false, forceRemoteSourceTranscoding: false, enableContentDeletion: false, enableContentDeletionFromFolders: ["enableContentDeletionFromFolders_example"], enableContentDownloading: false, enableSyncTranscoding: false, enableMediaConversion: false, enabledDevices: ["enabledDevices_example"], enableAllDevices: false, enabledChannels: ["enabledChannels_example"], enableAllChannels: false, enabledFolders: ["enabledFolders_example"], enableAllFolders: false, invalidLoginAttemptCount: 123, loginAttemptsBeforeLockout: 123, maxActiveSessions: 123, enablePublicSharing: false, blockedMediaFolders: ["blockedMediaFolders_example"], blockedChannels: ["blockedChannels_example"], remoteClientBitrateLimit: 123, authenticationProviderId: "authenticationProviderId_example", passwordResetProviderId: "passwordResetProviderId_example", syncPlayAccess: SyncPlayUserAccessType()), primaryImageAspectRatio: 123) // UserDto | The updated user model.
 
 // Updates a user.
-UserAPI.updateUser(userId: userId, userDto: userDto) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+UserAPI.updateUser(userId: userId, userDto: userDto).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -580,7 +544,7 @@ UserAPI.updateUser(userId: userId, userDto: userDto) { (response, error) in
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**String**](.md) | The user id. | 
+ **userId** | **String** | The user id. | 
  **userDto** | [**UserDto**](UserDto.md) | The updated user model. | 
 
 ### Return type
@@ -600,12 +564,12 @@ Void (empty response body)
 
 # **updateUserConfiguration**
 ```swift
-    open class func updateUserConfiguration(userId: String, userConfiguration: UserConfiguration, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func updateUserConfiguration( userId: String,  userConfiguration: UserConfiguration) -> Promise<Void>
 ```
 
 Updates a user configuration.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -614,15 +578,12 @@ let userId = "userId_example" // String | The user id.
 let userConfiguration = UserConfiguration(audioLanguagePreference: "audioLanguagePreference_example", playDefaultAudioTrack: false, subtitleLanguagePreference: "subtitleLanguagePreference_example", displayMissingEpisodes: false, groupedFolders: ["groupedFolders_example"], subtitleMode: SubtitlePlaybackMode(), displayCollectionsView: false, enableLocalPassword: false, orderedViews: ["orderedViews_example"], latestItemsExcludes: ["latestItemsExcludes_example"], myMediaExcludes: ["myMediaExcludes_example"], hidePlayedInLatest: false, rememberAudioSelections: false, rememberSubtitleSelections: false, enableNextEpisodeAutoPlay: false) // UserConfiguration | The new user configuration.
 
 // Updates a user configuration.
-UserAPI.updateUserConfiguration(userId: userId, userConfiguration: userConfiguration) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+UserAPI.updateUserConfiguration(userId: userId, userConfiguration: userConfiguration).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -630,7 +591,7 @@ UserAPI.updateUserConfiguration(userId: userId, userConfiguration: userConfigura
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**String**](.md) | The user id. | 
+ **userId** | **String** | The user id. | 
  **userConfiguration** | [**UserConfiguration**](UserConfiguration.md) | The new user configuration. | 
 
 ### Return type
@@ -650,12 +611,12 @@ Void (empty response body)
 
 # **updateUserEasyPassword**
 ```swift
-    open class func updateUserEasyPassword(userId: String, updateUserEasyPassword: UpdateUserEasyPassword, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func updateUserEasyPassword( userId: String,  updateUserEasyPassword: UpdateUserEasyPassword) -> Promise<Void>
 ```
 
 Updates a user's easy password.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -664,15 +625,12 @@ let userId = "userId_example" // String | The user id.
 let updateUserEasyPassword = UpdateUserEasyPassword(newPassword: "newPassword_example", newPw: "newPw_example", resetPassword: false) // UpdateUserEasyPassword | The M:Jellyfin.Api.Controllers.UserController.UpdateUserEasyPassword(System.Guid,Jellyfin.Api.Models.UserDtos.UpdateUserEasyPassword) request.
 
 // Updates a user's easy password.
-UserAPI.updateUserEasyPassword(userId: userId, updateUserEasyPassword: updateUserEasyPassword) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+UserAPI.updateUserEasyPassword(userId: userId, updateUserEasyPassword: updateUserEasyPassword).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -680,7 +638,7 @@ UserAPI.updateUserEasyPassword(userId: userId, updateUserEasyPassword: updateUse
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**String**](.md) | The user id. | 
+ **userId** | **String** | The user id. | 
  **updateUserEasyPassword** | [**UpdateUserEasyPassword**](UpdateUserEasyPassword.md) | The M:Jellyfin.Api.Controllers.UserController.UpdateUserEasyPassword(System.Guid,Jellyfin.Api.Models.UserDtos.UpdateUserEasyPassword) request. | 
 
 ### Return type
@@ -700,12 +658,12 @@ Void (empty response body)
 
 # **updateUserPassword**
 ```swift
-    open class func updateUserPassword(userId: String, updateUserPassword: UpdateUserPassword, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func updateUserPassword( userId: String,  updateUserPassword: UpdateUserPassword) -> Promise<Void>
 ```
 
 Updates a user's password.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -714,15 +672,12 @@ let userId = "userId_example" // String | The user id.
 let updateUserPassword = UpdateUserPassword(currentPassword: "currentPassword_example", currentPw: "currentPw_example", newPw: "newPw_example", resetPassword: false) // UpdateUserPassword | The M:Jellyfin.Api.Controllers.UserController.UpdateUserPassword(System.Guid,Jellyfin.Api.Models.UserDtos.UpdateUserPassword) request.
 
 // Updates a user's password.
-UserAPI.updateUserPassword(userId: userId, updateUserPassword: updateUserPassword) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+UserAPI.updateUserPassword(userId: userId, updateUserPassword: updateUserPassword).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -730,7 +685,7 @@ UserAPI.updateUserPassword(userId: userId, updateUserPassword: updateUserPasswor
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**String**](.md) | The user id. | 
+ **userId** | **String** | The user id. | 
  **updateUserPassword** | [**UpdateUserPassword**](UpdateUserPassword.md) | The M:Jellyfin.Api.Controllers.UserController.UpdateUserPassword(System.Guid,Jellyfin.Api.Models.UserDtos.UpdateUserPassword) request. | 
 
 ### Return type
@@ -750,12 +705,12 @@ Void (empty response body)
 
 # **updateUserPolicy**
 ```swift
-    open class func updateUserPolicy(userId: String, userPolicy: UserPolicy, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func updateUserPolicy( userId: String,  userPolicy: UserPolicy) -> Promise<Void>
 ```
 
 Updates a user policy.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -764,15 +719,12 @@ let userId = "userId_example" // String | The user id.
 let userPolicy = UserPolicy(isAdministrator: false, isHidden: false, isDisabled: false, maxParentalRating: 123, blockedTags: ["blockedTags_example"], enableUserPreferenceAccess: false, accessSchedules: [AccessSchedule(id: 123, userId: "userId_example", dayOfWeek: DynamicDayOfWeek(), startHour: 123, endHour: 123)], blockUnratedItems: [UnratedItem()], enableRemoteControlOfOtherUsers: false, enableSharedDeviceControl: false, enableRemoteAccess: false, enableLiveTvManagement: false, enableLiveTvAccess: false, enableMediaPlayback: false, enableAudioPlaybackTranscoding: false, enableVideoPlaybackTranscoding: false, enablePlaybackRemuxing: false, forceRemoteSourceTranscoding: false, enableContentDeletion: false, enableContentDeletionFromFolders: ["enableContentDeletionFromFolders_example"], enableContentDownloading: false, enableSyncTranscoding: false, enableMediaConversion: false, enabledDevices: ["enabledDevices_example"], enableAllDevices: false, enabledChannels: ["enabledChannels_example"], enableAllChannels: false, enabledFolders: ["enabledFolders_example"], enableAllFolders: false, invalidLoginAttemptCount: 123, loginAttemptsBeforeLockout: 123, maxActiveSessions: 123, enablePublicSharing: false, blockedMediaFolders: ["blockedMediaFolders_example"], blockedChannels: ["blockedChannels_example"], remoteClientBitrateLimit: 123, authenticationProviderId: "authenticationProviderId_example", passwordResetProviderId: "passwordResetProviderId_example", syncPlayAccess: SyncPlayUserAccessType()) // UserPolicy | The new user policy.
 
 // Updates a user policy.
-UserAPI.updateUserPolicy(userId: userId, userPolicy: userPolicy) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+UserAPI.updateUserPolicy(userId: userId, userPolicy: userPolicy).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -780,7 +732,7 @@ UserAPI.updateUserPolicy(userId: userId, userPolicy: userPolicy) { (response, er
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**String**](.md) | The user id. | 
+ **userId** | **String** | The user id. | 
  **userPolicy** | [**UserPolicy**](UserPolicy.md) | The new user policy. | 
 
 ### Return type

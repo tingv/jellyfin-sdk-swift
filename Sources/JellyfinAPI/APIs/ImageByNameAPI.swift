@@ -7,9 +7,7 @@
 
 import AnyCodable
 import Foundation
-#if canImport(Combine)
-import Combine
-#endif
+import PromiseKit
 
 open class ImageByNameAPI {
     /**
@@ -18,23 +16,20 @@ open class ImageByNameAPI {
      - parameter name: (path) The name of the image. 
      - parameter type: (path) Image Type (primary, backdrop, logo, etc). 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<URL, Error>
+     - returns: Promise<URL>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getGeneralImage(name: String, type: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<URL, Error> {
-        return Future<URL, Error>.init { promise in
-            getGeneralImageWithRequestBuilder(name: name, type: type).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getGeneralImage( name: String,  type: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
+        let deferred = Promise<URL>.pending()
+        getGeneralImageWithRequestBuilder(name: name, type: type).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Get General Image.
@@ -71,23 +66,20 @@ open class ImageByNameAPI {
      Get all general images.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<[ImageByNameInfo], Error>
+     - returns: Promise<[ImageByNameInfo]>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getGeneralImages(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<[ImageByNameInfo], Error> {
-        return Future<[ImageByNameInfo], Error>.init { promise in
-            getGeneralImagesWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getGeneralImages(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[ImageByNameInfo]> {
+        let deferred = Promise<[ImageByNameInfo]>.pending()
+        getGeneralImagesWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Get all general images.
@@ -121,23 +113,20 @@ open class ImageByNameAPI {
      - parameter theme: (path) The theme to get the image from. 
      - parameter name: (path) The name of the image. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<URL, Error>
+     - returns: Promise<URL>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getMediaInfoImage(theme: String, name: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<URL, Error> {
-        return Future<URL, Error>.init { promise in
-            getMediaInfoImageWithRequestBuilder(theme: theme, name: name).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getMediaInfoImage( theme: String,  name: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
+        let deferred = Promise<URL>.pending()
+        getMediaInfoImageWithRequestBuilder(theme: theme, name: name).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Get media info image.
@@ -174,23 +163,20 @@ open class ImageByNameAPI {
      Get all media info images.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<[ImageByNameInfo], Error>
+     - returns: Promise<[ImageByNameInfo]>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getMediaInfoImages(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<[ImageByNameInfo], Error> {
-        return Future<[ImageByNameInfo], Error>.init { promise in
-            getMediaInfoImagesWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getMediaInfoImages(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[ImageByNameInfo]> {
+        let deferred = Promise<[ImageByNameInfo]>.pending()
+        getMediaInfoImagesWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Get all media info images.
@@ -224,23 +210,20 @@ open class ImageByNameAPI {
      - parameter theme: (path) The theme to get the image from. 
      - parameter name: (path) The name of the image. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<URL, Error>
+     - returns: Promise<URL>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getRatingImage(theme: String, name: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<URL, Error> {
-        return Future<URL, Error>.init { promise in
-            getRatingImageWithRequestBuilder(theme: theme, name: name).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getRatingImage( theme: String,  name: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
+        let deferred = Promise<URL>.pending()
+        getRatingImageWithRequestBuilder(theme: theme, name: name).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Get rating image.
@@ -277,23 +260,20 @@ open class ImageByNameAPI {
      Get all general images.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<[ImageByNameInfo], Error>
+     - returns: Promise<[ImageByNameInfo]>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getRatingImages(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<[ImageByNameInfo], Error> {
-        return Future<[ImageByNameInfo], Error>.init { promise in
-            getRatingImagesWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getRatingImages(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[ImageByNameInfo]> {
+        let deferred = Promise<[ImageByNameInfo]>.pending()
+        getRatingImagesWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Get all general images.

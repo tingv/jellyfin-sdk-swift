@@ -7,9 +7,7 @@
 
 import AnyCodable
 import Foundation
-#if canImport(Combine)
-import Combine
-#endif
+import PromiseKit
 
 open class UserLibraryAPI {
     /**
@@ -18,23 +16,20 @@ open class UserLibraryAPI {
      - parameter userId: (path) User id. 
      - parameter itemId: (path) Item id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<UserItemDataDto, Error>
+     - returns: Promise<UserItemDataDto>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func deleteUserItemRating(userId: String, itemId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<UserItemDataDto, Error> {
-        return Future<UserItemDataDto, Error>.init { promise in
-            deleteUserItemRatingWithRequestBuilder(userId: userId, itemId: itemId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func deleteUserItemRating( userId: String,  itemId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<UserItemDataDto> {
+        let deferred = Promise<UserItemDataDto>.pending()
+        deleteUserItemRatingWithRequestBuilder(userId: userId, itemId: itemId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Deletes a user's saved personal rating for an item.
@@ -76,23 +71,20 @@ open class UserLibraryAPI {
      - parameter userId: (path) User id. 
      - parameter itemId: (path) Item id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<BaseItemDtoQueryResult, Error>
+     - returns: Promise<BaseItemDtoQueryResult>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getIntros(userId: String, itemId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<BaseItemDtoQueryResult, Error> {
-        return Future<BaseItemDtoQueryResult, Error>.init { promise in
-            getIntrosWithRequestBuilder(userId: userId, itemId: itemId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getIntros( userId: String,  itemId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<BaseItemDtoQueryResult> {
+        let deferred = Promise<BaseItemDtoQueryResult>.pending()
+        getIntrosWithRequestBuilder(userId: userId, itemId: itemId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets intros to play before the main media item plays.
@@ -134,23 +126,20 @@ open class UserLibraryAPI {
      - parameter userId: (path) User id. 
      - parameter itemId: (path) Item id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<BaseItemDto, Error>
+     - returns: Promise<BaseItemDto>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getItem(userId: String, itemId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<BaseItemDto, Error> {
-        return Future<BaseItemDto, Error>.init { promise in
-            getItemWithRequestBuilder(userId: userId, itemId: itemId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getItem( userId: String,  itemId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<BaseItemDto> {
+        let deferred = Promise<BaseItemDto>.pending()
+        getItemWithRequestBuilder(userId: userId, itemId: itemId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets an item from a user's library.
@@ -201,23 +190,20 @@ open class UserLibraryAPI {
      - parameter limit: (query) Return item limit. (optional, default to 20)
      - parameter groupItems: (query) Whether or not to group items into a parent container. (optional, default to true)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<[BaseItemDto], Error>
+     - returns: Promise<[BaseItemDto]>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getLatestMedia(userId: String, parentId: String? = nil, fields: [ItemFields]? = nil, includeItemTypes: [String]? = nil, isPlayed: Bool? = nil, enableImages: Bool? = nil, imageTypeLimit: Int? = nil, enableImageTypes: [ImageType]? = nil, enableUserData: Bool? = nil, limit: Int? = nil, groupItems: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<[BaseItemDto], Error> {
-        return Future<[BaseItemDto], Error>.init { promise in
-            getLatestMediaWithRequestBuilder(userId: userId, parentId: parentId, fields: fields, includeItemTypes: includeItemTypes, isPlayed: isPlayed, enableImages: enableImages, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes, enableUserData: enableUserData, limit: limit, groupItems: groupItems).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getLatestMedia( userId: String,  parentId: String? = nil,  fields: [ItemFields]? = nil,  includeItemTypes: [String]? = nil,  isPlayed: Bool? = nil,  enableImages: Bool? = nil,  imageTypeLimit: Int? = nil,  enableImageTypes: [ImageType]? = nil,  enableUserData: Bool? = nil,  limit: Int? = nil,  groupItems: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[BaseItemDto]> {
+        let deferred = Promise<[BaseItemDto]>.pending()
+        getLatestMediaWithRequestBuilder(userId: userId, parentId: parentId, fields: fields, includeItemTypes: includeItemTypes, isPlayed: isPlayed, enableImages: enableImages, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes, enableUserData: enableUserData, limit: limit, groupItems: groupItems).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets latest media.
@@ -277,23 +263,20 @@ open class UserLibraryAPI {
      - parameter userId: (path) User id. 
      - parameter itemId: (path) Item id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<[BaseItemDto], Error>
+     - returns: Promise<[BaseItemDto]>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getLocalTrailers(userId: String, itemId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<[BaseItemDto], Error> {
-        return Future<[BaseItemDto], Error>.init { promise in
-            getLocalTrailersWithRequestBuilder(userId: userId, itemId: itemId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getLocalTrailers( userId: String,  itemId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[BaseItemDto]> {
+        let deferred = Promise<[BaseItemDto]>.pending()
+        getLocalTrailersWithRequestBuilder(userId: userId, itemId: itemId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets local trailers for an item.
@@ -334,23 +317,20 @@ open class UserLibraryAPI {
      
      - parameter userId: (path) User id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<BaseItemDto, Error>
+     - returns: Promise<BaseItemDto>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getRootFolder(userId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<BaseItemDto, Error> {
-        return Future<BaseItemDto, Error>.init { promise in
-            getRootFolderWithRequestBuilder(userId: userId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getRootFolder( userId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<BaseItemDto> {
+        let deferred = Promise<BaseItemDto>.pending()
+        getRootFolderWithRequestBuilder(userId: userId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets the root folder from a user's library.
@@ -388,23 +368,20 @@ open class UserLibraryAPI {
      - parameter userId: (path) User id. 
      - parameter itemId: (path) Item id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<[BaseItemDto], Error>
+     - returns: Promise<[BaseItemDto]>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getSpecialFeatures(userId: String, itemId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<[BaseItemDto], Error> {
-        return Future<[BaseItemDto], Error>.init { promise in
-            getSpecialFeaturesWithRequestBuilder(userId: userId, itemId: itemId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getSpecialFeatures( userId: String,  itemId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[BaseItemDto]> {
+        let deferred = Promise<[BaseItemDto]>.pending()
+        getSpecialFeaturesWithRequestBuilder(userId: userId, itemId: itemId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets special features for an item.
@@ -446,23 +423,20 @@ open class UserLibraryAPI {
      - parameter userId: (path) User id. 
      - parameter itemId: (path) Item id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<UserItemDataDto, Error>
+     - returns: Promise<UserItemDataDto>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func markFavoriteItem(userId: String, itemId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<UserItemDataDto, Error> {
-        return Future<UserItemDataDto, Error>.init { promise in
-            markFavoriteItemWithRequestBuilder(userId: userId, itemId: itemId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func markFavoriteItem( userId: String,  itemId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<UserItemDataDto> {
+        let deferred = Promise<UserItemDataDto>.pending()
+        markFavoriteItemWithRequestBuilder(userId: userId, itemId: itemId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Marks an item as a favorite.
@@ -504,23 +478,20 @@ open class UserLibraryAPI {
      - parameter userId: (path) User id. 
      - parameter itemId: (path) Item id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<UserItemDataDto, Error>
+     - returns: Promise<UserItemDataDto>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func unmarkFavoriteItem(userId: String, itemId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<UserItemDataDto, Error> {
-        return Future<UserItemDataDto, Error>.init { promise in
-            unmarkFavoriteItemWithRequestBuilder(userId: userId, itemId: itemId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func unmarkFavoriteItem( userId: String,  itemId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<UserItemDataDto> {
+        let deferred = Promise<UserItemDataDto>.pending()
+        unmarkFavoriteItemWithRequestBuilder(userId: userId, itemId: itemId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Unmarks item as a favorite.
@@ -563,23 +534,20 @@ open class UserLibraryAPI {
      - parameter itemId: (path) Item id. 
      - parameter likes: (query) Whether this M:Jellyfin.Api.Controllers.UserLibraryController.UpdateUserItemRating(System.Guid,System.Guid,System.Nullable{System.Boolean}) is likes. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<UserItemDataDto, Error>
+     - returns: Promise<UserItemDataDto>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func updateUserItemRating(userId: String, itemId: String, likes: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<UserItemDataDto, Error> {
-        return Future<UserItemDataDto, Error>.init { promise in
-            updateUserItemRatingWithRequestBuilder(userId: userId, itemId: itemId, likes: likes).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func updateUserItemRating( userId: String,  itemId: String,  likes: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<UserItemDataDto> {
+        let deferred = Promise<UserItemDataDto>.pending()
+        updateUserItemRatingWithRequestBuilder(userId: userId, itemId: itemId, likes: likes).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Updates a user's rating for an item.

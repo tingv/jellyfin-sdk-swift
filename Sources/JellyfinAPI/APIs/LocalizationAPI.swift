@@ -7,32 +7,27 @@
 
 import AnyCodable
 import Foundation
-#if canImport(Combine)
-import Combine
-#endif
+import PromiseKit
 
 open class LocalizationAPI {
     /**
      Gets known countries.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<[CountryInfo], Error>
+     - returns: Promise<[CountryInfo]>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getCountries(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<[CountryInfo], Error> {
-        return Future<[CountryInfo], Error>.init { promise in
-            getCountriesWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getCountries(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[CountryInfo]> {
+        let deferred = Promise<[CountryInfo]>.pending()
+        getCountriesWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets known countries.
@@ -64,23 +59,20 @@ open class LocalizationAPI {
      Gets known cultures.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<[CultureDto], Error>
+     - returns: Promise<[CultureDto]>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getCultures(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<[CultureDto], Error> {
-        return Future<[CultureDto], Error>.init { promise in
-            getCulturesWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getCultures(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[CultureDto]> {
+        let deferred = Promise<[CultureDto]>.pending()
+        getCulturesWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets known cultures.
@@ -112,23 +104,20 @@ open class LocalizationAPI {
      Gets localization options.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<[LocalizationOption], Error>
+     - returns: Promise<[LocalizationOption]>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getLocalizationOptions(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<[LocalizationOption], Error> {
-        return Future<[LocalizationOption], Error>.init { promise in
-            getLocalizationOptionsWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getLocalizationOptions(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[LocalizationOption]> {
+        let deferred = Promise<[LocalizationOption]>.pending()
+        getLocalizationOptionsWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets localization options.
@@ -160,23 +149,20 @@ open class LocalizationAPI {
      Gets known parental ratings.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<[ParentalRating], Error>
+     - returns: Promise<[ParentalRating]>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getParentalRatings(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<[ParentalRating], Error> {
-        return Future<[ParentalRating], Error>.init { promise in
-            getParentalRatingsWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getParentalRatings(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[ParentalRating]> {
+        let deferred = Promise<[ParentalRating]>.pending()
+        getParentalRatingsWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets known parental ratings.

@@ -7,32 +7,27 @@
 
 import AnyCodable
 import Foundation
-#if canImport(Combine)
-import Combine
-#endif
+import PromiseKit
 
 open class QuickConnectAPI {
     /**
      Temporarily activates quick connect for five minutes.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: Promise<Void>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func activate(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error>.init { promise in
-            activateWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    promise(.success(()))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func activate(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
+        let deferred = Promise<Void>.pending()
+        activateWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case .success:
+                deferred.resolver.fulfill(())
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Temporarily activates quick connect for five minutes.
@@ -65,23 +60,20 @@ open class QuickConnectAPI {
      
      - parameter code: (query) Quick connect code to authorize. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Bool, Error>
+     - returns: Promise<Bool>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func authorize(code: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<Bool, Error> {
-        return Future<Bool, Error>.init { promise in
-            authorizeWithRequestBuilder(code: code).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func authorize( code: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Bool> {
+        let deferred = Promise<Bool>.pending()
+        authorizeWithRequestBuilder(code: code).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Authorizes a pending quick connect request.
@@ -118,23 +110,20 @@ open class QuickConnectAPI {
      
      - parameter status: (query) New MediaBrowser.Model.QuickConnect.QuickConnectState. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: Promise<Void>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func available(status: QuickConnectState? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error>.init { promise in
-            availableWithRequestBuilder(status: status).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    promise(.success(()))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func available( status: QuickConnectState? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
+        let deferred = Promise<Void>.pending()
+        availableWithRequestBuilder(status: status).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case .success:
+                deferred.resolver.fulfill(())
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Enables or disables quick connect.
@@ -171,23 +160,20 @@ open class QuickConnectAPI {
      
      - parameter secret: (query) Secret previously returned from the Initiate endpoint. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<QuickConnectResult, Error>
+     - returns: Promise<QuickConnectResult>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func connect(secret: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<QuickConnectResult, Error> {
-        return Future<QuickConnectResult, Error>.init { promise in
-            connectWithRequestBuilder(secret: secret).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func connect( secret: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<QuickConnectResult> {
+        let deferred = Promise<QuickConnectResult>.pending()
+        connectWithRequestBuilder(secret: secret).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Attempts to retrieve authentication information.
@@ -220,23 +206,20 @@ open class QuickConnectAPI {
      Deauthorize all quick connect devices for the current user.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Int, Error>
+     - returns: Promise<Int>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func deauthorize(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<Int, Error> {
-        return Future<Int, Error>.init { promise in
-            deauthorizeWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func deauthorize(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Int> {
+        let deferred = Promise<Int>.pending()
+        deauthorizeWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Deauthorize all quick connect devices for the current user.
@@ -268,23 +251,20 @@ open class QuickConnectAPI {
      Gets the current quick connect state.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<QuickConnectState, Error>
+     - returns: Promise<QuickConnectState>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getStatus(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<QuickConnectState, Error> {
-        return Future<QuickConnectState, Error>.init { promise in
-            getStatusWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getStatus(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<QuickConnectState> {
+        let deferred = Promise<QuickConnectState>.pending()
+        getStatusWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets the current quick connect state.
@@ -313,23 +293,20 @@ open class QuickConnectAPI {
      Initiate a new quick connect request.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<QuickConnectResult, Error>
+     - returns: Promise<QuickConnectResult>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func initiate(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<QuickConnectResult, Error> {
-        return Future<QuickConnectResult, Error>.init { promise in
-            initiateWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func initiate(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<QuickConnectResult> {
+        let deferred = Promise<QuickConnectResult>.pending()
+        initiateWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Initiate a new quick connect request.

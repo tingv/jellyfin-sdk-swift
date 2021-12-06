@@ -7,32 +7,27 @@
 
 import AnyCodable
 import Foundation
-#if canImport(Combine)
-import Combine
-#endif
+import PromiseKit
 
 open class EnvironmentAPI {
     /**
      Get Default directory browser.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<DefaultDirectoryBrowserInfoDto, Error>
+     - returns: Promise<DefaultDirectoryBrowserInfoDto>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getDefaultDirectoryBrowser(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<DefaultDirectoryBrowserInfoDto, Error> {
-        return Future<DefaultDirectoryBrowserInfoDto, Error>.init { promise in
-            getDefaultDirectoryBrowserWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getDefaultDirectoryBrowser(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<DefaultDirectoryBrowserInfoDto> {
+        let deferred = Promise<DefaultDirectoryBrowserInfoDto>.pending()
+        getDefaultDirectoryBrowserWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Get Default directory browser.
@@ -67,23 +62,20 @@ open class EnvironmentAPI {
      - parameter includeFiles: (query) An optional filter to include or exclude files from the results. true/false. (optional, default to false)
      - parameter includeDirectories: (query) An optional filter to include or exclude folders from the results. true/false. (optional, default to false)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<[FileSystemEntryInfo], Error>
+     - returns: Promise<[FileSystemEntryInfo]>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getDirectoryContents(path: String, includeFiles: Bool? = nil, includeDirectories: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<[FileSystemEntryInfo], Error> {
-        return Future<[FileSystemEntryInfo], Error>.init { promise in
-            getDirectoryContentsWithRequestBuilder(path: path, includeFiles: includeFiles, includeDirectories: includeDirectories).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getDirectoryContents( path: String,  includeFiles: Bool? = nil,  includeDirectories: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[FileSystemEntryInfo]> {
+        let deferred = Promise<[FileSystemEntryInfo]>.pending()
+        getDirectoryContentsWithRequestBuilder(path: path, includeFiles: includeFiles, includeDirectories: includeDirectories).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets the contents of a given directory in the file system.
@@ -123,23 +115,20 @@ open class EnvironmentAPI {
      Gets available drives from the server's file system.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<[FileSystemEntryInfo], Error>
+     - returns: Promise<[FileSystemEntryInfo]>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getDrives(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<[FileSystemEntryInfo], Error> {
-        return Future<[FileSystemEntryInfo], Error>.init { promise in
-            getDrivesWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getDrives(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[FileSystemEntryInfo]> {
+        let deferred = Promise<[FileSystemEntryInfo]>.pending()
+        getDrivesWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets available drives from the server's file system.
@@ -171,24 +160,21 @@ open class EnvironmentAPI {
      Gets network paths.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<[FileSystemEntryInfo], Error>
+     - returns: Promise<[FileSystemEntryInfo]>
      */
-    #if canImport(Combine)
     @available(*, deprecated, message: "This operation is deprecated.")
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getNetworkShares(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<[FileSystemEntryInfo], Error> {
-        return Future<[FileSystemEntryInfo], Error>.init { promise in
-            getNetworkSharesWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getNetworkShares(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[FileSystemEntryInfo]> {
+        let deferred = Promise<[FileSystemEntryInfo]>.pending()
+        getNetworkSharesWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets network paths.
@@ -222,23 +208,20 @@ open class EnvironmentAPI {
      
      - parameter path: (query) The path. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<String, Error>
+     - returns: Promise<String>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getParentPath(path: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<String, Error> {
-        return Future<String, Error>.init { promise in
-            getParentPathWithRequestBuilder(path: path).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getParentPath( path: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<String> {
+        let deferred = Promise<String>.pending()
+        getParentPathWithRequestBuilder(path: path).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets the parent path of a given path.
@@ -275,23 +258,20 @@ open class EnvironmentAPI {
      
      - parameter validatePathDto: (body) Validate request object. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: Promise<Void>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func validatePath(validatePathDto: ValidatePathDto, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error>.init { promise in
-            validatePathWithRequestBuilder(validatePathDto: validatePathDto).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    promise(.success(()))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func validatePath( validatePathDto: ValidatePathDto, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
+        let deferred = Promise<Void>.pending()
+        validatePathWithRequestBuilder(validatePathDto: validatePathDto).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case .success:
+                deferred.resolver.fulfill(())
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Validates path.

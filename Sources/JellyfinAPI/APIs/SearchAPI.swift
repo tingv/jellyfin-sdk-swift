@@ -7,9 +7,7 @@
 
 import AnyCodable
 import Foundation
-#if canImport(Combine)
-import Combine
-#endif
+import PromiseKit
 
 open class SearchAPI {
     /**
@@ -34,23 +32,20 @@ open class SearchAPI {
      - parameter includeStudios: (query) Optional filter whether to include studios. (optional, default to true)
      - parameter includeArtists: (query) Optional filter whether to include artists. (optional, default to true)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<SearchHintResult, Error>
+     - returns: Promise<SearchHintResult>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func callGet(searchTerm: String, startIndex: Int? = nil, limit: Int? = nil, userId: String? = nil, includeItemTypes: [String]? = nil, excludeItemTypes: [String]? = nil, mediaTypes: [String]? = nil, parentId: String? = nil, isMovie: Bool? = nil, isSeries: Bool? = nil, isNews: Bool? = nil, isKids: Bool? = nil, isSports: Bool? = nil, includePeople: Bool? = nil, includeMedia: Bool? = nil, includeGenres: Bool? = nil, includeStudios: Bool? = nil, includeArtists: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<SearchHintResult, Error> {
-        return Future<SearchHintResult, Error>.init { promise in
-            callGetWithRequestBuilder(searchTerm: searchTerm, startIndex: startIndex, limit: limit, userId: userId, includeItemTypes: includeItemTypes, excludeItemTypes: excludeItemTypes, mediaTypes: mediaTypes, parentId: parentId, isMovie: isMovie, isSeries: isSeries, isNews: isNews, isKids: isKids, isSports: isSports, includePeople: includePeople, includeMedia: includeMedia, includeGenres: includeGenres, includeStudios: includeStudios, includeArtists: includeArtists).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func callGet( searchTerm: String,  startIndex: Int? = nil,  limit: Int? = nil,  userId: String? = nil,  includeItemTypes: [String]? = nil,  excludeItemTypes: [String]? = nil,  mediaTypes: [String]? = nil,  parentId: String? = nil,  isMovie: Bool? = nil,  isSeries: Bool? = nil,  isNews: Bool? = nil,  isKids: Bool? = nil,  isSports: Bool? = nil,  includePeople: Bool? = nil,  includeMedia: Bool? = nil,  includeGenres: Bool? = nil,  includeStudios: Bool? = nil,  includeArtists: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<SearchHintResult> {
+        let deferred = Promise<SearchHintResult>.pending()
+        callGetWithRequestBuilder(searchTerm: searchTerm, startIndex: startIndex, limit: limit, userId: userId, includeItemTypes: includeItemTypes, excludeItemTypes: excludeItemTypes, mediaTypes: mediaTypes, parentId: parentId, isMovie: isMovie, isSeries: isSeries, isNews: isNews, isKids: isKids, isSports: isSports, includePeople: includePeople, includeMedia: includeMedia, includeGenres: includeGenres, includeStudios: includeStudios, includeArtists: includeArtists).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets the search hint result.

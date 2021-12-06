@@ -10,12 +10,12 @@ Method | HTTP request | Description
 
 # **getYear**
 ```swift
-    open class func getYear(year: Int, userId: String? = nil, completion: @escaping (_ data: BaseItemDto?, _ error: Error?) -> Void)
+    open class func getYear( year: Int,  userId: String? = nil) -> Promise<BaseItemDto>
 ```
 
 Gets a year.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -24,15 +24,12 @@ let year = 987 // Int | The year.
 let userId = "userId_example" // String | Optional. Filter by user id, and attach user data. (optional)
 
 // Gets a year.
-YearsAPI.getYear(year: year, userId: userId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+YearsAPI.getYear(year: year, userId: userId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -41,7 +38,7 @@ YearsAPI.getYear(year: year, userId: userId) { (response, error) in
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **year** | **Int** | The year. | 
- **userId** | [**String**](.md) | Optional. Filter by user id, and attach user data. | [optional] 
+ **userId** | **String** | Optional. Filter by user id, and attach user data. | [optional] 
 
 ### Return type
 
@@ -60,12 +57,12 @@ Name | Type | Description  | Notes
 
 # **getYears**
 ```swift
-    open class func getYears(startIndex: Int? = nil, limit: Int? = nil, sortOrder: [APISortOrder]? = nil, parentId: String? = nil, fields: [ItemFields]? = nil, excludeItemTypes: [String]? = nil, includeItemTypes: [String]? = nil, mediaTypes: [String]? = nil, sortBy: [String]? = nil, enableUserData: Bool? = nil, imageTypeLimit: Int? = nil, enableImageTypes: [ImageType]? = nil, userId: String? = nil, recursive: Bool? = nil, enableImages: Bool? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
+    open class func getYears( startIndex: Int? = nil,  limit: Int? = nil,  sortOrder: [APISortOrder]? = nil,  parentId: String? = nil,  fields: [ItemFields]? = nil,  excludeItemTypes: [String]? = nil,  includeItemTypes: [String]? = nil,  mediaTypes: [String]? = nil,  sortBy: [String]? = nil,  enableUserData: Bool? = nil,  imageTypeLimit: Int? = nil,  enableImageTypes: [ImageType]? = nil,  userId: String? = nil,  recursive: Bool? = nil,  enableImages: Bool? = nil) -> Promise<BaseItemDtoQueryResult>
 ```
 
 Get years.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -87,15 +84,12 @@ let recursive = true // Bool | Search recursively. (optional) (default to true)
 let enableImages = true // Bool | Optional. Include image information in output. (optional) (default to true)
 
 // Get years.
-YearsAPI.getYears(startIndex: startIndex, limit: limit, sortOrder: sortOrder, parentId: parentId, fields: fields, excludeItemTypes: excludeItemTypes, includeItemTypes: includeItemTypes, mediaTypes: mediaTypes, sortBy: sortBy, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes, userId: userId, recursive: recursive, enableImages: enableImages) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+YearsAPI.getYears(startIndex: startIndex, limit: limit, sortOrder: sortOrder, parentId: parentId, fields: fields, excludeItemTypes: excludeItemTypes, includeItemTypes: includeItemTypes, mediaTypes: mediaTypes, sortBy: sortBy, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes, userId: userId, recursive: recursive, enableImages: enableImages).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -106,7 +100,7 @@ Name | Type | Description  | Notes
  **startIndex** | **Int** | Skips over a given number of items within the results. Use for paging. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 
  **sortOrder** | [**[APISortOrder]**](APISortOrder.md) | Sort Order - Ascending,Descending. | [optional] 
- **parentId** | [**String**](.md) | Specify this to localize the search to a specific item or folder. Omit to use the root. | [optional] 
+ **parentId** | **String** | Specify this to localize the search to a specific item or folder. Omit to use the root. | [optional] 
  **fields** | [**[ItemFields]**](ItemFields.md) | Optional. Specify additional fields of information to return in the output. | [optional] 
  **excludeItemTypes** | [**[String]**](String.md) | Optional. If specified, results will be excluded based on item type. This allows multiple, comma delimited. | [optional] 
  **includeItemTypes** | [**[String]**](String.md) | Optional. If specified, results will be included based on item type. This allows multiple, comma delimited. | [optional] 
@@ -115,7 +109,7 @@ Name | Type | Description  | Notes
  **enableUserData** | **Bool** | Optional. Include user data. | [optional] 
  **imageTypeLimit** | **Int** | Optional. The max number of images to return, per image type. | [optional] 
  **enableImageTypes** | [**[ImageType]**](ImageType.md) | Optional. The image types to include in the output. | [optional] 
- **userId** | [**String**](.md) | User Id. | [optional] 
+ **userId** | **String** | User Id. | [optional] 
  **recursive** | **Bool** | Search recursively. | [optional] [default to true]
  **enableImages** | **Bool** | Optional. Include image information in output. | [optional] [default to true]
 

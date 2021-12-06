@@ -7,9 +7,7 @@
 
 import AnyCodable
 import Foundation
-#if canImport(Combine)
-import Combine
-#endif
+import PromiseKit
 
 open class DlnaServerAPI {
     /**
@@ -17,23 +15,20 @@ open class DlnaServerAPI {
      
      - parameter serverId: (path) Server UUID. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<URL, Error>
+     - returns: Promise<URL>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getConnectionManager(serverId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<URL, Error> {
-        return Future<URL, Error>.init { promise in
-            getConnectionManagerWithRequestBuilder(serverId: serverId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getConnectionManager( serverId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
+        let deferred = Promise<URL>.pending()
+        getConnectionManagerWithRequestBuilder(serverId: serverId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets Dlna media receiver registrar xml.
@@ -67,23 +62,20 @@ open class DlnaServerAPI {
      
      - parameter serverId: (path) Server UUID. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<URL, Error>
+     - returns: Promise<URL>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getConnectionManager2(serverId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<URL, Error> {
-        return Future<URL, Error>.init { promise in
-            getConnectionManager2WithRequestBuilder(serverId: serverId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getConnectionManager2( serverId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
+        let deferred = Promise<URL>.pending()
+        getConnectionManager2WithRequestBuilder(serverId: serverId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets Dlna media receiver registrar xml.
@@ -117,23 +109,20 @@ open class DlnaServerAPI {
      
      - parameter serverId: (path) Server UUID. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<URL, Error>
+     - returns: Promise<URL>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getConnectionManager3(serverId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<URL, Error> {
-        return Future<URL, Error>.init { promise in
-            getConnectionManager3WithRequestBuilder(serverId: serverId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getConnectionManager3( serverId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
+        let deferred = Promise<URL>.pending()
+        getConnectionManager3WithRequestBuilder(serverId: serverId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets Dlna media receiver registrar xml.
@@ -167,23 +156,20 @@ open class DlnaServerAPI {
      
      - parameter serverId: (path) Server UUID. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<URL, Error>
+     - returns: Promise<URL>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getContentDirectory(serverId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<URL, Error> {
-        return Future<URL, Error>.init { promise in
-            getContentDirectoryWithRequestBuilder(serverId: serverId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getContentDirectory( serverId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
+        let deferred = Promise<URL>.pending()
+        getContentDirectoryWithRequestBuilder(serverId: serverId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets Dlna content directory xml.
@@ -217,23 +203,20 @@ open class DlnaServerAPI {
      
      - parameter serverId: (path) Server UUID. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<URL, Error>
+     - returns: Promise<URL>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getContentDirectory2(serverId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<URL, Error> {
-        return Future<URL, Error>.init { promise in
-            getContentDirectory2WithRequestBuilder(serverId: serverId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getContentDirectory2( serverId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
+        let deferred = Promise<URL>.pending()
+        getContentDirectory2WithRequestBuilder(serverId: serverId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets Dlna content directory xml.
@@ -267,23 +250,20 @@ open class DlnaServerAPI {
      
      - parameter serverId: (path) Server UUID. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<URL, Error>
+     - returns: Promise<URL>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getContentDirectory3(serverId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<URL, Error> {
-        return Future<URL, Error>.init { promise in
-            getContentDirectory3WithRequestBuilder(serverId: serverId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getContentDirectory3( serverId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
+        let deferred = Promise<URL>.pending()
+        getContentDirectory3WithRequestBuilder(serverId: serverId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets Dlna content directory xml.
@@ -317,23 +297,20 @@ open class DlnaServerAPI {
      
      - parameter serverId: (path) Server UUID. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<URL, Error>
+     - returns: Promise<URL>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getDescriptionXml(serverId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<URL, Error> {
-        return Future<URL, Error>.init { promise in
-            getDescriptionXmlWithRequestBuilder(serverId: serverId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getDescriptionXml( serverId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
+        let deferred = Promise<URL>.pending()
+        getDescriptionXmlWithRequestBuilder(serverId: serverId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Get Description Xml.
@@ -367,23 +344,20 @@ open class DlnaServerAPI {
      
      - parameter serverId: (path) Server UUID. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<URL, Error>
+     - returns: Promise<URL>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getDescriptionXml2(serverId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<URL, Error> {
-        return Future<URL, Error>.init { promise in
-            getDescriptionXml2WithRequestBuilder(serverId: serverId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getDescriptionXml2( serverId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
+        let deferred = Promise<URL>.pending()
+        getDescriptionXml2WithRequestBuilder(serverId: serverId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Get Description Xml.
@@ -417,23 +391,20 @@ open class DlnaServerAPI {
      
      - parameter fileName: (path) The icon filename. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<URL, Error>
+     - returns: Promise<URL>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getIcon(fileName: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<URL, Error> {
-        return Future<URL, Error>.init { promise in
-            getIconWithRequestBuilder(fileName: fileName).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getIcon( fileName: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
+        let deferred = Promise<URL>.pending()
+        getIconWithRequestBuilder(fileName: fileName).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets a server icon.
@@ -468,23 +439,20 @@ open class DlnaServerAPI {
      - parameter serverId: (path) Server UUID. 
      - parameter fileName: (path) The icon filename. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<URL, Error>
+     - returns: Promise<URL>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getIconId(serverId: String, fileName: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<URL, Error> {
-        return Future<URL, Error>.init { promise in
-            getIconIdWithRequestBuilder(serverId: serverId, fileName: fileName).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getIconId( serverId: String,  fileName: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
+        let deferred = Promise<URL>.pending()
+        getIconIdWithRequestBuilder(serverId: serverId, fileName: fileName).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets a server icon.
@@ -522,23 +490,20 @@ open class DlnaServerAPI {
      
      - parameter serverId: (path) Server UUID. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<URL, Error>
+     - returns: Promise<URL>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getMediaReceiverRegistrar(serverId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<URL, Error> {
-        return Future<URL, Error>.init { promise in
-            getMediaReceiverRegistrarWithRequestBuilder(serverId: serverId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getMediaReceiverRegistrar( serverId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
+        let deferred = Promise<URL>.pending()
+        getMediaReceiverRegistrarWithRequestBuilder(serverId: serverId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets Dlna media receiver registrar xml.
@@ -572,23 +537,20 @@ open class DlnaServerAPI {
      
      - parameter serverId: (path) Server UUID. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<URL, Error>
+     - returns: Promise<URL>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getMediaReceiverRegistrar2(serverId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<URL, Error> {
-        return Future<URL, Error>.init { promise in
-            getMediaReceiverRegistrar2WithRequestBuilder(serverId: serverId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getMediaReceiverRegistrar2( serverId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
+        let deferred = Promise<URL>.pending()
+        getMediaReceiverRegistrar2WithRequestBuilder(serverId: serverId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets Dlna media receiver registrar xml.
@@ -622,23 +584,20 @@ open class DlnaServerAPI {
      
      - parameter serverId: (path) Server UUID. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<URL, Error>
+     - returns: Promise<URL>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getMediaReceiverRegistrar3(serverId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<URL, Error> {
-        return Future<URL, Error>.init { promise in
-            getMediaReceiverRegistrar3WithRequestBuilder(serverId: serverId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getMediaReceiverRegistrar3( serverId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
+        let deferred = Promise<URL>.pending()
+        getMediaReceiverRegistrar3WithRequestBuilder(serverId: serverId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets Dlna media receiver registrar xml.
@@ -672,23 +631,20 @@ open class DlnaServerAPI {
      
      - parameter serverId: (path) Server UUID. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<URL, Error>
+     - returns: Promise<URL>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func processConnectionManagerControlRequest(serverId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<URL, Error> {
-        return Future<URL, Error>.init { promise in
-            processConnectionManagerControlRequestWithRequestBuilder(serverId: serverId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func processConnectionManagerControlRequest( serverId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
+        let deferred = Promise<URL>.pending()
+        processConnectionManagerControlRequestWithRequestBuilder(serverId: serverId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Process a connection manager control request.
@@ -722,23 +678,20 @@ open class DlnaServerAPI {
      
      - parameter serverId: (path) Server UUID. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<URL, Error>
+     - returns: Promise<URL>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func processContentDirectoryControlRequest(serverId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<URL, Error> {
-        return Future<URL, Error>.init { promise in
-            processContentDirectoryControlRequestWithRequestBuilder(serverId: serverId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func processContentDirectoryControlRequest( serverId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
+        let deferred = Promise<URL>.pending()
+        processContentDirectoryControlRequestWithRequestBuilder(serverId: serverId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Process a content directory control request.
@@ -772,23 +725,20 @@ open class DlnaServerAPI {
      
      - parameter serverId: (path) Server UUID. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<URL, Error>
+     - returns: Promise<URL>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func processMediaReceiverRegistrarControlRequest(serverId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<URL, Error> {
-        return Future<URL, Error>.init { promise in
-            processMediaReceiverRegistrarControlRequestWithRequestBuilder(serverId: serverId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func processMediaReceiverRegistrarControlRequest( serverId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
+        let deferred = Promise<URL>.pending()
+        processMediaReceiverRegistrarControlRequestWithRequestBuilder(serverId: serverId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Process a media receiver registrar control request.

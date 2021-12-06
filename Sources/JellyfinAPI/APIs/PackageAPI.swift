@@ -7,9 +7,7 @@
 
 import AnyCodable
 import Foundation
-#if canImport(Combine)
-import Combine
-#endif
+import PromiseKit
 
 open class PackageAPI {
     /**
@@ -17,23 +15,20 @@ open class PackageAPI {
      
      - parameter packageId: (path) Installation Id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: Promise<Void>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func cancelPackageInstallation(packageId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error>.init { promise in
-            cancelPackageInstallationWithRequestBuilder(packageId: packageId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    promise(.success(()))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func cancelPackageInstallation( packageId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
+        let deferred = Promise<Void>.pending()
+        cancelPackageInstallationWithRequestBuilder(packageId: packageId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case .success:
+                deferred.resolver.fulfill(())
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Cancels a package installation.
@@ -71,23 +66,20 @@ open class PackageAPI {
      - parameter name: (path) The name of the package. 
      - parameter assemblyGuid: (query) The GUID of the associated assembly. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<PackageInfo, Error>
+     - returns: Promise<PackageInfo>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getPackageInfo(name: String, assemblyGuid: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<PackageInfo, Error> {
-        return Future<PackageInfo, Error>.init { promise in
-            getPackageInfoWithRequestBuilder(name: name, assemblyGuid: assemblyGuid).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getPackageInfo( name: String,  assemblyGuid: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<PackageInfo> {
+        let deferred = Promise<PackageInfo>.pending()
+        getPackageInfoWithRequestBuilder(name: name, assemblyGuid: assemblyGuid).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets a package by name or assembly GUID.
@@ -127,23 +119,20 @@ open class PackageAPI {
      Gets available packages.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<[PackageInfo], Error>
+     - returns: Promise<[PackageInfo]>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getPackages(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<[PackageInfo], Error> {
-        return Future<[PackageInfo], Error>.init { promise in
-            getPackagesWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getPackages(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[PackageInfo]> {
+        let deferred = Promise<[PackageInfo]>.pending()
+        getPackagesWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets available packages.
@@ -175,23 +164,20 @@ open class PackageAPI {
      Gets all package repositories.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<[RepositoryInfo], Error>
+     - returns: Promise<[RepositoryInfo]>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getRepositories(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<[RepositoryInfo], Error> {
-        return Future<[RepositoryInfo], Error>.init { promise in
-            getRepositoriesWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getRepositories(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[RepositoryInfo]> {
+        let deferred = Promise<[RepositoryInfo]>.pending()
+        getRepositoriesWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets all package repositories.
@@ -227,23 +213,20 @@ open class PackageAPI {
      - parameter version: (query) Optional version. Defaults to latest version. (optional)
      - parameter repositoryUrl: (query) Optional. Specify the repository to install from. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: Promise<Void>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func installPackage(name: String, assemblyGuid: String? = nil, version: String? = nil, repositoryUrl: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error>.init { promise in
-            installPackageWithRequestBuilder(name: name, assemblyGuid: assemblyGuid, version: version, repositoryUrl: repositoryUrl).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    promise(.success(()))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func installPackage( name: String,  assemblyGuid: String? = nil,  version: String? = nil,  repositoryUrl: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
+        let deferred = Promise<Void>.pending()
+        installPackageWithRequestBuilder(name: name, assemblyGuid: assemblyGuid, version: version, repositoryUrl: repositoryUrl).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case .success:
+                deferred.resolver.fulfill(())
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Installs a package.
@@ -288,23 +271,20 @@ open class PackageAPI {
      
      - parameter repositoryInfo: (body) The list of package repositories. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: Promise<Void>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func setRepositories(repositoryInfo: [RepositoryInfo], apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error>.init { promise in
-            setRepositoriesWithRequestBuilder(repositoryInfo: repositoryInfo).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    promise(.success(()))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func setRepositories( repositoryInfo: [RepositoryInfo], apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
+        let deferred = Promise<Void>.pending()
+        setRepositoriesWithRequestBuilder(repositoryInfo: repositoryInfo).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case .success:
+                deferred.resolver.fulfill(())
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Sets the enabled and existing package repositories.

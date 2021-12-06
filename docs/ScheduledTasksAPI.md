@@ -13,12 +13,12 @@ Method | HTTP request | Description
 
 # **getTask**
 ```swift
-    open class func getTask(taskId: String, completion: @escaping (_ data: TaskInfo?, _ error: Error?) -> Void)
+    open class func getTask( taskId: String) -> Promise<TaskInfo>
 ```
 
 Get task by id.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -26,15 +26,12 @@ import JellyfinAPI
 let taskId = "taskId_example" // String | Task Id.
 
 // Get task by id.
-ScheduledTasksAPI.getTask(taskId: taskId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ScheduledTasksAPI.getTask(taskId: taskId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -61,12 +58,12 @@ Name | Type | Description  | Notes
 
 # **getTasks**
 ```swift
-    open class func getTasks(isHidden: Bool? = nil, isEnabled: Bool? = nil, completion: @escaping (_ data: [TaskInfo]?, _ error: Error?) -> Void)
+    open class func getTasks( isHidden: Bool? = nil,  isEnabled: Bool? = nil) -> Promise<[TaskInfo]>
 ```
 
 Get tasks.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -75,15 +72,12 @@ let isHidden = true // Bool | Optional filter tasks that are hidden, or not. (op
 let isEnabled = true // Bool | Optional filter tasks that are enabled, or not. (optional)
 
 // Get tasks.
-ScheduledTasksAPI.getTasks(isHidden: isHidden, isEnabled: isEnabled) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ScheduledTasksAPI.getTasks(isHidden: isHidden, isEnabled: isEnabled).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -111,12 +105,12 @@ Name | Type | Description  | Notes
 
 # **startTask**
 ```swift
-    open class func startTask(taskId: String, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func startTask( taskId: String) -> Promise<Void>
 ```
 
 Start specified task.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -124,15 +118,12 @@ import JellyfinAPI
 let taskId = "taskId_example" // String | Task Id.
 
 // Start specified task.
-ScheduledTasksAPI.startTask(taskId: taskId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ScheduledTasksAPI.startTask(taskId: taskId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -159,12 +150,12 @@ Void (empty response body)
 
 # **stopTask**
 ```swift
-    open class func stopTask(taskId: String, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func stopTask( taskId: String) -> Promise<Void>
 ```
 
 Stop specified task.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -172,15 +163,12 @@ import JellyfinAPI
 let taskId = "taskId_example" // String | Task Id.
 
 // Stop specified task.
-ScheduledTasksAPI.stopTask(taskId: taskId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ScheduledTasksAPI.stopTask(taskId: taskId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -207,12 +195,12 @@ Void (empty response body)
 
 # **updateTask**
 ```swift
-    open class func updateTask(taskId: String, taskTriggerInfo: [TaskTriggerInfo], completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func updateTask( taskId: String,  taskTriggerInfo: [TaskTriggerInfo]) -> Promise<Void>
 ```
 
 Update specified task triggers.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -221,15 +209,12 @@ let taskId = "taskId_example" // String | Task Id.
 let taskTriggerInfo = [TaskTriggerInfo(type: "type_example", timeOfDayTicks: 123, intervalTicks: 123, dayOfWeek: DayOfWeek(), maxRuntimeTicks: 123)] // [TaskTriggerInfo] | Triggers.
 
 // Update specified task triggers.
-ScheduledTasksAPI.updateTask(taskId: taskId, taskTriggerInfo: taskTriggerInfo) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ScheduledTasksAPI.updateTask(taskId: taskId, taskTriggerInfo: taskTriggerInfo).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 

@@ -12,4 +12,5 @@ Pod::Spec.new do |s|
   s.summary = 'JellyfinAPI Swift SDK'
   s.source_files = 'Sources/JellyfinAPI/**/*.swift'
   s.dependency 'AnyCodable-FlightSchool', '~> 0.6.1'
+  s.dependency 'PromiseKit/CorePromise', '~> 6.15.3'
 end

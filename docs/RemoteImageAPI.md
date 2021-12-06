@@ -11,12 +11,12 @@ Method | HTTP request | Description
 
 # **downloadRemoteImage**
 ```swift
-    open class func downloadRemoteImage(itemId: String, type: ImageType, imageUrl: String? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func downloadRemoteImage( itemId: String,  type: ImageType,  imageUrl: String? = nil) -> Promise<Void>
 ```
 
 Downloads a remote image for an item.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -26,15 +26,12 @@ let type = ImageType() // ImageType | The image type.
 let imageUrl = "imageUrl_example" // String | The image url. (optional)
 
 // Downloads a remote image for an item.
-RemoteImageAPI.downloadRemoteImage(itemId: itemId, type: type, imageUrl: imageUrl) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+RemoteImageAPI.downloadRemoteImage(itemId: itemId, type: type, imageUrl: imageUrl).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -42,7 +39,7 @@ RemoteImageAPI.downloadRemoteImage(itemId: itemId, type: type, imageUrl: imageUr
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | [**String**](.md) | Item Id. | 
+ **itemId** | **String** | Item Id. | 
  **type** | [**ImageType**](.md) | The image type. | 
  **imageUrl** | **String** | The image url. | [optional] 
 
@@ -63,12 +60,12 @@ Void (empty response body)
 
 # **getRemoteImageProviders**
 ```swift
-    open class func getRemoteImageProviders(itemId: String, completion: @escaping (_ data: [ImageProviderInfo]?, _ error: Error?) -> Void)
+    open class func getRemoteImageProviders( itemId: String) -> Promise<[ImageProviderInfo]>
 ```
 
 Gets available remote image providers for an item.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -76,15 +73,12 @@ import JellyfinAPI
 let itemId = "itemId_example" // String | Item Id.
 
 // Gets available remote image providers for an item.
-RemoteImageAPI.getRemoteImageProviders(itemId: itemId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+RemoteImageAPI.getRemoteImageProviders(itemId: itemId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -92,7 +86,7 @@ RemoteImageAPI.getRemoteImageProviders(itemId: itemId) { (response, error) in
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | [**String**](.md) | Item Id. | 
+ **itemId** | **String** | Item Id. | 
 
 ### Return type
 
@@ -111,12 +105,12 @@ Name | Type | Description  | Notes
 
 # **getRemoteImages**
 ```swift
-    open class func getRemoteImages(itemId: String, type: ImageType? = nil, startIndex: Int? = nil, limit: Int? = nil, providerName: String? = nil, includeAllLanguages: Bool? = nil, completion: @escaping (_ data: RemoteImageResult?, _ error: Error?) -> Void)
+    open class func getRemoteImages( itemId: String,  type: ImageType? = nil,  startIndex: Int? = nil,  limit: Int? = nil,  providerName: String? = nil,  includeAllLanguages: Bool? = nil) -> Promise<RemoteImageResult>
 ```
 
 Gets available remote images for an item.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -129,15 +123,12 @@ let providerName = "providerName_example" // String | Optional. The image provid
 let includeAllLanguages = true // Bool | Optional. Include all languages. (optional) (default to false)
 
 // Gets available remote images for an item.
-RemoteImageAPI.getRemoteImages(itemId: itemId, type: type, startIndex: startIndex, limit: limit, providerName: providerName, includeAllLanguages: includeAllLanguages) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+RemoteImageAPI.getRemoteImages(itemId: itemId, type: type, startIndex: startIndex, limit: limit, providerName: providerName, includeAllLanguages: includeAllLanguages).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -145,7 +136,7 @@ RemoteImageAPI.getRemoteImages(itemId: itemId, type: type, startIndex: startInde
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | [**String**](.md) | Item Id. | 
+ **itemId** | **String** | Item Id. | 
  **type** | [**ImageType**](.md) | The image type. | [optional] 
  **startIndex** | **Int** | Optional. The record index to start at. All items with a lower index will be dropped from the results. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 

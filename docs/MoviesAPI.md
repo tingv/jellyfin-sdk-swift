@@ -9,12 +9,12 @@ Method | HTTP request | Description
 
 # **getMovieRecommendations**
 ```swift
-    open class func getMovieRecommendations(userId: String? = nil, parentId: String? = nil, fields: [ItemFields]? = nil, categoryLimit: Int? = nil, itemLimit: Int? = nil, completion: @escaping (_ data: [RecommendationDto]?, _ error: Error?) -> Void)
+    open class func getMovieRecommendations( userId: String? = nil,  parentId: String? = nil,  fields: [ItemFields]? = nil,  categoryLimit: Int? = nil,  itemLimit: Int? = nil) -> Promise<[RecommendationDto]>
 ```
 
 Gets movie recommendations.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -26,15 +26,12 @@ let categoryLimit = 987 // Int | The max number of categories to return. (option
 let itemLimit = 987 // Int | The max number of items to return per category. (optional) (default to 8)
 
 // Gets movie recommendations.
-MoviesAPI.getMovieRecommendations(userId: userId, parentId: parentId, fields: fields, categoryLimit: categoryLimit, itemLimit: itemLimit) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+MoviesAPI.getMovieRecommendations(userId: userId, parentId: parentId, fields: fields, categoryLimit: categoryLimit, itemLimit: itemLimit).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -42,8 +39,8 @@ MoviesAPI.getMovieRecommendations(userId: userId, parentId: parentId, fields: fi
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**String**](.md) | Optional. Filter by user id, and attach user data. | [optional] 
- **parentId** | [**String**](.md) | Specify this to localize the search to a specific item or folder. Omit to use the root. | [optional] 
+ **userId** | **String** | Optional. Filter by user id, and attach user data. | [optional] 
+ **parentId** | **String** | Specify this to localize the search to a specific item or folder. Omit to use the root. | [optional] 
  **fields** | [**[ItemFields]**](ItemFields.md) | Optional. The fields to return. | [optional] 
  **categoryLimit** | **Int** | The max number of categories to return. | [optional] [default to 5]
  **itemLimit** | **Int** | The max number of items to return per category. | [optional] [default to 8]

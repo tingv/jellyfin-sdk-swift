@@ -49,12 +49,12 @@ Method | HTTP request | Description
 
 # **addListingProvider**
 ```swift
-    open class func addListingProvider(pw: String? = nil, validateListings: Bool? = nil, validateLogin: Bool? = nil, listingsProviderInfo: ListingsProviderInfo? = nil, completion: @escaping (_ data: ListingsProviderInfo?, _ error: Error?) -> Void)
+    open class func addListingProvider( pw: String? = nil,  validateListings: Bool? = nil,  validateLogin: Bool? = nil,  listingsProviderInfo: ListingsProviderInfo? = nil) -> Promise<ListingsProviderInfo>
 ```
 
 Adds a listings provider.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -65,15 +65,12 @@ let validateLogin = true // Bool | Validate login. (optional) (default to false)
 let listingsProviderInfo = ListingsProviderInfo(id: "id_example", type: "type_example", username: "username_example", password: "password_example", listingsId: "listingsId_example", zipCode: "zipCode_example", country: "country_example", path: "path_example", enabledTuners: ["enabledTuners_example"], enableAllTuners: false, newsCategories: ["newsCategories_example"], sportsCategories: ["sportsCategories_example"], kidsCategories: ["kidsCategories_example"], movieCategories: ["movieCategories_example"], channelMappings: [NameValuePair(name: "name_example", value: "value_example")], moviePrefix: "moviePrefix_example", preferredLanguage: "preferredLanguage_example", userAgent: "userAgent_example") // ListingsProviderInfo | New listings info. (optional)
 
 // Adds a listings provider.
-LiveTvAPI.addListingProvider(pw: pw, validateListings: validateListings, validateLogin: validateLogin, listingsProviderInfo: listingsProviderInfo) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+LiveTvAPI.addListingProvider(pw: pw, validateListings: validateListings, validateLogin: validateLogin, listingsProviderInfo: listingsProviderInfo).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -103,12 +100,12 @@ Name | Type | Description  | Notes
 
 # **addTunerHost**
 ```swift
-    open class func addTunerHost(tunerHostInfo: TunerHostInfo? = nil, completion: @escaping (_ data: TunerHostInfo?, _ error: Error?) -> Void)
+    open class func addTunerHost( tunerHostInfo: TunerHostInfo? = nil) -> Promise<TunerHostInfo>
 ```
 
 Adds a tuner host.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -116,15 +113,12 @@ import JellyfinAPI
 let tunerHostInfo = TunerHostInfo(id: "id_example", url: "url_example", type: "type_example", deviceId: "deviceId_example", friendlyName: "friendlyName_example", importFavoritesOnly: false, allowHWTranscoding: false, enableStreamLooping: false, source: "source_example", tunerCount: 123, userAgent: "userAgent_example") // TunerHostInfo | New tuner host. (optional)
 
 // Adds a tuner host.
-LiveTvAPI.addTunerHost(tunerHostInfo: tunerHostInfo) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+LiveTvAPI.addTunerHost(tunerHostInfo: tunerHostInfo).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -151,12 +145,12 @@ Name | Type | Description  | Notes
 
 # **cancelSeriesTimer**
 ```swift
-    open class func cancelSeriesTimer(timerId: String, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func cancelSeriesTimer( timerId: String) -> Promise<Void>
 ```
 
 Cancels a live tv series timer.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -164,15 +158,12 @@ import JellyfinAPI
 let timerId = "timerId_example" // String | Timer id.
 
 // Cancels a live tv series timer.
-LiveTvAPI.cancelSeriesTimer(timerId: timerId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+LiveTvAPI.cancelSeriesTimer(timerId: timerId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -199,12 +190,12 @@ Void (empty response body)
 
 # **cancelTimer**
 ```swift
-    open class func cancelTimer(timerId: String, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func cancelTimer( timerId: String) -> Promise<Void>
 ```
 
 Cancels a live tv timer.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -212,15 +203,12 @@ import JellyfinAPI
 let timerId = "timerId_example" // String | Timer id.
 
 // Cancels a live tv timer.
-LiveTvAPI.cancelTimer(timerId: timerId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+LiveTvAPI.cancelTimer(timerId: timerId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -247,12 +235,12 @@ Void (empty response body)
 
 # **createSeriesTimer**
 ```swift
-    open class func createSeriesTimer(seriesTimerInfoDto: SeriesTimerInfoDto? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func createSeriesTimer( seriesTimerInfoDto: SeriesTimerInfoDto? = nil) -> Promise<Void>
 ```
 
 Creates a live tv series timer.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -260,15 +248,12 @@ import JellyfinAPI
 let seriesTimerInfoDto = SeriesTimerInfoDto(id: "id_example", type: "type_example", serverId: "serverId_example", externalId: "externalId_example", channelId: "channelId_example", externalChannelId: "externalChannelId_example", channelName: "channelName_example", channelPrimaryImageTag: "channelPrimaryImageTag_example", programId: "programId_example", externalProgramId: "externalProgramId_example", name: "name_example", overview: "overview_example", startDate: Date(), endDate: Date(), serviceName: "serviceName_example", priority: 123, prePaddingSeconds: 123, postPaddingSeconds: 123, isPrePaddingRequired: false, parentBackdropItemId: "parentBackdropItemId_example", parentBackdropImageTags: ["parentBackdropImageTags_example"], isPostPaddingRequired: false, keepUntil: KeepUntil(), recordAnyTime: false, skipEpisodesInLibrary: false, recordAnyChannel: false, keepUpTo: 123, recordNewOnly: false, days: [DayOfWeek()], dayPattern: DayPattern(), imageTags: "TODO", parentThumbItemId: "parentThumbItemId_example", parentThumbImageTag: "parentThumbImageTag_example", parentPrimaryImageItemId: "parentPrimaryImageItemId_example", parentPrimaryImageTag: "parentPrimaryImageTag_example") // SeriesTimerInfoDto | New series timer info. (optional)
 
 // Creates a live tv series timer.
-LiveTvAPI.createSeriesTimer(seriesTimerInfoDto: seriesTimerInfoDto) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+LiveTvAPI.createSeriesTimer(seriesTimerInfoDto: seriesTimerInfoDto).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -295,12 +280,12 @@ Void (empty response body)
 
 # **createTimer**
 ```swift
-    open class func createTimer(timerInfoDto: TimerInfoDto? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func createTimer( timerInfoDto: TimerInfoDto? = nil) -> Promise<Void>
 ```
 
 Creates a live tv timer.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -308,15 +293,12 @@ import JellyfinAPI
 let timerInfoDto = TimerInfoDto(id: "id_example", type: "type_example", serverId: "serverId_example", externalId: "externalId_example", channelId: "channelId_example", externalChannelId: "externalChannelId_example", channelName: "channelName_example", channelPrimaryImageTag: "channelPrimaryImageTag_example", programId: "programId_example", externalProgramId: "externalProgramId_example", name: "name_example", overview: "overview_example", startDate: Date(), endDate: Date(), serviceName: "serviceName_example", priority: 123, prePaddingSeconds: 123, postPaddingSeconds: 123, isPrePaddingRequired: false, parentBackdropItemId: "parentBackdropItemId_example", parentBackdropImageTags: ["parentBackdropImageTags_example"], isPostPaddingRequired: false, keepUntil: KeepUntil(), status: RecordingStatus(), seriesTimerId: "seriesTimerId_example", externalSeriesTimerId: "externalSeriesTimerId_example", runTimeTicks: 123, programInfo: BaseItemDto(name: "name_example", originalTitle: "originalTitle_example", serverId: "serverId_example", id: "id_example", etag: "etag_example", sourceType: "sourceType_example", playlistItemId: "playlistItemId_example", dateCreated: Date(), dateLastMediaAdded: Date(), extraType: "extraType_example", airsBeforeSeasonNumber: 123, airsAfterSeasonNumber: 123, airsBeforeEpisodeNumber: 123, canDelete: false, canDownload: false, hasSubtitles: false, preferredMetadataLanguage: "preferredMetadataLanguage_example", preferredMetadataCountryCode: "preferredMetadataCountryCode_example", supportsSync: false, container: "container_example", sortName: "sortName_example", forcedSortName: "forcedSortName_example", video3DFormat: Video3DFormat(), premiereDate: Date(), externalUrls: [ExternalUrl(name: "name_example", url: "url_example")], mediaSources: [MediaSourceInfo(_protocol: MediaProtocol(), id: "id_example", path: "path_example", encoderPath: "encoderPath_example", encoderProtocol: nil, type: MediaSourceType(), container: "container_example", size: 123, name: "name_example", isRemote: false, eTag: "eTag_example", runTimeTicks: 123, readAtNativeFramerate: false, ignoreDts: false, ignoreIndex: false, genPtsInput: false, supportsTranscoding: false, supportsDirectStream: false, supportsDirectPlay: false, isInfiniteStream: false, requiresOpening: false, openToken: "openToken_example", requiresClosing: false, liveStreamId: "liveStreamId_example", bufferMs: 123, requiresLooping: false, supportsProbing: false, videoType: VideoType(), isoType: IsoType(), video3DFormat: nil, mediaStreams: [MediaStream(codec: "codec_example", codecTag: "codecTag_example", language: "language_example", colorRange: "colorRange_example", colorSpace: "colorSpace_example", colorTransfer: "colorTransfer_example", colorPrimaries: "colorPrimaries_example", comment: "comment_example", timeBase: "timeBase_example", codecTimeBase: "codecTimeBase_example", title: "title_example", videoRange: "videoRange_example", localizedUndefined: "localizedUndefined_example", localizedDefault: "localizedDefault_example", localizedForced: "localizedForced_example", displayTitle: "displayTitle_example", nalLengthSize: "nalLengthSize_example", isInterlaced: false, isAVC: false, channelLayout: "channelLayout_example", bitRate: 123, bitDepth: 123, refFrames: 123, packetLength: 123, channels: 123, sampleRate: 123, isDefault: false, isForced: false, height: 123, width: 123, averageFrameRate: 123, realFrameRate: 123, profile: "profile_example", type: MediaStreamType(), aspectRatio: "aspectRatio_example", index: 123, score: 123, isExternal: false, deliveryMethod: SubtitleDeliveryMethod(), deliveryUrl: "deliveryUrl_example", isExternalUrl: false, isTextSubtitleStream: false, supportsExternalStream: false, path: "path_example", pixelFormat: "pixelFormat_example", level: 123, isAnamorphic: false)], mediaAttachments: [MediaAttachment(codec: "codec_example", codecTag: "codecTag_example", comment: "comment_example", index: 123, fileName: "fileName_example", mimeType: "mimeType_example", deliveryUrl: "deliveryUrl_example")], formats: ["formats_example"], bitrate: 123, timestamp: TransportStreamTimestamp(), requiredHttpHeaders: "TODO", transcodingUrl: "transcodingUrl_example", transcodingSubProtocol: "transcodingSubProtocol_example", transcodingContainer: "transcodingContainer_example", analyzeDurationMs: 123, defaultAudioStreamIndex: 123, defaultSubtitleStreamIndex: 123)], criticRating: 123, productionLocations: ["productionLocations_example"], path: "path_example", enableMediaSourceDisplay: false, officialRating: "officialRating_example", customRating: "customRating_example", channelId: "channelId_example", channelName: "channelName_example", overview: "overview_example", taglines: ["taglines_example"], genres: ["genres_example"], communityRating: 123, cumulativeRunTimeTicks: 123, runTimeTicks: 123, playAccess: PlayAccess(), aspectRatio: "aspectRatio_example", productionYear: 123, isPlaceHolder: false, number: "number_example", channelNumber: "channelNumber_example", indexNumber: 123, indexNumberEnd: 123, parentIndexNumber: 123, remoteTrailers: [MediaUrl(url: "url_example", name: "name_example")], providerIds: "TODO", isHD: false, isFolder: false, parentId: "parentId_example", type: "type_example", people: [BaseItemPerson(name: "name_example", id: "id_example", role: "role_example", type: "type_example", primaryImageTag: "primaryImageTag_example", imageBlurHashes: BaseItemPerson_ImageBlurHashes(primary: "TODO", art: "TODO", backdrop: "TODO", banner: "TODO", logo: "TODO", thumb: "TODO", disc: "TODO", box: "TODO", screenshot: "TODO", menu: "TODO", chapter: "TODO", boxRear: "TODO", profile: "TODO"))], studios: [NameGuidPair(name: "name_example", id: "id_example")], genreItems: [nil], parentLogoItemId: "parentLogoItemId_example", parentBackdropItemId: "parentBackdropItemId_example", parentBackdropImageTags: ["parentBackdropImageTags_example"], localTrailerCount: 123, userData: UserItemDataDto(rating: 123, playedPercentage: 123, unplayedItemCount: 123, playbackPositionTicks: 123, playCount: 123, isFavorite: false, likes: false, lastPlayedDate: Date(), played: false, key: "key_example", itemId: "itemId_example"), recursiveItemCount: 123, childCount: 123, seriesName: "seriesName_example", seriesId: "seriesId_example", seasonId: "seasonId_example", specialFeatureCount: 123, displayPreferencesId: "displayPreferencesId_example", status: "status_example", airTime: "airTime_example", airDays: [DayOfWeek()], tags: ["tags_example"], primaryImageAspectRatio: 123, artists: ["artists_example"], artistItems: [nil], album: "album_example", collectionType: "collectionType_example", displayOrder: "displayOrder_example", albumId: "albumId_example", albumPrimaryImageTag: "albumPrimaryImageTag_example", seriesPrimaryImageTag: "seriesPrimaryImageTag_example", albumArtist: "albumArtist_example", albumArtists: [nil], seasonName: "seasonName_example", mediaStreams: [nil], videoType: nil, partCount: 123, mediaSourceCount: 123, imageTags: "TODO", backdropImageTags: ["backdropImageTags_example"], screenshotImageTags: ["screenshotImageTags_example"], parentLogoImageTag: "parentLogoImageTag_example", parentArtItemId: "parentArtItemId_example", parentArtImageTag: "parentArtImageTag_example", seriesThumbImageTag: "seriesThumbImageTag_example", imageBlurHashes: BaseItemDto_ImageBlurHashes(primary: "TODO", art: "TODO", backdrop: "TODO", banner: "TODO", logo: "TODO", thumb: "TODO", disc: "TODO", box: "TODO", screenshot: "TODO", menu: "TODO", chapter: "TODO", boxRear: "TODO", profile: "TODO"), seriesStudio: "seriesStudio_example", parentThumbItemId: "parentThumbItemId_example", parentThumbImageTag: "parentThumbImageTag_example", parentPrimaryImageItemId: "parentPrimaryImageItemId_example", parentPrimaryImageTag: "parentPrimaryImageTag_example", chapters: [ChapterInfo(startPositionTicks: 123, name: "name_example", imagePath: "imagePath_example", imageDateModified: Date(), imageTag: "imageTag_example")], locationType: LocationType(), isoType: nil, mediaType: "mediaType_example", endDate: Date(), lockedFields: [MetadataField()], trailerCount: 123, movieCount: 123, seriesCount: 123, programCount: 123, episodeCount: 123, songCount: 123, albumCount: 123, artistCount: 123, musicVideoCount: 123, lockData: false, width: 123, height: 123, cameraMake: "cameraMake_example", cameraModel: "cameraModel_example", software: "software_example", exposureTime: 123, focalLength: 123, imageOrientation: ImageOrientation(), aperture: 123, shutterSpeed: 123, latitude: 123, longitude: 123, altitude: 123, isoSpeedRating: 123, seriesTimerId: "seriesTimerId_example", programId: "programId_example", channelPrimaryImageTag: "channelPrimaryImageTag_example", startDate: Date(), completionPercentage: 123, isRepeat: false, episodeTitle: "episodeTitle_example", channelType: ChannelType(), audio: ProgramAudio(), isMovie: false, isSports: false, isSeries: false, isLive: false, isNews: false, isKids: false, isPremiere: false, timerId: "timerId_example")) // TimerInfoDto | New timer info. (optional)
 
 // Creates a live tv timer.
-LiveTvAPI.createTimer(timerInfoDto: timerInfoDto) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+LiveTvAPI.createTimer(timerInfoDto: timerInfoDto).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -343,12 +325,12 @@ Void (empty response body)
 
 # **deleteListingProvider**
 ```swift
-    open class func deleteListingProvider(id: String? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func deleteListingProvider( id: String? = nil) -> Promise<Void>
 ```
 
 Delete listing provider.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -356,15 +338,12 @@ import JellyfinAPI
 let id = "id_example" // String | Listing provider id. (optional)
 
 // Delete listing provider.
-LiveTvAPI.deleteListingProvider(id: id) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+LiveTvAPI.deleteListingProvider(id: id).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -391,12 +370,12 @@ Void (empty response body)
 
 # **deleteRecording**
 ```swift
-    open class func deleteRecording(recordingId: String, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func deleteRecording( recordingId: String) -> Promise<Void>
 ```
 
 Deletes a live tv recording.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -404,15 +383,12 @@ import JellyfinAPI
 let recordingId = "recordingId_example" // String | Recording id.
 
 // Deletes a live tv recording.
-LiveTvAPI.deleteRecording(recordingId: recordingId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+LiveTvAPI.deleteRecording(recordingId: recordingId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -420,7 +396,7 @@ LiveTvAPI.deleteRecording(recordingId: recordingId) { (response, error) in
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **recordingId** | [**String**](.md) | Recording id. | 
+ **recordingId** | **String** | Recording id. | 
 
 ### Return type
 
@@ -439,12 +415,12 @@ Void (empty response body)
 
 # **deleteTunerHost**
 ```swift
-    open class func deleteTunerHost(id: String? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func deleteTunerHost( id: String? = nil) -> Promise<Void>
 ```
 
 Deletes a tuner host.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -452,15 +428,12 @@ import JellyfinAPI
 let id = "id_example" // String | Tuner host id. (optional)
 
 // Deletes a tuner host.
-LiveTvAPI.deleteTunerHost(id: id) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+LiveTvAPI.deleteTunerHost(id: id).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -487,12 +460,12 @@ Void (empty response body)
 
 # **discoverTuners**
 ```swift
-    open class func discoverTuners(newDevicesOnly: Bool? = nil, completion: @escaping (_ data: [TunerHostInfo]?, _ error: Error?) -> Void)
+    open class func discoverTuners( newDevicesOnly: Bool? = nil) -> Promise<[TunerHostInfo]>
 ```
 
 Discover tuners.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -500,15 +473,12 @@ import JellyfinAPI
 let newDevicesOnly = true // Bool | Only discover new tuners. (optional) (default to false)
 
 // Discover tuners.
-LiveTvAPI.discoverTuners(newDevicesOnly: newDevicesOnly) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+LiveTvAPI.discoverTuners(newDevicesOnly: newDevicesOnly).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -535,12 +505,12 @@ Name | Type | Description  | Notes
 
 # **discvoverTuners**
 ```swift
-    open class func discvoverTuners(newDevicesOnly: Bool? = nil, completion: @escaping (_ data: [TunerHostInfo]?, _ error: Error?) -> Void)
+    open class func discvoverTuners( newDevicesOnly: Bool? = nil) -> Promise<[TunerHostInfo]>
 ```
 
 Discover tuners.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -548,15 +518,12 @@ import JellyfinAPI
 let newDevicesOnly = true // Bool | Only discover new tuners. (optional) (default to false)
 
 // Discover tuners.
-LiveTvAPI.discvoverTuners(newDevicesOnly: newDevicesOnly) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+LiveTvAPI.discvoverTuners(newDevicesOnly: newDevicesOnly).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -583,12 +550,12 @@ Name | Type | Description  | Notes
 
 # **getChannel**
 ```swift
-    open class func getChannel(channelId: String, userId: String? = nil, completion: @escaping (_ data: BaseItemDto?, _ error: Error?) -> Void)
+    open class func getChannel( channelId: String,  userId: String? = nil) -> Promise<BaseItemDto>
 ```
 
 Gets a live tv channel.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -597,15 +564,12 @@ let channelId = "channelId_example" // String | Channel id.
 let userId = "userId_example" // String | Optional. Attach user data. (optional)
 
 // Gets a live tv channel.
-LiveTvAPI.getChannel(channelId: channelId, userId: userId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+LiveTvAPI.getChannel(channelId: channelId, userId: userId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -613,8 +577,8 @@ LiveTvAPI.getChannel(channelId: channelId, userId: userId) { (response, error) i
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **channelId** | [**String**](.md) | Channel id. | 
- **userId** | [**String**](.md) | Optional. Attach user data. | [optional] 
+ **channelId** | **String** | Channel id. | 
+ **userId** | **String** | Optional. Attach user data. | [optional] 
 
 ### Return type
 
@@ -633,12 +597,12 @@ Name | Type | Description  | Notes
 
 # **getChannelMappingOptions**
 ```swift
-    open class func getChannelMappingOptions(providerId: String? = nil, completion: @escaping (_ data: ChannelMappingOptionsDto?, _ error: Error?) -> Void)
+    open class func getChannelMappingOptions( providerId: String? = nil) -> Promise<ChannelMappingOptionsDto>
 ```
 
 Get channel mapping options.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -646,15 +610,12 @@ import JellyfinAPI
 let providerId = "providerId_example" // String | Provider id. (optional)
 
 // Get channel mapping options.
-LiveTvAPI.getChannelMappingOptions(providerId: providerId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+LiveTvAPI.getChannelMappingOptions(providerId: providerId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -681,27 +642,24 @@ Name | Type | Description  | Notes
 
 # **getDefaultListingProvider**
 ```swift
-    open class func getDefaultListingProvider(completion: @escaping (_ data: ListingsProviderInfo?, _ error: Error?) -> Void)
+    open class func getDefaultListingProvider() -> Promise<ListingsProviderInfo>
 ```
 
 Gets default listings provider info.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
 
 
 // Gets default listings provider info.
-LiveTvAPI.getDefaultListingProvider() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+LiveTvAPI.getDefaultListingProvider().then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -725,12 +683,12 @@ This endpoint does not need any parameter.
 
 # **getDefaultTimer**
 ```swift
-    open class func getDefaultTimer(programId: String? = nil, completion: @escaping (_ data: SeriesTimerInfoDto?, _ error: Error?) -> Void)
+    open class func getDefaultTimer( programId: String? = nil) -> Promise<SeriesTimerInfoDto>
 ```
 
 Gets the default values for a new timer.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -738,15 +696,12 @@ import JellyfinAPI
 let programId = "programId_example" // String | Optional. To attach default values based on a program. (optional)
 
 // Gets the default values for a new timer.
-LiveTvAPI.getDefaultTimer(programId: programId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+LiveTvAPI.getDefaultTimer(programId: programId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -773,27 +728,24 @@ Name | Type | Description  | Notes
 
 # **getGuideInfo**
 ```swift
-    open class func getGuideInfo(completion: @escaping (_ data: GuideInfo?, _ error: Error?) -> Void)
+    open class func getGuideInfo() -> Promise<GuideInfo>
 ```
 
 Get guid info.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
 
 
 // Get guid info.
-LiveTvAPI.getGuideInfo() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+LiveTvAPI.getGuideInfo().then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -817,12 +769,12 @@ This endpoint does not need any parameter.
 
 # **getLineups**
 ```swift
-    open class func getLineups(id: String? = nil, type: String? = nil, location: String? = nil, country: String? = nil, completion: @escaping (_ data: [NameIdPair]?, _ error: Error?) -> Void)
+    open class func getLineups( id: String? = nil,  type: String? = nil,  location: String? = nil,  country: String? = nil) -> Promise<[NameIdPair]>
 ```
 
 Gets available lineups.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -833,15 +785,12 @@ let location = "location_example" // String | Location. (optional)
 let country = "country_example" // String | Country. (optional)
 
 // Gets available lineups.
-LiveTvAPI.getLineups(id: id, type: type, location: location, country: country) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+LiveTvAPI.getLineups(id: id, type: type, location: location, country: country).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -871,12 +820,12 @@ Name | Type | Description  | Notes
 
 # **getLiveRecordingFile**
 ```swift
-    open class func getLiveRecordingFile(recordingId: String, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func getLiveRecordingFile( recordingId: String) -> Promise<URL>
 ```
 
 Gets a live tv recording stream.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -884,15 +833,12 @@ import JellyfinAPI
 let recordingId = "recordingId_example" // String | Recording id.
 
 // Gets a live tv recording stream.
-LiveTvAPI.getLiveRecordingFile(recordingId: recordingId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+LiveTvAPI.getLiveRecordingFile(recordingId: recordingId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -919,12 +865,12 @@ No authorization required
 
 # **getLiveStreamFile**
 ```swift
-    open class func getLiveStreamFile(streamId: String, container: String, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func getLiveStreamFile( streamId: String,  container: String) -> Promise<URL>
 ```
 
 Gets a live tv channel stream.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -933,15 +879,12 @@ let streamId = "streamId_example" // String | Stream id.
 let container = "container_example" // String | Container type.
 
 // Gets a live tv channel stream.
-LiveTvAPI.getLiveStreamFile(streamId: streamId, container: container) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+LiveTvAPI.getLiveStreamFile(streamId: streamId, container: container).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -969,12 +912,12 @@ No authorization required
 
 # **getLiveTvChannels**
 ```swift
-    open class func getLiveTvChannels(type: ChannelType? = nil, userId: String? = nil, startIndex: Int? = nil, isMovie: Bool? = nil, isSeries: Bool? = nil, isNews: Bool? = nil, isKids: Bool? = nil, isSports: Bool? = nil, limit: Int? = nil, isFavorite: Bool? = nil, isLiked: Bool? = nil, isDisliked: Bool? = nil, enableImages: Bool? = nil, imageTypeLimit: Int? = nil, enableImageTypes: [ImageType]? = nil, fields: [ItemFields]? = nil, enableUserData: Bool? = nil, sortBy: [String]? = nil, sortOrder: APISortOrder? = nil, enableFavoriteSorting: Bool? = nil, addCurrentProgram: Bool? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
+    open class func getLiveTvChannels( type: ChannelType? = nil,  userId: String? = nil,  startIndex: Int? = nil,  isMovie: Bool? = nil,  isSeries: Bool? = nil,  isNews: Bool? = nil,  isKids: Bool? = nil,  isSports: Bool? = nil,  limit: Int? = nil,  isFavorite: Bool? = nil,  isLiked: Bool? = nil,  isDisliked: Bool? = nil,  enableImages: Bool? = nil,  imageTypeLimit: Int? = nil,  enableImageTypes: [ImageType]? = nil,  fields: [ItemFields]? = nil,  enableUserData: Bool? = nil,  sortBy: [String]? = nil,  sortOrder: APISortOrder? = nil,  enableFavoriteSorting: Bool? = nil,  addCurrentProgram: Bool? = nil) -> Promise<BaseItemDtoQueryResult>
 ```
 
 Gets available live tv channels.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -1002,15 +945,12 @@ let enableFavoriteSorting = true // Bool | Optional. Incorporate favorite and li
 let addCurrentProgram = true // Bool | Optional. Adds current program info to each channel. (optional) (default to true)
 
 // Gets available live tv channels.
-LiveTvAPI.getLiveTvChannels(type: type, userId: userId, startIndex: startIndex, isMovie: isMovie, isSeries: isSeries, isNews: isNews, isKids: isKids, isSports: isSports, limit: limit, isFavorite: isFavorite, isLiked: isLiked, isDisliked: isDisliked, enableImages: enableImages, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes, fields: fields, enableUserData: enableUserData, sortBy: sortBy, sortOrder: sortOrder, enableFavoriteSorting: enableFavoriteSorting, addCurrentProgram: addCurrentProgram) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+LiveTvAPI.getLiveTvChannels(type: type, userId: userId, startIndex: startIndex, isMovie: isMovie, isSeries: isSeries, isNews: isNews, isKids: isKids, isSports: isSports, limit: limit, isFavorite: isFavorite, isLiked: isLiked, isDisliked: isDisliked, enableImages: enableImages, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes, fields: fields, enableUserData: enableUserData, sortBy: sortBy, sortOrder: sortOrder, enableFavoriteSorting: enableFavoriteSorting, addCurrentProgram: addCurrentProgram).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -1019,7 +959,7 @@ LiveTvAPI.getLiveTvChannels(type: type, userId: userId, startIndex: startIndex, 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **type** | [**ChannelType**](.md) | Optional. Filter by channel type. | [optional] 
- **userId** | [**String**](.md) | Optional. Filter by user and attach user data. | [optional] 
+ **userId** | **String** | Optional. Filter by user and attach user data. | [optional] 
  **startIndex** | **Int** | Optional. The record index to start at. All items with a lower index will be dropped from the results. | [optional] 
  **isMovie** | **Bool** | Optional. Filter for movies. | [optional] 
  **isSeries** | **Bool** | Optional. Filter for series. | [optional] 
@@ -1057,27 +997,24 @@ Name | Type | Description  | Notes
 
 # **getLiveTvInfo**
 ```swift
-    open class func getLiveTvInfo(completion: @escaping (_ data: LiveTvInfo?, _ error: Error?) -> Void)
+    open class func getLiveTvInfo() -> Promise<LiveTvInfo>
 ```
 
 Gets available live tv services.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
 
 
 // Gets available live tv services.
-LiveTvAPI.getLiveTvInfo() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+LiveTvAPI.getLiveTvInfo().then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -1101,12 +1038,12 @@ This endpoint does not need any parameter.
 
 # **getLiveTvPrograms**
 ```swift
-    open class func getLiveTvPrograms(channelIds: [String]? = nil, userId: String? = nil, minStartDate: Date? = nil, hasAired: Bool? = nil, isAiring: Bool? = nil, maxStartDate: Date? = nil, minEndDate: Date? = nil, maxEndDate: Date? = nil, isMovie: Bool? = nil, isSeries: Bool? = nil, isNews: Bool? = nil, isKids: Bool? = nil, isSports: Bool? = nil, startIndex: Int? = nil, limit: Int? = nil, sortBy: [String]? = nil, sortOrder: [APISortOrder]? = nil, genres: [String]? = nil, genreIds: [String]? = nil, enableImages: Bool? = nil, imageTypeLimit: Int? = nil, enableImageTypes: [ImageType]? = nil, enableUserData: Bool? = nil, seriesTimerId: String? = nil, librarySeriesId: String? = nil, fields: [ItemFields]? = nil, enableTotalRecordCount: Bool? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
+    open class func getLiveTvPrograms( channelIds: [String]? = nil,  userId: String? = nil,  minStartDate: Date? = nil,  hasAired: Bool? = nil,  isAiring: Bool? = nil,  maxStartDate: Date? = nil,  minEndDate: Date? = nil,  maxEndDate: Date? = nil,  isMovie: Bool? = nil,  isSeries: Bool? = nil,  isNews: Bool? = nil,  isKids: Bool? = nil,  isSports: Bool? = nil,  startIndex: Int? = nil,  limit: Int? = nil,  sortBy: [String]? = nil,  sortOrder: [APISortOrder]? = nil,  genres: [String]? = nil,  genreIds: [String]? = nil,  enableImages: Bool? = nil,  imageTypeLimit: Int? = nil,  enableImageTypes: [ImageType]? = nil,  enableUserData: Bool? = nil,  seriesTimerId: String? = nil,  librarySeriesId: String? = nil,  fields: [ItemFields]? = nil,  enableTotalRecordCount: Bool? = nil) -> Promise<BaseItemDtoQueryResult>
 ```
 
 Gets available live tv epgs.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -1140,15 +1077,12 @@ let fields = [ItemFields()] // [ItemFields] | Optional. Specify additional field
 let enableTotalRecordCount = true // Bool | Retrieve total record count. (optional) (default to true)
 
 // Gets available live tv epgs.
-LiveTvAPI.getLiveTvPrograms(channelIds: channelIds, userId: userId, minStartDate: minStartDate, hasAired: hasAired, isAiring: isAiring, maxStartDate: maxStartDate, minEndDate: minEndDate, maxEndDate: maxEndDate, isMovie: isMovie, isSeries: isSeries, isNews: isNews, isKids: isKids, isSports: isSports, startIndex: startIndex, limit: limit, sortBy: sortBy, sortOrder: sortOrder, genres: genres, genreIds: genreIds, enableImages: enableImages, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes, enableUserData: enableUserData, seriesTimerId: seriesTimerId, librarySeriesId: librarySeriesId, fields: fields, enableTotalRecordCount: enableTotalRecordCount) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+LiveTvAPI.getLiveTvPrograms(channelIds: channelIds, userId: userId, minStartDate: minStartDate, hasAired: hasAired, isAiring: isAiring, maxStartDate: maxStartDate, minEndDate: minEndDate, maxEndDate: maxEndDate, isMovie: isMovie, isSeries: isSeries, isNews: isNews, isKids: isKids, isSports: isSports, startIndex: startIndex, limit: limit, sortBy: sortBy, sortOrder: sortOrder, genres: genres, genreIds: genreIds, enableImages: enableImages, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes, enableUserData: enableUserData, seriesTimerId: seriesTimerId, librarySeriesId: librarySeriesId, fields: fields, enableTotalRecordCount: enableTotalRecordCount).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -1157,7 +1091,7 @@ LiveTvAPI.getLiveTvPrograms(channelIds: channelIds, userId: userId, minStartDate
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **channelIds** | [**[String]**](String.md) | The channels to return guide information for. | [optional] 
- **userId** | [**String**](.md) | Optional. Filter by user id. | [optional] 
+ **userId** | **String** | Optional. Filter by user id. | [optional] 
  **minStartDate** | **Date** | Optional. The minimum premiere start date. | [optional] 
  **hasAired** | **Bool** | Optional. Filter by programs that have completed airing, or not. | [optional] 
  **isAiring** | **Bool** | Optional. Filter by programs that are currently airing, or not. | [optional] 
@@ -1180,7 +1114,7 @@ Name | Type | Description  | Notes
  **enableImageTypes** | [**[ImageType]**](ImageType.md) | Optional. The image types to include in the output. | [optional] 
  **enableUserData** | **Bool** | Optional. Include user data. | [optional] 
  **seriesTimerId** | **String** | Optional. Filter by series timer id. | [optional] 
- **librarySeriesId** | [**String**](.md) | Optional. Filter by library series id. | [optional] 
+ **librarySeriesId** | **String** | Optional. Filter by library series id. | [optional] 
  **fields** | [**[ItemFields]**](ItemFields.md) | Optional. Specify additional fields of information to return in the output. | [optional] 
  **enableTotalRecordCount** | **Bool** | Retrieve total record count. | [optional] [default to true]
 
@@ -1201,12 +1135,12 @@ Name | Type | Description  | Notes
 
 # **getProgram**
 ```swift
-    open class func getProgram(programId: String, userId: String? = nil, completion: @escaping (_ data: BaseItemDto?, _ error: Error?) -> Void)
+    open class func getProgram( programId: String,  userId: String? = nil) -> Promise<BaseItemDto>
 ```
 
 Gets a live tv program.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -1215,15 +1149,12 @@ let programId = "programId_example" // String | Program id.
 let userId = "userId_example" // String | Optional. Attach user data. (optional)
 
 // Gets a live tv program.
-LiveTvAPI.getProgram(programId: programId, userId: userId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+LiveTvAPI.getProgram(programId: programId, userId: userId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -1232,7 +1163,7 @@ LiveTvAPI.getProgram(programId: programId, userId: userId) { (response, error) i
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **programId** | **String** | Program id. | 
- **userId** | [**String**](.md) | Optional. Attach user data. | [optional] 
+ **userId** | **String** | Optional. Attach user data. | [optional] 
 
 ### Return type
 
@@ -1251,12 +1182,12 @@ Name | Type | Description  | Notes
 
 # **getPrograms**
 ```swift
-    open class func getPrograms(getProgramsDto: GetProgramsDto? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
+    open class func getPrograms( getProgramsDto: GetProgramsDto? = nil) -> Promise<BaseItemDtoQueryResult>
 ```
 
 Gets available live tv epgs.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -1264,15 +1195,12 @@ import JellyfinAPI
 let getProgramsDto = GetProgramsDto(channelIds: ["channelIds_example"], userId: "userId_example", minStartDate: Date(), hasAired: false, isAiring: false, maxStartDate: Date(), minEndDate: Date(), maxEndDate: Date(), isMovie: false, isSeries: false, isNews: false, isKids: false, isSports: false, startIndex: 123, limit: 123, sortBy: ["sortBy_example"], aPISortOrder: [APISortOrder()], genres: ["genres_example"], genreIds: ["genreIds_example"], enableImages: false, enableTotalRecordCount: false, imageTypeLimit: 123, enableImageTypes: [ImageType()], enableUserData: false, seriesTimerId: "seriesTimerId_example", librarySeriesId: "librarySeriesId_example", fields: [ItemFields()]) // GetProgramsDto | Request body. (optional)
 
 // Gets available live tv epgs.
-LiveTvAPI.getPrograms(getProgramsDto: getProgramsDto) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+LiveTvAPI.getPrograms(getProgramsDto: getProgramsDto).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -1299,12 +1227,12 @@ Name | Type | Description  | Notes
 
 # **getRecommendedPrograms**
 ```swift
-    open class func getRecommendedPrograms(userId: String? = nil, limit: Int? = nil, isAiring: Bool? = nil, hasAired: Bool? = nil, isSeries: Bool? = nil, isMovie: Bool? = nil, isNews: Bool? = nil, isKids: Bool? = nil, isSports: Bool? = nil, enableImages: Bool? = nil, imageTypeLimit: Int? = nil, enableImageTypes: [ImageType]? = nil, genreIds: [String]? = nil, fields: [ItemFields]? = nil, enableUserData: Bool? = nil, enableTotalRecordCount: Bool? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
+    open class func getRecommendedPrograms( userId: String? = nil,  limit: Int? = nil,  isAiring: Bool? = nil,  hasAired: Bool? = nil,  isSeries: Bool? = nil,  isMovie: Bool? = nil,  isNews: Bool? = nil,  isKids: Bool? = nil,  isSports: Bool? = nil,  enableImages: Bool? = nil,  imageTypeLimit: Int? = nil,  enableImageTypes: [ImageType]? = nil,  genreIds: [String]? = nil,  fields: [ItemFields]? = nil,  enableUserData: Bool? = nil,  enableTotalRecordCount: Bool? = nil) -> Promise<BaseItemDtoQueryResult>
 ```
 
 Gets recommended live tv epgs.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -1327,15 +1255,12 @@ let enableUserData = true // Bool | Optional. include user data. (optional)
 let enableTotalRecordCount = true // Bool | Retrieve total record count. (optional) (default to true)
 
 // Gets recommended live tv epgs.
-LiveTvAPI.getRecommendedPrograms(userId: userId, limit: limit, isAiring: isAiring, hasAired: hasAired, isSeries: isSeries, isMovie: isMovie, isNews: isNews, isKids: isKids, isSports: isSports, enableImages: enableImages, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes, genreIds: genreIds, fields: fields, enableUserData: enableUserData, enableTotalRecordCount: enableTotalRecordCount) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+LiveTvAPI.getRecommendedPrograms(userId: userId, limit: limit, isAiring: isAiring, hasAired: hasAired, isSeries: isSeries, isMovie: isMovie, isNews: isNews, isKids: isKids, isSports: isSports, enableImages: enableImages, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes, genreIds: genreIds, fields: fields, enableUserData: enableUserData, enableTotalRecordCount: enableTotalRecordCount).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -1343,7 +1268,7 @@ LiveTvAPI.getRecommendedPrograms(userId: userId, limit: limit, isAiring: isAirin
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**String**](.md) | Optional. filter by user id. | [optional] 
+ **userId** | **String** | Optional. filter by user id. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 
  **isAiring** | **Bool** | Optional. Filter by programs that are currently airing, or not. | [optional] 
  **hasAired** | **Bool** | Optional. Filter by programs that have completed airing, or not. | [optional] 
@@ -1377,12 +1302,12 @@ Name | Type | Description  | Notes
 
 # **getRecording**
 ```swift
-    open class func getRecording(recordingId: String, userId: String? = nil, completion: @escaping (_ data: BaseItemDto?, _ error: Error?) -> Void)
+    open class func getRecording( recordingId: String,  userId: String? = nil) -> Promise<BaseItemDto>
 ```
 
 Gets a live tv recording.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -1391,15 +1316,12 @@ let recordingId = "recordingId_example" // String | Recording id.
 let userId = "userId_example" // String | Optional. Attach user data. (optional)
 
 // Gets a live tv recording.
-LiveTvAPI.getRecording(recordingId: recordingId, userId: userId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+LiveTvAPI.getRecording(recordingId: recordingId, userId: userId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -1407,8 +1329,8 @@ LiveTvAPI.getRecording(recordingId: recordingId, userId: userId) { (response, er
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **recordingId** | [**String**](.md) | Recording id. | 
- **userId** | [**String**](.md) | Optional. Attach user data. | [optional] 
+ **recordingId** | **String** | Recording id. | 
+ **userId** | **String** | Optional. Attach user data. | [optional] 
 
 ### Return type
 
@@ -1427,12 +1349,12 @@ Name | Type | Description  | Notes
 
 # **getRecordingFolders**
 ```swift
-    open class func getRecordingFolders(userId: String? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
+    open class func getRecordingFolders( userId: String? = nil) -> Promise<BaseItemDtoQueryResult>
 ```
 
 Gets recording folders.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -1440,15 +1362,12 @@ import JellyfinAPI
 let userId = "userId_example" // String | Optional. Filter by user and attach user data. (optional)
 
 // Gets recording folders.
-LiveTvAPI.getRecordingFolders(userId: userId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+LiveTvAPI.getRecordingFolders(userId: userId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -1456,7 +1375,7 @@ LiveTvAPI.getRecordingFolders(userId: userId) { (response, error) in
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**String**](.md) | Optional. Filter by user and attach user data. | [optional] 
+ **userId** | **String** | Optional. Filter by user and attach user data. | [optional] 
 
 ### Return type
 
@@ -1475,12 +1394,12 @@ Name | Type | Description  | Notes
 
 # **getRecordingGroup**
 ```swift
-    open class func getRecordingGroup(groupId: String, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func getRecordingGroup( groupId: String) -> Promise<Void>
 ```
 
 Get recording group.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -1488,15 +1407,12 @@ import JellyfinAPI
 let groupId = "groupId_example" // String | Group id.
 
 // Get recording group.
-LiveTvAPI.getRecordingGroup(groupId: groupId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+LiveTvAPI.getRecordingGroup(groupId: groupId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -1504,7 +1420,7 @@ LiveTvAPI.getRecordingGroup(groupId: groupId) { (response, error) in
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **groupId** | [**String**](.md) | Group id. | 
+ **groupId** | **String** | Group id. | 
 
 ### Return type
 
@@ -1523,12 +1439,12 @@ Void (empty response body)
 
 # **getRecordingGroups**
 ```swift
-    open class func getRecordingGroups(userId: String? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
+    open class func getRecordingGroups( userId: String? = nil) -> Promise<BaseItemDtoQueryResult>
 ```
 
 Gets live tv recording groups.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -1536,15 +1452,12 @@ import JellyfinAPI
 let userId = "userId_example" // String | Optional. Filter by user and attach user data. (optional)
 
 // Gets live tv recording groups.
-LiveTvAPI.getRecordingGroups(userId: userId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+LiveTvAPI.getRecordingGroups(userId: userId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -1552,7 +1465,7 @@ LiveTvAPI.getRecordingGroups(userId: userId) { (response, error) in
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**String**](.md) | Optional. Filter by user and attach user data. | [optional] 
+ **userId** | **String** | Optional. Filter by user and attach user data. | [optional] 
 
 ### Return type
 
@@ -1571,12 +1484,12 @@ Name | Type | Description  | Notes
 
 # **getRecordings**
 ```swift
-    open class func getRecordings(channelId: String? = nil, userId: String? = nil, startIndex: Int? = nil, limit: Int? = nil, status: RecordingStatus? = nil, isInProgress: Bool? = nil, seriesTimerId: String? = nil, enableImages: Bool? = nil, imageTypeLimit: Int? = nil, enableImageTypes: [ImageType]? = nil, fields: [ItemFields]? = nil, enableUserData: Bool? = nil, isMovie: Bool? = nil, isSeries: Bool? = nil, isKids: Bool? = nil, isSports: Bool? = nil, isNews: Bool? = nil, isLibraryItem: Bool? = nil, enableTotalRecordCount: Bool? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
+    open class func getRecordings( channelId: String? = nil,  userId: String? = nil,  startIndex: Int? = nil,  limit: Int? = nil,  status: RecordingStatus? = nil,  isInProgress: Bool? = nil,  seriesTimerId: String? = nil,  enableImages: Bool? = nil,  imageTypeLimit: Int? = nil,  enableImageTypes: [ImageType]? = nil,  fields: [ItemFields]? = nil,  enableUserData: Bool? = nil,  isMovie: Bool? = nil,  isSeries: Bool? = nil,  isKids: Bool? = nil,  isSports: Bool? = nil,  isNews: Bool? = nil,  isLibraryItem: Bool? = nil,  enableTotalRecordCount: Bool? = nil) -> Promise<BaseItemDtoQueryResult>
 ```
 
 Gets live tv recordings.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -1602,15 +1515,12 @@ let isLibraryItem = true // Bool | Optional. Filter for is library item. (option
 let enableTotalRecordCount = true // Bool | Optional. Return total record count. (optional) (default to true)
 
 // Gets live tv recordings.
-LiveTvAPI.getRecordings(channelId: channelId, userId: userId, startIndex: startIndex, limit: limit, status: status, isInProgress: isInProgress, seriesTimerId: seriesTimerId, enableImages: enableImages, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes, fields: fields, enableUserData: enableUserData, isMovie: isMovie, isSeries: isSeries, isKids: isKids, isSports: isSports, isNews: isNews, isLibraryItem: isLibraryItem, enableTotalRecordCount: enableTotalRecordCount) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+LiveTvAPI.getRecordings(channelId: channelId, userId: userId, startIndex: startIndex, limit: limit, status: status, isInProgress: isInProgress, seriesTimerId: seriesTimerId, enableImages: enableImages, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes, fields: fields, enableUserData: enableUserData, isMovie: isMovie, isSeries: isSeries, isKids: isKids, isSports: isSports, isNews: isNews, isLibraryItem: isLibraryItem, enableTotalRecordCount: enableTotalRecordCount).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -1619,7 +1529,7 @@ LiveTvAPI.getRecordings(channelId: channelId, userId: userId, startIndex: startI
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **channelId** | **String** | Optional. Filter by channel id. | [optional] 
- **userId** | [**String**](.md) | Optional. Filter by user and attach user data. | [optional] 
+ **userId** | **String** | Optional. Filter by user and attach user data. | [optional] 
  **startIndex** | **Int** | Optional. The record index to start at. All items with a lower index will be dropped from the results. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 
  **status** | [**RecordingStatus**](.md) | Optional. Filter by recording status. | [optional] 
@@ -1655,12 +1565,12 @@ Name | Type | Description  | Notes
 
 # **getRecordingsSeries**
 ```swift
-    open class func getRecordingsSeries(channelId: String? = nil, userId: String? = nil, groupId: String? = nil, startIndex: Int? = nil, limit: Int? = nil, status: RecordingStatus? = nil, isInProgress: Bool? = nil, seriesTimerId: String? = nil, enableImages: Bool? = nil, imageTypeLimit: Int? = nil, enableImageTypes: [ImageType]? = nil, fields: [ItemFields]? = nil, enableUserData: Bool? = nil, enableTotalRecordCount: Bool? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
+    open class func getRecordingsSeries( channelId: String? = nil,  userId: String? = nil,  groupId: String? = nil,  startIndex: Int? = nil,  limit: Int? = nil,  status: RecordingStatus? = nil,  isInProgress: Bool? = nil,  seriesTimerId: String? = nil,  enableImages: Bool? = nil,  imageTypeLimit: Int? = nil,  enableImageTypes: [ImageType]? = nil,  fields: [ItemFields]? = nil,  enableUserData: Bool? = nil,  enableTotalRecordCount: Bool? = nil) -> Promise<BaseItemDtoQueryResult>
 ```
 
 Gets live tv recording series.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -1681,15 +1591,12 @@ let enableUserData = true // Bool | Optional. Include user data. (optional)
 let enableTotalRecordCount = true // Bool | Optional. Return total record count. (optional) (default to true)
 
 // Gets live tv recording series.
-LiveTvAPI.getRecordingsSeries(channelId: channelId, userId: userId, groupId: groupId, startIndex: startIndex, limit: limit, status: status, isInProgress: isInProgress, seriesTimerId: seriesTimerId, enableImages: enableImages, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes, fields: fields, enableUserData: enableUserData, enableTotalRecordCount: enableTotalRecordCount) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+LiveTvAPI.getRecordingsSeries(channelId: channelId, userId: userId, groupId: groupId, startIndex: startIndex, limit: limit, status: status, isInProgress: isInProgress, seriesTimerId: seriesTimerId, enableImages: enableImages, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes, fields: fields, enableUserData: enableUserData, enableTotalRecordCount: enableTotalRecordCount).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -1698,7 +1605,7 @@ LiveTvAPI.getRecordingsSeries(channelId: channelId, userId: userId, groupId: gro
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **channelId** | **String** | Optional. Filter by channel id. | [optional] 
- **userId** | [**String**](.md) | Optional. Filter by user and attach user data. | [optional] 
+ **userId** | **String** | Optional. Filter by user and attach user data. | [optional] 
  **groupId** | **String** | Optional. Filter by recording group. | [optional] 
  **startIndex** | **Int** | Optional. The record index to start at. All items with a lower index will be dropped from the results. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 
@@ -1729,27 +1636,24 @@ Name | Type | Description  | Notes
 
 # **getSchedulesDirectCountries**
 ```swift
-    open class func getSchedulesDirectCountries(completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func getSchedulesDirectCountries() -> Promise<URL>
 ```
 
 Gets available countries.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
 
 
 // Gets available countries.
-LiveTvAPI.getSchedulesDirectCountries() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+LiveTvAPI.getSchedulesDirectCountries().then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -1773,12 +1677,12 @@ This endpoint does not need any parameter.
 
 # **getSeriesTimer**
 ```swift
-    open class func getSeriesTimer(timerId: String, completion: @escaping (_ data: SeriesTimerInfoDto?, _ error: Error?) -> Void)
+    open class func getSeriesTimer( timerId: String) -> Promise<SeriesTimerInfoDto>
 ```
 
 Gets a live tv series timer.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -1786,15 +1690,12 @@ import JellyfinAPI
 let timerId = "timerId_example" // String | Timer id.
 
 // Gets a live tv series timer.
-LiveTvAPI.getSeriesTimer(timerId: timerId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+LiveTvAPI.getSeriesTimer(timerId: timerId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -1821,12 +1722,12 @@ Name | Type | Description  | Notes
 
 # **getSeriesTimers**
 ```swift
-    open class func getSeriesTimers(sortBy: String? = nil, sortOrder: APISortOrder? = nil, completion: @escaping (_ data: SeriesTimerInfoDtoQueryResult?, _ error: Error?) -> Void)
+    open class func getSeriesTimers( sortBy: String? = nil,  sortOrder: APISortOrder? = nil) -> Promise<SeriesTimerInfoDtoQueryResult>
 ```
 
 Gets live tv series timers.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -1835,15 +1736,12 @@ let sortBy = "sortBy_example" // String | Optional. Sort by SortName or Priority
 let sortOrder = APISortOrder() // APISortOrder | Optional. Sort in Ascending or Descending order. (optional)
 
 // Gets live tv series timers.
-LiveTvAPI.getSeriesTimers(sortBy: sortBy, sortOrder: sortOrder) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+LiveTvAPI.getSeriesTimers(sortBy: sortBy, sortOrder: sortOrder).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -1871,12 +1769,12 @@ Name | Type | Description  | Notes
 
 # **getTimer**
 ```swift
-    open class func getTimer(timerId: String, completion: @escaping (_ data: TimerInfoDto?, _ error: Error?) -> Void)
+    open class func getTimer( timerId: String) -> Promise<TimerInfoDto>
 ```
 
 Gets a timer.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -1884,15 +1782,12 @@ import JellyfinAPI
 let timerId = "timerId_example" // String | Timer id.
 
 // Gets a timer.
-LiveTvAPI.getTimer(timerId: timerId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+LiveTvAPI.getTimer(timerId: timerId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -1919,12 +1814,12 @@ Name | Type | Description  | Notes
 
 # **getTimers**
 ```swift
-    open class func getTimers(channelId: String? = nil, seriesTimerId: String? = nil, isActive: Bool? = nil, isScheduled: Bool? = nil, completion: @escaping (_ data: TimerInfoDtoQueryResult?, _ error: Error?) -> Void)
+    open class func getTimers( channelId: String? = nil,  seriesTimerId: String? = nil,  isActive: Bool? = nil,  isScheduled: Bool? = nil) -> Promise<TimerInfoDtoQueryResult>
 ```
 
 Gets the live tv timers.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -1935,15 +1830,12 @@ let isActive = true // Bool | Optional. Filter by timers that are active. (optio
 let isScheduled = true // Bool | Optional. Filter by timers that are scheduled. (optional)
 
 // Gets the live tv timers.
-LiveTvAPI.getTimers(channelId: channelId, seriesTimerId: seriesTimerId, isActive: isActive, isScheduled: isScheduled) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+LiveTvAPI.getTimers(channelId: channelId, seriesTimerId: seriesTimerId, isActive: isActive, isScheduled: isScheduled).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -1973,27 +1865,24 @@ Name | Type | Description  | Notes
 
 # **getTunerHostTypes**
 ```swift
-    open class func getTunerHostTypes(completion: @escaping (_ data: [NameIdPair]?, _ error: Error?) -> Void)
+    open class func getTunerHostTypes() -> Promise<[NameIdPair]>
 ```
 
 Get tuner host types.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
 
 
 // Get tuner host types.
-LiveTvAPI.getTunerHostTypes() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+LiveTvAPI.getTunerHostTypes().then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -2017,12 +1906,12 @@ This endpoint does not need any parameter.
 
 # **resetTuner**
 ```swift
-    open class func resetTuner(tunerId: String, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func resetTuner( tunerId: String) -> Promise<Void>
 ```
 
 Resets a tv tuner.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -2030,15 +1919,12 @@ import JellyfinAPI
 let tunerId = "tunerId_example" // String | Tuner id.
 
 // Resets a tv tuner.
-LiveTvAPI.resetTuner(tunerId: tunerId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+LiveTvAPI.resetTuner(tunerId: tunerId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -2065,12 +1951,12 @@ Void (empty response body)
 
 # **setChannelMapping**
 ```swift
-    open class func setChannelMapping(setChannelMappingDto: SetChannelMappingDto, completion: @escaping (_ data: TunerChannelMapping?, _ error: Error?) -> Void)
+    open class func setChannelMapping( setChannelMappingDto: SetChannelMappingDto) -> Promise<TunerChannelMapping>
 ```
 
 Set channel mappings.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -2078,15 +1964,12 @@ import JellyfinAPI
 let setChannelMappingDto = SetChannelMappingDto(providerId: "providerId_example", tunerChannelId: "tunerChannelId_example", providerChannelId: "providerChannelId_example") // SetChannelMappingDto | The set channel mapping dto.
 
 // Set channel mappings.
-LiveTvAPI.setChannelMapping(setChannelMappingDto: setChannelMappingDto) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+LiveTvAPI.setChannelMapping(setChannelMappingDto: setChannelMappingDto).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -2113,12 +1996,12 @@ Name | Type | Description  | Notes
 
 # **updateSeriesTimer**
 ```swift
-    open class func updateSeriesTimer(timerId: String, seriesTimerInfoDto: SeriesTimerInfoDto? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func updateSeriesTimer( timerId: String,  seriesTimerInfoDto: SeriesTimerInfoDto? = nil) -> Promise<Void>
 ```
 
 Updates a live tv series timer.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -2127,15 +2010,12 @@ let timerId = "timerId_example" // String | Timer id.
 let seriesTimerInfoDto = SeriesTimerInfoDto(id: "id_example", type: "type_example", serverId: "serverId_example", externalId: "externalId_example", channelId: "channelId_example", externalChannelId: "externalChannelId_example", channelName: "channelName_example", channelPrimaryImageTag: "channelPrimaryImageTag_example", programId: "programId_example", externalProgramId: "externalProgramId_example", name: "name_example", overview: "overview_example", startDate: Date(), endDate: Date(), serviceName: "serviceName_example", priority: 123, prePaddingSeconds: 123, postPaddingSeconds: 123, isPrePaddingRequired: false, parentBackdropItemId: "parentBackdropItemId_example", parentBackdropImageTags: ["parentBackdropImageTags_example"], isPostPaddingRequired: false, keepUntil: KeepUntil(), recordAnyTime: false, skipEpisodesInLibrary: false, recordAnyChannel: false, keepUpTo: 123, recordNewOnly: false, days: [DayOfWeek()], dayPattern: DayPattern(), imageTags: "TODO", parentThumbItemId: "parentThumbItemId_example", parentThumbImageTag: "parentThumbImageTag_example", parentPrimaryImageItemId: "parentPrimaryImageItemId_example", parentPrimaryImageTag: "parentPrimaryImageTag_example") // SeriesTimerInfoDto | New series timer info. (optional)
 
 // Updates a live tv series timer.
-LiveTvAPI.updateSeriesTimer(timerId: timerId, seriesTimerInfoDto: seriesTimerInfoDto) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+LiveTvAPI.updateSeriesTimer(timerId: timerId, seriesTimerInfoDto: seriesTimerInfoDto).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -2163,12 +2043,12 @@ Void (empty response body)
 
 # **updateTimer**
 ```swift
-    open class func updateTimer(timerId: String, timerInfoDto: TimerInfoDto? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func updateTimer( timerId: String,  timerInfoDto: TimerInfoDto? = nil) -> Promise<Void>
 ```
 
 Updates a live tv timer.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -2177,15 +2057,12 @@ let timerId = "timerId_example" // String | Timer id.
 let timerInfoDto = TimerInfoDto(id: "id_example", type: "type_example", serverId: "serverId_example", externalId: "externalId_example", channelId: "channelId_example", externalChannelId: "externalChannelId_example", channelName: "channelName_example", channelPrimaryImageTag: "channelPrimaryImageTag_example", programId: "programId_example", externalProgramId: "externalProgramId_example", name: "name_example", overview: "overview_example", startDate: Date(), endDate: Date(), serviceName: "serviceName_example", priority: 123, prePaddingSeconds: 123, postPaddingSeconds: 123, isPrePaddingRequired: false, parentBackdropItemId: "parentBackdropItemId_example", parentBackdropImageTags: ["parentBackdropImageTags_example"], isPostPaddingRequired: false, keepUntil: KeepUntil(), status: RecordingStatus(), seriesTimerId: "seriesTimerId_example", externalSeriesTimerId: "externalSeriesTimerId_example", runTimeTicks: 123, programInfo: BaseItemDto(name: "name_example", originalTitle: "originalTitle_example", serverId: "serverId_example", id: "id_example", etag: "etag_example", sourceType: "sourceType_example", playlistItemId: "playlistItemId_example", dateCreated: Date(), dateLastMediaAdded: Date(), extraType: "extraType_example", airsBeforeSeasonNumber: 123, airsAfterSeasonNumber: 123, airsBeforeEpisodeNumber: 123, canDelete: false, canDownload: false, hasSubtitles: false, preferredMetadataLanguage: "preferredMetadataLanguage_example", preferredMetadataCountryCode: "preferredMetadataCountryCode_example", supportsSync: false, container: "container_example", sortName: "sortName_example", forcedSortName: "forcedSortName_example", video3DFormat: Video3DFormat(), premiereDate: Date(), externalUrls: [ExternalUrl(name: "name_example", url: "url_example")], mediaSources: [MediaSourceInfo(_protocol: MediaProtocol(), id: "id_example", path: "path_example", encoderPath: "encoderPath_example", encoderProtocol: nil, type: MediaSourceType(), container: "container_example", size: 123, name: "name_example", isRemote: false, eTag: "eTag_example", runTimeTicks: 123, readAtNativeFramerate: false, ignoreDts: false, ignoreIndex: false, genPtsInput: false, supportsTranscoding: false, supportsDirectStream: false, supportsDirectPlay: false, isInfiniteStream: false, requiresOpening: false, openToken: "openToken_example", requiresClosing: false, liveStreamId: "liveStreamId_example", bufferMs: 123, requiresLooping: false, supportsProbing: false, videoType: VideoType(), isoType: IsoType(), video3DFormat: nil, mediaStreams: [MediaStream(codec: "codec_example", codecTag: "codecTag_example", language: "language_example", colorRange: "colorRange_example", colorSpace: "colorSpace_example", colorTransfer: "colorTransfer_example", colorPrimaries: "colorPrimaries_example", comment: "comment_example", timeBase: "timeBase_example", codecTimeBase: "codecTimeBase_example", title: "title_example", videoRange: "videoRange_example", localizedUndefined: "localizedUndefined_example", localizedDefault: "localizedDefault_example", localizedForced: "localizedForced_example", displayTitle: "displayTitle_example", nalLengthSize: "nalLengthSize_example", isInterlaced: false, isAVC: false, channelLayout: "channelLayout_example", bitRate: 123, bitDepth: 123, refFrames: 123, packetLength: 123, channels: 123, sampleRate: 123, isDefault: false, isForced: false, height: 123, width: 123, averageFrameRate: 123, realFrameRate: 123, profile: "profile_example", type: MediaStreamType(), aspectRatio: "aspectRatio_example", index: 123, score: 123, isExternal: false, deliveryMethod: SubtitleDeliveryMethod(), deliveryUrl: "deliveryUrl_example", isExternalUrl: false, isTextSubtitleStream: false, supportsExternalStream: false, path: "path_example", pixelFormat: "pixelFormat_example", level: 123, isAnamorphic: false)], mediaAttachments: [MediaAttachment(codec: "codec_example", codecTag: "codecTag_example", comment: "comment_example", index: 123, fileName: "fileName_example", mimeType: "mimeType_example", deliveryUrl: "deliveryUrl_example")], formats: ["formats_example"], bitrate: 123, timestamp: TransportStreamTimestamp(), requiredHttpHeaders: "TODO", transcodingUrl: "transcodingUrl_example", transcodingSubProtocol: "transcodingSubProtocol_example", transcodingContainer: "transcodingContainer_example", analyzeDurationMs: 123, defaultAudioStreamIndex: 123, defaultSubtitleStreamIndex: 123)], criticRating: 123, productionLocations: ["productionLocations_example"], path: "path_example", enableMediaSourceDisplay: false, officialRating: "officialRating_example", customRating: "customRating_example", channelId: "channelId_example", channelName: "channelName_example", overview: "overview_example", taglines: ["taglines_example"], genres: ["genres_example"], communityRating: 123, cumulativeRunTimeTicks: 123, runTimeTicks: 123, playAccess: PlayAccess(), aspectRatio: "aspectRatio_example", productionYear: 123, isPlaceHolder: false, number: "number_example", channelNumber: "channelNumber_example", indexNumber: 123, indexNumberEnd: 123, parentIndexNumber: 123, remoteTrailers: [MediaUrl(url: "url_example", name: "name_example")], providerIds: "TODO", isHD: false, isFolder: false, parentId: "parentId_example", type: "type_example", people: [BaseItemPerson(name: "name_example", id: "id_example", role: "role_example", type: "type_example", primaryImageTag: "primaryImageTag_example", imageBlurHashes: BaseItemPerson_ImageBlurHashes(primary: "TODO", art: "TODO", backdrop: "TODO", banner: "TODO", logo: "TODO", thumb: "TODO", disc: "TODO", box: "TODO", screenshot: "TODO", menu: "TODO", chapter: "TODO", boxRear: "TODO", profile: "TODO"))], studios: [NameGuidPair(name: "name_example", id: "id_example")], genreItems: [nil], parentLogoItemId: "parentLogoItemId_example", parentBackdropItemId: "parentBackdropItemId_example", parentBackdropImageTags: ["parentBackdropImageTags_example"], localTrailerCount: 123, userData: UserItemDataDto(rating: 123, playedPercentage: 123, unplayedItemCount: 123, playbackPositionTicks: 123, playCount: 123, isFavorite: false, likes: false, lastPlayedDate: Date(), played: false, key: "key_example", itemId: "itemId_example"), recursiveItemCount: 123, childCount: 123, seriesName: "seriesName_example", seriesId: "seriesId_example", seasonId: "seasonId_example", specialFeatureCount: 123, displayPreferencesId: "displayPreferencesId_example", status: "status_example", airTime: "airTime_example", airDays: [DayOfWeek()], tags: ["tags_example"], primaryImageAspectRatio: 123, artists: ["artists_example"], artistItems: [nil], album: "album_example", collectionType: "collectionType_example", displayOrder: "displayOrder_example", albumId: "albumId_example", albumPrimaryImageTag: "albumPrimaryImageTag_example", seriesPrimaryImageTag: "seriesPrimaryImageTag_example", albumArtist: "albumArtist_example", albumArtists: [nil], seasonName: "seasonName_example", mediaStreams: [nil], videoType: nil, partCount: 123, mediaSourceCount: 123, imageTags: "TODO", backdropImageTags: ["backdropImageTags_example"], screenshotImageTags: ["screenshotImageTags_example"], parentLogoImageTag: "parentLogoImageTag_example", parentArtItemId: "parentArtItemId_example", parentArtImageTag: "parentArtImageTag_example", seriesThumbImageTag: "seriesThumbImageTag_example", imageBlurHashes: BaseItemDto_ImageBlurHashes(primary: "TODO", art: "TODO", backdrop: "TODO", banner: "TODO", logo: "TODO", thumb: "TODO", disc: "TODO", box: "TODO", screenshot: "TODO", menu: "TODO", chapter: "TODO", boxRear: "TODO", profile: "TODO"), seriesStudio: "seriesStudio_example", parentThumbItemId: "parentThumbItemId_example", parentThumbImageTag: "parentThumbImageTag_example", parentPrimaryImageItemId: "parentPrimaryImageItemId_example", parentPrimaryImageTag: "parentPrimaryImageTag_example", chapters: [ChapterInfo(startPositionTicks: 123, name: "name_example", imagePath: "imagePath_example", imageDateModified: Date(), imageTag: "imageTag_example")], locationType: LocationType(), isoType: nil, mediaType: "mediaType_example", endDate: Date(), lockedFields: [MetadataField()], trailerCount: 123, movieCount: 123, seriesCount: 123, programCount: 123, episodeCount: 123, songCount: 123, albumCount: 123, artistCount: 123, musicVideoCount: 123, lockData: false, width: 123, height: 123, cameraMake: "cameraMake_example", cameraModel: "cameraModel_example", software: "software_example", exposureTime: 123, focalLength: 123, imageOrientation: ImageOrientation(), aperture: 123, shutterSpeed: 123, latitude: 123, longitude: 123, altitude: 123, isoSpeedRating: 123, seriesTimerId: "seriesTimerId_example", programId: "programId_example", channelPrimaryImageTag: "channelPrimaryImageTag_example", startDate: Date(), completionPercentage: 123, isRepeat: false, episodeTitle: "episodeTitle_example", channelType: ChannelType(), audio: ProgramAudio(), isMovie: false, isSports: false, isSeries: false, isLive: false, isNews: false, isKids: false, isPremiere: false, timerId: "timerId_example")) // TimerInfoDto | New timer info. (optional)
 
 // Updates a live tv timer.
-LiveTvAPI.updateTimer(timerId: timerId, timerInfoDto: timerInfoDto) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+LiveTvAPI.updateTimer(timerId: timerId, timerInfoDto: timerInfoDto).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 

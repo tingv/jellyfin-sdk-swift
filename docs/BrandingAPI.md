@@ -11,27 +11,24 @@ Method | HTTP request | Description
 
 # **getBrandingCss**
 ```swift
-    open class func getBrandingCss(completion: @escaping (_ data: String?, _ error: Error?) -> Void)
+    open class func getBrandingCss() -> Promise<String>
 ```
 
 Gets branding css.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
 
 
 // Gets branding css.
-BrandingAPI.getBrandingCss() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+BrandingAPI.getBrandingCss().then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -55,27 +52,24 @@ No authorization required
 
 # **getBrandingCss2**
 ```swift
-    open class func getBrandingCss2(completion: @escaping (_ data: String?, _ error: Error?) -> Void)
+    open class func getBrandingCss2() -> Promise<String>
 ```
 
 Gets branding css.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
 
 
 // Gets branding css.
-BrandingAPI.getBrandingCss2() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+BrandingAPI.getBrandingCss2().then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -99,27 +93,24 @@ No authorization required
 
 # **getBrandingOptions**
 ```swift
-    open class func getBrandingOptions(completion: @escaping (_ data: BrandingOptions?, _ error: Error?) -> Void)
+    open class func getBrandingOptions() -> Promise<BrandingOptions>
 ```
 
 Gets branding configuration.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
 
 
 // Gets branding configuration.
-BrandingAPI.getBrandingOptions() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+BrandingAPI.getBrandingOptions().then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 

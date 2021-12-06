@@ -17,12 +17,12 @@ Method | HTTP request | Description
 
 # **getInstantMixFromAlbum**
 ```swift
-    open class func getInstantMixFromAlbum(id: String, userId: String? = nil, limit: Int? = nil, fields: [ItemFields]? = nil, enableImages: Bool? = nil, enableUserData: Bool? = nil, imageTypeLimit: Int? = nil, enableImageTypes: [ImageType]? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
+    open class func getInstantMixFromAlbum( id: String,  userId: String? = nil,  limit: Int? = nil,  fields: [ItemFields]? = nil,  enableImages: Bool? = nil,  enableUserData: Bool? = nil,  imageTypeLimit: Int? = nil,  enableImageTypes: [ImageType]? = nil) -> Promise<BaseItemDtoQueryResult>
 ```
 
 Creates an instant playlist based on a given album.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -37,15 +37,12 @@ let imageTypeLimit = 987 // Int | Optional. The max number of images to return, 
 let enableImageTypes = [ImageType()] // [ImageType] | Optional. The image types to include in the output. (optional)
 
 // Creates an instant playlist based on a given album.
-InstantMixAPI.getInstantMixFromAlbum(id: id, userId: userId, limit: limit, fields: fields, enableImages: enableImages, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+InstantMixAPI.getInstantMixFromAlbum(id: id, userId: userId, limit: limit, fields: fields, enableImages: enableImages, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -53,8 +50,8 @@ InstantMixAPI.getInstantMixFromAlbum(id: id, userId: userId, limit: limit, field
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**String**](.md) | The item id. | 
- **userId** | [**String**](.md) | Optional. Filter by user id, and attach user data. | [optional] 
+ **id** | **String** | The item id. | 
+ **userId** | **String** | Optional. Filter by user id, and attach user data. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 
  **fields** | [**[ItemFields]**](ItemFields.md) | Optional. Specify additional fields of information to return in the output. | [optional] 
  **enableImages** | **Bool** | Optional. Include image information in output. | [optional] 
@@ -79,12 +76,12 @@ Name | Type | Description  | Notes
 
 # **getInstantMixFromArtists**
 ```swift
-    open class func getInstantMixFromArtists(id: String, userId: String? = nil, limit: Int? = nil, fields: [ItemFields]? = nil, enableImages: Bool? = nil, enableUserData: Bool? = nil, imageTypeLimit: Int? = nil, enableImageTypes: [ImageType]? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
+    open class func getInstantMixFromArtists( id: String,  userId: String? = nil,  limit: Int? = nil,  fields: [ItemFields]? = nil,  enableImages: Bool? = nil,  enableUserData: Bool? = nil,  imageTypeLimit: Int? = nil,  enableImageTypes: [ImageType]? = nil) -> Promise<BaseItemDtoQueryResult>
 ```
 
 Creates an instant playlist based on a given artist.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -99,15 +96,12 @@ let imageTypeLimit = 987 // Int | Optional. The max number of images to return, 
 let enableImageTypes = [ImageType()] // [ImageType] | Optional. The image types to include in the output. (optional)
 
 // Creates an instant playlist based on a given artist.
-InstantMixAPI.getInstantMixFromArtists(id: id, userId: userId, limit: limit, fields: fields, enableImages: enableImages, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+InstantMixAPI.getInstantMixFromArtists(id: id, userId: userId, limit: limit, fields: fields, enableImages: enableImages, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -115,8 +109,8 @@ InstantMixAPI.getInstantMixFromArtists(id: id, userId: userId, limit: limit, fie
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**String**](.md) | The item id. | 
- **userId** | [**String**](.md) | Optional. Filter by user id, and attach user data. | [optional] 
+ **id** | **String** | The item id. | 
+ **userId** | **String** | Optional. Filter by user id, and attach user data. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 
  **fields** | [**[ItemFields]**](ItemFields.md) | Optional. Specify additional fields of information to return in the output. | [optional] 
  **enableImages** | **Bool** | Optional. Include image information in output. | [optional] 
@@ -141,12 +135,12 @@ Name | Type | Description  | Notes
 
 # **getInstantMixFromArtists2**
 ```swift
-    open class func getInstantMixFromArtists2(id: String, userId: String? = nil, limit: Int? = nil, fields: [ItemFields]? = nil, enableImages: Bool? = nil, enableUserData: Bool? = nil, imageTypeLimit: Int? = nil, enableImageTypes: [ImageType]? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
+    open class func getInstantMixFromArtists2( id: String,  userId: String? = nil,  limit: Int? = nil,  fields: [ItemFields]? = nil,  enableImages: Bool? = nil,  enableUserData: Bool? = nil,  imageTypeLimit: Int? = nil,  enableImageTypes: [ImageType]? = nil) -> Promise<BaseItemDtoQueryResult>
 ```
 
 Creates an instant playlist based on a given artist.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -161,15 +155,12 @@ let imageTypeLimit = 987 // Int | Optional. The max number of images to return, 
 let enableImageTypes = [ImageType()] // [ImageType] | Optional. The image types to include in the output. (optional)
 
 // Creates an instant playlist based on a given artist.
-InstantMixAPI.getInstantMixFromArtists2(id: id, userId: userId, limit: limit, fields: fields, enableImages: enableImages, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+InstantMixAPI.getInstantMixFromArtists2(id: id, userId: userId, limit: limit, fields: fields, enableImages: enableImages, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -177,8 +168,8 @@ InstantMixAPI.getInstantMixFromArtists2(id: id, userId: userId, limit: limit, fi
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**String**](.md) | The item id. | 
- **userId** | [**String**](.md) | Optional. Filter by user id, and attach user data. | [optional] 
+ **id** | **String** | The item id. | 
+ **userId** | **String** | Optional. Filter by user id, and attach user data. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 
  **fields** | [**[ItemFields]**](ItemFields.md) | Optional. Specify additional fields of information to return in the output. | [optional] 
  **enableImages** | **Bool** | Optional. Include image information in output. | [optional] 
@@ -203,12 +194,12 @@ Name | Type | Description  | Notes
 
 # **getInstantMixFromItem**
 ```swift
-    open class func getInstantMixFromItem(id: String, userId: String? = nil, limit: Int? = nil, fields: [ItemFields]? = nil, enableImages: Bool? = nil, enableUserData: Bool? = nil, imageTypeLimit: Int? = nil, enableImageTypes: [ImageType]? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
+    open class func getInstantMixFromItem( id: String,  userId: String? = nil,  limit: Int? = nil,  fields: [ItemFields]? = nil,  enableImages: Bool? = nil,  enableUserData: Bool? = nil,  imageTypeLimit: Int? = nil,  enableImageTypes: [ImageType]? = nil) -> Promise<BaseItemDtoQueryResult>
 ```
 
 Creates an instant playlist based on a given item.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -223,15 +214,12 @@ let imageTypeLimit = 987 // Int | Optional. The max number of images to return, 
 let enableImageTypes = [ImageType()] // [ImageType] | Optional. The image types to include in the output. (optional)
 
 // Creates an instant playlist based on a given item.
-InstantMixAPI.getInstantMixFromItem(id: id, userId: userId, limit: limit, fields: fields, enableImages: enableImages, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+InstantMixAPI.getInstantMixFromItem(id: id, userId: userId, limit: limit, fields: fields, enableImages: enableImages, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -239,8 +227,8 @@ InstantMixAPI.getInstantMixFromItem(id: id, userId: userId, limit: limit, fields
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**String**](.md) | The item id. | 
- **userId** | [**String**](.md) | Optional. Filter by user id, and attach user data. | [optional] 
+ **id** | **String** | The item id. | 
+ **userId** | **String** | Optional. Filter by user id, and attach user data. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 
  **fields** | [**[ItemFields]**](ItemFields.md) | Optional. Specify additional fields of information to return in the output. | [optional] 
  **enableImages** | **Bool** | Optional. Include image information in output. | [optional] 
@@ -265,12 +253,12 @@ Name | Type | Description  | Notes
 
 # **getInstantMixFromMusicGenreById**
 ```swift
-    open class func getInstantMixFromMusicGenreById(id: String, userId: String? = nil, limit: Int? = nil, fields: [ItemFields]? = nil, enableImages: Bool? = nil, enableUserData: Bool? = nil, imageTypeLimit: Int? = nil, enableImageTypes: [ImageType]? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
+    open class func getInstantMixFromMusicGenreById( id: String,  userId: String? = nil,  limit: Int? = nil,  fields: [ItemFields]? = nil,  enableImages: Bool? = nil,  enableUserData: Bool? = nil,  imageTypeLimit: Int? = nil,  enableImageTypes: [ImageType]? = nil) -> Promise<BaseItemDtoQueryResult>
 ```
 
 Creates an instant playlist based on a given genre.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -285,15 +273,12 @@ let imageTypeLimit = 987 // Int | Optional. The max number of images to return, 
 let enableImageTypes = [ImageType()] // [ImageType] | Optional. The image types to include in the output. (optional)
 
 // Creates an instant playlist based on a given genre.
-InstantMixAPI.getInstantMixFromMusicGenreById(id: id, userId: userId, limit: limit, fields: fields, enableImages: enableImages, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+InstantMixAPI.getInstantMixFromMusicGenreById(id: id, userId: userId, limit: limit, fields: fields, enableImages: enableImages, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -301,8 +286,8 @@ InstantMixAPI.getInstantMixFromMusicGenreById(id: id, userId: userId, limit: lim
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**String**](.md) | The item id. | 
- **userId** | [**String**](.md) | Optional. Filter by user id, and attach user data. | [optional] 
+ **id** | **String** | The item id. | 
+ **userId** | **String** | Optional. Filter by user id, and attach user data. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 
  **fields** | [**[ItemFields]**](ItemFields.md) | Optional. Specify additional fields of information to return in the output. | [optional] 
  **enableImages** | **Bool** | Optional. Include image information in output. | [optional] 
@@ -327,12 +312,12 @@ Name | Type | Description  | Notes
 
 # **getInstantMixFromMusicGenreById2**
 ```swift
-    open class func getInstantMixFromMusicGenreById2(id: String, userId: String? = nil, limit: Int? = nil, fields: [ItemFields]? = nil, enableImages: Bool? = nil, enableUserData: Bool? = nil, imageTypeLimit: Int? = nil, enableImageTypes: [ImageType]? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
+    open class func getInstantMixFromMusicGenreById2( id: String,  userId: String? = nil,  limit: Int? = nil,  fields: [ItemFields]? = nil,  enableImages: Bool? = nil,  enableUserData: Bool? = nil,  imageTypeLimit: Int? = nil,  enableImageTypes: [ImageType]? = nil) -> Promise<BaseItemDtoQueryResult>
 ```
 
 Creates an instant playlist based on a given genre.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -347,15 +332,12 @@ let imageTypeLimit = 987 // Int | Optional. The max number of images to return, 
 let enableImageTypes = [ImageType()] // [ImageType] | Optional. The image types to include in the output. (optional)
 
 // Creates an instant playlist based on a given genre.
-InstantMixAPI.getInstantMixFromMusicGenreById2(id: id, userId: userId, limit: limit, fields: fields, enableImages: enableImages, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+InstantMixAPI.getInstantMixFromMusicGenreById2(id: id, userId: userId, limit: limit, fields: fields, enableImages: enableImages, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -363,8 +345,8 @@ InstantMixAPI.getInstantMixFromMusicGenreById2(id: id, userId: userId, limit: li
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**String**](.md) | The item id. | 
- **userId** | [**String**](.md) | Optional. Filter by user id, and attach user data. | [optional] 
+ **id** | **String** | The item id. | 
+ **userId** | **String** | Optional. Filter by user id, and attach user data. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 
  **fields** | [**[ItemFields]**](ItemFields.md) | Optional. Specify additional fields of information to return in the output. | [optional] 
  **enableImages** | **Bool** | Optional. Include image information in output. | [optional] 
@@ -389,12 +371,12 @@ Name | Type | Description  | Notes
 
 # **getInstantMixFromMusicGenreByName**
 ```swift
-    open class func getInstantMixFromMusicGenreByName(name: String, userId: String? = nil, limit: Int? = nil, fields: [ItemFields]? = nil, enableImages: Bool? = nil, enableUserData: Bool? = nil, imageTypeLimit: Int? = nil, enableImageTypes: [ImageType]? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
+    open class func getInstantMixFromMusicGenreByName( name: String,  userId: String? = nil,  limit: Int? = nil,  fields: [ItemFields]? = nil,  enableImages: Bool? = nil,  enableUserData: Bool? = nil,  imageTypeLimit: Int? = nil,  enableImageTypes: [ImageType]? = nil) -> Promise<BaseItemDtoQueryResult>
 ```
 
 Creates an instant playlist based on a given genre.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -409,15 +391,12 @@ let imageTypeLimit = 987 // Int | Optional. The max number of images to return, 
 let enableImageTypes = [ImageType()] // [ImageType] | Optional. The image types to include in the output. (optional)
 
 // Creates an instant playlist based on a given genre.
-InstantMixAPI.getInstantMixFromMusicGenreByName(name: name, userId: userId, limit: limit, fields: fields, enableImages: enableImages, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+InstantMixAPI.getInstantMixFromMusicGenreByName(name: name, userId: userId, limit: limit, fields: fields, enableImages: enableImages, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -426,7 +405,7 @@ InstantMixAPI.getInstantMixFromMusicGenreByName(name: name, userId: userId, limi
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **String** | The genre name. | 
- **userId** | [**String**](.md) | Optional. Filter by user id, and attach user data. | [optional] 
+ **userId** | **String** | Optional. Filter by user id, and attach user data. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 
  **fields** | [**[ItemFields]**](ItemFields.md) | Optional. Specify additional fields of information to return in the output. | [optional] 
  **enableImages** | **Bool** | Optional. Include image information in output. | [optional] 
@@ -451,12 +430,12 @@ Name | Type | Description  | Notes
 
 # **getInstantMixFromPlaylist**
 ```swift
-    open class func getInstantMixFromPlaylist(id: String, userId: String? = nil, limit: Int? = nil, fields: [ItemFields]? = nil, enableImages: Bool? = nil, enableUserData: Bool? = nil, imageTypeLimit: Int? = nil, enableImageTypes: [ImageType]? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
+    open class func getInstantMixFromPlaylist( id: String,  userId: String? = nil,  limit: Int? = nil,  fields: [ItemFields]? = nil,  enableImages: Bool? = nil,  enableUserData: Bool? = nil,  imageTypeLimit: Int? = nil,  enableImageTypes: [ImageType]? = nil) -> Promise<BaseItemDtoQueryResult>
 ```
 
 Creates an instant playlist based on a given playlist.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -471,15 +450,12 @@ let imageTypeLimit = 987 // Int | Optional. The max number of images to return, 
 let enableImageTypes = [ImageType()] // [ImageType] | Optional. The image types to include in the output. (optional)
 
 // Creates an instant playlist based on a given playlist.
-InstantMixAPI.getInstantMixFromPlaylist(id: id, userId: userId, limit: limit, fields: fields, enableImages: enableImages, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+InstantMixAPI.getInstantMixFromPlaylist(id: id, userId: userId, limit: limit, fields: fields, enableImages: enableImages, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -487,8 +463,8 @@ InstantMixAPI.getInstantMixFromPlaylist(id: id, userId: userId, limit: limit, fi
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**String**](.md) | The item id. | 
- **userId** | [**String**](.md) | Optional. Filter by user id, and attach user data. | [optional] 
+ **id** | **String** | The item id. | 
+ **userId** | **String** | Optional. Filter by user id, and attach user data. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 
  **fields** | [**[ItemFields]**](ItemFields.md) | Optional. Specify additional fields of information to return in the output. | [optional] 
  **enableImages** | **Bool** | Optional. Include image information in output. | [optional] 
@@ -513,12 +489,12 @@ Name | Type | Description  | Notes
 
 # **getInstantMixFromSong**
 ```swift
-    open class func getInstantMixFromSong(id: String, userId: String? = nil, limit: Int? = nil, fields: [ItemFields]? = nil, enableImages: Bool? = nil, enableUserData: Bool? = nil, imageTypeLimit: Int? = nil, enableImageTypes: [ImageType]? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
+    open class func getInstantMixFromSong( id: String,  userId: String? = nil,  limit: Int? = nil,  fields: [ItemFields]? = nil,  enableImages: Bool? = nil,  enableUserData: Bool? = nil,  imageTypeLimit: Int? = nil,  enableImageTypes: [ImageType]? = nil) -> Promise<BaseItemDtoQueryResult>
 ```
 
 Creates an instant playlist based on a given song.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -533,15 +509,12 @@ let imageTypeLimit = 987 // Int | Optional. The max number of images to return, 
 let enableImageTypes = [ImageType()] // [ImageType] | Optional. The image types to include in the output. (optional)
 
 // Creates an instant playlist based on a given song.
-InstantMixAPI.getInstantMixFromSong(id: id, userId: userId, limit: limit, fields: fields, enableImages: enableImages, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+InstantMixAPI.getInstantMixFromSong(id: id, userId: userId, limit: limit, fields: fields, enableImages: enableImages, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -549,8 +522,8 @@ InstantMixAPI.getInstantMixFromSong(id: id, userId: userId, limit: limit, fields
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**String**](.md) | The item id. | 
- **userId** | [**String**](.md) | Optional. Filter by user id, and attach user data. | [optional] 
+ **id** | **String** | The item id. | 
+ **userId** | **String** | Optional. Filter by user id, and attach user data. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 
  **fields** | [**[ItemFields]**](ItemFields.md) | Optional. Specify additional fields of information to return in the output. | [optional] 
  **enableImages** | **Bool** | Optional. Include image information in output. | [optional] 

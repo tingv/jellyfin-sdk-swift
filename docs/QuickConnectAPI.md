@@ -15,27 +15,24 @@ Method | HTTP request | Description
 
 # **activate**
 ```swift
-    open class func activate(completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func activate() -> Promise<Void>
 ```
 
 Temporarily activates quick connect for five minutes.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
 
 
 // Temporarily activates quick connect for five minutes.
-QuickConnectAPI.activate() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+QuickConnectAPI.activate().then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -59,12 +56,12 @@ Void (empty response body)
 
 # **authorize**
 ```swift
-    open class func authorize(code: String, completion: @escaping (_ data: Bool?, _ error: Error?) -> Void)
+    open class func authorize( code: String) -> Promise<Bool>
 ```
 
 Authorizes a pending quick connect request.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -72,15 +69,12 @@ import JellyfinAPI
 let code = "code_example" // String | Quick connect code to authorize.
 
 // Authorizes a pending quick connect request.
-QuickConnectAPI.authorize(code: code) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+QuickConnectAPI.authorize(code: code).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -107,12 +101,12 @@ Name | Type | Description  | Notes
 
 # **available**
 ```swift
-    open class func available(status: QuickConnectState? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func available( status: QuickConnectState? = nil) -> Promise<Void>
 ```
 
 Enables or disables quick connect.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -120,15 +114,12 @@ import JellyfinAPI
 let status = QuickConnectState() // QuickConnectState | New MediaBrowser.Model.QuickConnect.QuickConnectState. (optional)
 
 // Enables or disables quick connect.
-QuickConnectAPI.available(status: status) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+QuickConnectAPI.available(status: status).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -155,12 +146,12 @@ Void (empty response body)
 
 # **connect**
 ```swift
-    open class func connect(secret: String, completion: @escaping (_ data: QuickConnectResult?, _ error: Error?) -> Void)
+    open class func connect( secret: String) -> Promise<QuickConnectResult>
 ```
 
 Attempts to retrieve authentication information.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -168,15 +159,12 @@ import JellyfinAPI
 let secret = "secret_example" // String | Secret previously returned from the Initiate endpoint.
 
 // Attempts to retrieve authentication information.
-QuickConnectAPI.connect(secret: secret) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+QuickConnectAPI.connect(secret: secret).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -203,27 +191,24 @@ No authorization required
 
 # **deauthorize**
 ```swift
-    open class func deauthorize(completion: @escaping (_ data: Int?, _ error: Error?) -> Void)
+    open class func deauthorize() -> Promise<Int>
 ```
 
 Deauthorize all quick connect devices for the current user.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
 
 
 // Deauthorize all quick connect devices for the current user.
-QuickConnectAPI.deauthorize() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+QuickConnectAPI.deauthorize().then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -247,27 +232,24 @@ This endpoint does not need any parameter.
 
 # **getStatus**
 ```swift
-    open class func getStatus(completion: @escaping (_ data: QuickConnectState?, _ error: Error?) -> Void)
+    open class func getStatus() -> Promise<QuickConnectState>
 ```
 
 Gets the current quick connect state.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
 
 
 // Gets the current quick connect state.
-QuickConnectAPI.getStatus() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+QuickConnectAPI.getStatus().then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -291,27 +273,24 @@ No authorization required
 
 # **initiate**
 ```swift
-    open class func initiate(completion: @escaping (_ data: QuickConnectResult?, _ error: Error?) -> Void)
+    open class func initiate() -> Promise<QuickConnectResult>
 ```
 
 Initiate a new quick connect request.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
 
 
 // Initiate a new quick connect request.
-QuickConnectAPI.initiate() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+QuickConnectAPI.initiate().then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 

@@ -9,12 +9,12 @@ Method | HTTP request | Description
 
 # **callGet**
 ```swift
-    open class func callGet(searchTerm: String, startIndex: Int? = nil, limit: Int? = nil, userId: String? = nil, includeItemTypes: [String]? = nil, excludeItemTypes: [String]? = nil, mediaTypes: [String]? = nil, parentId: String? = nil, isMovie: Bool? = nil, isSeries: Bool? = nil, isNews: Bool? = nil, isKids: Bool? = nil, isSports: Bool? = nil, includePeople: Bool? = nil, includeMedia: Bool? = nil, includeGenres: Bool? = nil, includeStudios: Bool? = nil, includeArtists: Bool? = nil, completion: @escaping (_ data: SearchHintResult?, _ error: Error?) -> Void)
+    open class func callGet( searchTerm: String,  startIndex: Int? = nil,  limit: Int? = nil,  userId: String? = nil,  includeItemTypes: [String]? = nil,  excludeItemTypes: [String]? = nil,  mediaTypes: [String]? = nil,  parentId: String? = nil,  isMovie: Bool? = nil,  isSeries: Bool? = nil,  isNews: Bool? = nil,  isKids: Bool? = nil,  isSports: Bool? = nil,  includePeople: Bool? = nil,  includeMedia: Bool? = nil,  includeGenres: Bool? = nil,  includeStudios: Bool? = nil,  includeArtists: Bool? = nil) -> Promise<SearchHintResult>
 ```
 
 Gets the search hint result.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -39,15 +39,12 @@ let includeStudios = true // Bool | Optional filter whether to include studios. 
 let includeArtists = true // Bool | Optional filter whether to include artists. (optional) (default to true)
 
 // Gets the search hint result.
-SearchAPI.callGet(searchTerm: searchTerm, startIndex: startIndex, limit: limit, userId: userId, includeItemTypes: includeItemTypes, excludeItemTypes: excludeItemTypes, mediaTypes: mediaTypes, parentId: parentId, isMovie: isMovie, isSeries: isSeries, isNews: isNews, isKids: isKids, isSports: isSports, includePeople: includePeople, includeMedia: includeMedia, includeGenres: includeGenres, includeStudios: includeStudios, includeArtists: includeArtists) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+SearchAPI.callGet(searchTerm: searchTerm, startIndex: startIndex, limit: limit, userId: userId, includeItemTypes: includeItemTypes, excludeItemTypes: excludeItemTypes, mediaTypes: mediaTypes, parentId: parentId, isMovie: isMovie, isSeries: isSeries, isNews: isNews, isKids: isKids, isSports: isSports, includePeople: includePeople, includeMedia: includeMedia, includeGenres: includeGenres, includeStudios: includeStudios, includeArtists: includeArtists).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -58,11 +55,11 @@ Name | Type | Description  | Notes
  **searchTerm** | **String** | The search term to filter on. | 
  **startIndex** | **Int** | Optional. The record index to start at. All items with a lower index will be dropped from the results. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 
- **userId** | [**String**](.md) | Optional. Supply a user id to search within a user&#39;s library or omit to search all. | [optional] 
+ **userId** | **String** | Optional. Supply a user id to search within a user&#39;s library or omit to search all. | [optional] 
  **includeItemTypes** | [**[String]**](String.md) | If specified, only results with the specified item types are returned. This allows multiple, comma delimeted. | [optional] 
  **excludeItemTypes** | [**[String]**](String.md) | If specified, results with these item types are filtered out. This allows multiple, comma delimeted. | [optional] 
  **mediaTypes** | [**[String]**](String.md) | If specified, only results with the specified media types are returned. This allows multiple, comma delimeted. | [optional] 
- **parentId** | [**String**](.md) | If specified, only children of the parent are returned. | [optional] 
+ **parentId** | **String** | If specified, only children of the parent are returned. | [optional] 
  **isMovie** | **Bool** | Optional filter for movies. | [optional] 
  **isSeries** | **Bool** | Optional filter for series. | [optional] 
  **isNews** | **Bool** | Optional filter for news. | [optional] 

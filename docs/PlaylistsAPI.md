@@ -13,12 +13,12 @@ Method | HTTP request | Description
 
 # **addToPlaylist**
 ```swift
-    open class func addToPlaylist(playlistId: String, ids: [String]? = nil, userId: String? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func addToPlaylist( playlistId: String,  ids: [String]? = nil,  userId: String? = nil) -> Promise<Void>
 ```
 
 Adds items to a playlist.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -28,15 +28,12 @@ let ids = ["inner_example"] // [String] | Item id, comma delimited. (optional)
 let userId = "userId_example" // String | The userId. (optional)
 
 // Adds items to a playlist.
-PlaylistsAPI.addToPlaylist(playlistId: playlistId, ids: ids, userId: userId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+PlaylistsAPI.addToPlaylist(playlistId: playlistId, ids: ids, userId: userId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -44,9 +41,9 @@ PlaylistsAPI.addToPlaylist(playlistId: playlistId, ids: ids, userId: userId) { (
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **playlistId** | [**String**](.md) | The playlist id. | 
+ **playlistId** | **String** | The playlist id. | 
  **ids** | [**[String]**](String.md) | Item id, comma delimited. | [optional] 
- **userId** | [**String**](.md) | The userId. | [optional] 
+ **userId** | **String** | The userId. | [optional] 
 
 ### Return type
 
@@ -65,14 +62,14 @@ Void (empty response body)
 
 # **createPlaylist**
 ```swift
-    open class func createPlaylist(name: String? = nil, ids: [String]? = nil, userId: String? = nil, mediaType: String? = nil, createPlaylistDto: CreatePlaylistDto? = nil, completion: @escaping (_ data: PlaylistCreationResult?, _ error: Error?) -> Void)
+    open class func createPlaylist( name: String? = nil,  ids: [String]? = nil,  userId: String? = nil,  mediaType: String? = nil,  createPlaylistDto: CreatePlaylistDto? = nil) -> Promise<PlaylistCreationResult>
 ```
 
 Creates a new playlist.
 
 For backwards compatibility parameters can be sent via Query or Body, with Query having higher precedence.  Query parameters are obsolete.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -84,15 +81,12 @@ let mediaType = "mediaType_example" // String | The media type. (optional)
 let createPlaylistDto = CreatePlaylistDto(name: "name_example", ids: ["ids_example"], userId: "userId_example", mediaType: "mediaType_example") // CreatePlaylistDto | The create playlist payload. (optional)
 
 // Creates a new playlist.
-PlaylistsAPI.createPlaylist(name: name, ids: ids, userId: userId, mediaType: mediaType, createPlaylistDto: createPlaylistDto) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+PlaylistsAPI.createPlaylist(name: name, ids: ids, userId: userId, mediaType: mediaType, createPlaylistDto: createPlaylistDto).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -102,7 +96,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **String** | The playlist name. | [optional] 
  **ids** | [**[String]**](String.md) | The item ids. | [optional] 
- **userId** | [**String**](.md) | The user id. | [optional] 
+ **userId** | **String** | The user id. | [optional] 
  **mediaType** | **String** | The media type. | [optional] 
  **createPlaylistDto** | [**CreatePlaylistDto**](CreatePlaylistDto.md) | The create playlist payload. | [optional] 
 
@@ -123,12 +117,12 @@ Name | Type | Description  | Notes
 
 # **getPlaylistItems**
 ```swift
-    open class func getPlaylistItems(playlistId: String, userId: String, startIndex: Int? = nil, limit: Int? = nil, fields: [ItemFields]? = nil, enableImages: Bool? = nil, enableUserData: Bool? = nil, imageTypeLimit: Int? = nil, enableImageTypes: [ImageType]? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
+    open class func getPlaylistItems( playlistId: String,  userId: String,  startIndex: Int? = nil,  limit: Int? = nil,  fields: [ItemFields]? = nil,  enableImages: Bool? = nil,  enableUserData: Bool? = nil,  imageTypeLimit: Int? = nil,  enableImageTypes: [ImageType]? = nil) -> Promise<BaseItemDtoQueryResult>
 ```
 
 Gets the original items of a playlist.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -144,15 +138,12 @@ let imageTypeLimit = 987 // Int | Optional. The max number of images to return, 
 let enableImageTypes = [ImageType()] // [ImageType] | Optional. The image types to include in the output. (optional)
 
 // Gets the original items of a playlist.
-PlaylistsAPI.getPlaylistItems(playlistId: playlistId, userId: userId, startIndex: startIndex, limit: limit, fields: fields, enableImages: enableImages, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+PlaylistsAPI.getPlaylistItems(playlistId: playlistId, userId: userId, startIndex: startIndex, limit: limit, fields: fields, enableImages: enableImages, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -160,8 +151,8 @@ PlaylistsAPI.getPlaylistItems(playlistId: playlistId, userId: userId, startIndex
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **playlistId** | [**String**](.md) | The playlist id. | 
- **userId** | [**String**](.md) | User id. | 
+ **playlistId** | **String** | The playlist id. | 
+ **userId** | **String** | User id. | 
  **startIndex** | **Int** | Optional. The record index to start at. All items with a lower index will be dropped from the results. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 
  **fields** | [**[ItemFields]**](ItemFields.md) | Optional. Specify additional fields of information to return in the output. | [optional] 
@@ -187,12 +178,12 @@ Name | Type | Description  | Notes
 
 # **moveItem**
 ```swift
-    open class func moveItem(playlistId: String, itemId: String, newIndex: Int, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func moveItem( playlistId: String,  itemId: String,  newIndex: Int) -> Promise<Void>
 ```
 
 Moves a playlist item.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -202,15 +193,12 @@ let itemId = "itemId_example" // String | The item id.
 let newIndex = 987 // Int | The new index.
 
 // Moves a playlist item.
-PlaylistsAPI.moveItem(playlistId: playlistId, itemId: itemId, newIndex: newIndex) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+PlaylistsAPI.moveItem(playlistId: playlistId, itemId: itemId, newIndex: newIndex).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -239,12 +227,12 @@ Void (empty response body)
 
 # **removeFromPlaylist**
 ```swift
-    open class func removeFromPlaylist(playlistId: String, entryIds: [String]? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func removeFromPlaylist( playlistId: String,  entryIds: [String]? = nil) -> Promise<Void>
 ```
 
 Removes items from a playlist.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -253,15 +241,12 @@ let playlistId = "playlistId_example" // String | The playlist id.
 let entryIds = ["inner_example"] // [String] | The item ids, comma delimited. (optional)
 
 // Removes items from a playlist.
-PlaylistsAPI.removeFromPlaylist(playlistId: playlistId, entryIds: entryIds) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+PlaylistsAPI.removeFromPlaylist(playlistId: playlistId, entryIds: entryIds).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 

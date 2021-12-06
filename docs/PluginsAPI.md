@@ -18,12 +18,12 @@ Method | HTTP request | Description
 
 # **disablePlugin**
 ```swift
-    open class func disablePlugin(pluginId: String, version: Version, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func disablePlugin( pluginId: String,  version: Version) -> Promise<Void>
 ```
 
 Disable a plugin.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -32,15 +32,12 @@ let pluginId = "pluginId_example" // String | Plugin id.
 let version = Version(major: 123, minor: 123, build: 123, revision: 123, majorRevision: 123, minorRevision: 123) // Version | Plugin version.
 
 // Disable a plugin.
-PluginsAPI.disablePlugin(pluginId: pluginId, version: version) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+PluginsAPI.disablePlugin(pluginId: pluginId, version: version).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -48,7 +45,7 @@ PluginsAPI.disablePlugin(pluginId: pluginId, version: version) { (response, erro
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pluginId** | [**String**](.md) | Plugin id. | 
+ **pluginId** | **String** | Plugin id. | 
  **version** | [**Version**](.md) | Plugin version. | 
 
 ### Return type
@@ -68,12 +65,12 @@ Void (empty response body)
 
 # **enablePlugin**
 ```swift
-    open class func enablePlugin(pluginId: String, version: Version, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func enablePlugin( pluginId: String,  version: Version) -> Promise<Void>
 ```
 
 Enables a disabled plugin.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -82,15 +79,12 @@ let pluginId = "pluginId_example" // String | Plugin id.
 let version = Version(major: 123, minor: 123, build: 123, revision: 123, majorRevision: 123, minorRevision: 123) // Version | Plugin version.
 
 // Enables a disabled plugin.
-PluginsAPI.enablePlugin(pluginId: pluginId, version: version) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+PluginsAPI.enablePlugin(pluginId: pluginId, version: version).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -98,7 +92,7 @@ PluginsAPI.enablePlugin(pluginId: pluginId, version: version) { (response, error
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pluginId** | [**String**](.md) | Plugin id. | 
+ **pluginId** | **String** | Plugin id. | 
  **version** | [**Version**](.md) | Plugin version. | 
 
 ### Return type
@@ -118,12 +112,12 @@ Void (empty response body)
 
 # **getPluginConfiguration**
 ```swift
-    open class func getPluginConfiguration(pluginId: String, completion: @escaping (_ data: AnyCodable?, _ error: Error?) -> Void)
+    open class func getPluginConfiguration( pluginId: String) -> Promise<AnyCodable>
 ```
 
 Gets plugin configuration.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -131,15 +125,12 @@ import JellyfinAPI
 let pluginId = "pluginId_example" // String | Plugin id.
 
 // Gets plugin configuration.
-PluginsAPI.getPluginConfiguration(pluginId: pluginId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+PluginsAPI.getPluginConfiguration(pluginId: pluginId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -147,7 +138,7 @@ PluginsAPI.getPluginConfiguration(pluginId: pluginId) { (response, error) in
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pluginId** | [**String**](.md) | Plugin id. | 
+ **pluginId** | **String** | Plugin id. | 
 
 ### Return type
 
@@ -166,12 +157,12 @@ Name | Type | Description  | Notes
 
 # **getPluginImage**
 ```swift
-    open class func getPluginImage(pluginId: String, version: Version, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func getPluginImage( pluginId: String,  version: Version) -> Promise<URL>
 ```
 
 Gets a plugin's image.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -180,15 +171,12 @@ let pluginId = "pluginId_example" // String | Plugin id.
 let version = Version(major: 123, minor: 123, build: 123, revision: 123, majorRevision: 123, minorRevision: 123) // Version | Plugin version.
 
 // Gets a plugin's image.
-PluginsAPI.getPluginImage(pluginId: pluginId, version: version) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+PluginsAPI.getPluginImage(pluginId: pluginId, version: version).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -196,7 +184,7 @@ PluginsAPI.getPluginImage(pluginId: pluginId, version: version) { (response, err
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pluginId** | [**String**](.md) | Plugin id. | 
+ **pluginId** | **String** | Plugin id. | 
  **version** | [**Version**](.md) | Plugin version. | 
 
 ### Return type
@@ -216,12 +204,12 @@ Name | Type | Description  | Notes
 
 # **getPluginManifest**
 ```swift
-    open class func getPluginManifest(pluginId: String, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func getPluginManifest( pluginId: String) -> Promise<Void>
 ```
 
 Gets a plugin's manifest.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -229,15 +217,12 @@ import JellyfinAPI
 let pluginId = "pluginId_example" // String | Plugin id.
 
 // Gets a plugin's manifest.
-PluginsAPI.getPluginManifest(pluginId: pluginId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+PluginsAPI.getPluginManifest(pluginId: pluginId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -245,7 +230,7 @@ PluginsAPI.getPluginManifest(pluginId: pluginId) { (response, error) in
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pluginId** | [**String**](.md) | Plugin id. | 
+ **pluginId** | **String** | Plugin id. | 
 
 ### Return type
 
@@ -264,27 +249,24 @@ Void (empty response body)
 
 # **getPlugins**
 ```swift
-    open class func getPlugins(completion: @escaping (_ data: [PluginInfo]?, _ error: Error?) -> Void)
+    open class func getPlugins() -> Promise<[PluginInfo]>
 ```
 
 Gets a list of currently installed plugins.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
 
 
 // Gets a list of currently installed plugins.
-PluginsAPI.getPlugins() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+PluginsAPI.getPlugins().then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -308,12 +290,12 @@ This endpoint does not need any parameter.
 
 # **uninstallPlugin**
 ```swift
-    open class func uninstallPlugin(pluginId: String, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func uninstallPlugin( pluginId: String) -> Promise<Void>
 ```
 
 Uninstalls a plugin.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -321,15 +303,12 @@ import JellyfinAPI
 let pluginId = "pluginId_example" // String | Plugin id.
 
 // Uninstalls a plugin.
-PluginsAPI.uninstallPlugin(pluginId: pluginId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+PluginsAPI.uninstallPlugin(pluginId: pluginId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -337,7 +316,7 @@ PluginsAPI.uninstallPlugin(pluginId: pluginId) { (response, error) in
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pluginId** | [**String**](.md) | Plugin id. | 
+ **pluginId** | **String** | Plugin id. | 
 
 ### Return type
 
@@ -356,12 +335,12 @@ Void (empty response body)
 
 # **uninstallPluginByVersion**
 ```swift
-    open class func uninstallPluginByVersion(pluginId: String, version: Version, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func uninstallPluginByVersion( pluginId: String,  version: Version) -> Promise<Void>
 ```
 
 Uninstalls a plugin by version.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -370,15 +349,12 @@ let pluginId = "pluginId_example" // String | Plugin id.
 let version = Version(major: 123, minor: 123, build: 123, revision: 123, majorRevision: 123, minorRevision: 123) // Version | Plugin version.
 
 // Uninstalls a plugin by version.
-PluginsAPI.uninstallPluginByVersion(pluginId: pluginId, version: version) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+PluginsAPI.uninstallPluginByVersion(pluginId: pluginId, version: version).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -386,7 +362,7 @@ PluginsAPI.uninstallPluginByVersion(pluginId: pluginId, version: version) { (res
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pluginId** | [**String**](.md) | Plugin id. | 
+ **pluginId** | **String** | Plugin id. | 
  **version** | [**Version**](.md) | Plugin version. | 
 
 ### Return type
@@ -406,14 +382,14 @@ Void (empty response body)
 
 # **updatePluginConfiguration**
 ```swift
-    open class func updatePluginConfiguration(pluginId: String, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func updatePluginConfiguration( pluginId: String) -> Promise<Void>
 ```
 
 Updates plugin configuration.
 
 Accepts plugin configuration as JSON body.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -421,15 +397,12 @@ import JellyfinAPI
 let pluginId = "pluginId_example" // String | Plugin id.
 
 // Updates plugin configuration.
-PluginsAPI.updatePluginConfiguration(pluginId: pluginId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+PluginsAPI.updatePluginConfiguration(pluginId: pluginId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -437,7 +410,7 @@ PluginsAPI.updatePluginConfiguration(pluginId: pluginId) { (response, error) in
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pluginId** | [**String**](.md) | Plugin id. | 
+ **pluginId** | **String** | Plugin id. | 
 
 ### Return type
 
@@ -456,12 +429,12 @@ Void (empty response body)
 
 # **updatePluginSecurityInfo**
 ```swift
-    open class func updatePluginSecurityInfo(pluginSecurityInfo: PluginSecurityInfo, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func updatePluginSecurityInfo( pluginSecurityInfo: PluginSecurityInfo) -> Promise<Void>
 ```
 
 Updates plugin security info.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -469,15 +442,12 @@ import JellyfinAPI
 let pluginSecurityInfo = PluginSecurityInfo(supporterKey: "supporterKey_example", isMbSupporter: false) // PluginSecurityInfo | Plugin security info.
 
 // Updates plugin security info.
-PluginsAPI.updatePluginSecurityInfo(pluginSecurityInfo: pluginSecurityInfo) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+PluginsAPI.updatePluginSecurityInfo(pluginSecurityInfo: pluginSecurityInfo).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 

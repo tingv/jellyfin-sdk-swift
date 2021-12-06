@@ -6,10 +6,14 @@
 
 import Foundation
 
-@available(*, deprecated, renamed: "JellyfinAPI")
-public typealias JellyfinAPIAPI = JellyfinAPI
+// We reverted the change of JellyfinAPIAPI to JellyfinAPI introduced in https://github.com/OpenAPITools/openapi-generator/pull/9624
+// Because it was causing the following issue https://github.com/OpenAPITools/openapi-generator/issues/9953
+// If you are affected by this issue, please consider removing the following two lines,
+// By setting the option removeMigrationProjectNameClass to true in the generator
+@available(*, deprecated, renamed: "JellyfinAPIAPI")
+public typealias JellyfinAPI = JellyfinAPIAPI
 
-open class JellyfinAPI {
+open class JellyfinAPIAPI {
     public static var basePath = "http://localhost:8096"
     public static var customHeaders: [String: String] = [:]
     public static var credential: URLCredential?
@@ -35,7 +39,7 @@ open class RequestBuilder<T> {
         self.parameters = parameters
         self.headers = headers
 
-        addHeaders(JellyfinAPI.customHeaders)
+        addHeaders(JellyfinAPIAPI.customHeaders)
     }
 
     open func addHeaders(_ aHeaders: [String: String]) {
@@ -44,7 +48,10 @@ open class RequestBuilder<T> {
         }
     }
 
-    open func execute(_ apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, _ completion: @escaping (_ result: Swift.Result<Response<T>, Error>) -> Void) { }
+    @discardableResult
+    open func execute(_ apiResponseQueue: DispatchQueue = JellyfinAPIAPI.apiResponseQueue, _ completion: @escaping (_ result: Swift.Result<Response<T>, ErrorResponse>) -> Void) -> URLSessionTask? {
+        return nil
+    }
 
     public func addHeader(name: String, value: String) -> Self {
         if !value.isEmpty {
@@ -54,7 +61,7 @@ open class RequestBuilder<T> {
     }
 
     open func addCredential() -> Self {
-        credential = JellyfinAPI.credential
+        credential = JellyfinAPIAPI.credential
         return self
     }
 }

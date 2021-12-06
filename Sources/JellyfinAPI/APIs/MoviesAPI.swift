@@ -7,9 +7,7 @@
 
 import AnyCodable
 import Foundation
-#if canImport(Combine)
-import Combine
-#endif
+import PromiseKit
 
 open class MoviesAPI {
     /**
@@ -21,23 +19,20 @@ open class MoviesAPI {
      - parameter categoryLimit: (query) The max number of categories to return. (optional, default to 5)
      - parameter itemLimit: (query) The max number of items to return per category. (optional, default to 8)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<[RecommendationDto], Error>
+     - returns: Promise<[RecommendationDto]>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getMovieRecommendations(userId: String? = nil, parentId: String? = nil, fields: [ItemFields]? = nil, categoryLimit: Int? = nil, itemLimit: Int? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<[RecommendationDto], Error> {
-        return Future<[RecommendationDto], Error>.init { promise in
-            getMovieRecommendationsWithRequestBuilder(userId: userId, parentId: parentId, fields: fields, categoryLimit: categoryLimit, itemLimit: itemLimit).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getMovieRecommendations( userId: String? = nil,  parentId: String? = nil,  fields: [ItemFields]? = nil,  categoryLimit: Int? = nil,  itemLimit: Int? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[RecommendationDto]> {
+        let deferred = Promise<[RecommendationDto]>.pending()
+        getMovieRecommendationsWithRequestBuilder(userId: userId, parentId: parentId, fields: fields, categoryLimit: categoryLimit, itemLimit: itemLimit).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets movie recommendations.

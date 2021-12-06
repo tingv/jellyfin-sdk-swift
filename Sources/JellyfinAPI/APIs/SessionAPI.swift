@@ -7,9 +7,7 @@
 
 import AnyCodable
 import Foundation
-#if canImport(Combine)
-import Combine
-#endif
+import PromiseKit
 
 open class SessionAPI {
     /**
@@ -18,23 +16,20 @@ open class SessionAPI {
      - parameter sessionId: (path) The session id. 
      - parameter userId: (path) The user id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: Promise<Void>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func addUserToSession(sessionId: String, userId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error>.init { promise in
-            addUserToSessionWithRequestBuilder(sessionId: sessionId, userId: userId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    promise(.success(()))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func addUserToSession( sessionId: String,  userId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
+        let deferred = Promise<Void>.pending()
+        addUserToSessionWithRequestBuilder(sessionId: sessionId, userId: userId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case .success:
+                deferred.resolver.fulfill(())
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Adds an additional user to a session.
@@ -78,23 +73,20 @@ open class SessionAPI {
      - parameter itemId: (query) The Id of the item. 
      - parameter itemName: (query) The name of the item. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: Promise<Void>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func displayContent(sessionId: String, itemType: String, itemId: String, itemName: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error>.init { promise in
-            displayContentWithRequestBuilder(sessionId: sessionId, itemType: itemType, itemId: itemId, itemName: itemName).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    promise(.success(()))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func displayContent( sessionId: String,  itemType: String,  itemId: String,  itemName: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
+        let deferred = Promise<Void>.pending()
+        displayContentWithRequestBuilder(sessionId: sessionId, itemType: itemType, itemId: itemId, itemName: itemName).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case .success:
+                deferred.resolver.fulfill(())
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Instructs a session to browse to an item or view.
@@ -138,23 +130,20 @@ open class SessionAPI {
      Get all auth providers.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<[NameIdPair], Error>
+     - returns: Promise<[NameIdPair]>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getAuthProviders(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<[NameIdPair], Error> {
-        return Future<[NameIdPair], Error>.init { promise in
-            getAuthProvidersWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getAuthProviders(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[NameIdPair]> {
+        let deferred = Promise<[NameIdPair]>.pending()
+        getAuthProvidersWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Get all auth providers.
@@ -186,23 +175,20 @@ open class SessionAPI {
      Get all password reset providers.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<[NameIdPair], Error>
+     - returns: Promise<[NameIdPair]>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getPasswordResetProviders(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<[NameIdPair], Error> {
-        return Future<[NameIdPair], Error>.init { promise in
-            getPasswordResetProvidersWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getPasswordResetProviders(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[NameIdPair]> {
+        let deferred = Promise<[NameIdPair]>.pending()
+        getPasswordResetProvidersWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Get all password reset providers.
@@ -237,23 +223,20 @@ open class SessionAPI {
      - parameter deviceId: (query) Filter by device Id. (optional)
      - parameter activeWithinSeconds: (query) Optional. Filter by sessions that were active in the last n seconds. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<[SessionInfo], Error>
+     - returns: Promise<[SessionInfo]>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getSessions(controllableByUserId: String? = nil, deviceId: String? = nil, activeWithinSeconds: Int? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<[SessionInfo], Error> {
-        return Future<[SessionInfo], Error>.init { promise in
-            getSessionsWithRequestBuilder(controllableByUserId: controllableByUserId, deviceId: deviceId, activeWithinSeconds: activeWithinSeconds).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getSessions( controllableByUserId: String? = nil,  deviceId: String? = nil,  activeWithinSeconds: Int? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[SessionInfo]> {
+        let deferred = Promise<[SessionInfo]>.pending()
+        getSessionsWithRequestBuilder(controllableByUserId: controllableByUserId, deviceId: deviceId, activeWithinSeconds: activeWithinSeconds).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets a list of sessions.
@@ -301,23 +284,20 @@ open class SessionAPI {
      - parameter subtitleStreamIndex: (query) Optional. The index of the subtitle stream to play. (optional)
      - parameter startIndex: (query) Optional. The start index. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: Promise<Void>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func play(sessionId: String, playCommand: PlayCommand, itemIds: [String], startPositionTicks: Int64? = nil, mediaSourceId: String? = nil, audioStreamIndex: Int? = nil, subtitleStreamIndex: Int? = nil, startIndex: Int? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error>.init { promise in
-            playWithRequestBuilder(sessionId: sessionId, playCommand: playCommand, itemIds: itemIds, startPositionTicks: startPositionTicks, mediaSourceId: mediaSourceId, audioStreamIndex: audioStreamIndex, subtitleStreamIndex: subtitleStreamIndex, startIndex: startIndex).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    promise(.success(()))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func play( sessionId: String,  playCommand: PlayCommand,  itemIds: [String],  startPositionTicks: Int64? = nil,  mediaSourceId: String? = nil,  audioStreamIndex: Int? = nil,  subtitleStreamIndex: Int? = nil,  startIndex: Int? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
+        let deferred = Promise<Void>.pending()
+        playWithRequestBuilder(sessionId: sessionId, playCommand: playCommand, itemIds: itemIds, startPositionTicks: startPositionTicks, mediaSourceId: mediaSourceId, audioStreamIndex: audioStreamIndex, subtitleStreamIndex: subtitleStreamIndex, startIndex: startIndex).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case .success:
+                deferred.resolver.fulfill(())
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Instructs a session to play an item.
@@ -375,23 +355,20 @@ open class SessionAPI {
      - parameter supportsSync: (query) Determines whether sync is supported. (optional, default to false)
      - parameter supportsPersistentIdentifier: (query) Determines whether the device supports a unique identifier. (optional, default to true)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: Promise<Void>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func postCapabilities(id: String? = nil, playableMediaTypes: [String]? = nil, supportedCommands: [GeneralCommandType]? = nil, supportsMediaControl: Bool? = nil, supportsSync: Bool? = nil, supportsPersistentIdentifier: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error>.init { promise in
-            postCapabilitiesWithRequestBuilder(id: id, playableMediaTypes: playableMediaTypes, supportedCommands: supportedCommands, supportsMediaControl: supportsMediaControl, supportsSync: supportsSync, supportsPersistentIdentifier: supportsPersistentIdentifier).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    promise(.success(()))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func postCapabilities( id: String? = nil,  playableMediaTypes: [String]? = nil,  supportedCommands: [GeneralCommandType]? = nil,  supportsMediaControl: Bool? = nil,  supportsSync: Bool? = nil,  supportsPersistentIdentifier: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
+        let deferred = Promise<Void>.pending()
+        postCapabilitiesWithRequestBuilder(id: id, playableMediaTypes: playableMediaTypes, supportedCommands: supportedCommands, supportsMediaControl: supportsMediaControl, supportsSync: supportsSync, supportsPersistentIdentifier: supportsPersistentIdentifier).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case .success:
+                deferred.resolver.fulfill(())
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Updates capabilities for a device.
@@ -439,23 +416,20 @@ open class SessionAPI {
      - parameter clientCapabilitiesDto: (body) The MediaBrowser.Model.Session.ClientCapabilities. 
      - parameter id: (query) The session id. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: Promise<Void>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func postFullCapabilities(clientCapabilitiesDto: ClientCapabilitiesDto, id: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error>.init { promise in
-            postFullCapabilitiesWithRequestBuilder(clientCapabilitiesDto: clientCapabilitiesDto, id: id).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    promise(.success(()))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func postFullCapabilities( clientCapabilitiesDto: ClientCapabilitiesDto,  id: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
+        let deferred = Promise<Void>.pending()
+        postFullCapabilitiesWithRequestBuilder(clientCapabilitiesDto: clientCapabilitiesDto, id: id).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case .success:
+                deferred.resolver.fulfill(())
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Updates capabilities for a device.
@@ -494,23 +468,20 @@ open class SessionAPI {
      - parameter sessionId: (path) The session id. 
      - parameter userId: (path) The user id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: Promise<Void>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func removeUserFromSession(sessionId: String, userId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error>.init { promise in
-            removeUserFromSessionWithRequestBuilder(sessionId: sessionId, userId: userId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    promise(.success(()))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func removeUserFromSession( sessionId: String,  userId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
+        let deferred = Promise<Void>.pending()
+        removeUserFromSessionWithRequestBuilder(sessionId: sessionId, userId: userId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case .success:
+                deferred.resolver.fulfill(())
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Removes an additional user from a session.
@@ -550,23 +521,20 @@ open class SessionAPI {
      Reports that a session has ended.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: Promise<Void>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func reportSessionEnded(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error>.init { promise in
-            reportSessionEndedWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    promise(.success(()))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func reportSessionEnded(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
+        let deferred = Promise<Void>.pending()
+        reportSessionEndedWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case .success:
+                deferred.resolver.fulfill(())
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Reports that a session has ended.
@@ -600,23 +568,20 @@ open class SessionAPI {
      - parameter itemId: (query) The item id. 
      - parameter sessionId: (query) The session id. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: Promise<Void>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func reportViewing(itemId: String, sessionId: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error>.init { promise in
-            reportViewingWithRequestBuilder(itemId: itemId, sessionId: sessionId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    promise(.success(()))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func reportViewing( itemId: String,  sessionId: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
+        let deferred = Promise<Void>.pending()
+        reportViewingWithRequestBuilder(itemId: itemId, sessionId: sessionId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case .success:
+                deferred.resolver.fulfill(())
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Reports that a session is viewing an item.
@@ -656,23 +621,20 @@ open class SessionAPI {
      - parameter sessionId: (path) The session id. 
      - parameter generalCommand: (body) The MediaBrowser.Model.Session.GeneralCommand. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: Promise<Void>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func sendFullGeneralCommand(sessionId: String, generalCommand: GeneralCommand, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error>.init { promise in
-            sendFullGeneralCommandWithRequestBuilder(sessionId: sessionId, generalCommand: generalCommand).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    promise(.success(()))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func sendFullGeneralCommand( sessionId: String,  generalCommand: GeneralCommand, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
+        let deferred = Promise<Void>.pending()
+        sendFullGeneralCommandWithRequestBuilder(sessionId: sessionId, generalCommand: generalCommand).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case .success:
+                deferred.resolver.fulfill(())
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Issues a full general command to a client.
@@ -711,23 +673,20 @@ open class SessionAPI {
      - parameter sessionId: (path) The session id. 
      - parameter command: (path) The command to send. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: Promise<Void>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func sendGeneralCommand(sessionId: String, command: GeneralCommandType, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error>.init { promise in
-            sendGeneralCommandWithRequestBuilder(sessionId: sessionId, command: command).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    promise(.success(()))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func sendGeneralCommand( sessionId: String,  command: GeneralCommandType, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
+        let deferred = Promise<Void>.pending()
+        sendGeneralCommandWithRequestBuilder(sessionId: sessionId, command: command).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case .success:
+                deferred.resolver.fulfill(())
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Issues a general command to a client.
@@ -769,23 +728,20 @@ open class SessionAPI {
      - parameter sessionId: (path) The session id. 
      - parameter messageCommand: (body) The MediaBrowser.Model.Session.MessageCommand object containing Header, Message Text, and TimeoutMs. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: Promise<Void>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func sendMessageCommand(sessionId: String, messageCommand: MessageCommand, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error>.init { promise in
-            sendMessageCommandWithRequestBuilder(sessionId: sessionId, messageCommand: messageCommand).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    promise(.success(()))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func sendMessageCommand( sessionId: String,  messageCommand: MessageCommand, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
+        let deferred = Promise<Void>.pending()
+        sendMessageCommandWithRequestBuilder(sessionId: sessionId, messageCommand: messageCommand).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case .success:
+                deferred.resolver.fulfill(())
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Issues a command to a client to display a message to the user.
@@ -826,23 +782,20 @@ open class SessionAPI {
      - parameter seekPositionTicks: (query) The optional position ticks. (optional)
      - parameter controllingUserId: (query) The optional controlling user id. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: Promise<Void>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func sendPlaystateCommand(sessionId: String, command: PlaystateCommand, seekPositionTicks: Int64? = nil, controllingUserId: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error>.init { promise in
-            sendPlaystateCommandWithRequestBuilder(sessionId: sessionId, command: command, seekPositionTicks: seekPositionTicks, controllingUserId: controllingUserId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    promise(.success(()))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func sendPlaystateCommand( sessionId: String,  command: PlaystateCommand,  seekPositionTicks: Int64? = nil,  controllingUserId: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
+        let deferred = Promise<Void>.pending()
+        sendPlaystateCommandWithRequestBuilder(sessionId: sessionId, command: command, seekPositionTicks: seekPositionTicks, controllingUserId: controllingUserId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case .success:
+                deferred.resolver.fulfill(())
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Issues a playstate command to a client.
@@ -890,23 +843,20 @@ open class SessionAPI {
      - parameter sessionId: (path) The session id. 
      - parameter command: (path) The command to send. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: Promise<Void>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func sendSystemCommand(sessionId: String, command: GeneralCommandType, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error>.init { promise in
-            sendSystemCommandWithRequestBuilder(sessionId: sessionId, command: command).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    promise(.success(()))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func sendSystemCommand( sessionId: String,  command: GeneralCommandType, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
+        let deferred = Promise<Void>.pending()
+        sendSystemCommandWithRequestBuilder(sessionId: sessionId, command: command).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case .success:
+                deferred.resolver.fulfill(())
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Issues a system command to a client.

@@ -7,9 +7,7 @@
 
 import AnyCodable
 import Foundation
-#if canImport(Combine)
-import Combine
-#endif
+import PromiseKit
 
 open class DevicesAPI {
     /**
@@ -17,23 +15,20 @@ open class DevicesAPI {
      
      - parameter id: (query) Device Id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: Promise<Void>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func deleteDevice(id: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error>.init { promise in
-            deleteDeviceWithRequestBuilder(id: id).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    promise(.success(()))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func deleteDevice( id: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
+        let deferred = Promise<Void>.pending()
+        deleteDeviceWithRequestBuilder(id: id).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case .success:
+                deferred.resolver.fulfill(())
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Deletes a device.
@@ -70,23 +65,20 @@ open class DevicesAPI {
      
      - parameter id: (query) Device Id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<DeviceInfo, Error>
+     - returns: Promise<DeviceInfo>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getDeviceInfo(id: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<DeviceInfo, Error> {
-        return Future<DeviceInfo, Error>.init { promise in
-            getDeviceInfoWithRequestBuilder(id: id).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getDeviceInfo( id: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<DeviceInfo> {
+        let deferred = Promise<DeviceInfo>.pending()
+        getDeviceInfoWithRequestBuilder(id: id).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Get info for a device.
@@ -123,23 +115,20 @@ open class DevicesAPI {
      
      - parameter id: (query) Device Id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<DeviceOptions, Error>
+     - returns: Promise<DeviceOptions>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getDeviceOptions(id: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<DeviceOptions, Error> {
-        return Future<DeviceOptions, Error>.init { promise in
-            getDeviceOptionsWithRequestBuilder(id: id).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getDeviceOptions( id: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<DeviceOptions> {
+        let deferred = Promise<DeviceOptions>.pending()
+        getDeviceOptionsWithRequestBuilder(id: id).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Get options for a device.
@@ -177,23 +166,20 @@ open class DevicesAPI {
      - parameter supportsSync: (query) Gets or sets a value indicating whether [supports synchronize]. (optional)
      - parameter userId: (query) Gets or sets the user identifier. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<DeviceInfoQueryResult, Error>
+     - returns: Promise<DeviceInfoQueryResult>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getDevices(supportsSync: Bool? = nil, userId: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<DeviceInfoQueryResult, Error> {
-        return Future<DeviceInfoQueryResult, Error>.init { promise in
-            getDevicesWithRequestBuilder(supportsSync: supportsSync, userId: userId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getDevices( supportsSync: Bool? = nil,  userId: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<DeviceInfoQueryResult> {
+        let deferred = Promise<DeviceInfoQueryResult>.pending()
+        getDevicesWithRequestBuilder(supportsSync: supportsSync, userId: userId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Get Devices.
@@ -233,23 +219,20 @@ open class DevicesAPI {
      - parameter id: (query) Device Id. 
      - parameter deviceOptions: (body) Device Options. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: Promise<Void>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func updateDeviceOptions(id: String, deviceOptions: DeviceOptions, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error>.init { promise in
-            updateDeviceOptionsWithRequestBuilder(id: id, deviceOptions: deviceOptions).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    promise(.success(()))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func updateDeviceOptions( id: String,  deviceOptions: DeviceOptions, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
+        let deferred = Promise<Void>.pending()
+        updateDeviceOptionsWithRequestBuilder(id: id, deviceOptions: deviceOptions).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case .success:
+                deferred.resolver.fulfill(())
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Update device options.

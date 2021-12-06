@@ -10,12 +10,12 @@ Method | HTTP request | Description
 
 # **getPerson**
 ```swift
-    open class func getPerson(name: String, userId: String? = nil, completion: @escaping (_ data: BaseItemDto?, _ error: Error?) -> Void)
+    open class func getPerson( name: String,  userId: String? = nil) -> Promise<BaseItemDto>
 ```
 
 Get person by name.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -24,15 +24,12 @@ let name = "name_example" // String | Person name.
 let userId = "userId_example" // String | Optional. Filter by user id, and attach user data. (optional)
 
 // Get person by name.
-PersonsAPI.getPerson(name: name, userId: userId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+PersonsAPI.getPerson(name: name, userId: userId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -41,7 +38,7 @@ PersonsAPI.getPerson(name: name, userId: userId) { (response, error) in
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **String** | Person name. | 
- **userId** | [**String**](.md) | Optional. Filter by user id, and attach user data. | [optional] 
+ **userId** | **String** | Optional. Filter by user id, and attach user data. | [optional] 
 
 ### Return type
 
@@ -60,12 +57,12 @@ Name | Type | Description  | Notes
 
 # **getPersons**
 ```swift
-    open class func getPersons(limit: Int? = nil, searchTerm: String? = nil, fields: [ItemFields]? = nil, filters: [ItemFilter]? = nil, isFavorite: Bool? = nil, enableUserData: Bool? = nil, imageTypeLimit: Int? = nil, enableImageTypes: [ImageType]? = nil, excludePersonTypes: [String]? = nil, personTypes: [String]? = nil, appearsInItemId: String? = nil, userId: String? = nil, enableImages: Bool? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
+    open class func getPersons( limit: Int? = nil,  searchTerm: String? = nil,  fields: [ItemFields]? = nil,  filters: [ItemFilter]? = nil,  isFavorite: Bool? = nil,  enableUserData: Bool? = nil,  imageTypeLimit: Int? = nil,  enableImageTypes: [ImageType]? = nil,  excludePersonTypes: [String]? = nil,  personTypes: [String]? = nil,  appearsInItemId: String? = nil,  userId: String? = nil,  enableImages: Bool? = nil) -> Promise<BaseItemDtoQueryResult>
 ```
 
 Gets all persons.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -85,15 +82,12 @@ let userId = "userId_example" // String | User id. (optional)
 let enableImages = true // Bool | Optional, include image information in output. (optional) (default to true)
 
 // Gets all persons.
-PersonsAPI.getPersons(limit: limit, searchTerm: searchTerm, fields: fields, filters: filters, isFavorite: isFavorite, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes, excludePersonTypes: excludePersonTypes, personTypes: personTypes, appearsInItemId: appearsInItemId, userId: userId, enableImages: enableImages) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+PersonsAPI.getPersons(limit: limit, searchTerm: searchTerm, fields: fields, filters: filters, isFavorite: isFavorite, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes, excludePersonTypes: excludePersonTypes, personTypes: personTypes, appearsInItemId: appearsInItemId, userId: userId, enableImages: enableImages).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -111,8 +105,8 @@ Name | Type | Description  | Notes
  **enableImageTypes** | [**[ImageType]**](ImageType.md) | Optional. The image types to include in the output. | [optional] 
  **excludePersonTypes** | [**[String]**](String.md) | Optional. If specified results will be filtered to exclude those containing the specified PersonType. Allows multiple, comma-delimited. | [optional] 
  **personTypes** | [**[String]**](String.md) | Optional. If specified results will be filtered to include only those containing the specified PersonType. Allows multiple, comma-delimited. | [optional] 
- **appearsInItemId** | [**String**](.md) | Optional. If specified, person results will be filtered on items related to said persons. | [optional] 
- **userId** | [**String**](.md) | User id. | [optional] 
+ **appearsInItemId** | **String** | Optional. If specified, person results will be filtered on items related to said persons. | [optional] 
+ **userId** | **String** | User id. | [optional] 
  **enableImages** | **Bool** | Optional, include image information in output. | [optional] [default to true]
 
 ### Return type

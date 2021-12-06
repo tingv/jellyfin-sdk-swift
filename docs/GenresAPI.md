@@ -10,12 +10,12 @@ Method | HTTP request | Description
 
 # **getGenre**
 ```swift
-    open class func getGenre(genreName: String, userId: String? = nil, completion: @escaping (_ data: BaseItemDto?, _ error: Error?) -> Void)
+    open class func getGenre( genreName: String,  userId: String? = nil) -> Promise<BaseItemDto>
 ```
 
 Gets a genre, by name.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -24,15 +24,12 @@ let genreName = "genreName_example" // String | The genre name.
 let userId = "userId_example" // String | The user id. (optional)
 
 // Gets a genre, by name.
-GenresAPI.getGenre(genreName: genreName, userId: userId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+GenresAPI.getGenre(genreName: genreName, userId: userId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -41,7 +38,7 @@ GenresAPI.getGenre(genreName: genreName, userId: userId) { (response, error) in
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **genreName** | **String** | The genre name. | 
- **userId** | [**String**](.md) | The user id. | [optional] 
+ **userId** | **String** | The user id. | [optional] 
 
 ### Return type
 
@@ -60,12 +57,12 @@ Name | Type | Description  | Notes
 
 # **getGenres**
 ```swift
-    open class func getGenres(startIndex: Int? = nil, limit: Int? = nil, searchTerm: String? = nil, parentId: String? = nil, fields: [ItemFields]? = nil, excludeItemTypes: [String]? = nil, includeItemTypes: [String]? = nil, isFavorite: Bool? = nil, imageTypeLimit: Int? = nil, enableImageTypes: [ImageType]? = nil, userId: String? = nil, nameStartsWithOrGreater: String? = nil, nameStartsWith: String? = nil, nameLessThan: String? = nil, enableImages: Bool? = nil, enableTotalRecordCount: Bool? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
+    open class func getGenres( startIndex: Int? = nil,  limit: Int? = nil,  searchTerm: String? = nil,  parentId: String? = nil,  fields: [ItemFields]? = nil,  excludeItemTypes: [String]? = nil,  includeItemTypes: [String]? = nil,  isFavorite: Bool? = nil,  imageTypeLimit: Int? = nil,  enableImageTypes: [ImageType]? = nil,  userId: String? = nil,  nameStartsWithOrGreater: String? = nil,  nameStartsWith: String? = nil,  nameLessThan: String? = nil,  enableImages: Bool? = nil,  enableTotalRecordCount: Bool? = nil) -> Promise<BaseItemDtoQueryResult>
 ```
 
 Gets all genres from a given item, folder, or the entire library.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -88,15 +85,12 @@ let enableImages = true // Bool | Optional, include image information in output.
 let enableTotalRecordCount = true // Bool | Optional. Include total record count. (optional) (default to true)
 
 // Gets all genres from a given item, folder, or the entire library.
-GenresAPI.getGenres(startIndex: startIndex, limit: limit, searchTerm: searchTerm, parentId: parentId, fields: fields, excludeItemTypes: excludeItemTypes, includeItemTypes: includeItemTypes, isFavorite: isFavorite, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes, userId: userId, nameStartsWithOrGreater: nameStartsWithOrGreater, nameStartsWith: nameStartsWith, nameLessThan: nameLessThan, enableImages: enableImages, enableTotalRecordCount: enableTotalRecordCount) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+GenresAPI.getGenres(startIndex: startIndex, limit: limit, searchTerm: searchTerm, parentId: parentId, fields: fields, excludeItemTypes: excludeItemTypes, includeItemTypes: includeItemTypes, isFavorite: isFavorite, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes, userId: userId, nameStartsWithOrGreater: nameStartsWithOrGreater, nameStartsWith: nameStartsWith, nameLessThan: nameLessThan, enableImages: enableImages, enableTotalRecordCount: enableTotalRecordCount).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -107,14 +101,14 @@ Name | Type | Description  | Notes
  **startIndex** | **Int** | Optional. The record index to start at. All items with a lower index will be dropped from the results. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 
  **searchTerm** | **String** | The search term. | [optional] 
- **parentId** | [**String**](.md) | Specify this to localize the search to a specific item or folder. Omit to use the root. | [optional] 
+ **parentId** | **String** | Specify this to localize the search to a specific item or folder. Omit to use the root. | [optional] 
  **fields** | [**[ItemFields]**](ItemFields.md) | Optional. Specify additional fields of information to return in the output. | [optional] 
  **excludeItemTypes** | [**[String]**](String.md) | Optional. If specified, results will be filtered out based on item type. This allows multiple, comma delimited. | [optional] 
  **includeItemTypes** | [**[String]**](String.md) | Optional. If specified, results will be filtered in based on item type. This allows multiple, comma delimited. | [optional] 
  **isFavorite** | **Bool** | Optional filter by items that are marked as favorite, or not. | [optional] 
  **imageTypeLimit** | **Int** | Optional, the max number of images to return, per image type. | [optional] 
  **enableImageTypes** | [**[ImageType]**](ImageType.md) | Optional. The image types to include in the output. | [optional] 
- **userId** | [**String**](.md) | User id. | [optional] 
+ **userId** | **String** | User id. | [optional] 
  **nameStartsWithOrGreater** | **String** | Optional filter by items whose name is sorted equally or greater than a given input string. | [optional] 
  **nameStartsWith** | **String** | Optional filter by items whose name is sorted equally than a given input string. | [optional] 
  **nameLessThan** | **String** | Optional filter by items whose name is equally or lesser than a given input string. | [optional] 

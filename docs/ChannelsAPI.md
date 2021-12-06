@@ -13,27 +13,24 @@ Method | HTTP request | Description
 
 # **getAllChannelFeatures**
 ```swift
-    open class func getAllChannelFeatures(completion: @escaping (_ data: [ChannelFeatures]?, _ error: Error?) -> Void)
+    open class func getAllChannelFeatures() -> Promise<[ChannelFeatures]>
 ```
 
 Get all channel features.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
 
 
 // Get all channel features.
-ChannelsAPI.getAllChannelFeatures() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ChannelsAPI.getAllChannelFeatures().then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -57,12 +54,12 @@ This endpoint does not need any parameter.
 
 # **getChannelFeatures**
 ```swift
-    open class func getChannelFeatures(channelId: String, completion: @escaping (_ data: ChannelFeatures?, _ error: Error?) -> Void)
+    open class func getChannelFeatures( channelId: String) -> Promise<ChannelFeatures>
 ```
 
 Get channel features.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -70,15 +67,12 @@ import JellyfinAPI
 let channelId = "channelId_example" // String | Channel id.
 
 // Get channel features.
-ChannelsAPI.getChannelFeatures(channelId: channelId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ChannelsAPI.getChannelFeatures(channelId: channelId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -86,7 +80,7 @@ ChannelsAPI.getChannelFeatures(channelId: channelId) { (response, error) in
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **channelId** | [**String**](.md) | Channel id. | 
+ **channelId** | **String** | Channel id. | 
 
 ### Return type
 
@@ -105,12 +99,12 @@ Name | Type | Description  | Notes
 
 # **getChannelItems**
 ```swift
-    open class func getChannelItems(channelId: String, folderId: String? = nil, userId: String? = nil, startIndex: Int? = nil, limit: Int? = nil, sortOrder: [APISortOrder]? = nil, filters: [ItemFilter]? = nil, sortBy: [String]? = nil, fields: [ItemFields]? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
+    open class func getChannelItems( channelId: String,  folderId: String? = nil,  userId: String? = nil,  startIndex: Int? = nil,  limit: Int? = nil,  sortOrder: [APISortOrder]? = nil,  filters: [ItemFilter]? = nil,  sortBy: [String]? = nil,  fields: [ItemFields]? = nil) -> Promise<BaseItemDtoQueryResult>
 ```
 
 Get channel items.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -126,15 +120,12 @@ let sortBy = ["inner_example"] // [String] | Optional. Specify one or more sort 
 let fields = [ItemFields()] // [ItemFields] | Optional. Specify additional fields of information to return in the output. (optional)
 
 // Get channel items.
-ChannelsAPI.getChannelItems(channelId: channelId, folderId: folderId, userId: userId, startIndex: startIndex, limit: limit, sortOrder: sortOrder, filters: filters, sortBy: sortBy, fields: fields) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ChannelsAPI.getChannelItems(channelId: channelId, folderId: folderId, userId: userId, startIndex: startIndex, limit: limit, sortOrder: sortOrder, filters: filters, sortBy: sortBy, fields: fields).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -142,9 +133,9 @@ ChannelsAPI.getChannelItems(channelId: channelId, folderId: folderId, userId: us
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **channelId** | [**String**](.md) | Channel Id. | 
- **folderId** | [**String**](.md) | Optional. Folder Id. | [optional] 
- **userId** | [**String**](.md) | Optional. User Id. | [optional] 
+ **channelId** | **String** | Channel Id. | 
+ **folderId** | **String** | Optional. Folder Id. | [optional] 
+ **userId** | **String** | Optional. User Id. | [optional] 
  **startIndex** | **Int** | Optional. The record index to start at. All items with a lower index will be dropped from the results. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 
  **sortOrder** | [**[APISortOrder]**](APISortOrder.md) | Optional. Sort Order - Ascending,Descending. | [optional] 
@@ -169,12 +160,12 @@ Name | Type | Description  | Notes
 
 # **getChannels**
 ```swift
-    open class func getChannels(userId: String? = nil, startIndex: Int? = nil, limit: Int? = nil, supportsLatestItems: Bool? = nil, supportsMediaDeletion: Bool? = nil, isFavorite: Bool? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
+    open class func getChannels( userId: String? = nil,  startIndex: Int? = nil,  limit: Int? = nil,  supportsLatestItems: Bool? = nil,  supportsMediaDeletion: Bool? = nil,  isFavorite: Bool? = nil) -> Promise<BaseItemDtoQueryResult>
 ```
 
 Gets available channels.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -187,15 +178,12 @@ let supportsMediaDeletion = true // Bool | Optional. Filter by channels that sup
 let isFavorite = true // Bool | Optional. Filter by channels that are favorite. (optional)
 
 // Gets available channels.
-ChannelsAPI.getChannels(userId: userId, startIndex: startIndex, limit: limit, supportsLatestItems: supportsLatestItems, supportsMediaDeletion: supportsMediaDeletion, isFavorite: isFavorite) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ChannelsAPI.getChannels(userId: userId, startIndex: startIndex, limit: limit, supportsLatestItems: supportsLatestItems, supportsMediaDeletion: supportsMediaDeletion, isFavorite: isFavorite).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -203,7 +191,7 @@ ChannelsAPI.getChannels(userId: userId, startIndex: startIndex, limit: limit, su
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**String**](.md) | User Id to filter by. Use System.Guid.Empty to not filter by user. | [optional] 
+ **userId** | **String** | User Id to filter by. Use System.Guid.Empty to not filter by user. | [optional] 
  **startIndex** | **Int** | Optional. The record index to start at. All items with a lower index will be dropped from the results. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 
  **supportsLatestItems** | **Bool** | Optional. Filter by channels that support getting latest items. | [optional] 
@@ -227,12 +215,12 @@ Name | Type | Description  | Notes
 
 # **getLatestChannelItems**
 ```swift
-    open class func getLatestChannelItems(userId: String? = nil, startIndex: Int? = nil, limit: Int? = nil, filters: [ItemFilter]? = nil, fields: [ItemFields]? = nil, channelIds: [String]? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
+    open class func getLatestChannelItems( userId: String? = nil,  startIndex: Int? = nil,  limit: Int? = nil,  filters: [ItemFilter]? = nil,  fields: [ItemFields]? = nil,  channelIds: [String]? = nil) -> Promise<BaseItemDtoQueryResult>
 ```
 
 Gets latest channel items.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -245,15 +233,12 @@ let fields = [ItemFields()] // [ItemFields] | Optional. Specify additional field
 let channelIds = ["inner_example"] // [String] | Optional. Specify one or more channel id's, comma delimited. (optional)
 
 // Gets latest channel items.
-ChannelsAPI.getLatestChannelItems(userId: userId, startIndex: startIndex, limit: limit, filters: filters, fields: fields, channelIds: channelIds) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ChannelsAPI.getLatestChannelItems(userId: userId, startIndex: startIndex, limit: limit, filters: filters, fields: fields, channelIds: channelIds).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -261,7 +246,7 @@ ChannelsAPI.getLatestChannelItems(userId: userId, startIndex: startIndex, limit:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**String**](.md) | Optional. User Id. | [optional] 
+ **userId** | **String** | Optional. User Id. | [optional] 
  **startIndex** | **Int** | Optional. The record index to start at. All items with a lower index will be dropped from the results. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 
  **filters** | [**[ItemFilter]**](ItemFilter.md) | Optional. Specify additional filters to apply. | [optional] 

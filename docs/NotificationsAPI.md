@@ -15,12 +15,12 @@ Method | HTTP request | Description
 
 # **createAdminNotification**
 ```swift
-    open class func createAdminNotification(adminNotificationDto: AdminNotificationDto, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func createAdminNotification( adminNotificationDto: AdminNotificationDto) -> Promise<Void>
 ```
 
 Sends a notification to all admins.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -28,15 +28,12 @@ import JellyfinAPI
 let adminNotificationDto = AdminNotificationDto(name: "name_example", description: "description_example", notificationLevel: NotificationLevel(), url: "url_example") // AdminNotificationDto | The notification request.
 
 // Sends a notification to all admins.
-NotificationsAPI.createAdminNotification(adminNotificationDto: adminNotificationDto) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+NotificationsAPI.createAdminNotification(adminNotificationDto: adminNotificationDto).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -63,27 +60,24 @@ Void (empty response body)
 
 # **getNotificationServices**
 ```swift
-    open class func getNotificationServices(completion: @escaping (_ data: [NameIdPair]?, _ error: Error?) -> Void)
+    open class func getNotificationServices() -> Promise<[NameIdPair]>
 ```
 
 Gets notification services.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
 
 
 // Gets notification services.
-NotificationsAPI.getNotificationServices() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+NotificationsAPI.getNotificationServices().then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -107,27 +101,24 @@ This endpoint does not need any parameter.
 
 # **getNotificationTypes**
 ```swift
-    open class func getNotificationTypes(completion: @escaping (_ data: [NotificationTypeInfo]?, _ error: Error?) -> Void)
+    open class func getNotificationTypes() -> Promise<[NotificationTypeInfo]>
 ```
 
 Gets notification types.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
 
 
 // Gets notification types.
-NotificationsAPI.getNotificationTypes() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+NotificationsAPI.getNotificationTypes().then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -151,12 +142,12 @@ This endpoint does not need any parameter.
 
 # **getNotifications**
 ```swift
-    open class func getNotifications(userId: String, completion: @escaping (_ data: NotificationResultDto?, _ error: Error?) -> Void)
+    open class func getNotifications( userId: String) -> Promise<NotificationResultDto>
 ```
 
 Gets a user's notifications.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -164,15 +155,12 @@ import JellyfinAPI
 let userId = "userId_example" // String | 
 
 // Gets a user's notifications.
-NotificationsAPI.getNotifications(userId: userId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+NotificationsAPI.getNotifications(userId: userId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -199,12 +187,12 @@ Name | Type | Description  | Notes
 
 # **getNotificationsSummary**
 ```swift
-    open class func getNotificationsSummary(userId: String, completion: @escaping (_ data: NotificationsSummaryDto?, _ error: Error?) -> Void)
+    open class func getNotificationsSummary( userId: String) -> Promise<NotificationsSummaryDto>
 ```
 
 Gets a user's notification summary.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -212,15 +200,12 @@ import JellyfinAPI
 let userId = "userId_example" // String | 
 
 // Gets a user's notification summary.
-NotificationsAPI.getNotificationsSummary(userId: userId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+NotificationsAPI.getNotificationsSummary(userId: userId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -247,12 +232,12 @@ Name | Type | Description  | Notes
 
 # **setRead**
 ```swift
-    open class func setRead(userId: String, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func setRead( userId: String) -> Promise<Void>
 ```
 
 Sets notifications as read.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -260,15 +245,12 @@ import JellyfinAPI
 let userId = "userId_example" // String | 
 
 // Sets notifications as read.
-NotificationsAPI.setRead(userId: userId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+NotificationsAPI.setRead(userId: userId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -295,12 +277,12 @@ Void (empty response body)
 
 # **setUnread**
 ```swift
-    open class func setUnread(userId: String, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func setUnread( userId: String) -> Promise<Void>
 ```
 
 Sets notifications as unread.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinAPI
@@ -308,15 +290,12 @@ import JellyfinAPI
 let userId = "userId_example" // String | 
 
 // Sets notifications as unread.
-NotificationsAPI.setUnread(userId: userId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+NotificationsAPI.setUnread(userId: userId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
