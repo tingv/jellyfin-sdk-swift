@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 Gets episodes for a tv season.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -52,14 +52,14 @@ TvShowsAPI.getEpisodes(seriesId: seriesId, userId: userId, fields: fields, seaso
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **seriesId** | **String** | The series id. | 
- **userId** | **String** | The user id. | [optional] 
+ **seriesId** | [**String**](.md) | The series id. | 
+ **userId** | [**String**](.md) | The user id. | [optional] 
  **fields** | [**[ItemFields]**](ItemFields.md) | Optional. Specify additional fields of information to return in the output. This allows multiple, comma delimited. Options: Budget, Chapters, DateCreated, Genres, HomePageUrl, IndexOptions, MediaStreams, Overview, ParentId, Path, People, ProviderIds, PrimaryImageAspectRatio, Revenue, SortName, Studios, Taglines, TrailerUrls. | [optional] 
  **season** | **Int** | Optional filter by season number. | [optional] 
- **seasonId** | **String** | Optional. Filter by season id. | [optional] 
+ **seasonId** | [**String**](.md) | Optional. Filter by season id. | [optional] 
  **isMissing** | **Bool** | Optional. Filter by items that are missing episodes or not. | [optional] 
  **adjacentTo** | **String** | Optional. Return items that are siblings of a supplied item. | [optional] 
- **startItemId** | **String** | Optional. Skip through the list until a given item is found. | [optional] 
+ **startItemId** | [**String**](.md) | Optional. Skip through the list until a given item is found. | [optional] 
  **startIndex** | **Int** | Optional. The record index to start at. All items with a lower index will be dropped from the results. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 
  **enableImages** | **Bool** | Optional, include image information in output. | [optional] 
@@ -90,7 +90,7 @@ Name | Type | Description  | Notes
 
 Gets a list of next up episodes.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -122,12 +122,12 @@ TvShowsAPI.getNextUp(userId: userId, startIndex: startIndex, limit: limit, field
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | The user id of the user to get the next up episodes for. | [optional] 
+ **userId** | [**String**](.md) | The user id of the user to get the next up episodes for. | [optional] 
  **startIndex** | **Int** | Optional. The record index to start at. All items with a lower index will be dropped from the results. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 
  **fields** | [**[ItemFields]**](ItemFields.md) | Optional. Specify additional fields of information to return in the output. | [optional] 
  **seriesId** | **String** | Optional. Filter by series id. | [optional] 
- **parentId** | **String** | Optional. Specify this to localize the search to a specific item or folder. Omit to use the root. | [optional] 
+ **parentId** | [**String**](.md) | Optional. Specify this to localize the search to a specific item or folder. Omit to use the root. | [optional] 
  **enableImges** | **Bool** | Optional. Include image information in output. | [optional] 
  **imageTypeLimit** | **Int** | Optional. The max number of images to return, per image type. | [optional] 
  **enableImageTypes** | [**[ImageType]**](ImageType.md) | Optional. The image types to include in the output. | [optional] 
@@ -157,7 +157,7 @@ Name | Type | Description  | Notes
 
 Gets seasons for a tv series.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -187,8 +187,8 @@ TvShowsAPI.getSeasons(seriesId: seriesId, userId: userId, fields: fields, isSpec
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **seriesId** | **String** | The series id. | 
- **userId** | **String** | The user id. | [optional] 
+ **seriesId** | [**String**](.md) | The series id. | 
+ **userId** | [**String**](.md) | The user id. | [optional] 
  **fields** | [**[ItemFields]**](ItemFields.md) | Optional. Specify additional fields of information to return in the output. This allows multiple, comma delimited. Options: Budget, Chapters, DateCreated, Genres, HomePageUrl, IndexOptions, MediaStreams, Overview, ParentId, Path, People, ProviderIds, PrimaryImageAspectRatio, Revenue, SortName, Studios, Taglines, TrailerUrls. | [optional] 
  **isSpecialSeason** | **Bool** | Optional. Filter by special season. | [optional] 
  **isMissing** | **Bool** | Optional. Filter by items that are missing episodes or not. | [optional] 
@@ -220,7 +220,7 @@ Name | Type | Description  | Notes
 
 Gets a list of upcoming episodes.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -249,11 +249,11 @@ TvShowsAPI.getUpcomingEpisodes(userId: userId, startIndex: startIndex, limit: li
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | The user id of the user to get the upcoming episodes for. | [optional] 
+ **userId** | [**String**](.md) | The user id of the user to get the upcoming episodes for. | [optional] 
  **startIndex** | **Int** | Optional. The record index to start at. All items with a lower index will be dropped from the results. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 
  **fields** | [**[ItemFields]**](ItemFields.md) | Optional. Specify additional fields of information to return in the output. | [optional] 
- **parentId** | **String** | Optional. Specify this to localize the search to a specific item or folder. Omit to use the root. | [optional] 
+ **parentId** | [**String**](.md) | Optional. Specify this to localize the search to a specific item or folder. Omit to use the root. | [optional] 
  **enableImges** | **Bool** | Optional. Include image information in output. | [optional] 
  **imageTypeLimit** | **Int** | Optional. The max number of images to return, per image type. | [optional] 
  **enableImageTypes** | [**[ImageType]**](ImageType.md) | Optional. The image types to include in the output. | [optional] 

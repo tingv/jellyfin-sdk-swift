@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 Gets items based on a query.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -116,7 +116,7 @@ ItemsAPI.getItems(userId: userId, maxOfficialRating: maxOfficialRating, hasTheme
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | The user id supplied as query parameter. | [optional] 
+ **userId** | [**String**](.md) | The user id supplied as query parameter. | [optional] 
  **maxOfficialRating** | **String** | Optional filter by maximum official rating (PG, PG-13, TV-MA, etc). | [optional] 
  **hasThemeSong** | **Bool** | Optional filter by items with theme songs. | [optional] 
  **hasThemeVideo** | **Bool** | Optional filter by items with theme videos. | [optional] 
@@ -148,7 +148,7 @@ Name | Type | Description  | Notes
  **recursive** | **Bool** | When searching within folders, this determines whether or not the search will be recursive. true/false. | [optional] 
  **searchTerm** | **String** | Optional. Filter based on a search term. | [optional] 
  **sortOrder** | [**[APISortOrder]**](APISortOrder.md) | Sort Order - Ascending,Descending. | [optional] 
- **parentId** | **String** | Specify this to localize the search to a specific item or folder. Omit to use the root. | [optional] 
+ **parentId** | [**String**](.md) | Specify this to localize the search to a specific item or folder. Omit to use the root. | [optional] 
  **fields** | [**[ItemFields]**](ItemFields.md) | Optional. Specify additional fields of information to return in the output. This allows multiple, comma delimited. Options: Budget, Chapters, DateCreated, Genres, HomePageUrl, IndexOptions, MediaStreams, Overview, ParentId, Path, People, ProviderIds, PrimaryImageAspectRatio, Revenue, SortName, Studios, Taglines. | [optional] 
  **excludeItemTypes** | [**[String]**](String.md) | Optional. If specified, results will be filtered based on item type. This allows multiple, comma delimited. | [optional] 
  **includeItemTypes** | [**[String]**](String.md) | Optional. If specified, results will be filtered based on the item type. This allows multiple, comma delimited. | [optional] 
@@ -219,7 +219,7 @@ Name | Type | Description  | Notes
 
 Gets items based on a query.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -319,7 +319,7 @@ ItemsAPI.getItemsByUserId(userId: userId, maxOfficialRating: maxOfficialRating, 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | The user id supplied as query parameter. | 
+ **userId** | [**String**](.md) | The user id supplied as query parameter. | 
  **maxOfficialRating** | **String** | Optional filter by maximum official rating (PG, PG-13, TV-MA, etc). | [optional] 
  **hasThemeSong** | **Bool** | Optional filter by items with theme songs. | [optional] 
  **hasThemeVideo** | **Bool** | Optional filter by items with theme videos. | [optional] 
@@ -351,7 +351,7 @@ Name | Type | Description  | Notes
  **recursive** | **Bool** | When searching within folders, this determines whether or not the search will be recursive. true/false. | [optional] 
  **searchTerm** | **String** | Optional. Filter based on a search term. | [optional] 
  **sortOrder** | [**[APISortOrder]**](APISortOrder.md) | Sort Order - Ascending,Descending. | [optional] 
- **parentId** | **String** | Specify this to localize the search to a specific item or folder. Omit to use the root. | [optional] 
+ **parentId** | [**String**](.md) | Specify this to localize the search to a specific item or folder. Omit to use the root. | [optional] 
  **fields** | [**[ItemFields]**](ItemFields.md) | Optional. Specify additional fields of information to return in the output. This allows multiple, comma delimeted. Options: Budget, Chapters, DateCreated, Genres, HomePageUrl, IndexOptions, MediaStreams, Overview, ParentId, Path, People, ProviderIds, PrimaryImageAspectRatio, Revenue, SortName, Studios, Taglines. | [optional] 
  **excludeItemTypes** | [**[String]**](String.md) | Optional. If specified, results will be filtered based on item type. This allows multiple, comma delimeted. | [optional] 
  **includeItemTypes** | [**[String]**](String.md) | Optional. If specified, results will be filtered based on the item type. This allows multiple, comma delimeted. | [optional] 
@@ -422,7 +422,7 @@ Name | Type | Description  | Notes
 
 Gets items based on a query.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -456,11 +456,11 @@ ItemsAPI.getResumeItems(userId: userId, startIndex: startIndex, limit: limit, se
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | The user id. | 
+ **userId** | [**String**](.md) | The user id. | 
  **startIndex** | **Int** | The start index. | [optional] 
  **limit** | **Int** | The item limit. | [optional] 
  **searchTerm** | **String** | The search term. | [optional] 
- **parentId** | **String** | Specify this to localize the search to a specific item or folder. Omit to use the root. | [optional] 
+ **parentId** | [**String**](.md) | Specify this to localize the search to a specific item or folder. Omit to use the root. | [optional] 
  **fields** | [**[ItemFields]**](ItemFields.md) | Optional. Specify additional fields of information to return in the output. This allows multiple, comma delimited. Options: Budget, Chapters, DateCreated, Genres, HomePageUrl, IndexOptions, MediaStreams, Overview, ParentId, Path, People, ProviderIds, PrimaryImageAspectRatio, Revenue, SortName, Studios, Taglines. | [optional] 
  **mediaTypes** | [**[String]**](String.md) | Optional. Filter by MediaType. Allows multiple, comma delimited. | [optional] 
  **enableUserData** | **Bool** | Optional. Include user data. | [optional] 

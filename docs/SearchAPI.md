@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 Gets the search hint result.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -55,11 +55,11 @@ Name | Type | Description  | Notes
  **searchTerm** | **String** | The search term to filter on. | 
  **startIndex** | **Int** | Optional. The record index to start at. All items with a lower index will be dropped from the results. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 
- **userId** | **String** | Optional. Supply a user id to search within a user&#39;s library or omit to search all. | [optional] 
+ **userId** | [**String**](.md) | Optional. Supply a user id to search within a user&#39;s library or omit to search all. | [optional] 
  **includeItemTypes** | [**[String]**](String.md) | If specified, only results with the specified item types are returned. This allows multiple, comma delimeted. | [optional] 
  **excludeItemTypes** | [**[String]**](String.md) | If specified, results with these item types are filtered out. This allows multiple, comma delimeted. | [optional] 
  **mediaTypes** | [**[String]**](String.md) | If specified, only results with the specified media types are returned. This allows multiple, comma delimeted. | [optional] 
- **parentId** | **String** | If specified, only children of the parent are returned. | [optional] 
+ **parentId** | [**String**](.md) | If specified, only children of the parent are returned. | [optional] 
  **isMovie** | **Bool** | Optional filter for movies. | [optional] 
  **isSeries** | **Bool** | Optional filter for series. | [optional] 
  **isNews** | **Bool** | Optional filter for news. | [optional] 

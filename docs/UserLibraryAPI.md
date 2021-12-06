@@ -23,7 +23,7 @@ Method | HTTP request | Description
 
 Deletes a user's saved personal rating for an item.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -45,8 +45,8 @@ UserLibraryAPI.deleteUserItemRating(userId: userId, itemId: itemId).then {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | User id. | 
- **itemId** | **String** | Item id. | 
+ **userId** | [**String**](.md) | User id. | 
+ **itemId** | [**String**](.md) | Item id. | 
 
 ### Return type
 
@@ -70,7 +70,7 @@ Name | Type | Description  | Notes
 
 Gets intros to play before the main media item plays.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -92,8 +92,8 @@ UserLibraryAPI.getIntros(userId: userId, itemId: itemId).then {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | User id. | 
- **itemId** | **String** | Item id. | 
+ **userId** | [**String**](.md) | User id. | 
+ **itemId** | [**String**](.md) | Item id. | 
 
 ### Return type
 
@@ -117,7 +117,7 @@ Name | Type | Description  | Notes
 
 Gets an item from a user's library.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -139,8 +139,8 @@ UserLibraryAPI.getItem(userId: userId, itemId: itemId).then {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | User id. | 
- **itemId** | **String** | Item id. | 
+ **userId** | [**String**](.md) | User id. | 
+ **itemId** | [**String**](.md) | Item id. | 
 
 ### Return type
 
@@ -164,7 +164,7 @@ Name | Type | Description  | Notes
 
 Gets latest media.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -195,8 +195,8 @@ UserLibraryAPI.getLatestMedia(userId: userId, parentId: parentId, fields: fields
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | User id. | 
- **parentId** | **String** | Specify this to localize the search to a specific item or folder. Omit to use the root. | [optional] 
+ **userId** | [**String**](.md) | User id. | 
+ **parentId** | [**String**](.md) | Specify this to localize the search to a specific item or folder. Omit to use the root. | [optional] 
  **fields** | [**[ItemFields]**](ItemFields.md) | Optional. Specify additional fields of information to return in the output. | [optional] 
  **includeItemTypes** | [**[String]**](String.md) | Optional. If specified, results will be filtered based on item type. This allows multiple, comma delimited. | [optional] 
  **isPlayed** | **Bool** | Filter by items that are played, or not. | [optional] 
@@ -229,7 +229,7 @@ Name | Type | Description  | Notes
 
 Gets local trailers for an item.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -251,8 +251,8 @@ UserLibraryAPI.getLocalTrailers(userId: userId, itemId: itemId).then {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | User id. | 
- **itemId** | **String** | Item id. | 
+ **userId** | [**String**](.md) | User id. | 
+ **itemId** | [**String**](.md) | Item id. | 
 
 ### Return type
 
@@ -276,7 +276,7 @@ Name | Type | Description  | Notes
 
 Gets the root folder from a user's library.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -297,7 +297,7 @@ UserLibraryAPI.getRootFolder(userId: userId).then {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | User id. | 
+ **userId** | [**String**](.md) | User id. | 
 
 ### Return type
 
@@ -321,7 +321,7 @@ Name | Type | Description  | Notes
 
 Gets special features for an item.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -343,8 +343,8 @@ UserLibraryAPI.getSpecialFeatures(userId: userId, itemId: itemId).then {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | User id. | 
- **itemId** | **String** | Item id. | 
+ **userId** | [**String**](.md) | User id. | 
+ **itemId** | [**String**](.md) | Item id. | 
 
 ### Return type
 
@@ -368,7 +368,7 @@ Name | Type | Description  | Notes
 
 Marks an item as a favorite.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -390,8 +390,8 @@ UserLibraryAPI.markFavoriteItem(userId: userId, itemId: itemId).then {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | User id. | 
- **itemId** | **String** | Item id. | 
+ **userId** | [**String**](.md) | User id. | 
+ **itemId** | [**String**](.md) | Item id. | 
 
 ### Return type
 
@@ -415,7 +415,7 @@ Name | Type | Description  | Notes
 
 Unmarks item as a favorite.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -437,8 +437,8 @@ UserLibraryAPI.unmarkFavoriteItem(userId: userId, itemId: itemId).then {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | User id. | 
- **itemId** | **String** | Item id. | 
+ **userId** | [**String**](.md) | User id. | 
+ **itemId** | [**String**](.md) | Item id. | 
 
 ### Return type
 
@@ -462,7 +462,7 @@ Name | Type | Description  | Notes
 
 Updates a user's rating for an item.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -485,8 +485,8 @@ UserLibraryAPI.updateUserItemRating(userId: userId, itemId: itemId, likes: likes
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | User id. | 
- **itemId** | **String** | Item id. | 
+ **userId** | [**String**](.md) | User id. | 
+ **itemId** | [**String**](.md) | Item id. | 
  **likes** | **Bool** | Whether this M:Jellyfin.Api.Controllers.UserLibraryController.UpdateUserItemRating(System.Guid,System.Guid,System.Nullable{System.Boolean}) is likes. | [optional] 
 
 ### Return type

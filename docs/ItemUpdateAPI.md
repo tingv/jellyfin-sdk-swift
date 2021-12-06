@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 Gets metadata editor info for an item.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -37,7 +37,7 @@ ItemUpdateAPI.getMetadataEditorInfo(itemId: itemId).then {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | The item id. | 
+ **itemId** | [**String**](.md) | The item id. | 
 
 ### Return type
 
@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 
 Updates an item.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -83,7 +83,7 @@ ItemUpdateAPI.updateItem(itemId: itemId, baseItemDto: baseItemDto).then {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | The item id. | 
+ **itemId** | [**String**](.md) | The item id. | 
  **baseItemDto** | [**BaseItemDto**](BaseItemDto.md) | The new item properties. | 
 
 ### Return type
@@ -108,7 +108,7 @@ Void (empty response body)
 
 Updates an item's content type.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -130,7 +130,7 @@ ItemUpdateAPI.updateItemContentType(itemId: itemId, contentType: contentType).th
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | The item id. | 
+ **itemId** | [**String**](.md) | The item id. | 
  **contentType** | **String** | The content type of the item. | [optional] 
 
 ### Return type

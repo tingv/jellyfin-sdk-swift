@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 Get Display Preferences.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -39,7 +39,7 @@ DisplayPreferencesAPI.getDisplayPreferences(displayPreferencesId: displayPrefere
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **displayPreferencesId** | **String** | Display preferences id. | 
- **userId** | **String** | User id. | 
+ **userId** | [**String**](.md) | User id. | 
  **client** | **String** | Client. | 
 
 ### Return type
@@ -64,7 +64,7 @@ Name | Type | Description  | Notes
 
 Update Display Preferences.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -89,7 +89,7 @@ DisplayPreferencesAPI.updateDisplayPreferences(displayPreferencesId: displayPref
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **displayPreferencesId** | **String** | Display preferences id. | 
- **userId** | **String** | User Id. | 
+ **userId** | [**String**](.md) | User Id. | 
  **client** | **String** | Client. | 
  **displayPreferencesDto** | [**DisplayPreferencesDto**](DisplayPreferencesDto.md) | New Display Preferences object. | 
 

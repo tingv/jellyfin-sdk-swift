@@ -38,7 +38,7 @@ Method | HTTP request | Description
 
 Deletes an item from the library and filesystem.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -59,7 +59,7 @@ LibraryAPI.deleteItem(itemId: itemId).then {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | The item id. | 
+ **itemId** | [**String**](.md) | The item id. | 
 
 ### Return type
 
@@ -83,7 +83,7 @@ Void (empty response body)
 
 Deletes items from the library and filesystem.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -128,7 +128,7 @@ Void (empty response body)
 
 Gets all parents of an item.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -150,8 +150,8 @@ LibraryAPI.getAncestors(itemId: itemId, userId: userId).then {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | The item id. | 
- **userId** | **String** | Optional. Filter by user id, and attach user data. | [optional] 
+ **itemId** | [**String**](.md) | The item id. | 
+ **userId** | [**String**](.md) | Optional. Filter by user id, and attach user data. | [optional] 
 
 ### Return type
 
@@ -175,7 +175,7 @@ Name | Type | Description  | Notes
 
 Gets critic review for an item.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -220,7 +220,7 @@ Name | Type | Description  | Notes
 
 Downloads item media.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -241,7 +241,7 @@ LibraryAPI.getDownload(itemId: itemId).then {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | The item id. | 
+ **itemId** | [**String**](.md) | The item id. | 
 
 ### Return type
 
@@ -265,7 +265,7 @@ Name | Type | Description  | Notes
 
 Get the original file of an item.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -286,7 +286,7 @@ LibraryAPI.getFile(itemId: itemId).then {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | The item id. | 
+ **itemId** | [**String**](.md) | The item id. | 
 
 ### Return type
 
@@ -310,7 +310,7 @@ Name | Type | Description  | Notes
 
 Get item counts.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -332,7 +332,7 @@ LibraryAPI.getItemCounts(userId: userId, isFavorite: isFavorite).then {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | Optional. Get counts from a specific user&#39;s library. | [optional] 
+ **userId** | [**String**](.md) | Optional. Get counts from a specific user&#39;s library. | [optional] 
  **isFavorite** | **Bool** | Optional. Get counts of favorite items. | [optional] 
 
 ### Return type
@@ -357,7 +357,7 @@ Name | Type | Description  | Notes
 
 Gets the library options info.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -404,7 +404,7 @@ Name | Type | Description  | Notes
 
 Gets all user media folders.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -449,7 +449,7 @@ Name | Type | Description  | Notes
 
 Gets a list of physical paths from virtual folders.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -490,7 +490,7 @@ This endpoint does not need any parameter.
 
 Gets similar items.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -515,9 +515,9 @@ LibraryAPI.getSimilarAlbums(itemId: itemId, excludeArtistIds: excludeArtistIds, 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | The item id. | 
+ **itemId** | [**String**](.md) | The item id. | 
  **excludeArtistIds** | [**[String]**](String.md) | Exclude artist ids. | [optional] 
- **userId** | **String** | Optional. Filter by user id, and attach user data. | [optional] 
+ **userId** | [**String**](.md) | Optional. Filter by user id, and attach user data. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 
  **fields** | [**[ItemFields]**](ItemFields.md) | Optional. Specify additional fields of information to return in the output. This allows multiple, comma delimited. Options: Budget, Chapters, DateCreated, Genres, HomePageUrl, IndexOptions, MediaStreams, Overview, ParentId, Path, People, ProviderIds, PrimaryImageAspectRatio, Revenue, SortName, Studios, Taglines, TrailerUrls. | [optional] 
 
@@ -543,7 +543,7 @@ Name | Type | Description  | Notes
 
 Gets similar items.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -568,9 +568,9 @@ LibraryAPI.getSimilarArtists(itemId: itemId, excludeArtistIds: excludeArtistIds,
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | The item id. | 
+ **itemId** | [**String**](.md) | The item id. | 
  **excludeArtistIds** | [**[String]**](String.md) | Exclude artist ids. | [optional] 
- **userId** | **String** | Optional. Filter by user id, and attach user data. | [optional] 
+ **userId** | [**String**](.md) | Optional. Filter by user id, and attach user data. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 
  **fields** | [**[ItemFields]**](ItemFields.md) | Optional. Specify additional fields of information to return in the output. This allows multiple, comma delimited. Options: Budget, Chapters, DateCreated, Genres, HomePageUrl, IndexOptions, MediaStreams, Overview, ParentId, Path, People, ProviderIds, PrimaryImageAspectRatio, Revenue, SortName, Studios, Taglines, TrailerUrls. | [optional] 
 
@@ -596,7 +596,7 @@ Name | Type | Description  | Notes
 
 Gets similar items.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -621,9 +621,9 @@ LibraryAPI.getSimilarItems(itemId: itemId, excludeArtistIds: excludeArtistIds, u
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | The item id. | 
+ **itemId** | [**String**](.md) | The item id. | 
  **excludeArtistIds** | [**[String]**](String.md) | Exclude artist ids. | [optional] 
- **userId** | **String** | Optional. Filter by user id, and attach user data. | [optional] 
+ **userId** | [**String**](.md) | Optional. Filter by user id, and attach user data. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 
  **fields** | [**[ItemFields]**](ItemFields.md) | Optional. Specify additional fields of information to return in the output. This allows multiple, comma delimited. Options: Budget, Chapters, DateCreated, Genres, HomePageUrl, IndexOptions, MediaStreams, Overview, ParentId, Path, People, ProviderIds, PrimaryImageAspectRatio, Revenue, SortName, Studios, Taglines, TrailerUrls. | [optional] 
 
@@ -649,7 +649,7 @@ Name | Type | Description  | Notes
 
 Gets similar items.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -674,9 +674,9 @@ LibraryAPI.getSimilarMovies(itemId: itemId, excludeArtistIds: excludeArtistIds, 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | The item id. | 
+ **itemId** | [**String**](.md) | The item id. | 
  **excludeArtistIds** | [**[String]**](String.md) | Exclude artist ids. | [optional] 
- **userId** | **String** | Optional. Filter by user id, and attach user data. | [optional] 
+ **userId** | [**String**](.md) | Optional. Filter by user id, and attach user data. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 
  **fields** | [**[ItemFields]**](ItemFields.md) | Optional. Specify additional fields of information to return in the output. This allows multiple, comma delimited. Options: Budget, Chapters, DateCreated, Genres, HomePageUrl, IndexOptions, MediaStreams, Overview, ParentId, Path, People, ProviderIds, PrimaryImageAspectRatio, Revenue, SortName, Studios, Taglines, TrailerUrls. | [optional] 
 
@@ -702,7 +702,7 @@ Name | Type | Description  | Notes
 
 Gets similar items.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -727,9 +727,9 @@ LibraryAPI.getSimilarShows(itemId: itemId, excludeArtistIds: excludeArtistIds, u
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | The item id. | 
+ **itemId** | [**String**](.md) | The item id. | 
  **excludeArtistIds** | [**[String]**](String.md) | Exclude artist ids. | [optional] 
- **userId** | **String** | Optional. Filter by user id, and attach user data. | [optional] 
+ **userId** | [**String**](.md) | Optional. Filter by user id, and attach user data. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 
  **fields** | [**[ItemFields]**](ItemFields.md) | Optional. Specify additional fields of information to return in the output. This allows multiple, comma delimited. Options: Budget, Chapters, DateCreated, Genres, HomePageUrl, IndexOptions, MediaStreams, Overview, ParentId, Path, People, ProviderIds, PrimaryImageAspectRatio, Revenue, SortName, Studios, Taglines, TrailerUrls. | [optional] 
 
@@ -755,7 +755,7 @@ Name | Type | Description  | Notes
 
 Gets similar items.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -780,9 +780,9 @@ LibraryAPI.getSimilarTrailers(itemId: itemId, excludeArtistIds: excludeArtistIds
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | The item id. | 
+ **itemId** | [**String**](.md) | The item id. | 
  **excludeArtistIds** | [**[String]**](String.md) | Exclude artist ids. | [optional] 
- **userId** | **String** | Optional. Filter by user id, and attach user data. | [optional] 
+ **userId** | [**String**](.md) | Optional. Filter by user id, and attach user data. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 
  **fields** | [**[ItemFields]**](ItemFields.md) | Optional. Specify additional fields of information to return in the output. This allows multiple, comma delimited. Options: Budget, Chapters, DateCreated, Genres, HomePageUrl, IndexOptions, MediaStreams, Overview, ParentId, Path, People, ProviderIds, PrimaryImageAspectRatio, Revenue, SortName, Studios, Taglines, TrailerUrls. | [optional] 
 
@@ -808,7 +808,7 @@ Name | Type | Description  | Notes
 
 Get theme songs and videos for an item.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -831,8 +831,8 @@ LibraryAPI.getThemeMedia(itemId: itemId, userId: userId, inheritFromParent: inhe
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | The item id. | 
- **userId** | **String** | Optional. Filter by user id, and attach user data. | [optional] 
+ **itemId** | [**String**](.md) | The item id. | 
+ **userId** | [**String**](.md) | Optional. Filter by user id, and attach user data. | [optional] 
  **inheritFromParent** | **Bool** | Optional. Determines whether or not parent items should be searched for theme media. | [optional] [default to false]
 
 ### Return type
@@ -857,7 +857,7 @@ Name | Type | Description  | Notes
 
 Get theme songs for an item.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -880,8 +880,8 @@ LibraryAPI.getThemeSongs(itemId: itemId, userId: userId, inheritFromParent: inhe
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | The item id. | 
- **userId** | **String** | Optional. Filter by user id, and attach user data. | [optional] 
+ **itemId** | [**String**](.md) | The item id. | 
+ **userId** | [**String**](.md) | Optional. Filter by user id, and attach user data. | [optional] 
  **inheritFromParent** | **Bool** | Optional. Determines whether or not parent items should be searched for theme media. | [optional] [default to false]
 
 ### Return type
@@ -906,7 +906,7 @@ Name | Type | Description  | Notes
 
 Get theme videos for an item.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -929,8 +929,8 @@ LibraryAPI.getThemeVideos(itemId: itemId, userId: userId, inheritFromParent: inh
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | The item id. | 
- **userId** | **String** | Optional. Filter by user id, and attach user data. | [optional] 
+ **itemId** | [**String**](.md) | The item id. | 
+ **userId** | [**String**](.md) | Optional. Filter by user id, and attach user data. | [optional] 
  **inheritFromParent** | **Bool** | Optional. Determines whether or not parent items should be searched for theme media. | [optional] [default to false]
 
 ### Return type
@@ -955,7 +955,7 @@ Name | Type | Description  | Notes
 
 Reports that new movies have been added by an external source.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -1002,7 +1002,7 @@ Void (empty response body)
 
 Reports that new episodes of a series have been added by an external source.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -1047,7 +1047,7 @@ Void (empty response body)
 
 Reports that new movies have been added by an external source.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -1092,7 +1092,7 @@ Void (empty response body)
 
 Reports that new movies have been added by an external source.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -1139,7 +1139,7 @@ Void (empty response body)
 
 Reports that new episodes of a series have been added by an external source.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -1184,7 +1184,7 @@ Void (empty response body)
 
 Starts a library scan.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient

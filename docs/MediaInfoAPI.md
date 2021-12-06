@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 Closes a media source.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -63,7 +63,7 @@ Void (empty response body)
 
 Tests the network with a request with the size of the bitrate.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -108,7 +108,7 @@ Name | Type | Description  | Notes
 
 Gets live playback media info for an item.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -130,8 +130,8 @@ MediaInfoAPI.getPlaybackInfo(itemId: itemId, userId: userId).then {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | The item id. | 
- **userId** | **String** | The user id. | 
+ **itemId** | [**String**](.md) | The item id. | 
+ **userId** | [**String**](.md) | The user id. | 
 
 ### Return type
 
@@ -157,7 +157,7 @@ Gets live playback media info for an item.
 
 For backwards compatibility parameters can be sent via Query or Body, with Query having higher precedence.  Query parameters are obsolete.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -193,8 +193,8 @@ MediaInfoAPI.getPostedPlaybackInfo(itemId: itemId, userId: userId, maxStreamingB
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | The item id. | 
- **userId** | **String** | The user id. | [optional] 
+ **itemId** | [**String**](.md) | The item id. | 
+ **userId** | [**String**](.md) | The user id. | [optional] 
  **maxStreamingBitrate** | **Int** | The maximum streaming bitrate. | [optional] 
  **startTimeTicks** | **Int64** | The start time in ticks. | [optional] 
  **audioStreamIndex** | **Int** | The audio stream index. | [optional] 
@@ -232,7 +232,7 @@ Name | Type | Description  | Notes
 
 Opens a media source.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -265,14 +265,14 @@ MediaInfoAPI.openLiveStream(openToken: openToken, userId: userId, playSessionId:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **openToken** | **String** | The open token. | [optional] 
- **userId** | **String** | The user id. | [optional] 
+ **userId** | [**String**](.md) | The user id. | [optional] 
  **playSessionId** | **String** | The play session id. | [optional] 
  **maxStreamingBitrate** | **Int** | The maximum streaming bitrate. | [optional] 
  **startTimeTicks** | **Int64** | The start time in ticks. | [optional] 
  **audioStreamIndex** | **Int** | The audio stream index. | [optional] 
  **subtitleStreamIndex** | **Int** | The subtitle stream index. | [optional] 
  **maxAudioChannels** | **Int** | The maximum number of audio channels. | [optional] 
- **itemId** | **String** | The item id. | [optional] 
+ **itemId** | [**String**](.md) | The item id. | [optional] 
  **enableDirectPlay** | **Bool** | Whether to enable direct play. Default: true. | [optional] 
  **enableDirectStream** | **Bool** | Whether to enable direct stream. Default: true. | [optional] 
  **openLiveStreamDto** | [**OpenLiveStreamDto**](OpenLiveStreamDto.md) | The open live stream dto. | [optional] 

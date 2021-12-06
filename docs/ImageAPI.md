@@ -51,7 +51,7 @@ Method | HTTP request | Description
 
 Delete an item's image.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -74,7 +74,7 @@ ImageAPI.deleteItemImage(itemId: itemId, imageType: imageType, imageIndex: image
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | Item id. | 
+ **itemId** | [**String**](.md) | Item id. | 
  **imageType** | [**ImageType**](.md) | Image type. | 
  **imageIndex** | **Int** | The image index. | [optional] 
 
@@ -100,7 +100,7 @@ Void (empty response body)
 
 Delete an item's image.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -123,7 +123,7 @@ ImageAPI.deleteItemImageByIndex(itemId: itemId, imageType: imageType, imageIndex
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | Item id. | 
+ **itemId** | [**String**](.md) | Item id. | 
  **imageType** | [**ImageType**](.md) | Image type. | 
  **imageIndex** | **Int** | The image index. | 
 
@@ -149,7 +149,7 @@ Void (empty response body)
 
 Delete the user's image.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -172,7 +172,7 @@ ImageAPI.deleteUserImage(userId: userId, imageType: imageType, index: index).the
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | User Id. | 
+ **userId** | [**String**](.md) | User Id. | 
  **imageType** | [**ImageType**](.md) | (Unused) Image type. | 
  **index** | **Int** | (Unused) Image index. | [optional] 
 
@@ -198,7 +198,7 @@ Void (empty response body)
 
 Delete the user's image.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -221,7 +221,7 @@ ImageAPI.deleteUserImageByIndex(userId: userId, imageType: imageType, index: ind
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | User Id. | 
+ **userId** | [**String**](.md) | User Id. | 
  **imageType** | [**ImageType**](.md) | (Unused) Image type. | 
  **index** | **Int** | (Unused) Image index. | 
 
@@ -247,7 +247,7 @@ Void (empty response body)
 
 Get artist image by name.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -328,7 +328,7 @@ No authorization required
 
 Get genre image by name.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -409,7 +409,7 @@ No authorization required
 
 Get genre image by name.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -490,7 +490,7 @@ No authorization required
 
 Gets the item's image.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -529,7 +529,7 @@ ImageAPI.getItemImage(itemId: itemId, imageType: imageType, maxWidth: maxWidth, 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | Item id. | 
+ **itemId** | [**String**](.md) | Item id. | 
  **imageType** | [**ImageType**](.md) | Image type. | 
  **maxWidth** | **Int** | The maximum image width to return. | [optional] 
  **maxHeight** | **Int** | The maximum image height to return. | [optional] 
@@ -571,7 +571,7 @@ No authorization required
 
 Gets the item's image.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -610,7 +610,7 @@ ImageAPI.getItemImage2(itemId: itemId, imageType: imageType, maxWidth: maxWidth,
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | Item id. | 
+ **itemId** | [**String**](.md) | Item id. | 
  **imageType** | [**ImageType**](.md) | Image type. | 
  **maxWidth** | **Int** | The maximum image width to return. | 
  **maxHeight** | **Int** | The maximum image height to return. | 
@@ -652,7 +652,7 @@ No authorization required
 
 Gets the item's image.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -691,7 +691,7 @@ ImageAPI.getItemImageByIndex(itemId: itemId, imageType: imageType, imageIndex: i
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | Item id. | 
+ **itemId** | [**String**](.md) | Item id. | 
  **imageType** | [**ImageType**](.md) | Image type. | 
  **imageIndex** | **Int** | Image index. | 
  **maxWidth** | **Int** | The maximum image width to return. | [optional] 
@@ -733,7 +733,7 @@ No authorization required
 
 Get item image infos.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -754,7 +754,7 @@ ImageAPI.getItemImageInfos(itemId: itemId).then {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | Item id. | 
+ **itemId** | [**String**](.md) | Item id. | 
 
 ### Return type
 
@@ -778,7 +778,7 @@ Name | Type | Description  | Notes
 
 Get music genre image by name.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -859,7 +859,7 @@ No authorization required
 
 Get music genre image by name.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -940,7 +940,7 @@ No authorization required
 
 Get person image by name.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -1021,7 +1021,7 @@ No authorization required
 
 Get person image by name.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -1102,7 +1102,7 @@ No authorization required
 
 Get studio image by name.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -1183,7 +1183,7 @@ No authorization required
 
 Get studio image by name.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -1264,7 +1264,7 @@ No authorization required
 
 Get user profile image.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -1303,7 +1303,7 @@ ImageAPI.getUserImage(userId: userId, imageType: imageType, tag: tag, format: fo
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | User id. | 
+ **userId** | [**String**](.md) | User id. | 
  **imageType** | [**ImageType**](.md) | Image type. | 
  **tag** | **String** | Optional. Supply the cache tag from the item object to receive strong caching headers. | [optional] 
  **format** | [**ImageFormat**](.md) | Determines the output format of the image - original,gif,jpg,png. | [optional] 
@@ -1345,7 +1345,7 @@ No authorization required
 
 Get user profile image.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -1384,7 +1384,7 @@ ImageAPI.getUserImageByIndex(userId: userId, imageType: imageType, imageIndex: i
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | User id. | 
+ **userId** | [**String**](.md) | User id. | 
  **imageType** | [**ImageType**](.md) | Image type. | 
  **imageIndex** | **Int** | Image index. | 
  **tag** | **String** | Optional. Supply the cache tag from the item object to receive strong caching headers. | [optional] 
@@ -1426,7 +1426,7 @@ No authorization required
 
 Get artist image by name.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -1507,7 +1507,7 @@ No authorization required
 
 Get genre image by name.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -1588,7 +1588,7 @@ No authorization required
 
 Get genre image by name.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -1669,7 +1669,7 @@ No authorization required
 
 Gets the item's image.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -1708,7 +1708,7 @@ ImageAPI.headItemImage(itemId: itemId, imageType: imageType, maxWidth: maxWidth,
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | Item id. | 
+ **itemId** | [**String**](.md) | Item id. | 
  **imageType** | [**ImageType**](.md) | Image type. | 
  **maxWidth** | **Int** | The maximum image width to return. | [optional] 
  **maxHeight** | **Int** | The maximum image height to return. | [optional] 
@@ -1750,7 +1750,7 @@ No authorization required
 
 Gets the item's image.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -1789,7 +1789,7 @@ ImageAPI.headItemImage2(itemId: itemId, imageType: imageType, maxWidth: maxWidth
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | Item id. | 
+ **itemId** | [**String**](.md) | Item id. | 
  **imageType** | [**ImageType**](.md) | Image type. | 
  **maxWidth** | **Int** | The maximum image width to return. | 
  **maxHeight** | **Int** | The maximum image height to return. | 
@@ -1831,7 +1831,7 @@ No authorization required
 
 Gets the item's image.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -1870,7 +1870,7 @@ ImageAPI.headItemImageByIndex(itemId: itemId, imageType: imageType, imageIndex: 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | Item id. | 
+ **itemId** | [**String**](.md) | Item id. | 
  **imageType** | [**ImageType**](.md) | Image type. | 
  **imageIndex** | **Int** | Image index. | 
  **maxWidth** | **Int** | The maximum image width to return. | [optional] 
@@ -1912,7 +1912,7 @@ No authorization required
 
 Get music genre image by name.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -1993,7 +1993,7 @@ No authorization required
 
 Get music genre image by name.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -2074,7 +2074,7 @@ No authorization required
 
 Get person image by name.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -2155,7 +2155,7 @@ No authorization required
 
 Get person image by name.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -2236,7 +2236,7 @@ No authorization required
 
 Get studio image by name.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -2317,7 +2317,7 @@ No authorization required
 
 Get studio image by name.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -2398,7 +2398,7 @@ No authorization required
 
 Get user profile image.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -2437,7 +2437,7 @@ ImageAPI.headUserImage(userId: userId, imageType: imageType, tag: tag, format: f
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | User id. | 
+ **userId** | [**String**](.md) | User id. | 
  **imageType** | [**ImageType**](.md) | Image type. | 
  **tag** | **String** | Optional. Supply the cache tag from the item object to receive strong caching headers. | [optional] 
  **format** | [**ImageFormat**](.md) | Determines the output format of the image - original,gif,jpg,png. | [optional] 
@@ -2479,7 +2479,7 @@ No authorization required
 
 Get user profile image.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -2518,7 +2518,7 @@ ImageAPI.headUserImageByIndex(userId: userId, imageType: imageType, imageIndex: 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | User id. | 
+ **userId** | [**String**](.md) | User id. | 
  **imageType** | [**ImageType**](.md) | Image type. | 
  **imageIndex** | **Int** | Image index. | 
  **tag** | **String** | Optional. Supply the cache tag from the item object to receive strong caching headers. | [optional] 
@@ -2560,7 +2560,7 @@ No authorization required
 
 Sets the user image.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -2584,7 +2584,7 @@ ImageAPI.postUserImage(userId: userId, imageType: imageType, index: index, body:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | User Id. | 
+ **userId** | [**String**](.md) | User Id. | 
  **imageType** | [**ImageType**](.md) | (Unused) Image type. | 
  **index** | **Int** | (Unused) Image index. | [optional] 
  **body** | **URL** |  | [optional] 
@@ -2611,7 +2611,7 @@ Void (empty response body)
 
 Sets the user image.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -2635,7 +2635,7 @@ ImageAPI.postUserImageByIndex(userId: userId, imageType: imageType, index: index
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | User Id. | 
+ **userId** | [**String**](.md) | User Id. | 
  **imageType** | [**ImageType**](.md) | (Unused) Image type. | 
  **index** | **Int** | (Unused) Image index. | 
  **body** | **URL** |  | [optional] 
@@ -2662,7 +2662,7 @@ Void (empty response body)
 
 Set item image.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -2685,7 +2685,7 @@ ImageAPI.setItemImage(itemId: itemId, imageType: imageType, body: body).then {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | Item id. | 
+ **itemId** | [**String**](.md) | Item id. | 
  **imageType** | [**ImageType**](.md) | Image type. | 
  **body** | **URL** |  | [optional] 
 
@@ -2711,7 +2711,7 @@ Void (empty response body)
 
 Set item image.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -2735,7 +2735,7 @@ ImageAPI.setItemImageByIndex(itemId: itemId, imageType: imageType, imageIndex: i
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | Item id. | 
+ **itemId** | [**String**](.md) | Item id. | 
  **imageType** | [**ImageType**](.md) | Image type. | 
  **imageIndex** | **Int** | (Unused) Image index. | 
  **body** | **URL** |  | [optional] 
@@ -2762,7 +2762,7 @@ Void (empty response body)
 
 Updates the index for an item image.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -2786,7 +2786,7 @@ ImageAPI.updateItemImageIndex(itemId: itemId, imageType: imageType, imageIndex: 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | Item id. | 
+ **itemId** | [**String**](.md) | Item id. | 
  **imageType** | [**ImageType**](.md) | Image type. | 
  **imageIndex** | **Int** | Old image index. | 
  **newIndex** | **Int** | New image index. | 

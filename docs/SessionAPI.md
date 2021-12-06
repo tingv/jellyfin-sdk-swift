@@ -29,7 +29,7 @@ Method | HTTP request | Description
 
 Adds an additional user to a session.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -52,7 +52,7 @@ SessionAPI.addUserToSession(sessionId: sessionId, userId: userId).then {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **sessionId** | **String** | The session id. | 
- **userId** | **String** | The user id. | 
+ **userId** | [**String**](.md) | The user id. | 
 
 ### Return type
 
@@ -76,7 +76,7 @@ Void (empty response body)
 
 Instructs a session to browse to an item or view.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -127,7 +127,7 @@ Void (empty response body)
 
 Get all auth providers.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -168,7 +168,7 @@ This endpoint does not need any parameter.
 
 Get all password reset providers.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -209,7 +209,7 @@ This endpoint does not need any parameter.
 
 Gets a list of sessions.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -232,7 +232,7 @@ SessionAPI.getSessions(controllableByUserId: controllableByUserId, deviceId: dev
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **controllableByUserId** | **String** | Filter by sessions that a given user is allowed to remote control. | [optional] 
+ **controllableByUserId** | [**String**](.md) | Filter by sessions that a given user is allowed to remote control. | [optional] 
  **deviceId** | **String** | Filter by device Id. | [optional] 
  **activeWithinSeconds** | **Int** | Optional. Filter by sessions that were active in the last n seconds. | [optional] 
 
@@ -258,7 +258,7 @@ Name | Type | Description  | Notes
 
 Instructs a session to play an item.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -317,7 +317,7 @@ Void (empty response body)
 
 Updates capabilities for a device.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -372,7 +372,7 @@ Void (empty response body)
 
 Updates capabilities for a device.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -419,7 +419,7 @@ Void (empty response body)
 
 Removes an additional user from a session.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -442,7 +442,7 @@ SessionAPI.removeUserFromSession(sessionId: sessionId, userId: userId).then {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **sessionId** | **String** | The session id. | 
- **userId** | **String** | The user id. | 
+ **userId** | [**String**](.md) | The user id. | 
 
 ### Return type
 
@@ -466,7 +466,7 @@ Void (empty response body)
 
 Reports that a session has ended.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -507,7 +507,7 @@ Void (empty response body)
 
 Reports that a session is viewing an item.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -554,7 +554,7 @@ Void (empty response body)
 
 Issues a full general command to a client.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -601,7 +601,7 @@ Void (empty response body)
 
 Issues a general command to a client.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -648,7 +648,7 @@ Void (empty response body)
 
 Issues a command to a client to display a message to the user.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -695,7 +695,7 @@ Void (empty response body)
 
 Issues a playstate command to a client.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -746,7 +746,7 @@ Void (empty response body)
 
 Issues a system command to a client.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient

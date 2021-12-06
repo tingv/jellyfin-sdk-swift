@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 Gets a year.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -38,7 +38,7 @@ YearsAPI.getYear(year: year, userId: userId).then {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **year** | **Int** | The year. | 
- **userId** | **String** | Optional. Filter by user id, and attach user data. | [optional] 
+ **userId** | [**String**](.md) | Optional. Filter by user id, and attach user data. | [optional] 
 
 ### Return type
 
@@ -62,7 +62,7 @@ Name | Type | Description  | Notes
 
 Get years.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -100,7 +100,7 @@ Name | Type | Description  | Notes
  **startIndex** | **Int** | Skips over a given number of items within the results. Use for paging. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 
  **sortOrder** | [**[APISortOrder]**](APISortOrder.md) | Sort Order - Ascending,Descending. | [optional] 
- **parentId** | **String** | Specify this to localize the search to a specific item or folder. Omit to use the root. | [optional] 
+ **parentId** | [**String**](.md) | Specify this to localize the search to a specific item or folder. Omit to use the root. | [optional] 
  **fields** | [**[ItemFields]**](ItemFields.md) | Optional. Specify additional fields of information to return in the output. | [optional] 
  **excludeItemTypes** | [**[String]**](String.md) | Optional. If specified, results will be excluded based on item type. This allows multiple, comma delimited. | [optional] 
  **includeItemTypes** | [**[String]**](String.md) | Optional. If specified, results will be included based on item type. This allows multiple, comma delimited. | [optional] 
@@ -109,7 +109,7 @@ Name | Type | Description  | Notes
  **enableUserData** | **Bool** | Optional. Include user data. | [optional] 
  **imageTypeLimit** | **Int** | Optional. The max number of images to return, per image type. | [optional] 
  **enableImageTypes** | [**[ImageType]**](ImageType.md) | Optional. The image types to include in the output. | [optional] 
- **userId** | **String** | User Id. | [optional] 
+ **userId** | [**String**](.md) | User Id. | [optional] 
  **recursive** | **Bool** | Search recursively. | [optional] [default to true]
  **enableImages** | **Bool** | Optional. Include image information in output. | [optional] [default to true]
 

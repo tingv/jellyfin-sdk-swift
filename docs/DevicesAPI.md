@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 Deletes a device.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -63,7 +63,7 @@ Void (empty response body)
 
 Get info for a device.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -108,7 +108,7 @@ Name | Type | Description  | Notes
 
 Get options for a device.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -153,7 +153,7 @@ Name | Type | Description  | Notes
 
 Get Devices.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -176,7 +176,7 @@ DevicesAPI.getDevices(supportsSync: supportsSync, userId: userId).then {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **supportsSync** | **Bool** | Gets or sets a value indicating whether [supports synchronize]. | [optional] 
- **userId** | **String** | Gets or sets the user identifier. | [optional] 
+ **userId** | [**String**](.md) | Gets or sets the user identifier. | [optional] 
 
 ### Return type
 
@@ -200,7 +200,7 @@ Name | Type | Description  | Notes
 
 Update device options.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient

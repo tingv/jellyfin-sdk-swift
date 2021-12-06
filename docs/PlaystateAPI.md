@@ -22,7 +22,7 @@ Method | HTTP request | Description
 
 Marks an item as played for user.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -45,8 +45,8 @@ PlaystateAPI.markPlayedItem(userId: userId, itemId: itemId, datePlayed: datePlay
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | User id. | 
- **itemId** | **String** | Item id. | 
+ **userId** | [**String**](.md) | User id. | 
+ **itemId** | [**String**](.md) | Item id. | 
  **datePlayed** | **Date** | Optional. The date the item was played. | [optional] 
 
 ### Return type
@@ -71,7 +71,7 @@ Name | Type | Description  | Notes
 
 Marks an item as unplayed for user.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -93,8 +93,8 @@ PlaystateAPI.markUnplayedItem(userId: userId, itemId: itemId).then {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | User id. | 
- **itemId** | **String** | Item id. | 
+ **userId** | [**String**](.md) | User id. | 
+ **itemId** | [**String**](.md) | Item id. | 
 
 ### Return type
 
@@ -118,7 +118,7 @@ Name | Type | Description  | Notes
 
 Reports a user's playback progress.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -151,8 +151,8 @@ PlaystateAPI.onPlaybackProgress(userId: userId, itemId: itemId, mediaSourceId: m
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | User id. | 
- **itemId** | **String** | Item id. | 
+ **userId** | [**String**](.md) | User id. | 
+ **itemId** | [**String**](.md) | Item id. | 
  **mediaSourceId** | **String** | The id of the MediaSource. | [optional] 
  **positionTicks** | **Int64** | Optional. The current position, in ticks. 1 tick &#x3D; 10000 ms. | [optional] 
  **audioStreamIndex** | **Int** | The audio stream index. | [optional] 
@@ -187,7 +187,7 @@ Void (empty response body)
 
 Reports that a user has begun playing an item.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -216,8 +216,8 @@ PlaystateAPI.onPlaybackStart(userId: userId, itemId: itemId, mediaSourceId: medi
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | User id. | 
- **itemId** | **String** | Item id. | 
+ **userId** | [**String**](.md) | User id. | 
+ **itemId** | [**String**](.md) | Item id. | 
  **mediaSourceId** | **String** | The id of the MediaSource. | [optional] 
  **audioStreamIndex** | **Int** | The audio stream index. | [optional] 
  **subtitleStreamIndex** | **Int** | The subtitle stream index. | [optional] 
@@ -248,7 +248,7 @@ Void (empty response body)
 
 Reports that a user has stopped playing an item.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -275,8 +275,8 @@ PlaystateAPI.onPlaybackStopped(userId: userId, itemId: itemId, mediaSourceId: me
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | User id. | 
- **itemId** | **String** | Item id. | 
+ **userId** | [**String**](.md) | User id. | 
+ **itemId** | [**String**](.md) | Item id. | 
  **mediaSourceId** | **String** | The id of the MediaSource. | [optional] 
  **nextMediaType** | **String** | The next media type that will play. | [optional] 
  **positionTicks** | **Int64** | Optional. The position, in ticks, where playback stopped. 1 tick &#x3D; 10000 ms. | [optional] 
@@ -305,7 +305,7 @@ Void (empty response body)
 
 Pings a playback session.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -350,7 +350,7 @@ Void (empty response body)
 
 Reports playback progress within a session.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -395,7 +395,7 @@ Void (empty response body)
 
 Reports playback has started within a session.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -440,7 +440,7 @@ Void (empty response body)
 
 Reports playback has stopped within a session.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient

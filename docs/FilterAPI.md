@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 Gets query filters.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -45,8 +45,8 @@ FilterAPI.getQueryFilters(userId: userId, parentId: parentId, includeItemTypes: 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | Optional. User id. | [optional] 
- **parentId** | **String** | Optional. Specify this to localize the search to a specific item or folder. Omit to use the root. | [optional] 
+ **userId** | [**String**](.md) | Optional. User id. | [optional] 
+ **parentId** | [**String**](.md) | Optional. Specify this to localize the search to a specific item or folder. Omit to use the root. | [optional] 
  **includeItemTypes** | [**[String]**](String.md) | Optional. If specified, results will be filtered based on item type. This allows multiple, comma delimited. | [optional] 
  **isAiring** | **Bool** | Optional. Is item airing. | [optional] 
  **isMovie** | **Bool** | Optional. Is item movie. | [optional] 
@@ -78,7 +78,7 @@ Name | Type | Description  | Notes
 
 Gets legacy query filters.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -102,8 +102,8 @@ FilterAPI.getQueryFiltersLegacy(userId: userId, parentId: parentId, includeItemT
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | Optional. User id. | [optional] 
- **parentId** | **String** | Optional. Parent id. | [optional] 
+ **userId** | [**String**](.md) | Optional. User id. | [optional] 
+ **parentId** | [**String**](.md) | Optional. Parent id. | [optional] 
  **includeItemTypes** | [**[String]**](String.md) | Optional. If specified, results will be filtered based on item type. This allows multiple, comma delimited. | [optional] 
  **mediaTypes** | [**[String]**](String.md) | Optional. Filter by MediaType. Allows multiple, comma delimited. | [optional] 
 

@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 Cancels a package installation.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -40,7 +40,7 @@ PackageAPI.cancelPackageInstallation(packageId: packageId).then {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **packageId** | **String** | Installation Id. | 
+ **packageId** | [**String**](.md) | Installation Id. | 
 
 ### Return type
 
@@ -64,7 +64,7 @@ Void (empty response body)
 
 Gets a package by name or assembly GUID.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -87,7 +87,7 @@ PackageAPI.getPackageInfo(name: name, assemblyGuid: assemblyGuid).then {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **String** | The name of the package. | 
- **assemblyGuid** | **String** | The GUID of the associated assembly. | [optional] 
+ **assemblyGuid** | [**String**](.md) | The GUID of the associated assembly. | [optional] 
 
 ### Return type
 
@@ -111,7 +111,7 @@ Name | Type | Description  | Notes
 
 Gets available packages.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -152,7 +152,7 @@ This endpoint does not need any parameter.
 
 Gets all package repositories.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -193,7 +193,7 @@ This endpoint does not need any parameter.
 
 Installs a package.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -218,7 +218,7 @@ PackageAPI.installPackage(name: name, assemblyGuid: assemblyGuid, version: versi
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **String** | Package name. | 
- **assemblyGuid** | **String** | GUID of the associated assembly. | [optional] 
+ **assemblyGuid** | [**String**](.md) | GUID of the associated assembly. | [optional] 
  **version** | **String** | Optional version. Defaults to latest version. | [optional] 
  **repositoryUrl** | **String** | Optional. Specify the repository to install from. | [optional] 
 
@@ -244,7 +244,7 @@ Void (empty response body)
 
 Sets the enabled and existing package repositories.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient

@@ -29,7 +29,7 @@ Method | HTTP request | Description
 
 Authenticates a user.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -52,7 +52,7 @@ UserAPI.authenticateUser(userId: userId, pw: pw, password: password).then {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | The user id. | 
+ **userId** | [**String**](.md) | The user id. | 
  **pw** | **String** | The password as plain text. | 
  **password** | **String** | The password sha1-hash. | [optional] 
 
@@ -78,7 +78,7 @@ No authorization required
 
 Authenticates a user by name.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -123,7 +123,7 @@ No authorization required
 
 Authenticates a user with quick connect.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -168,7 +168,7 @@ No authorization required
 
 Creates a user.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -213,7 +213,7 @@ Name | Type | Description  | Notes
 
 Deletes a user.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -234,7 +234,7 @@ UserAPI.deleteUser(userId: userId).then {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | The user id. | 
+ **userId** | [**String**](.md) | The user id. | 
 
 ### Return type
 
@@ -258,7 +258,7 @@ Void (empty response body)
 
 Initiates the forgot password process for a local user.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -303,7 +303,7 @@ No authorization required
 
 Redeems a forgot password pin.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -348,7 +348,7 @@ No authorization required
 
 Gets the user based on auth token.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -389,7 +389,7 @@ This endpoint does not need any parameter.
 
 Gets a list of publicly visible users for display on a login screen.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -430,7 +430,7 @@ No authorization required
 
 Gets a user by Id.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -451,7 +451,7 @@ UserAPI.getUserById(userId: userId).then {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | The user id. | 
+ **userId** | [**String**](.md) | The user id. | 
 
 ### Return type
 
@@ -475,7 +475,7 @@ Name | Type | Description  | Notes
 
 Gets a list of users.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -522,7 +522,7 @@ Name | Type | Description  | Notes
 
 Updates a user.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -544,7 +544,7 @@ UserAPI.updateUser(userId: userId, userDto: userDto).then {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | The user id. | 
+ **userId** | [**String**](.md) | The user id. | 
  **userDto** | [**UserDto**](UserDto.md) | The updated user model. | 
 
 ### Return type
@@ -569,7 +569,7 @@ Void (empty response body)
 
 Updates a user configuration.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -591,7 +591,7 @@ UserAPI.updateUserConfiguration(userId: userId, userConfiguration: userConfigura
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | The user id. | 
+ **userId** | [**String**](.md) | The user id. | 
  **userConfiguration** | [**UserConfiguration**](UserConfiguration.md) | The new user configuration. | 
 
 ### Return type
@@ -616,7 +616,7 @@ Void (empty response body)
 
 Updates a user's easy password.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -638,7 +638,7 @@ UserAPI.updateUserEasyPassword(userId: userId, updateUserEasyPassword: updateUse
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | The user id. | 
+ **userId** | [**String**](.md) | The user id. | 
  **updateUserEasyPassword** | [**UpdateUserEasyPassword**](UpdateUserEasyPassword.md) | The M:Jellyfin.Api.Controllers.UserController.UpdateUserEasyPassword(System.Guid,Jellyfin.Api.Models.UserDtos.UpdateUserEasyPassword) request. | 
 
 ### Return type
@@ -663,7 +663,7 @@ Void (empty response body)
 
 Updates a user's password.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -685,7 +685,7 @@ UserAPI.updateUserPassword(userId: userId, updateUserPassword: updateUserPasswor
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | The user id. | 
+ **userId** | [**String**](.md) | The user id. | 
  **updateUserPassword** | [**UpdateUserPassword**](UpdateUserPassword.md) | The M:Jellyfin.Api.Controllers.UserController.UpdateUserPassword(System.Guid,Jellyfin.Api.Models.UserDtos.UpdateUserPassword) request. | 
 
 ### Return type
@@ -710,7 +710,7 @@ Void (empty response body)
 
 Updates a user policy.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -732,7 +732,7 @@ UserAPI.updateUserPolicy(userId: userId, userPolicy: userPolicy).then {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | The user id. | 
+ **userId** | [**String**](.md) | The user id. | 
  **userPolicy** | [**UserPolicy**](UserPolicy.md) | The new user policy. | 
 
 ### Return type

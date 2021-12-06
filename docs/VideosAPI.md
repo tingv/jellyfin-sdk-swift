@@ -20,7 +20,7 @@ Method | HTTP request | Description
 
 Removes alternate video sources.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -41,7 +41,7 @@ VideosAPI.deleteAlternateSources(itemId: itemId).then {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | The item id. | 
+ **itemId** | [**String**](.md) | The item id. | 
 
 ### Return type
 
@@ -65,7 +65,7 @@ Void (empty response body)
 
 Gets additional parts for a video.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -87,8 +87,8 @@ VideosAPI.getAdditionalPart(itemId: itemId, userId: userId).then {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | The item id. | 
- **userId** | **String** | Optional. Filter by user id, and attach user data. | [optional] 
+ **itemId** | [**String**](.md) | The item id. | 
+ **userId** | [**String**](.md) | Optional. Filter by user id, and attach user data. | [optional] 
 
 ### Return type
 
@@ -112,7 +112,7 @@ Name | Type | Description  | Notes
 
 Gets a video stream.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -181,7 +181,7 @@ VideosAPI.getVideoStream(itemId: itemId, container: container, _static: _static,
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | The item id. | 
+ **itemId** | [**String**](.md) | The item id. | 
  **container** | **String** | The video container. Possible values are: ts, webm, asf, wmv, ogv, mp4, m4v, mkv, mpeg, mpg, avi, 3gp, wmv, wtv, m2ts, mov, iso, flv. | [optional] 
  **_static** | **Bool** | Optional. If true, the original file will be streamed statically without any encoding. Use either no url extension or the original file extension. true/false. | [optional] 
  **params** | **String** | The streaming parameters. | [optional] 
@@ -253,7 +253,7 @@ No authorization required
 
 Gets a video stream.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -322,7 +322,7 @@ VideosAPI.getVideoStreamByContainer(itemId: itemId, container: container, _stati
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | The item id. | 
+ **itemId** | [**String**](.md) | The item id. | 
  **container** | **String** | The video container. Possible values are: ts, webm, asf, wmv, ogv, mp4, m4v, mkv, mpeg, mpg, avi, 3gp, wmv, wtv, m2ts, mov, iso, flv. | 
  **_static** | **Bool** | Optional. If true, the original file will be streamed statically without any encoding. Use either no url extension or the original file extension. true/false. | [optional] 
  **params** | **String** | The streaming parameters. | [optional] 
@@ -394,7 +394,7 @@ No authorization required
 
 Gets a video stream.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -463,7 +463,7 @@ VideosAPI.headVideoStream(itemId: itemId, container: container, _static: _static
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | The item id. | 
+ **itemId** | [**String**](.md) | The item id. | 
  **container** | **String** | The video container. Possible values are: ts, webm, asf, wmv, ogv, mp4, m4v, mkv, mpeg, mpg, avi, 3gp, wmv, wtv, m2ts, mov, iso, flv. | [optional] 
  **_static** | **Bool** | Optional. If true, the original file will be streamed statically without any encoding. Use either no url extension or the original file extension. true/false. | [optional] 
  **params** | **String** | The streaming parameters. | [optional] 
@@ -535,7 +535,7 @@ No authorization required
 
 Gets a video stream.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -604,7 +604,7 @@ VideosAPI.headVideoStreamByContainer(itemId: itemId, container: container, _stat
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | The item id. | 
+ **itemId** | [**String**](.md) | The item id. | 
  **container** | **String** | The video container. Possible values are: ts, webm, asf, wmv, ogv, mp4, m4v, mkv, mpeg, mpg, avi, 3gp, wmv, wtv, m2ts, mov, iso, flv. | 
  **_static** | **Bool** | Optional. If true, the original file will be streamed statically without any encoding. Use either no url extension or the original file extension. true/false. | [optional] 
  **params** | **String** | The streaming parameters. | [optional] 
@@ -676,7 +676,7 @@ No authorization required
 
 Merges videos into a single record.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient

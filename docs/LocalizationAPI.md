@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 Gets known countries.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -58,7 +58,7 @@ This endpoint does not need any parameter.
 
 Gets known cultures.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -99,7 +99,7 @@ This endpoint does not need any parameter.
 
 Gets localization options.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -140,7 +140,7 @@ This endpoint does not need any parameter.
 
 Gets known parental ratings.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient

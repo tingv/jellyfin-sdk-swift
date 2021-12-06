@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 Gets activity log entries.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient

@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 Get all channel features.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -59,7 +59,7 @@ This endpoint does not need any parameter.
 
 Get channel features.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -80,7 +80,7 @@ ChannelsAPI.getChannelFeatures(channelId: channelId).then {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **channelId** | **String** | Channel id. | 
+ **channelId** | [**String**](.md) | Channel id. | 
 
 ### Return type
 
@@ -104,7 +104,7 @@ Name | Type | Description  | Notes
 
 Get channel items.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -133,9 +133,9 @@ ChannelsAPI.getChannelItems(channelId: channelId, folderId: folderId, userId: us
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **channelId** | **String** | Channel Id. | 
- **folderId** | **String** | Optional. Folder Id. | [optional] 
- **userId** | **String** | Optional. User Id. | [optional] 
+ **channelId** | [**String**](.md) | Channel Id. | 
+ **folderId** | [**String**](.md) | Optional. Folder Id. | [optional] 
+ **userId** | [**String**](.md) | Optional. User Id. | [optional] 
  **startIndex** | **Int** | Optional. The record index to start at. All items with a lower index will be dropped from the results. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 
  **sortOrder** | [**[APISortOrder]**](APISortOrder.md) | Optional. Sort Order - Ascending,Descending. | [optional] 
@@ -165,7 +165,7 @@ Name | Type | Description  | Notes
 
 Gets available channels.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -191,7 +191,7 @@ ChannelsAPI.getChannels(userId: userId, startIndex: startIndex, limit: limit, su
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | User Id to filter by. Use System.Guid.Empty to not filter by user. | [optional] 
+ **userId** | [**String**](.md) | User Id to filter by. Use System.Guid.Empty to not filter by user. | [optional] 
  **startIndex** | **Int** | Optional. The record index to start at. All items with a lower index will be dropped from the results. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 
  **supportsLatestItems** | **Bool** | Optional. Filter by channels that support getting latest items. | [optional] 
@@ -220,7 +220,7 @@ Name | Type | Description  | Notes
 
 Gets latest channel items.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -246,7 +246,7 @@ ChannelsAPI.getLatestChannelItems(userId: userId, startIndex: startIndex, limit:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | Optional. User Id. | [optional] 
+ **userId** | [**String**](.md) | Optional. User Id. | [optional] 
  **startIndex** | **Int** | Optional. The record index to start at. All items with a lower index will be dropped from the results. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 
  **filters** | [**[ItemFilter]**](ItemFilter.md) | Optional. Specify additional filters to apply. | [optional] 

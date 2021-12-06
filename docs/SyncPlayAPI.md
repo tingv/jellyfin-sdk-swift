@@ -34,7 +34,7 @@ Method | HTTP request | Description
 
 Notify SyncPlay group that member is buffering.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -79,7 +79,7 @@ Void (empty response body)
 
 Create a new SyncPlay group.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -124,7 +124,7 @@ Void (empty response body)
 
 Gets all SyncPlay groups.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -165,7 +165,7 @@ This endpoint does not need any parameter.
 
 Join an existing SyncPlay group.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -210,7 +210,7 @@ Void (empty response body)
 
 Leave the joined SyncPlay group.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -251,7 +251,7 @@ Void (empty response body)
 
 Request to move an item in the playlist in SyncPlay group.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -296,7 +296,7 @@ Void (empty response body)
 
 Request next item in SyncPlay group.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -341,7 +341,7 @@ Void (empty response body)
 
 Request pause in SyncPlay group.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -382,7 +382,7 @@ Void (empty response body)
 
 Update session ping.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -427,7 +427,7 @@ Void (empty response body)
 
 Request previous item in SyncPlay group.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -472,7 +472,7 @@ Void (empty response body)
 
 Request to queue items to the playlist of a SyncPlay group.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -517,7 +517,7 @@ Void (empty response body)
 
 Notify SyncPlay group that member is ready for playback.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -562,7 +562,7 @@ Void (empty response body)
 
 Request to remove items from the playlist in SyncPlay group.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -607,7 +607,7 @@ Void (empty response body)
 
 Request seek in SyncPlay group.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -652,7 +652,7 @@ Void (empty response body)
 
 Request SyncPlay group to ignore member during group-wait.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -697,7 +697,7 @@ Void (empty response body)
 
 Request to set new playlist in SyncPlay group.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -742,7 +742,7 @@ Void (empty response body)
 
 Request to change playlist item in SyncPlay group.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -787,7 +787,7 @@ Void (empty response body)
 
 Request to set repeat mode in SyncPlay group.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -832,7 +832,7 @@ Void (empty response body)
 
 Request to set shuffle mode in SyncPlay group.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -877,7 +877,7 @@ Void (empty response body)
 
 Request stop in SyncPlay group.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -918,7 +918,7 @@ Void (empty response body)
 
 Request unpause in SyncPlay group.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient

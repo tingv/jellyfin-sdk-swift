@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 Gets a music genre, by name.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -38,7 +38,7 @@ MusicGenresAPI.getMusicGenre(genreName: genreName, userId: userId).then {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **genreName** | **String** | The genre name. | 
- **userId** | **String** | Optional. Filter by user id, and attach user data. | [optional] 
+ **userId** | [**String**](.md) | Optional. Filter by user id, and attach user data. | [optional] 
 
 ### Return type
 
@@ -62,7 +62,7 @@ Name | Type | Description  | Notes
 
 Gets all music genres from a given item, folder, or the entire library.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -101,14 +101,14 @@ Name | Type | Description  | Notes
  **startIndex** | **Int** | Optional. The record index to start at. All items with a lower index will be dropped from the results. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 
  **searchTerm** | **String** | The search term. | [optional] 
- **parentId** | **String** | Specify this to localize the search to a specific item or folder. Omit to use the root. | [optional] 
+ **parentId** | [**String**](.md) | Specify this to localize the search to a specific item or folder. Omit to use the root. | [optional] 
  **fields** | [**[ItemFields]**](ItemFields.md) | Optional. Specify additional fields of information to return in the output. | [optional] 
  **excludeItemTypes** | [**[String]**](String.md) | Optional. If specified, results will be filtered out based on item type. This allows multiple, comma delimited. | [optional] 
  **includeItemTypes** | [**[String]**](String.md) | Optional. If specified, results will be filtered in based on item type. This allows multiple, comma delimited. | [optional] 
  **isFavorite** | **Bool** | Optional filter by items that are marked as favorite, or not. | [optional] 
  **imageTypeLimit** | **Int** | Optional, the max number of images to return, per image type. | [optional] 
  **enableImageTypes** | [**[ImageType]**](ImageType.md) | Optional. The image types to include in the output. | [optional] 
- **userId** | **String** | User id. | [optional] 
+ **userId** | [**String**](.md) | User id. | [optional] 
  **nameStartsWithOrGreater** | **String** | Optional filter by items whose name is sorted equally or greater than a given input string. | [optional] 
  **nameStartsWith** | **String** | Optional filter by items whose name is sorted equally than a given input string. | [optional] 
  **nameLessThan** | **String** | Optional filter by items whose name is equally or lesser than a given input string. | [optional] 

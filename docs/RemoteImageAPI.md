@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 Downloads a remote image for an item.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -39,7 +39,7 @@ RemoteImageAPI.downloadRemoteImage(itemId: itemId, type: type, imageUrl: imageUr
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | Item Id. | 
+ **itemId** | [**String**](.md) | Item Id. | 
  **type** | [**ImageType**](.md) | The image type. | 
  **imageUrl** | **String** | The image url. | [optional] 
 
@@ -65,7 +65,7 @@ Void (empty response body)
 
 Gets available remote image providers for an item.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -86,7 +86,7 @@ RemoteImageAPI.getRemoteImageProviders(itemId: itemId).then {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | Item Id. | 
+ **itemId** | [**String**](.md) | Item Id. | 
 
 ### Return type
 
@@ -110,7 +110,7 @@ Name | Type | Description  | Notes
 
 Gets available remote images for an item.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -136,7 +136,7 @@ RemoteImageAPI.getRemoteImages(itemId: itemId, type: type, startIndex: startInde
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | Item Id. | 
+ **itemId** | [**String**](.md) | Item Id. | 
  **type** | [**ImageType**](.md) | The image type. | [optional] 
  **startIndex** | **Int** | Optional. The record index to start at. All items with a lower index will be dropped from the results. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 

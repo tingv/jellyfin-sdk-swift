@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 Refreshes metadata for an item.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -39,7 +39,7 @@ ItemRefreshAPI.post(itemId: itemId, metadataRefreshMode: metadataRefreshMode, im
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | Item id. | 
+ **itemId** | [**String**](.md) | Item id. | 
  **metadataRefreshMode** | [**MetadataRefreshMode**](.md) | (Optional) Specifies the metadata refresh mode. | [optional] 
  **imageRefreshMode** | [**MetadataRefreshMode**](.md) | (Optional) Specifies the image refresh mode. | [optional] 
  **replaceAllMetadata** | **Bool** | (Optional) Determines if metadata should be replaced. Only applicable if mode is FullRefresh. | [optional] [default to false]

@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 Gets a hls live stream.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -86,7 +86,7 @@ VideoHlsAPI.getLiveHlsStream(itemId: itemId, container: container, _static: _sta
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | The item id. | 
+ **itemId** | [**String**](.md) | The item id. | 
  **container** | **String** | The audio container. | [optional] 
  **_static** | **Bool** | Optional. If true, the original file will be streamed statically without any encoding. Use either no url extension or the original file extension. true/false. | [optional] 
  **params** | **String** | The streaming parameters. | [optional] 

@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 Gets application configuration.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -60,7 +60,7 @@ This endpoint does not need any parameter.
 
 Gets a default MetadataOptions object.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -101,7 +101,7 @@ This endpoint does not need any parameter.
 
 Gets a named configuration.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -146,7 +146,7 @@ Name | Type | Description  | Notes
 
 Updates application configuration.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -191,7 +191,7 @@ Void (empty response body)
 
 Updates the path to the media encoder.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -236,7 +236,7 @@ Void (empty response body)
 
 Updates named configuration.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient

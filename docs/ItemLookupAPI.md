@@ -24,7 +24,7 @@ Method | HTTP request | Description
 
 Applies search criteria to an item and refreshes metadata.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -47,7 +47,7 @@ ItemLookupAPI.applySearchCriteria(itemId: itemId, remoteSearchResult: remoteSear
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | Item id. | 
+ **itemId** | [**String**](.md) | Item id. | 
  **remoteSearchResult** | [**RemoteSearchResult**](RemoteSearchResult.md) | The remote search result. | 
  **replaceAllImages** | **Bool** | Optional. Whether or not to replace all images. Default: True. | [optional] [default to true]
 
@@ -73,7 +73,7 @@ Void (empty response body)
 
 Get book remote search.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -118,7 +118,7 @@ Name | Type | Description  | Notes
 
 Get box set remote search.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -163,7 +163,7 @@ Name | Type | Description  | Notes
 
 Get the item's external id info.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -184,7 +184,7 @@ ItemLookupAPI.getExternalIdInfos(itemId: itemId).then {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | Item id. | 
+ **itemId** | [**String**](.md) | Item id. | 
 
 ### Return type
 
@@ -208,7 +208,7 @@ Name | Type | Description  | Notes
 
 Get movie remote search.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -253,7 +253,7 @@ Name | Type | Description  | Notes
 
 Get music album remote search.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -298,7 +298,7 @@ Name | Type | Description  | Notes
 
 Get music artist remote search.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -343,7 +343,7 @@ Name | Type | Description  | Notes
 
 Get music video remote search.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -388,7 +388,7 @@ Name | Type | Description  | Notes
 
 Get person remote search.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -433,7 +433,7 @@ Name | Type | Description  | Notes
 
 Get series remote search.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -478,7 +478,7 @@ Name | Type | Description  | Notes
 
 Get trailer remote search.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient

@@ -21,7 +21,7 @@ Method | HTTP request | Description
 
 Gets a video stream using HTTP live streaming.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -93,7 +93,7 @@ DynamicHlsAPI.getHlsAudioSegment(itemId: itemId, playlistId: playlistId, segment
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | The item id. | 
+ **itemId** | [**String**](.md) | The item id. | 
  **playlistId** | **String** | The playlist id. | 
  **segmentId** | **Int** | The segment id. | 
  **container** | **String** | The video container. Possible values are: ts, webm, asf, wmv, ogv, mp4, m4v, mkv, mpeg, mpg, avi, 3gp, wmv, wtv, m2ts, mov, iso, flv. | 
@@ -168,7 +168,7 @@ Name | Type | Description  | Notes
 
 Gets a video stream using HTTP live streaming.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -239,7 +239,7 @@ DynamicHlsAPI.getHlsVideoSegment(itemId: itemId, playlistId: playlistId, segment
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | The item id. | 
+ **itemId** | [**String**](.md) | The item id. | 
  **playlistId** | **String** | The playlist id. | 
  **segmentId** | **Int** | The segment id. | 
  **container** | **String** | The video container. Possible values are: ts, webm, asf, wmv, ogv, mp4, m4v, mkv, mpeg, mpg, avi, 3gp, wmv, wtv, m2ts, mov, iso, flv. | 
@@ -313,7 +313,7 @@ Name | Type | Description  | Notes
 
 Gets an audio hls playlist stream.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -383,7 +383,7 @@ DynamicHlsAPI.getMasterHlsAudioPlaylist(itemId: itemId, mediaSourceId: mediaSour
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | The item id. | 
+ **itemId** | [**String**](.md) | The item id. | 
  **mediaSourceId** | **String** | The media version id, if playing an alternate version. | 
  **_static** | **Bool** | Optional. If true, the original file will be streamed statically without any encoding. Use either no url extension or the original file extension. true/false. | [optional] 
  **params** | **String** | The streaming parameters. | [optional] 
@@ -456,7 +456,7 @@ Name | Type | Description  | Notes
 
 Gets a video hls playlist stream.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -525,7 +525,7 @@ DynamicHlsAPI.getMasterHlsVideoPlaylist(itemId: itemId, mediaSourceId: mediaSour
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | The item id. | 
+ **itemId** | [**String**](.md) | The item id. | 
  **mediaSourceId** | **String** | The media version id, if playing an alternate version. | 
  **_static** | **Bool** | Optional. If true, the original file will be streamed statically without any encoding. Use either no url extension or the original file extension. true/false. | [optional] 
  **params** | **String** | The streaming parameters. | [optional] 
@@ -597,7 +597,7 @@ Name | Type | Description  | Notes
 
 Gets an audio stream using HTTP live streaming.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -666,7 +666,7 @@ DynamicHlsAPI.getVariantHlsAudioPlaylist(itemId: itemId, _static: _static, param
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | The item id. | 
+ **itemId** | [**String**](.md) | The item id. | 
  **_static** | **Bool** | Optional. If true, the original file will be streamed statically without any encoding. Use either no url extension or the original file extension. true/false. | [optional] 
  **params** | **String** | The streaming parameters. | [optional] 
  **tag** | **String** | The tag. | [optional] 
@@ -738,7 +738,7 @@ Name | Type | Description  | Notes
 
 Gets a video stream using HTTP live streaming.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -806,7 +806,7 @@ DynamicHlsAPI.getVariantHlsVideoPlaylist(itemId: itemId, _static: _static, param
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | The item id. | 
+ **itemId** | [**String**](.md) | The item id. | 
  **_static** | **Bool** | Optional. If true, the original file will be streamed statically without any encoding. Use either no url extension or the original file extension. true/false. | [optional] 
  **params** | **String** | The streaming parameters. | [optional] 
  **tag** | **String** | The tag. | [optional] 
@@ -877,7 +877,7 @@ Name | Type | Description  | Notes
 
 Gets an audio hls playlist stream.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -947,7 +947,7 @@ DynamicHlsAPI.headMasterHlsAudioPlaylist(itemId: itemId, mediaSourceId: mediaSou
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | The item id. | 
+ **itemId** | [**String**](.md) | The item id. | 
  **mediaSourceId** | **String** | The media version id, if playing an alternate version. | 
  **_static** | **Bool** | Optional. If true, the original file will be streamed statically without any encoding. Use either no url extension or the original file extension. true/false. | [optional] 
  **params** | **String** | The streaming parameters. | [optional] 
@@ -1020,7 +1020,7 @@ Name | Type | Description  | Notes
 
 Gets a video hls playlist stream.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -1089,7 +1089,7 @@ DynamicHlsAPI.headMasterHlsVideoPlaylist(itemId: itemId, mediaSourceId: mediaSou
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | The item id. | 
+ **itemId** | [**String**](.md) | The item id. | 
  **mediaSourceId** | **String** | The media version id, if playing an alternate version. | 
  **_static** | **Bool** | Optional. If true, the original file will be streamed statically without any encoding. Use either no url extension or the original file extension. true/false. | [optional] 
  **params** | **String** | The streaming parameters. | [optional] 

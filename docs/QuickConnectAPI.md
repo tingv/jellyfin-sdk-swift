@@ -20,7 +20,7 @@ Method | HTTP request | Description
 
 Temporarily activates quick connect for five minutes.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -61,7 +61,7 @@ Void (empty response body)
 
 Authorizes a pending quick connect request.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -106,7 +106,7 @@ Name | Type | Description  | Notes
 
 Enables or disables quick connect.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -151,7 +151,7 @@ Void (empty response body)
 
 Attempts to retrieve authentication information.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -196,7 +196,7 @@ No authorization required
 
 Deauthorize all quick connect devices for the current user.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -237,7 +237,7 @@ This endpoint does not need any parameter.
 
 Gets the current quick connect state.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -278,7 +278,7 @@ No authorization required
 
 Initiate a new quick connect request.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient

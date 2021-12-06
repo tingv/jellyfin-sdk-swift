@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 Get user view grouping options.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -36,7 +36,7 @@ UserViewsAPI.getGroupingOptions(userId: userId).then {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | User id. | 
+ **userId** | [**String**](.md) | User id. | 
 
 ### Return type
 
@@ -60,7 +60,7 @@ No authorization required
 
 Get user views.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -84,7 +84,7 @@ UserViewsAPI.getUserViews(userId: userId, includeExternalContent: includeExterna
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | User id. | 
+ **userId** | [**String**](.md) | User id. | 
  **includeExternalContent** | **Bool** | Whether or not to include external views such as channels or live tv. | [optional] 
  **presetViews** | [**[String]**](String.md) | Preset views. | [optional] 
  **includeHidden** | **Bool** | Whether or not to include hidden content. | [optional] [default to false]

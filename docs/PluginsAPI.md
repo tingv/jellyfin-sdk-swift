@@ -23,7 +23,7 @@ Method | HTTP request | Description
 
 Disable a plugin.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -45,7 +45,7 @@ PluginsAPI.disablePlugin(pluginId: pluginId, version: version).then {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pluginId** | **String** | Plugin id. | 
+ **pluginId** | [**String**](.md) | Plugin id. | 
  **version** | [**Version**](.md) | Plugin version. | 
 
 ### Return type
@@ -70,7 +70,7 @@ Void (empty response body)
 
 Enables a disabled plugin.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -92,7 +92,7 @@ PluginsAPI.enablePlugin(pluginId: pluginId, version: version).then {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pluginId** | **String** | Plugin id. | 
+ **pluginId** | [**String**](.md) | Plugin id. | 
  **version** | [**Version**](.md) | Plugin version. | 
 
 ### Return type
@@ -117,7 +117,7 @@ Void (empty response body)
 
 Gets plugin configuration.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -138,7 +138,7 @@ PluginsAPI.getPluginConfiguration(pluginId: pluginId).then {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pluginId** | **String** | Plugin id. | 
+ **pluginId** | [**String**](.md) | Plugin id. | 
 
 ### Return type
 
@@ -162,7 +162,7 @@ Name | Type | Description  | Notes
 
 Gets a plugin's image.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -184,7 +184,7 @@ PluginsAPI.getPluginImage(pluginId: pluginId, version: version).then {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pluginId** | **String** | Plugin id. | 
+ **pluginId** | [**String**](.md) | Plugin id. | 
  **version** | [**Version**](.md) | Plugin version. | 
 
 ### Return type
@@ -209,7 +209,7 @@ Name | Type | Description  | Notes
 
 Gets a plugin's manifest.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -230,7 +230,7 @@ PluginsAPI.getPluginManifest(pluginId: pluginId).then {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pluginId** | **String** | Plugin id. | 
+ **pluginId** | [**String**](.md) | Plugin id. | 
 
 ### Return type
 
@@ -254,7 +254,7 @@ Void (empty response body)
 
 Gets a list of currently installed plugins.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -295,7 +295,7 @@ This endpoint does not need any parameter.
 
 Uninstalls a plugin.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -316,7 +316,7 @@ PluginsAPI.uninstallPlugin(pluginId: pluginId).then {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pluginId** | **String** | Plugin id. | 
+ **pluginId** | [**String**](.md) | Plugin id. | 
 
 ### Return type
 
@@ -340,7 +340,7 @@ Void (empty response body)
 
 Uninstalls a plugin by version.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -362,7 +362,7 @@ PluginsAPI.uninstallPluginByVersion(pluginId: pluginId, version: version).then {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pluginId** | **String** | Plugin id. | 
+ **pluginId** | [**String**](.md) | Plugin id. | 
  **version** | [**Version**](.md) | Plugin version. | 
 
 ### Return type
@@ -389,7 +389,7 @@ Updates plugin configuration.
 
 Accepts plugin configuration as JSON body.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -410,7 +410,7 @@ PluginsAPI.updatePluginConfiguration(pluginId: pluginId).then {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pluginId** | **String** | Plugin id. | 
+ **pluginId** | [**String**](.md) | Plugin id. | 
 
 ### Return type
 
@@ -434,7 +434,7 @@ Void (empty response body)
 
 Updates plugin security info.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient

@@ -23,7 +23,7 @@ Method | HTTP request | Description
 
 Deletes an external subtitle file.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -45,7 +45,7 @@ SubtitleAPI.deleteSubtitle(itemId: itemId, index: index).then {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | The item id. | 
+ **itemId** | [**String**](.md) | The item id. | 
  **index** | **Int** | The index of the subtitle file. | 
 
 ### Return type
@@ -70,7 +70,7 @@ Void (empty response body)
 
 Downloads a remote subtitle.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -92,7 +92,7 @@ SubtitleAPI.downloadRemoteSubtitles(itemId: itemId, subtitleId: subtitleId).then
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | The item id. | 
+ **itemId** | [**String**](.md) | The item id. | 
  **subtitleId** | **String** | The subtitle id. | 
 
 ### Return type
@@ -117,7 +117,7 @@ Void (empty response body)
 
 Gets a fallback font file.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -162,7 +162,7 @@ Name | Type | Description  | Notes
 
 Gets a list of available fallback font files.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -203,7 +203,7 @@ This endpoint does not need any parameter.
 
 Gets the remote subtitles.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -248,7 +248,7 @@ Name | Type | Description  | Notes
 
 Gets subtitles in a specified format.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -280,11 +280,11 @@ SubtitleAPI.getSubtitle(routeItemId: routeItemId, routeMediaSourceId: routeMedia
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **routeItemId** | **String** | The (route) item id. | 
+ **routeItemId** | [**String**](.md) | The (route) item id. | 
  **routeMediaSourceId** | **String** | The (route) media source id. | 
  **routeIndex** | **Int** | The (route) subtitle stream index. | 
  **routeFormat** | **String** | The (route) format of the returned subtitle. | 
- **itemId** | **String** | The item id. | [optional] 
+ **itemId** | [**String**](.md) | The item id. | [optional] 
  **mediaSourceId** | **String** | The media source id. | [optional] 
  **index** | **Int** | The subtitle stream index. | [optional] 
  **format** | **String** | The format of the returned subtitle. | [optional] 
@@ -315,7 +315,7 @@ No authorization required
 
 Gets an HLS subtitle playlist.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -339,7 +339,7 @@ SubtitleAPI.getSubtitlePlaylist(itemId: itemId, index: index, mediaSourceId: med
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | The item id. | 
+ **itemId** | [**String**](.md) | The item id. | 
  **index** | **Int** | The subtitle stream index. | 
  **mediaSourceId** | **String** | The media source id. | 
  **segmentLength** | **Int** | The subtitle segment length. | 
@@ -366,7 +366,7 @@ Name | Type | Description  | Notes
 
 Gets subtitles in a specified format.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -399,12 +399,12 @@ SubtitleAPI.getSubtitleWithTicks(routeItemId: routeItemId, routeMediaSourceId: r
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **routeItemId** | **String** | The (route) item id. | 
+ **routeItemId** | [**String**](.md) | The (route) item id. | 
  **routeMediaSourceId** | **String** | The (route) media source id. | 
  **routeIndex** | **Int** | The (route) subtitle stream index. | 
  **routeStartPositionTicks** | **Int64** | The (route) start position of the subtitle in ticks. | 
  **routeFormat** | **String** | The (route) format of the returned subtitle. | 
- **itemId** | **String** | The item id. | [optional] 
+ **itemId** | [**String**](.md) | The item id. | [optional] 
  **mediaSourceId** | **String** | The media source id. | [optional] 
  **index** | **Int** | The subtitle stream index. | [optional] 
  **startPositionTicks** | **Int64** | The start position of the subtitle in ticks. | [optional] 
@@ -435,7 +435,7 @@ No authorization required
 
 Search remote subtitles.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -458,7 +458,7 @@ SubtitleAPI.searchRemoteSubtitles(itemId: itemId, language: language, isPerfectM
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | The item id. | 
+ **itemId** | [**String**](.md) | The item id. | 
  **language** | **String** | The language of the subtitles. | 
  **isPerfectMatch** | **Bool** | Optional. Only show subtitles which are a perfect match. | [optional] 
 
@@ -484,7 +484,7 @@ Name | Type | Description  | Notes
 
 Upload an external subtitle file.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -506,7 +506,7 @@ SubtitleAPI.uploadSubtitle(itemId: itemId, uploadSubtitleDto: uploadSubtitleDto)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **itemId** | **String** | The item the subtitle belongs to. | 
+ **itemId** | [**String**](.md) | The item the subtitle belongs to. | 
  **uploadSubtitleDto** | [**UploadSubtitleDto**](UploadSubtitleDto.md) | The request body. | 
 
 ### Return type

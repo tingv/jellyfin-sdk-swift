@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 Gets suggestions.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -40,7 +40,7 @@ SuggestionsAPI.getSuggestions(userId: userId, mediaType: mediaType, type: type, 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | The user id. | 
+ **userId** | [**String**](.md) | The user id. | 
  **mediaType** | [**[String]**](String.md) | The media types. | [optional] 
  **type** | [**[String]**](String.md) | The type. | [optional] 
  **startIndex** | **Int** | Optional. The start index. | [optional] 

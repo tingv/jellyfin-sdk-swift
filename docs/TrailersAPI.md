@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 Finds movies and trailers similar to a given trailer.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -113,7 +113,7 @@ TrailersAPI.getTrailers(userId: userId, maxOfficialRating: maxOfficialRating, ha
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | The user id. | [optional] 
+ **userId** | [**String**](.md) | The user id. | [optional] 
  **maxOfficialRating** | **String** | Optional filter by maximum official rating (PG, PG-13, TV-MA, etc). | [optional] 
  **hasThemeSong** | **Bool** | Optional filter by items with theme songs. | [optional] 
  **hasThemeVideo** | **Bool** | Optional filter by items with theme videos. | [optional] 
@@ -145,7 +145,7 @@ Name | Type | Description  | Notes
  **recursive** | **Bool** | When searching within folders, this determines whether or not the search will be recursive. true/false. | [optional] 
  **searchTerm** | **String** | Optional. Filter based on a search term. | [optional] 
  **sortOrder** | [**[APISortOrder]**](APISortOrder.md) | Sort Order - Ascending,Descending. | [optional] 
- **parentId** | **String** | Specify this to localize the search to a specific item or folder. Omit to use the root. | [optional] 
+ **parentId** | [**String**](.md) | Specify this to localize the search to a specific item or folder. Omit to use the root. | [optional] 
  **fields** | [**[ItemFields]**](ItemFields.md) | Optional. Specify additional fields of information to return in the output. This allows multiple, comma delimited. Options: Budget, Chapters, DateCreated, Genres, HomePageUrl, IndexOptions, MediaStreams, Overview, ParentId, Path, People, ProviderIds, PrimaryImageAspectRatio, Revenue, SortName, Studios, Taglines. | [optional] 
  **excludeItemTypes** | [**[String]**](String.md) | Optional. If specified, results will be filtered based on item type. This allows multiple, comma delimited. | [optional] 
  **filters** | [**[ItemFilter]**](ItemFilter.md) | Optional. Specify additional filters to apply. This allows multiple, comma delimited. Options: IsFolder, IsNotFolder, IsUnplayed, IsPlayed, IsFavorite, IsResumable, Likes, Dislikes. | [optional] 

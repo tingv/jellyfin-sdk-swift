@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 Get video attachment.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -37,7 +37,7 @@ VideoAttachmentsAPI.getAttachment(videoId: videoId, mediaSourceId: mediaSourceId
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **videoId** | **String** | Video ID. | 
+ **videoId** | [**String**](.md) | Video ID. | 
  **mediaSourceId** | **String** | Media Source ID. | 
  **index** | **Int** | Attachment Index. | 
 

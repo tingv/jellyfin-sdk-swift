@@ -20,7 +20,7 @@ Method | HTTP request | Description
 
 Sends a notification to all admins.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -65,7 +65,7 @@ Void (empty response body)
 
 Gets notification services.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -106,7 +106,7 @@ This endpoint does not need any parameter.
 
 Gets notification types.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -147,7 +147,7 @@ This endpoint does not need any parameter.
 
 Gets a user's notifications.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -192,7 +192,7 @@ Name | Type | Description  | Notes
 
 Gets a user's notification summary.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -237,7 +237,7 @@ Name | Type | Description  | Notes
 
 Sets notifications as read.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -282,7 +282,7 @@ Void (empty response body)
 
 Sets notifications as unread.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient

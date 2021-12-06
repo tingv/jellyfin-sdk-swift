@@ -20,7 +20,7 @@ Method | HTTP request | Description
 
 Completes the startup wizard.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -61,7 +61,7 @@ Void (empty response body)
 
 Gets the first user.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -102,7 +102,7 @@ This endpoint does not need any parameter.
 
 Gets the first user.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -143,7 +143,7 @@ This endpoint does not need any parameter.
 
 Gets the initial startup wizard configuration.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -184,7 +184,7 @@ This endpoint does not need any parameter.
 
 Sets remote access and UPnP.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -229,7 +229,7 @@ Void (empty response body)
 
 Sets the initial startup wizard configuration.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -274,7 +274,7 @@ Void (empty response body)
 
 Sets the user name and password.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient

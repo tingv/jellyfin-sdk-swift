@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 Gets the configuration pages.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -62,7 +62,7 @@ No authorization required
 
 Gets a dashboard configuration page.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient

@@ -22,7 +22,7 @@ Method | HTTP request | Description
 
 Creates an instant playlist based on a given album.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -50,8 +50,8 @@ InstantMixAPI.getInstantMixFromAlbum(id: id, userId: userId, limit: limit, field
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **String** | The item id. | 
- **userId** | **String** | Optional. Filter by user id, and attach user data. | [optional] 
+ **id** | [**String**](.md) | The item id. | 
+ **userId** | [**String**](.md) | Optional. Filter by user id, and attach user data. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 
  **fields** | [**[ItemFields]**](ItemFields.md) | Optional. Specify additional fields of information to return in the output. | [optional] 
  **enableImages** | **Bool** | Optional. Include image information in output. | [optional] 
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 Creates an instant playlist based on a given artist.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -109,8 +109,8 @@ InstantMixAPI.getInstantMixFromArtists(id: id, userId: userId, limit: limit, fie
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **String** | The item id. | 
- **userId** | **String** | Optional. Filter by user id, and attach user data. | [optional] 
+ **id** | [**String**](.md) | The item id. | 
+ **userId** | [**String**](.md) | Optional. Filter by user id, and attach user data. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 
  **fields** | [**[ItemFields]**](ItemFields.md) | Optional. Specify additional fields of information to return in the output. | [optional] 
  **enableImages** | **Bool** | Optional. Include image information in output. | [optional] 
@@ -140,7 +140,7 @@ Name | Type | Description  | Notes
 
 Creates an instant playlist based on a given artist.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -168,8 +168,8 @@ InstantMixAPI.getInstantMixFromArtists2(id: id, userId: userId, limit: limit, fi
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **String** | The item id. | 
- **userId** | **String** | Optional. Filter by user id, and attach user data. | [optional] 
+ **id** | [**String**](.md) | The item id. | 
+ **userId** | [**String**](.md) | Optional. Filter by user id, and attach user data. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 
  **fields** | [**[ItemFields]**](ItemFields.md) | Optional. Specify additional fields of information to return in the output. | [optional] 
  **enableImages** | **Bool** | Optional. Include image information in output. | [optional] 
@@ -199,7 +199,7 @@ Name | Type | Description  | Notes
 
 Creates an instant playlist based on a given item.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -227,8 +227,8 @@ InstantMixAPI.getInstantMixFromItem(id: id, userId: userId, limit: limit, fields
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **String** | The item id. | 
- **userId** | **String** | Optional. Filter by user id, and attach user data. | [optional] 
+ **id** | [**String**](.md) | The item id. | 
+ **userId** | [**String**](.md) | Optional. Filter by user id, and attach user data. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 
  **fields** | [**[ItemFields]**](ItemFields.md) | Optional. Specify additional fields of information to return in the output. | [optional] 
  **enableImages** | **Bool** | Optional. Include image information in output. | [optional] 
@@ -258,7 +258,7 @@ Name | Type | Description  | Notes
 
 Creates an instant playlist based on a given genre.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -286,8 +286,8 @@ InstantMixAPI.getInstantMixFromMusicGenreById(id: id, userId: userId, limit: lim
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **String** | The item id. | 
- **userId** | **String** | Optional. Filter by user id, and attach user data. | [optional] 
+ **id** | [**String**](.md) | The item id. | 
+ **userId** | [**String**](.md) | Optional. Filter by user id, and attach user data. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 
  **fields** | [**[ItemFields]**](ItemFields.md) | Optional. Specify additional fields of information to return in the output. | [optional] 
  **enableImages** | **Bool** | Optional. Include image information in output. | [optional] 
@@ -317,7 +317,7 @@ Name | Type | Description  | Notes
 
 Creates an instant playlist based on a given genre.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -345,8 +345,8 @@ InstantMixAPI.getInstantMixFromMusicGenreById2(id: id, userId: userId, limit: li
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **String** | The item id. | 
- **userId** | **String** | Optional. Filter by user id, and attach user data. | [optional] 
+ **id** | [**String**](.md) | The item id. | 
+ **userId** | [**String**](.md) | Optional. Filter by user id, and attach user data. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 
  **fields** | [**[ItemFields]**](ItemFields.md) | Optional. Specify additional fields of information to return in the output. | [optional] 
  **enableImages** | **Bool** | Optional. Include image information in output. | [optional] 
@@ -376,7 +376,7 @@ Name | Type | Description  | Notes
 
 Creates an instant playlist based on a given genre.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -405,7 +405,7 @@ InstantMixAPI.getInstantMixFromMusicGenreByName(name: name, userId: userId, limi
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **String** | The genre name. | 
- **userId** | **String** | Optional. Filter by user id, and attach user data. | [optional] 
+ **userId** | [**String**](.md) | Optional. Filter by user id, and attach user data. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 
  **fields** | [**[ItemFields]**](ItemFields.md) | Optional. Specify additional fields of information to return in the output. | [optional] 
  **enableImages** | **Bool** | Optional. Include image information in output. | [optional] 
@@ -435,7 +435,7 @@ Name | Type | Description  | Notes
 
 Creates an instant playlist based on a given playlist.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -463,8 +463,8 @@ InstantMixAPI.getInstantMixFromPlaylist(id: id, userId: userId, limit: limit, fi
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **String** | The item id. | 
- **userId** | **String** | Optional. Filter by user id, and attach user data. | [optional] 
+ **id** | [**String**](.md) | The item id. | 
+ **userId** | [**String**](.md) | Optional. Filter by user id, and attach user data. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 
  **fields** | [**[ItemFields]**](ItemFields.md) | Optional. Specify additional fields of information to return in the output. | [optional] 
  **enableImages** | **Bool** | Optional. Include image information in output. | [optional] 
@@ -494,7 +494,7 @@ Name | Type | Description  | Notes
 
 Creates an instant playlist based on a given song.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -522,8 +522,8 @@ InstantMixAPI.getInstantMixFromSong(id: id, userId: userId, limit: limit, fields
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **String** | The item id. | 
- **userId** | **String** | Optional. Filter by user id, and attach user data. | [optional] 
+ **id** | [**String**](.md) | The item id. | 
+ **userId** | [**String**](.md) | Optional. Filter by user id, and attach user data. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 
  **fields** | [**[ItemFields]**](ItemFields.md) | Optional. Specify additional fields of information to return in the output. | [optional] 
  **enableImages** | **Bool** | Optional. Include image information in output. | [optional] 

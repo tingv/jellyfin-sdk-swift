@@ -54,7 +54,7 @@ Method | HTTP request | Description
 
 Adds a listings provider.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -105,7 +105,7 @@ Name | Type | Description  | Notes
 
 Adds a tuner host.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -150,7 +150,7 @@ Name | Type | Description  | Notes
 
 Cancels a live tv series timer.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -195,7 +195,7 @@ Void (empty response body)
 
 Cancels a live tv timer.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -240,7 +240,7 @@ Void (empty response body)
 
 Creates a live tv series timer.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -285,7 +285,7 @@ Void (empty response body)
 
 Creates a live tv timer.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -330,7 +330,7 @@ Void (empty response body)
 
 Delete listing provider.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -375,7 +375,7 @@ Void (empty response body)
 
 Deletes a live tv recording.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -396,7 +396,7 @@ LiveTvAPI.deleteRecording(recordingId: recordingId).then {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **recordingId** | **String** | Recording id. | 
+ **recordingId** | [**String**](.md) | Recording id. | 
 
 ### Return type
 
@@ -420,7 +420,7 @@ Void (empty response body)
 
 Deletes a tuner host.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -465,7 +465,7 @@ Void (empty response body)
 
 Discover tuners.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -510,7 +510,7 @@ Name | Type | Description  | Notes
 
 Discover tuners.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -555,7 +555,7 @@ Name | Type | Description  | Notes
 
 Gets a live tv channel.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -577,8 +577,8 @@ LiveTvAPI.getChannel(channelId: channelId, userId: userId).then {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **channelId** | **String** | Channel id. | 
- **userId** | **String** | Optional. Attach user data. | [optional] 
+ **channelId** | [**String**](.md) | Channel id. | 
+ **userId** | [**String**](.md) | Optional. Attach user data. | [optional] 
 
 ### Return type
 
@@ -602,7 +602,7 @@ Name | Type | Description  | Notes
 
 Get channel mapping options.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -647,7 +647,7 @@ Name | Type | Description  | Notes
 
 Gets default listings provider info.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -688,7 +688,7 @@ This endpoint does not need any parameter.
 
 Gets the default values for a new timer.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -733,7 +733,7 @@ Name | Type | Description  | Notes
 
 Get guid info.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -774,7 +774,7 @@ This endpoint does not need any parameter.
 
 Gets available lineups.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -825,7 +825,7 @@ Name | Type | Description  | Notes
 
 Gets a live tv recording stream.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -870,7 +870,7 @@ No authorization required
 
 Gets a live tv channel stream.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -917,7 +917,7 @@ No authorization required
 
 Gets available live tv channels.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -959,7 +959,7 @@ LiveTvAPI.getLiveTvChannels(type: type, userId: userId, startIndex: startIndex, 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **type** | [**ChannelType**](.md) | Optional. Filter by channel type. | [optional] 
- **userId** | **String** | Optional. Filter by user and attach user data. | [optional] 
+ **userId** | [**String**](.md) | Optional. Filter by user and attach user data. | [optional] 
  **startIndex** | **Int** | Optional. The record index to start at. All items with a lower index will be dropped from the results. | [optional] 
  **isMovie** | **Bool** | Optional. Filter for movies. | [optional] 
  **isSeries** | **Bool** | Optional. Filter for series. | [optional] 
@@ -1002,7 +1002,7 @@ Name | Type | Description  | Notes
 
 Gets available live tv services.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -1043,7 +1043,7 @@ This endpoint does not need any parameter.
 
 Gets available live tv epgs.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -1091,7 +1091,7 @@ LiveTvAPI.getLiveTvPrograms(channelIds: channelIds, userId: userId, minStartDate
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **channelIds** | [**[String]**](String.md) | The channels to return guide information for. | [optional] 
- **userId** | **String** | Optional. Filter by user id. | [optional] 
+ **userId** | [**String**](.md) | Optional. Filter by user id. | [optional] 
  **minStartDate** | **Date** | Optional. The minimum premiere start date. | [optional] 
  **hasAired** | **Bool** | Optional. Filter by programs that have completed airing, or not. | [optional] 
  **isAiring** | **Bool** | Optional. Filter by programs that are currently airing, or not. | [optional] 
@@ -1114,7 +1114,7 @@ Name | Type | Description  | Notes
  **enableImageTypes** | [**[ImageType]**](ImageType.md) | Optional. The image types to include in the output. | [optional] 
  **enableUserData** | **Bool** | Optional. Include user data. | [optional] 
  **seriesTimerId** | **String** | Optional. Filter by series timer id. | [optional] 
- **librarySeriesId** | **String** | Optional. Filter by library series id. | [optional] 
+ **librarySeriesId** | [**String**](.md) | Optional. Filter by library series id. | [optional] 
  **fields** | [**[ItemFields]**](ItemFields.md) | Optional. Specify additional fields of information to return in the output. | [optional] 
  **enableTotalRecordCount** | **Bool** | Retrieve total record count. | [optional] [default to true]
 
@@ -1140,7 +1140,7 @@ Name | Type | Description  | Notes
 
 Gets a live tv program.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -1163,7 +1163,7 @@ LiveTvAPI.getProgram(programId: programId, userId: userId).then {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **programId** | **String** | Program id. | 
- **userId** | **String** | Optional. Attach user data. | [optional] 
+ **userId** | [**String**](.md) | Optional. Attach user data. | [optional] 
 
 ### Return type
 
@@ -1187,7 +1187,7 @@ Name | Type | Description  | Notes
 
 Gets available live tv epgs.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -1232,7 +1232,7 @@ Name | Type | Description  | Notes
 
 Gets recommended live tv epgs.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -1268,7 +1268,7 @@ LiveTvAPI.getRecommendedPrograms(userId: userId, limit: limit, isAiring: isAirin
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | Optional. filter by user id. | [optional] 
+ **userId** | [**String**](.md) | Optional. filter by user id. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 
  **isAiring** | **Bool** | Optional. Filter by programs that are currently airing, or not. | [optional] 
  **hasAired** | **Bool** | Optional. Filter by programs that have completed airing, or not. | [optional] 
@@ -1307,7 +1307,7 @@ Name | Type | Description  | Notes
 
 Gets a live tv recording.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -1329,8 +1329,8 @@ LiveTvAPI.getRecording(recordingId: recordingId, userId: userId).then {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **recordingId** | **String** | Recording id. | 
- **userId** | **String** | Optional. Attach user data. | [optional] 
+ **recordingId** | [**String**](.md) | Recording id. | 
+ **userId** | [**String**](.md) | Optional. Attach user data. | [optional] 
 
 ### Return type
 
@@ -1354,7 +1354,7 @@ Name | Type | Description  | Notes
 
 Gets recording folders.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -1375,7 +1375,7 @@ LiveTvAPI.getRecordingFolders(userId: userId).then {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | Optional. Filter by user and attach user data. | [optional] 
+ **userId** | [**String**](.md) | Optional. Filter by user and attach user data. | [optional] 
 
 ### Return type
 
@@ -1399,7 +1399,7 @@ Name | Type | Description  | Notes
 
 Get recording group.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -1420,7 +1420,7 @@ LiveTvAPI.getRecordingGroup(groupId: groupId).then {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **groupId** | **String** | Group id. | 
+ **groupId** | [**String**](.md) | Group id. | 
 
 ### Return type
 
@@ -1444,7 +1444,7 @@ Void (empty response body)
 
 Gets live tv recording groups.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -1465,7 +1465,7 @@ LiveTvAPI.getRecordingGroups(userId: userId).then {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String** | Optional. Filter by user and attach user data. | [optional] 
+ **userId** | [**String**](.md) | Optional. Filter by user and attach user data. | [optional] 
 
 ### Return type
 
@@ -1489,7 +1489,7 @@ Name | Type | Description  | Notes
 
 Gets live tv recordings.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -1529,7 +1529,7 @@ LiveTvAPI.getRecordings(channelId: channelId, userId: userId, startIndex: startI
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **channelId** | **String** | Optional. Filter by channel id. | [optional] 
- **userId** | **String** | Optional. Filter by user and attach user data. | [optional] 
+ **userId** | [**String**](.md) | Optional. Filter by user and attach user data. | [optional] 
  **startIndex** | **Int** | Optional. The record index to start at. All items with a lower index will be dropped from the results. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 
  **status** | [**RecordingStatus**](.md) | Optional. Filter by recording status. | [optional] 
@@ -1570,7 +1570,7 @@ Name | Type | Description  | Notes
 
 Gets live tv recording series.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -1605,7 +1605,7 @@ LiveTvAPI.getRecordingsSeries(channelId: channelId, userId: userId, groupId: gro
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **channelId** | **String** | Optional. Filter by channel id. | [optional] 
- **userId** | **String** | Optional. Filter by user and attach user data. | [optional] 
+ **userId** | [**String**](.md) | Optional. Filter by user and attach user data. | [optional] 
  **groupId** | **String** | Optional. Filter by recording group. | [optional] 
  **startIndex** | **Int** | Optional. The record index to start at. All items with a lower index will be dropped from the results. | [optional] 
  **limit** | **Int** | Optional. The maximum number of records to return. | [optional] 
@@ -1641,7 +1641,7 @@ Name | Type | Description  | Notes
 
 Gets available countries.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -1682,7 +1682,7 @@ This endpoint does not need any parameter.
 
 Gets a live tv series timer.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -1727,7 +1727,7 @@ Name | Type | Description  | Notes
 
 Gets live tv series timers.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -1774,7 +1774,7 @@ Name | Type | Description  | Notes
 
 Gets a timer.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -1819,7 +1819,7 @@ Name | Type | Description  | Notes
 
 Gets the live tv timers.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -1870,7 +1870,7 @@ Name | Type | Description  | Notes
 
 Get tuner host types.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -1911,7 +1911,7 @@ This endpoint does not need any parameter.
 
 Resets a tv tuner.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -1956,7 +1956,7 @@ Void (empty response body)
 
 Set channel mappings.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -2001,7 +2001,7 @@ Name | Type | Description  | Notes
 
 Updates a live tv series timer.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
@@ -2048,7 +2048,7 @@ Void (empty response body)
 
 Updates a live tv timer.
 
-### Example
+### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import JellyfinClient
