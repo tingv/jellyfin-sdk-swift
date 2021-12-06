@@ -12,7 +12,7 @@ jobs:
         ref: 'main'
 
     - name: Generate	    
-      uses: docker://openapitools/openapi-generator-cli:latest-release
+      uses: docker://openapitools/openapi-generator-cli:v5.2.1
       with:
         args: >-
           generate -i api.json
