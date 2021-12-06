@@ -7,26 +7,23 @@
 
 import AnyCodable
 import Foundation
-import PromiseKit
 
 open class LocalizationAPI {
     /**
      Gets known countries.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<[CountryInfo]>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getCountries(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[CountryInfo]> {
-        let deferred = Promise<[CountryInfo]>.pending()
+    open class func getCountries(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[CountryInfo], Error>) -> Void)) {
         getCountriesWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -59,19 +56,17 @@ open class LocalizationAPI {
      Gets known cultures.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<[CultureDto]>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getCultures(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[CultureDto]> {
-        let deferred = Promise<[CultureDto]>.pending()
+    open class func getCultures(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[CultureDto], Error>) -> Void)) {
         getCulturesWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -104,19 +99,17 @@ open class LocalizationAPI {
      Gets localization options.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<[LocalizationOption]>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getLocalizationOptions(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[LocalizationOption]> {
-        let deferred = Promise<[LocalizationOption]>.pending()
+    open class func getLocalizationOptions(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[LocalizationOption], Error>) -> Void)) {
         getLocalizationOptionsWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -149,19 +142,17 @@ open class LocalizationAPI {
      Gets known parental ratings.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<[ParentalRating]>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getParentalRatings(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[ParentalRating]> {
-        let deferred = Promise<[ParentalRating]>.pending()
+    open class func getParentalRatings(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[ParentalRating], Error>) -> Void)) {
         getParentalRatingsWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**

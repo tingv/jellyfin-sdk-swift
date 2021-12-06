@@ -7,7 +7,6 @@
 
 import AnyCodable
 import Foundation
-import PromiseKit
 
 open class LibraryStructureAPI {
     /**
@@ -16,19 +15,17 @@ open class LibraryStructureAPI {
      - parameter mediaPathDto: (body) The media path dto. 
      - parameter refreshLibrary: (query) Whether to refresh the library. (optional, default to false)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func addMediaPath( mediaPathDto: MediaPathDto,  refreshLibrary: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func addMediaPath(mediaPathDto: MediaPathDto, refreshLibrary: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         addMediaPathWithRequestBuilder(mediaPathDto: mediaPathDto, refreshLibrary: refreshLibrary).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -71,19 +68,17 @@ open class LibraryStructureAPI {
      - parameter refreshLibrary: (query) Whether to refresh the library. (optional, default to false)
      - parameter addVirtualFolderDto: (body) The library options. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func addVirtualFolder( name: String? = nil,  collectionType: CollectionTypeOptions? = nil,  paths: [String]? = nil,  refreshLibrary: Bool? = nil,  addVirtualFolderDto: AddVirtualFolderDto? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func addVirtualFolder(name: String? = nil, collectionType: CollectionTypeOptions? = nil, paths: [String]? = nil, refreshLibrary: Bool? = nil, addVirtualFolderDto: AddVirtualFolderDto? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         addVirtualFolderWithRequestBuilder(name: name, collectionType: collectionType, paths: paths, refreshLibrary: refreshLibrary, addVirtualFolderDto: addVirtualFolderDto).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -127,19 +122,17 @@ open class LibraryStructureAPI {
      Gets all virtual folders.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<[VirtualFolderInfo]>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getVirtualFolders(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[VirtualFolderInfo]> {
-        let deferred = Promise<[VirtualFolderInfo]>.pending()
+    open class func getVirtualFolders(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[VirtualFolderInfo], Error>) -> Void)) {
         getVirtualFoldersWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -175,19 +168,17 @@ open class LibraryStructureAPI {
      - parameter path: (query) The path to remove. (optional)
      - parameter refreshLibrary: (query) Whether to refresh the library. (optional, default to false)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func removeMediaPath( name: String? = nil,  path: String? = nil,  refreshLibrary: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func removeMediaPath(name: String? = nil, path: String? = nil, refreshLibrary: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         removeMediaPathWithRequestBuilder(name: name, path: path, refreshLibrary: refreshLibrary).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -230,19 +221,17 @@ open class LibraryStructureAPI {
      - parameter name: (query) The name of the folder. (optional)
      - parameter refreshLibrary: (query) Whether to refresh the library. (optional, default to false)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func removeVirtualFolder( name: String? = nil,  refreshLibrary: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func removeVirtualFolder(name: String? = nil, refreshLibrary: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         removeVirtualFolderWithRequestBuilder(name: name, refreshLibrary: refreshLibrary).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -284,19 +273,17 @@ open class LibraryStructureAPI {
      - parameter newName: (query) The new name. (optional)
      - parameter refreshLibrary: (query) Whether to refresh the library. (optional, default to false)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func renameVirtualFolder( name: String? = nil,  newName: String? = nil,  refreshLibrary: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func renameVirtualFolder(name: String? = nil, newName: String? = nil, refreshLibrary: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         renameVirtualFolderWithRequestBuilder(name: name, newName: newName, refreshLibrary: refreshLibrary).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -338,19 +325,17 @@ open class LibraryStructureAPI {
      
      - parameter updateLibraryOptionsDto: (body) The library name and options. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func updateLibraryOptions( updateLibraryOptionsDto: UpdateLibraryOptionsDto? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func updateLibraryOptions(updateLibraryOptionsDto: UpdateLibraryOptionsDto? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         updateLibraryOptionsWithRequestBuilder(updateLibraryOptionsDto: updateLibraryOptionsDto).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -385,19 +370,17 @@ open class LibraryStructureAPI {
      
      - parameter updateMediaPathRequestDto: (body) The name of the library and path infos. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func updateMediaPath( updateMediaPathRequestDto: UpdateMediaPathRequestDto, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func updateMediaPath(updateMediaPathRequestDto: UpdateMediaPathRequestDto, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         updateMediaPathWithRequestBuilder(updateMediaPathRequestDto: updateMediaPathRequestDto).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**

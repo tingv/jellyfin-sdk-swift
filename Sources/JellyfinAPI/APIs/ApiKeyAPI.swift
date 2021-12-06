@@ -7,7 +7,6 @@
 
 import AnyCodable
 import Foundation
-import PromiseKit
 
 open class ApiKeyAPI {
     /**
@@ -15,19 +14,17 @@ open class ApiKeyAPI {
      
      - parameter app: (query) Name of the app using the authentication key. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func createKey( app: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func createKey(app: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         createKeyWithRequestBuilder(app: app).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -64,19 +61,17 @@ open class ApiKeyAPI {
      Get all keys.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<AuthenticationInfoQueryResult>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getKeys(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<AuthenticationInfoQueryResult> {
-        let deferred = Promise<AuthenticationInfoQueryResult>.pending()
+    open class func getKeys(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<AuthenticationInfoQueryResult, Error>) -> Void)) {
         getKeysWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -110,19 +105,17 @@ open class ApiKeyAPI {
      
      - parameter key: (path) The access token to delete. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func revokeKey( key: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func revokeKey(key: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         revokeKeyWithRequestBuilder(key: key).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**

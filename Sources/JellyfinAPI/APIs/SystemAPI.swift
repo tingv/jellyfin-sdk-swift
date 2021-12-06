@@ -7,26 +7,23 @@
 
 import AnyCodable
 import Foundation
-import PromiseKit
 
 open class SystemAPI {
     /**
      Gets information about the request endpoint.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<EndPointInfo>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getEndpointInfo(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<EndPointInfo> {
-        let deferred = Promise<EndPointInfo>.pending()
+    open class func getEndpointInfo(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<EndPointInfo, Error>) -> Void)) {
         getEndpointInfoWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -60,19 +57,17 @@ open class SystemAPI {
      
      - parameter name: (query) The name of the log file to get. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getLogFile( name: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func getLogFile(name: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         getLogFileWithRequestBuilder(name: name).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -109,19 +104,17 @@ open class SystemAPI {
      Pings the system.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<String>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getPingSystem(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<String> {
-        let deferred = Promise<String>.pending()
+    open class func getPingSystem(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<String, Error>) -> Void)) {
         getPingSystemWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -151,19 +144,17 @@ open class SystemAPI {
      Gets public information about the server.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<PublicSystemInfo>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getPublicSystemInfo(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<PublicSystemInfo> {
-        let deferred = Promise<PublicSystemInfo>.pending()
+    open class func getPublicSystemInfo(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<PublicSystemInfo, Error>) -> Void)) {
         getPublicSystemInfoWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -193,19 +184,17 @@ open class SystemAPI {
      Gets a list of available server log files.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<[LogFile]>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getServerLogs(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[LogFile]> {
-        let deferred = Promise<[LogFile]>.pending()
+    open class func getServerLogs(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[LogFile], Error>) -> Void)) {
         getServerLogsWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -238,19 +227,17 @@ open class SystemAPI {
      Gets information about the server.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<SystemInfo>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getSystemInfo(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<SystemInfo> {
-        let deferred = Promise<SystemInfo>.pending()
+    open class func getSystemInfo(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<SystemInfo, Error>) -> Void)) {
         getSystemInfoWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -283,19 +270,17 @@ open class SystemAPI {
      Gets wake on lan information.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<[WakeOnLanInfo]>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getWakeOnLanInfo(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[WakeOnLanInfo]> {
-        let deferred = Promise<[WakeOnLanInfo]>.pending()
+    open class func getWakeOnLanInfo(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[WakeOnLanInfo], Error>) -> Void)) {
         getWakeOnLanInfoWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -328,19 +313,17 @@ open class SystemAPI {
      Pings the system.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<String>
+     - parameter completion: completion handler to receive the result
      */
-    open class func postPingSystem(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<String> {
-        let deferred = Promise<String>.pending()
+    open class func postPingSystem(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<String, Error>) -> Void)) {
         postPingSystemWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -370,19 +353,17 @@ open class SystemAPI {
      Restarts the application.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func restartApplication(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func restartApplication(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         restartApplicationWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -415,19 +396,17 @@ open class SystemAPI {
      Shuts down the application.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func shutdownApplication(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func shutdownApplication(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         shutdownApplicationWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**

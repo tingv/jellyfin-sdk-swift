@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 # **completeWizard**
 ```swift
-    open class func completeWizard() -> Promise<Void>
+    open class func completeWizard(completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Completes the startup wizard.
@@ -27,12 +27,15 @@ import JellyfinAPI
 
 
 // Completes the startup wizard.
-StartupAPI.completeWizard().then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+StartupAPI.completeWizard() { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -56,7 +59,7 @@ Void (empty response body)
 
 # **getFirstUser**
 ```swift
-    open class func getFirstUser() -> Promise<StartupUserDto>
+    open class func getFirstUser(completion: @escaping (_ data: StartupUserDto?, _ error: Error?) -> Void)
 ```
 
 Gets the first user.
@@ -68,12 +71,15 @@ import JellyfinAPI
 
 
 // Gets the first user.
-StartupAPI.getFirstUser().then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+StartupAPI.getFirstUser() { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -97,7 +103,7 @@ This endpoint does not need any parameter.
 
 # **getFirstUser2**
 ```swift
-    open class func getFirstUser2() -> Promise<StartupUserDto>
+    open class func getFirstUser2(completion: @escaping (_ data: StartupUserDto?, _ error: Error?) -> Void)
 ```
 
 Gets the first user.
@@ -109,12 +115,15 @@ import JellyfinAPI
 
 
 // Gets the first user.
-StartupAPI.getFirstUser2().then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+StartupAPI.getFirstUser2() { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -138,7 +147,7 @@ This endpoint does not need any parameter.
 
 # **getStartupConfiguration**
 ```swift
-    open class func getStartupConfiguration() -> Promise<StartupConfigurationDto>
+    open class func getStartupConfiguration(completion: @escaping (_ data: StartupConfigurationDto?, _ error: Error?) -> Void)
 ```
 
 Gets the initial startup wizard configuration.
@@ -150,12 +159,15 @@ import JellyfinAPI
 
 
 // Gets the initial startup wizard configuration.
-StartupAPI.getStartupConfiguration().then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+StartupAPI.getStartupConfiguration() { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -179,7 +191,7 @@ This endpoint does not need any parameter.
 
 # **setRemoteAccess**
 ```swift
-    open class func setRemoteAccess( startupRemoteAccessDto: StartupRemoteAccessDto) -> Promise<Void>
+    open class func setRemoteAccess(startupRemoteAccessDto: StartupRemoteAccessDto, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Sets remote access and UPnP.
@@ -192,12 +204,15 @@ import JellyfinAPI
 let startupRemoteAccessDto = StartupRemoteAccessDto(enableRemoteAccess: false, enableAutomaticPortMapping: false) // StartupRemoteAccessDto | The startup remote access dto.
 
 // Sets remote access and UPnP.
-StartupAPI.setRemoteAccess(startupRemoteAccessDto: startupRemoteAccessDto).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+StartupAPI.setRemoteAccess(startupRemoteAccessDto: startupRemoteAccessDto) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -224,7 +239,7 @@ Void (empty response body)
 
 # **updateInitialConfiguration**
 ```swift
-    open class func updateInitialConfiguration( startupConfigurationDto: StartupConfigurationDto) -> Promise<Void>
+    open class func updateInitialConfiguration(startupConfigurationDto: StartupConfigurationDto, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Sets the initial startup wizard configuration.
@@ -237,12 +252,15 @@ import JellyfinAPI
 let startupConfigurationDto = StartupConfigurationDto(uICulture: "uICulture_example", metadataCountryCode: "metadataCountryCode_example", preferredMetadataLanguage: "preferredMetadataLanguage_example") // StartupConfigurationDto | The updated startup configuration.
 
 // Sets the initial startup wizard configuration.
-StartupAPI.updateInitialConfiguration(startupConfigurationDto: startupConfigurationDto).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+StartupAPI.updateInitialConfiguration(startupConfigurationDto: startupConfigurationDto) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -269,7 +287,7 @@ Void (empty response body)
 
 # **updateStartupUser**
 ```swift
-    open class func updateStartupUser( startupUserDto: StartupUserDto? = nil) -> Promise<Void>
+    open class func updateStartupUser(startupUserDto: StartupUserDto? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Sets the user name and password.
@@ -282,12 +300,15 @@ import JellyfinAPI
 let startupUserDto = StartupUserDto(name: "name_example", password: "password_example") // StartupUserDto | The DTO containing username and password. (optional)
 
 // Sets the user name and password.
-StartupAPI.updateStartupUser(startupUserDto: startupUserDto).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+StartupAPI.updateStartupUser(startupUserDto: startupUserDto) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 

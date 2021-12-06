@@ -7,7 +7,6 @@
 
 import AnyCodable
 import Foundation
-import PromiseKit
 
 open class SessionAPI {
     /**
@@ -16,19 +15,17 @@ open class SessionAPI {
      - parameter sessionId: (path) The session id. 
      - parameter userId: (path) The user id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func addUserToSession( sessionId: String,  userId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func addUserToSession(sessionId: String, userId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         addUserToSessionWithRequestBuilder(sessionId: sessionId, userId: userId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -73,19 +70,17 @@ open class SessionAPI {
      - parameter itemId: (query) The Id of the item. 
      - parameter itemName: (query) The name of the item. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func displayContent( sessionId: String,  itemType: String,  itemId: String,  itemName: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func displayContent(sessionId: String, itemType: String, itemId: String, itemName: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         displayContentWithRequestBuilder(sessionId: sessionId, itemType: itemType, itemId: itemId, itemName: itemName).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -130,19 +125,17 @@ open class SessionAPI {
      Get all auth providers.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<[NameIdPair]>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getAuthProviders(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[NameIdPair]> {
-        let deferred = Promise<[NameIdPair]>.pending()
+    open class func getAuthProviders(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[NameIdPair], Error>) -> Void)) {
         getAuthProvidersWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -175,19 +168,17 @@ open class SessionAPI {
      Get all password reset providers.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<[NameIdPair]>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getPasswordResetProviders(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[NameIdPair]> {
-        let deferred = Promise<[NameIdPair]>.pending()
+    open class func getPasswordResetProviders(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[NameIdPair], Error>) -> Void)) {
         getPasswordResetProvidersWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -223,19 +214,17 @@ open class SessionAPI {
      - parameter deviceId: (query) Filter by device Id. (optional)
      - parameter activeWithinSeconds: (query) Optional. Filter by sessions that were active in the last n seconds. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<[SessionInfo]>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getSessions( controllableByUserId: String? = nil,  deviceId: String? = nil,  activeWithinSeconds: Int? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[SessionInfo]> {
-        let deferred = Promise<[SessionInfo]>.pending()
+    open class func getSessions(controllableByUserId: String? = nil, deviceId: String? = nil, activeWithinSeconds: Int? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[SessionInfo], Error>) -> Void)) {
         getSessionsWithRequestBuilder(controllableByUserId: controllableByUserId, deviceId: deviceId, activeWithinSeconds: activeWithinSeconds).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -284,19 +273,17 @@ open class SessionAPI {
      - parameter subtitleStreamIndex: (query) Optional. The index of the subtitle stream to play. (optional)
      - parameter startIndex: (query) Optional. The start index. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func play( sessionId: String,  playCommand: PlayCommand,  itemIds: [String],  startPositionTicks: Int64? = nil,  mediaSourceId: String? = nil,  audioStreamIndex: Int? = nil,  subtitleStreamIndex: Int? = nil,  startIndex: Int? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func play(sessionId: String, playCommand: PlayCommand, itemIds: [String], startPositionTicks: Int64? = nil, mediaSourceId: String? = nil, audioStreamIndex: Int? = nil, subtitleStreamIndex: Int? = nil, startIndex: Int? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         playWithRequestBuilder(sessionId: sessionId, playCommand: playCommand, itemIds: itemIds, startPositionTicks: startPositionTicks, mediaSourceId: mediaSourceId, audioStreamIndex: audioStreamIndex, subtitleStreamIndex: subtitleStreamIndex, startIndex: startIndex).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -355,19 +342,17 @@ open class SessionAPI {
      - parameter supportsSync: (query) Determines whether sync is supported. (optional, default to false)
      - parameter supportsPersistentIdentifier: (query) Determines whether the device supports a unique identifier. (optional, default to true)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func postCapabilities( id: String? = nil,  playableMediaTypes: [String]? = nil,  supportedCommands: [GeneralCommandType]? = nil,  supportsMediaControl: Bool? = nil,  supportsSync: Bool? = nil,  supportsPersistentIdentifier: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func postCapabilities(id: String? = nil, playableMediaTypes: [String]? = nil, supportedCommands: [GeneralCommandType]? = nil, supportsMediaControl: Bool? = nil, supportsSync: Bool? = nil, supportsPersistentIdentifier: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         postCapabilitiesWithRequestBuilder(id: id, playableMediaTypes: playableMediaTypes, supportedCommands: supportedCommands, supportsMediaControl: supportsMediaControl, supportsSync: supportsSync, supportsPersistentIdentifier: supportsPersistentIdentifier).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -416,19 +401,17 @@ open class SessionAPI {
      - parameter clientCapabilitiesDto: (body) The MediaBrowser.Model.Session.ClientCapabilities. 
      - parameter id: (query) The session id. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func postFullCapabilities( clientCapabilitiesDto: ClientCapabilitiesDto,  id: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func postFullCapabilities(clientCapabilitiesDto: ClientCapabilitiesDto, id: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         postFullCapabilitiesWithRequestBuilder(clientCapabilitiesDto: clientCapabilitiesDto, id: id).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -468,19 +451,17 @@ open class SessionAPI {
      - parameter sessionId: (path) The session id. 
      - parameter userId: (path) The user id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func removeUserFromSession( sessionId: String,  userId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func removeUserFromSession(sessionId: String, userId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         removeUserFromSessionWithRequestBuilder(sessionId: sessionId, userId: userId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -521,19 +502,17 @@ open class SessionAPI {
      Reports that a session has ended.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func reportSessionEnded(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func reportSessionEnded(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         reportSessionEndedWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -568,19 +547,17 @@ open class SessionAPI {
      - parameter itemId: (query) The item id. 
      - parameter sessionId: (query) The session id. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func reportViewing( itemId: String,  sessionId: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func reportViewing(itemId: String, sessionId: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         reportViewingWithRequestBuilder(itemId: itemId, sessionId: sessionId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -621,19 +598,17 @@ open class SessionAPI {
      - parameter sessionId: (path) The session id. 
      - parameter generalCommand: (body) The MediaBrowser.Model.Session.GeneralCommand. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func sendFullGeneralCommand( sessionId: String,  generalCommand: GeneralCommand, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func sendFullGeneralCommand(sessionId: String, generalCommand: GeneralCommand, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         sendFullGeneralCommandWithRequestBuilder(sessionId: sessionId, generalCommand: generalCommand).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -673,19 +648,17 @@ open class SessionAPI {
      - parameter sessionId: (path) The session id. 
      - parameter command: (path) The command to send. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func sendGeneralCommand( sessionId: String,  command: GeneralCommandType, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func sendGeneralCommand(sessionId: String, command: GeneralCommandType, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         sendGeneralCommandWithRequestBuilder(sessionId: sessionId, command: command).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -728,19 +701,17 @@ open class SessionAPI {
      - parameter sessionId: (path) The session id. 
      - parameter messageCommand: (body) The MediaBrowser.Model.Session.MessageCommand object containing Header, Message Text, and TimeoutMs. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func sendMessageCommand( sessionId: String,  messageCommand: MessageCommand, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func sendMessageCommand(sessionId: String, messageCommand: MessageCommand, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         sendMessageCommandWithRequestBuilder(sessionId: sessionId, messageCommand: messageCommand).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -782,19 +753,17 @@ open class SessionAPI {
      - parameter seekPositionTicks: (query) The optional position ticks. (optional)
      - parameter controllingUserId: (query) The optional controlling user id. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func sendPlaystateCommand( sessionId: String,  command: PlaystateCommand,  seekPositionTicks: Int64? = nil,  controllingUserId: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func sendPlaystateCommand(sessionId: String, command: PlaystateCommand, seekPositionTicks: Int64? = nil, controllingUserId: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         sendPlaystateCommandWithRequestBuilder(sessionId: sessionId, command: command, seekPositionTicks: seekPositionTicks, controllingUserId: controllingUserId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -843,19 +812,17 @@ open class SessionAPI {
      - parameter sessionId: (path) The session id. 
      - parameter command: (path) The command to send. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func sendSystemCommand( sessionId: String,  command: GeneralCommandType, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func sendSystemCommand(sessionId: String, command: GeneralCommandType, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         sendSystemCommandWithRequestBuilder(sessionId: sessionId, command: command).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**

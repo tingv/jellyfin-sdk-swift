@@ -33,7 +33,7 @@ Method | HTTP request | Description
 
 # **deleteItem**
 ```swift
-    open class func deleteItem( itemId: String) -> Promise<Void>
+    open class func deleteItem(itemId: String, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Deletes an item from the library and filesystem.
@@ -46,12 +46,15 @@ import JellyfinAPI
 let itemId = "itemId_example" // String | The item id.
 
 // Deletes an item from the library and filesystem.
-LibraryAPI.deleteItem(itemId: itemId).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+LibraryAPI.deleteItem(itemId: itemId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -78,7 +81,7 @@ Void (empty response body)
 
 # **deleteItems**
 ```swift
-    open class func deleteItems( ids: [String]? = nil) -> Promise<Void>
+    open class func deleteItems(ids: [String]? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Deletes items from the library and filesystem.
@@ -91,12 +94,15 @@ import JellyfinAPI
 let ids = ["inner_example"] // [String] | The item ids. (optional)
 
 // Deletes items from the library and filesystem.
-LibraryAPI.deleteItems(ids: ids).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+LibraryAPI.deleteItems(ids: ids) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -123,7 +129,7 @@ Void (empty response body)
 
 # **getAncestors**
 ```swift
-    open class func getAncestors( itemId: String,  userId: String? = nil) -> Promise<[BaseItemDto]>
+    open class func getAncestors(itemId: String, userId: String? = nil, completion: @escaping (_ data: [BaseItemDto]?, _ error: Error?) -> Void)
 ```
 
 Gets all parents of an item.
@@ -137,12 +143,15 @@ let itemId = "itemId_example" // String | The item id.
 let userId = "userId_example" // String | Optional. Filter by user id, and attach user data. (optional)
 
 // Gets all parents of an item.
-LibraryAPI.getAncestors(itemId: itemId, userId: userId).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+LibraryAPI.getAncestors(itemId: itemId, userId: userId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -170,7 +179,7 @@ Name | Type | Description  | Notes
 
 # **getCriticReviews**
 ```swift
-    open class func getCriticReviews( itemId: String) -> Promise<BaseItemDtoQueryResult>
+    open class func getCriticReviews(itemId: String, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
 ```
 
 Gets critic review for an item.
@@ -183,12 +192,15 @@ import JellyfinAPI
 let itemId = "itemId_example" // String | 
 
 // Gets critic review for an item.
-LibraryAPI.getCriticReviews(itemId: itemId).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+LibraryAPI.getCriticReviews(itemId: itemId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -215,7 +227,7 @@ Name | Type | Description  | Notes
 
 # **getDownload**
 ```swift
-    open class func getDownload( itemId: String) -> Promise<URL>
+    open class func getDownload(itemId: String, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
 ```
 
 Downloads item media.
@@ -228,12 +240,15 @@ import JellyfinAPI
 let itemId = "itemId_example" // String | The item id.
 
 // Downloads item media.
-LibraryAPI.getDownload(itemId: itemId).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+LibraryAPI.getDownload(itemId: itemId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -260,7 +275,7 @@ Name | Type | Description  | Notes
 
 # **getFile**
 ```swift
-    open class func getFile( itemId: String) -> Promise<URL>
+    open class func getFile(itemId: String, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
 ```
 
 Get the original file of an item.
@@ -273,12 +288,15 @@ import JellyfinAPI
 let itemId = "itemId_example" // String | The item id.
 
 // Get the original file of an item.
-LibraryAPI.getFile(itemId: itemId).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+LibraryAPI.getFile(itemId: itemId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -305,7 +323,7 @@ Name | Type | Description  | Notes
 
 # **getItemCounts**
 ```swift
-    open class func getItemCounts( userId: String? = nil,  isFavorite: Bool? = nil) -> Promise<ItemCounts>
+    open class func getItemCounts(userId: String? = nil, isFavorite: Bool? = nil, completion: @escaping (_ data: ItemCounts?, _ error: Error?) -> Void)
 ```
 
 Get item counts.
@@ -319,12 +337,15 @@ let userId = "userId_example" // String | Optional. Get counts from a specific u
 let isFavorite = true // Bool | Optional. Get counts of favorite items. (optional)
 
 // Get item counts.
-LibraryAPI.getItemCounts(userId: userId, isFavorite: isFavorite).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+LibraryAPI.getItemCounts(userId: userId, isFavorite: isFavorite) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -352,7 +373,7 @@ Name | Type | Description  | Notes
 
 # **getLibraryOptionsInfo**
 ```swift
-    open class func getLibraryOptionsInfo( libraryContentType: String? = nil,  isNewLibrary: Bool? = nil) -> Promise<LibraryOptionsResultDto>
+    open class func getLibraryOptionsInfo(libraryContentType: String? = nil, isNewLibrary: Bool? = nil, completion: @escaping (_ data: LibraryOptionsResultDto?, _ error: Error?) -> Void)
 ```
 
 Gets the library options info.
@@ -366,12 +387,15 @@ let libraryContentType = "libraryContentType_example" // String | Library conten
 let isNewLibrary = true // Bool | Whether this is a new library. (optional) (default to false)
 
 // Gets the library options info.
-LibraryAPI.getLibraryOptionsInfo(libraryContentType: libraryContentType, isNewLibrary: isNewLibrary).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+LibraryAPI.getLibraryOptionsInfo(libraryContentType: libraryContentType, isNewLibrary: isNewLibrary) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -399,7 +423,7 @@ Name | Type | Description  | Notes
 
 # **getMediaFolders**
 ```swift
-    open class func getMediaFolders( isHidden: Bool? = nil) -> Promise<BaseItemDtoQueryResult>
+    open class func getMediaFolders(isHidden: Bool? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
 ```
 
 Gets all user media folders.
@@ -412,12 +436,15 @@ import JellyfinAPI
 let isHidden = true // Bool | Optional. Filter by folders that are marked hidden, or not. (optional)
 
 // Gets all user media folders.
-LibraryAPI.getMediaFolders(isHidden: isHidden).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+LibraryAPI.getMediaFolders(isHidden: isHidden) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -444,7 +471,7 @@ Name | Type | Description  | Notes
 
 # **getPhysicalPaths**
 ```swift
-    open class func getPhysicalPaths() -> Promise<[String]>
+    open class func getPhysicalPaths(completion: @escaping (_ data: [String]?, _ error: Error?) -> Void)
 ```
 
 Gets a list of physical paths from virtual folders.
@@ -456,12 +483,15 @@ import JellyfinAPI
 
 
 // Gets a list of physical paths from virtual folders.
-LibraryAPI.getPhysicalPaths().then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+LibraryAPI.getPhysicalPaths() { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -485,7 +515,7 @@ This endpoint does not need any parameter.
 
 # **getSimilarAlbums**
 ```swift
-    open class func getSimilarAlbums( itemId: String,  excludeArtistIds: [String]? = nil,  userId: String? = nil,  limit: Int? = nil,  fields: [ItemFields]? = nil) -> Promise<BaseItemDtoQueryResult>
+    open class func getSimilarAlbums(itemId: String, excludeArtistIds: [String]? = nil, userId: String? = nil, limit: Int? = nil, fields: [ItemFields]? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
 ```
 
 Gets similar items.
@@ -502,12 +532,15 @@ let limit = 987 // Int | Optional. The maximum number of records to return. (opt
 let fields = [ItemFields()] // [ItemFields] | Optional. Specify additional fields of information to return in the output. This allows multiple, comma delimited. Options: Budget, Chapters, DateCreated, Genres, HomePageUrl, IndexOptions, MediaStreams, Overview, ParentId, Path, People, ProviderIds, PrimaryImageAspectRatio, Revenue, SortName, Studios, Taglines, TrailerUrls. (optional)
 
 // Gets similar items.
-LibraryAPI.getSimilarAlbums(itemId: itemId, excludeArtistIds: excludeArtistIds, userId: userId, limit: limit, fields: fields).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+LibraryAPI.getSimilarAlbums(itemId: itemId, excludeArtistIds: excludeArtistIds, userId: userId, limit: limit, fields: fields) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -538,7 +571,7 @@ Name | Type | Description  | Notes
 
 # **getSimilarArtists**
 ```swift
-    open class func getSimilarArtists( itemId: String,  excludeArtistIds: [String]? = nil,  userId: String? = nil,  limit: Int? = nil,  fields: [ItemFields]? = nil) -> Promise<BaseItemDtoQueryResult>
+    open class func getSimilarArtists(itemId: String, excludeArtistIds: [String]? = nil, userId: String? = nil, limit: Int? = nil, fields: [ItemFields]? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
 ```
 
 Gets similar items.
@@ -555,12 +588,15 @@ let limit = 987 // Int | Optional. The maximum number of records to return. (opt
 let fields = [ItemFields()] // [ItemFields] | Optional. Specify additional fields of information to return in the output. This allows multiple, comma delimited. Options: Budget, Chapters, DateCreated, Genres, HomePageUrl, IndexOptions, MediaStreams, Overview, ParentId, Path, People, ProviderIds, PrimaryImageAspectRatio, Revenue, SortName, Studios, Taglines, TrailerUrls. (optional)
 
 // Gets similar items.
-LibraryAPI.getSimilarArtists(itemId: itemId, excludeArtistIds: excludeArtistIds, userId: userId, limit: limit, fields: fields).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+LibraryAPI.getSimilarArtists(itemId: itemId, excludeArtistIds: excludeArtistIds, userId: userId, limit: limit, fields: fields) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -591,7 +627,7 @@ Name | Type | Description  | Notes
 
 # **getSimilarItems**
 ```swift
-    open class func getSimilarItems( itemId: String,  excludeArtistIds: [String]? = nil,  userId: String? = nil,  limit: Int? = nil,  fields: [ItemFields]? = nil) -> Promise<BaseItemDtoQueryResult>
+    open class func getSimilarItems(itemId: String, excludeArtistIds: [String]? = nil, userId: String? = nil, limit: Int? = nil, fields: [ItemFields]? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
 ```
 
 Gets similar items.
@@ -608,12 +644,15 @@ let limit = 987 // Int | Optional. The maximum number of records to return. (opt
 let fields = [ItemFields()] // [ItemFields] | Optional. Specify additional fields of information to return in the output. This allows multiple, comma delimited. Options: Budget, Chapters, DateCreated, Genres, HomePageUrl, IndexOptions, MediaStreams, Overview, ParentId, Path, People, ProviderIds, PrimaryImageAspectRatio, Revenue, SortName, Studios, Taglines, TrailerUrls. (optional)
 
 // Gets similar items.
-LibraryAPI.getSimilarItems(itemId: itemId, excludeArtistIds: excludeArtistIds, userId: userId, limit: limit, fields: fields).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+LibraryAPI.getSimilarItems(itemId: itemId, excludeArtistIds: excludeArtistIds, userId: userId, limit: limit, fields: fields) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -644,7 +683,7 @@ Name | Type | Description  | Notes
 
 # **getSimilarMovies**
 ```swift
-    open class func getSimilarMovies( itemId: String,  excludeArtistIds: [String]? = nil,  userId: String? = nil,  limit: Int? = nil,  fields: [ItemFields]? = nil) -> Promise<BaseItemDtoQueryResult>
+    open class func getSimilarMovies(itemId: String, excludeArtistIds: [String]? = nil, userId: String? = nil, limit: Int? = nil, fields: [ItemFields]? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
 ```
 
 Gets similar items.
@@ -661,12 +700,15 @@ let limit = 987 // Int | Optional. The maximum number of records to return. (opt
 let fields = [ItemFields()] // [ItemFields] | Optional. Specify additional fields of information to return in the output. This allows multiple, comma delimited. Options: Budget, Chapters, DateCreated, Genres, HomePageUrl, IndexOptions, MediaStreams, Overview, ParentId, Path, People, ProviderIds, PrimaryImageAspectRatio, Revenue, SortName, Studios, Taglines, TrailerUrls. (optional)
 
 // Gets similar items.
-LibraryAPI.getSimilarMovies(itemId: itemId, excludeArtistIds: excludeArtistIds, userId: userId, limit: limit, fields: fields).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+LibraryAPI.getSimilarMovies(itemId: itemId, excludeArtistIds: excludeArtistIds, userId: userId, limit: limit, fields: fields) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -697,7 +739,7 @@ Name | Type | Description  | Notes
 
 # **getSimilarShows**
 ```swift
-    open class func getSimilarShows( itemId: String,  excludeArtistIds: [String]? = nil,  userId: String? = nil,  limit: Int? = nil,  fields: [ItemFields]? = nil) -> Promise<BaseItemDtoQueryResult>
+    open class func getSimilarShows(itemId: String, excludeArtistIds: [String]? = nil, userId: String? = nil, limit: Int? = nil, fields: [ItemFields]? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
 ```
 
 Gets similar items.
@@ -714,12 +756,15 @@ let limit = 987 // Int | Optional. The maximum number of records to return. (opt
 let fields = [ItemFields()] // [ItemFields] | Optional. Specify additional fields of information to return in the output. This allows multiple, comma delimited. Options: Budget, Chapters, DateCreated, Genres, HomePageUrl, IndexOptions, MediaStreams, Overview, ParentId, Path, People, ProviderIds, PrimaryImageAspectRatio, Revenue, SortName, Studios, Taglines, TrailerUrls. (optional)
 
 // Gets similar items.
-LibraryAPI.getSimilarShows(itemId: itemId, excludeArtistIds: excludeArtistIds, userId: userId, limit: limit, fields: fields).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+LibraryAPI.getSimilarShows(itemId: itemId, excludeArtistIds: excludeArtistIds, userId: userId, limit: limit, fields: fields) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -750,7 +795,7 @@ Name | Type | Description  | Notes
 
 # **getSimilarTrailers**
 ```swift
-    open class func getSimilarTrailers( itemId: String,  excludeArtistIds: [String]? = nil,  userId: String? = nil,  limit: Int? = nil,  fields: [ItemFields]? = nil) -> Promise<BaseItemDtoQueryResult>
+    open class func getSimilarTrailers(itemId: String, excludeArtistIds: [String]? = nil, userId: String? = nil, limit: Int? = nil, fields: [ItemFields]? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
 ```
 
 Gets similar items.
@@ -767,12 +812,15 @@ let limit = 987 // Int | Optional. The maximum number of records to return. (opt
 let fields = [ItemFields()] // [ItemFields] | Optional. Specify additional fields of information to return in the output. This allows multiple, comma delimited. Options: Budget, Chapters, DateCreated, Genres, HomePageUrl, IndexOptions, MediaStreams, Overview, ParentId, Path, People, ProviderIds, PrimaryImageAspectRatio, Revenue, SortName, Studios, Taglines, TrailerUrls. (optional)
 
 // Gets similar items.
-LibraryAPI.getSimilarTrailers(itemId: itemId, excludeArtistIds: excludeArtistIds, userId: userId, limit: limit, fields: fields).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+LibraryAPI.getSimilarTrailers(itemId: itemId, excludeArtistIds: excludeArtistIds, userId: userId, limit: limit, fields: fields) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -803,7 +851,7 @@ Name | Type | Description  | Notes
 
 # **getThemeMedia**
 ```swift
-    open class func getThemeMedia( itemId: String,  userId: String? = nil,  inheritFromParent: Bool? = nil) -> Promise<AllThemeMediaResult>
+    open class func getThemeMedia(itemId: String, userId: String? = nil, inheritFromParent: Bool? = nil, completion: @escaping (_ data: AllThemeMediaResult?, _ error: Error?) -> Void)
 ```
 
 Get theme songs and videos for an item.
@@ -818,12 +866,15 @@ let userId = "userId_example" // String | Optional. Filter by user id, and attac
 let inheritFromParent = true // Bool | Optional. Determines whether or not parent items should be searched for theme media. (optional) (default to false)
 
 // Get theme songs and videos for an item.
-LibraryAPI.getThemeMedia(itemId: itemId, userId: userId, inheritFromParent: inheritFromParent).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+LibraryAPI.getThemeMedia(itemId: itemId, userId: userId, inheritFromParent: inheritFromParent) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -852,7 +903,7 @@ Name | Type | Description  | Notes
 
 # **getThemeSongs**
 ```swift
-    open class func getThemeSongs( itemId: String,  userId: String? = nil,  inheritFromParent: Bool? = nil) -> Promise<ThemeMediaResult>
+    open class func getThemeSongs(itemId: String, userId: String? = nil, inheritFromParent: Bool? = nil, completion: @escaping (_ data: ThemeMediaResult?, _ error: Error?) -> Void)
 ```
 
 Get theme songs for an item.
@@ -867,12 +918,15 @@ let userId = "userId_example" // String | Optional. Filter by user id, and attac
 let inheritFromParent = true // Bool | Optional. Determines whether or not parent items should be searched for theme media. (optional) (default to false)
 
 // Get theme songs for an item.
-LibraryAPI.getThemeSongs(itemId: itemId, userId: userId, inheritFromParent: inheritFromParent).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+LibraryAPI.getThemeSongs(itemId: itemId, userId: userId, inheritFromParent: inheritFromParent) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -901,7 +955,7 @@ Name | Type | Description  | Notes
 
 # **getThemeVideos**
 ```swift
-    open class func getThemeVideos( itemId: String,  userId: String? = nil,  inheritFromParent: Bool? = nil) -> Promise<ThemeMediaResult>
+    open class func getThemeVideos(itemId: String, userId: String? = nil, inheritFromParent: Bool? = nil, completion: @escaping (_ data: ThemeMediaResult?, _ error: Error?) -> Void)
 ```
 
 Get theme videos for an item.
@@ -916,12 +970,15 @@ let userId = "userId_example" // String | Optional. Filter by user id, and attac
 let inheritFromParent = true // Bool | Optional. Determines whether or not parent items should be searched for theme media. (optional) (default to false)
 
 // Get theme videos for an item.
-LibraryAPI.getThemeVideos(itemId: itemId, userId: userId, inheritFromParent: inheritFromParent).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+LibraryAPI.getThemeVideos(itemId: itemId, userId: userId, inheritFromParent: inheritFromParent) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -950,7 +1007,7 @@ Name | Type | Description  | Notes
 
 # **postAddedMovies**
 ```swift
-    open class func postAddedMovies( tmdbId: String? = nil,  imdbId: String? = nil) -> Promise<Void>
+    open class func postAddedMovies(tmdbId: String? = nil, imdbId: String? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Reports that new movies have been added by an external source.
@@ -964,12 +1021,15 @@ let tmdbId = "tmdbId_example" // String | The tmdbId. (optional)
 let imdbId = "imdbId_example" // String | The imdbId. (optional)
 
 // Reports that new movies have been added by an external source.
-LibraryAPI.postAddedMovies(tmdbId: tmdbId, imdbId: imdbId).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+LibraryAPI.postAddedMovies(tmdbId: tmdbId, imdbId: imdbId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -997,7 +1057,7 @@ Void (empty response body)
 
 # **postAddedSeries**
 ```swift
-    open class func postAddedSeries( tvdbId: String? = nil) -> Promise<Void>
+    open class func postAddedSeries(tvdbId: String? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Reports that new episodes of a series have been added by an external source.
@@ -1010,12 +1070,15 @@ import JellyfinAPI
 let tvdbId = "tvdbId_example" // String | The tvdbId. (optional)
 
 // Reports that new episodes of a series have been added by an external source.
-LibraryAPI.postAddedSeries(tvdbId: tvdbId).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+LibraryAPI.postAddedSeries(tvdbId: tvdbId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -1042,7 +1105,7 @@ Void (empty response body)
 
 # **postUpdatedMedia**
 ```swift
-    open class func postUpdatedMedia( mediaUpdateInfoDto: MediaUpdateInfoDto) -> Promise<Void>
+    open class func postUpdatedMedia(mediaUpdateInfoDto: MediaUpdateInfoDto, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Reports that new movies have been added by an external source.
@@ -1055,12 +1118,15 @@ import JellyfinAPI
 let mediaUpdateInfoDto = MediaUpdateInfoDto(updates: [MediaUpdateInfoPathDto(path: "path_example", updateType: "updateType_example")]) // MediaUpdateInfoDto | The update paths.
 
 // Reports that new movies have been added by an external source.
-LibraryAPI.postUpdatedMedia(mediaUpdateInfoDto: mediaUpdateInfoDto).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+LibraryAPI.postUpdatedMedia(mediaUpdateInfoDto: mediaUpdateInfoDto) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -1087,7 +1153,7 @@ Void (empty response body)
 
 # **postUpdatedMovies**
 ```swift
-    open class func postUpdatedMovies( tmdbId: String? = nil,  imdbId: String? = nil) -> Promise<Void>
+    open class func postUpdatedMovies(tmdbId: String? = nil, imdbId: String? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Reports that new movies have been added by an external source.
@@ -1101,12 +1167,15 @@ let tmdbId = "tmdbId_example" // String | The tmdbId. (optional)
 let imdbId = "imdbId_example" // String | The imdbId. (optional)
 
 // Reports that new movies have been added by an external source.
-LibraryAPI.postUpdatedMovies(tmdbId: tmdbId, imdbId: imdbId).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+LibraryAPI.postUpdatedMovies(tmdbId: tmdbId, imdbId: imdbId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -1134,7 +1203,7 @@ Void (empty response body)
 
 # **postUpdatedSeries**
 ```swift
-    open class func postUpdatedSeries( tvdbId: String? = nil) -> Promise<Void>
+    open class func postUpdatedSeries(tvdbId: String? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Reports that new episodes of a series have been added by an external source.
@@ -1147,12 +1216,15 @@ import JellyfinAPI
 let tvdbId = "tvdbId_example" // String | The tvdbId. (optional)
 
 // Reports that new episodes of a series have been added by an external source.
-LibraryAPI.postUpdatedSeries(tvdbId: tvdbId).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+LibraryAPI.postUpdatedSeries(tvdbId: tvdbId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -1179,7 +1251,7 @@ Void (empty response body)
 
 # **refreshLibrary**
 ```swift
-    open class func refreshLibrary() -> Promise<Void>
+    open class func refreshLibrary(completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Starts a library scan.
@@ -1191,12 +1263,15 @@ import JellyfinAPI
 
 
 // Starts a library scan.
-LibraryAPI.refreshLibrary().then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+LibraryAPI.refreshLibrary() { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 

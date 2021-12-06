@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 # **deleteUserItemRating**
 ```swift
-    open class func deleteUserItemRating( userId: String,  itemId: String) -> Promise<UserItemDataDto>
+    open class func deleteUserItemRating(userId: String, itemId: String, completion: @escaping (_ data: UserItemDataDto?, _ error: Error?) -> Void)
 ```
 
 Deletes a user's saved personal rating for an item.
@@ -32,12 +32,15 @@ let userId = "userId_example" // String | User id.
 let itemId = "itemId_example" // String | Item id.
 
 // Deletes a user's saved personal rating for an item.
-UserLibraryAPI.deleteUserItemRating(userId: userId, itemId: itemId).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+UserLibraryAPI.deleteUserItemRating(userId: userId, itemId: itemId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -65,7 +68,7 @@ Name | Type | Description  | Notes
 
 # **getIntros**
 ```swift
-    open class func getIntros( userId: String,  itemId: String) -> Promise<BaseItemDtoQueryResult>
+    open class func getIntros(userId: String, itemId: String, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
 ```
 
 Gets intros to play before the main media item plays.
@@ -79,12 +82,15 @@ let userId = "userId_example" // String | User id.
 let itemId = "itemId_example" // String | Item id.
 
 // Gets intros to play before the main media item plays.
-UserLibraryAPI.getIntros(userId: userId, itemId: itemId).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+UserLibraryAPI.getIntros(userId: userId, itemId: itemId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -112,7 +118,7 @@ Name | Type | Description  | Notes
 
 # **getItem**
 ```swift
-    open class func getItem( userId: String,  itemId: String) -> Promise<BaseItemDto>
+    open class func getItem(userId: String, itemId: String, completion: @escaping (_ data: BaseItemDto?, _ error: Error?) -> Void)
 ```
 
 Gets an item from a user's library.
@@ -126,12 +132,15 @@ let userId = "userId_example" // String | User id.
 let itemId = "itemId_example" // String | Item id.
 
 // Gets an item from a user's library.
-UserLibraryAPI.getItem(userId: userId, itemId: itemId).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+UserLibraryAPI.getItem(userId: userId, itemId: itemId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -159,7 +168,7 @@ Name | Type | Description  | Notes
 
 # **getLatestMedia**
 ```swift
-    open class func getLatestMedia( userId: String,  parentId: String? = nil,  fields: [ItemFields]? = nil,  includeItemTypes: [String]? = nil,  isPlayed: Bool? = nil,  enableImages: Bool? = nil,  imageTypeLimit: Int? = nil,  enableImageTypes: [ImageType]? = nil,  enableUserData: Bool? = nil,  limit: Int? = nil,  groupItems: Bool? = nil) -> Promise<[BaseItemDto]>
+    open class func getLatestMedia(userId: String, parentId: String? = nil, fields: [ItemFields]? = nil, includeItemTypes: [String]? = nil, isPlayed: Bool? = nil, enableImages: Bool? = nil, imageTypeLimit: Int? = nil, enableImageTypes: [ImageType]? = nil, enableUserData: Bool? = nil, limit: Int? = nil, groupItems: Bool? = nil, completion: @escaping (_ data: [BaseItemDto]?, _ error: Error?) -> Void)
 ```
 
 Gets latest media.
@@ -182,12 +191,15 @@ let limit = 987 // Int | Return item limit. (optional) (default to 20)
 let groupItems = true // Bool | Whether or not to group items into a parent container. (optional) (default to true)
 
 // Gets latest media.
-UserLibraryAPI.getLatestMedia(userId: userId, parentId: parentId, fields: fields, includeItemTypes: includeItemTypes, isPlayed: isPlayed, enableImages: enableImages, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes, enableUserData: enableUserData, limit: limit, groupItems: groupItems).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+UserLibraryAPI.getLatestMedia(userId: userId, parentId: parentId, fields: fields, includeItemTypes: includeItemTypes, isPlayed: isPlayed, enableImages: enableImages, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes, enableUserData: enableUserData, limit: limit, groupItems: groupItems) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -224,7 +236,7 @@ Name | Type | Description  | Notes
 
 # **getLocalTrailers**
 ```swift
-    open class func getLocalTrailers( userId: String,  itemId: String) -> Promise<[BaseItemDto]>
+    open class func getLocalTrailers(userId: String, itemId: String, completion: @escaping (_ data: [BaseItemDto]?, _ error: Error?) -> Void)
 ```
 
 Gets local trailers for an item.
@@ -238,12 +250,15 @@ let userId = "userId_example" // String | User id.
 let itemId = "itemId_example" // String | Item id.
 
 // Gets local trailers for an item.
-UserLibraryAPI.getLocalTrailers(userId: userId, itemId: itemId).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+UserLibraryAPI.getLocalTrailers(userId: userId, itemId: itemId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -271,7 +286,7 @@ Name | Type | Description  | Notes
 
 # **getRootFolder**
 ```swift
-    open class func getRootFolder( userId: String) -> Promise<BaseItemDto>
+    open class func getRootFolder(userId: String, completion: @escaping (_ data: BaseItemDto?, _ error: Error?) -> Void)
 ```
 
 Gets the root folder from a user's library.
@@ -284,12 +299,15 @@ import JellyfinAPI
 let userId = "userId_example" // String | User id.
 
 // Gets the root folder from a user's library.
-UserLibraryAPI.getRootFolder(userId: userId).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+UserLibraryAPI.getRootFolder(userId: userId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -316,7 +334,7 @@ Name | Type | Description  | Notes
 
 # **getSpecialFeatures**
 ```swift
-    open class func getSpecialFeatures( userId: String,  itemId: String) -> Promise<[BaseItemDto]>
+    open class func getSpecialFeatures(userId: String, itemId: String, completion: @escaping (_ data: [BaseItemDto]?, _ error: Error?) -> Void)
 ```
 
 Gets special features for an item.
@@ -330,12 +348,15 @@ let userId = "userId_example" // String | User id.
 let itemId = "itemId_example" // String | Item id.
 
 // Gets special features for an item.
-UserLibraryAPI.getSpecialFeatures(userId: userId, itemId: itemId).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+UserLibraryAPI.getSpecialFeatures(userId: userId, itemId: itemId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -363,7 +384,7 @@ Name | Type | Description  | Notes
 
 # **markFavoriteItem**
 ```swift
-    open class func markFavoriteItem( userId: String,  itemId: String) -> Promise<UserItemDataDto>
+    open class func markFavoriteItem(userId: String, itemId: String, completion: @escaping (_ data: UserItemDataDto?, _ error: Error?) -> Void)
 ```
 
 Marks an item as a favorite.
@@ -377,12 +398,15 @@ let userId = "userId_example" // String | User id.
 let itemId = "itemId_example" // String | Item id.
 
 // Marks an item as a favorite.
-UserLibraryAPI.markFavoriteItem(userId: userId, itemId: itemId).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+UserLibraryAPI.markFavoriteItem(userId: userId, itemId: itemId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -410,7 +434,7 @@ Name | Type | Description  | Notes
 
 # **unmarkFavoriteItem**
 ```swift
-    open class func unmarkFavoriteItem( userId: String,  itemId: String) -> Promise<UserItemDataDto>
+    open class func unmarkFavoriteItem(userId: String, itemId: String, completion: @escaping (_ data: UserItemDataDto?, _ error: Error?) -> Void)
 ```
 
 Unmarks item as a favorite.
@@ -424,12 +448,15 @@ let userId = "userId_example" // String | User id.
 let itemId = "itemId_example" // String | Item id.
 
 // Unmarks item as a favorite.
-UserLibraryAPI.unmarkFavoriteItem(userId: userId, itemId: itemId).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+UserLibraryAPI.unmarkFavoriteItem(userId: userId, itemId: itemId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -457,7 +484,7 @@ Name | Type | Description  | Notes
 
 # **updateUserItemRating**
 ```swift
-    open class func updateUserItemRating( userId: String,  itemId: String,  likes: Bool? = nil) -> Promise<UserItemDataDto>
+    open class func updateUserItemRating(userId: String, itemId: String, likes: Bool? = nil, completion: @escaping (_ data: UserItemDataDto?, _ error: Error?) -> Void)
 ```
 
 Updates a user's rating for an item.
@@ -472,12 +499,15 @@ let itemId = "itemId_example" // String | Item id.
 let likes = true // Bool | Whether this M:Jellyfin.Api.Controllers.UserLibraryController.UpdateUserItemRating(System.Guid,System.Guid,System.Nullable{System.Boolean}) is likes. (optional)
 
 // Updates a user's rating for an item.
-UserLibraryAPI.updateUserItemRating(userId: userId, itemId: itemId, likes: likes).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+UserLibraryAPI.updateUserItemRating(userId: userId, itemId: itemId, likes: likes) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 

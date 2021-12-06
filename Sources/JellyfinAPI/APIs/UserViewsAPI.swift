@@ -7,7 +7,6 @@
 
 import AnyCodable
 import Foundation
-import PromiseKit
 
 open class UserViewsAPI {
     /**
@@ -15,19 +14,17 @@ open class UserViewsAPI {
      
      - parameter userId: (path) User id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<[SpecialViewOptionDto]>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getGroupingOptions( userId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[SpecialViewOptionDto]> {
-        let deferred = Promise<[SpecialViewOptionDto]>.pending()
+    open class func getGroupingOptions(userId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[SpecialViewOptionDto], Error>) -> Void)) {
         getGroupingOptionsWithRequestBuilder(userId: userId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -65,19 +62,17 @@ open class UserViewsAPI {
      - parameter presetViews: (query) Preset views. (optional)
      - parameter includeHidden: (query) Whether or not to include hidden content. (optional, default to false)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<BaseItemDtoQueryResult>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getUserViews( userId: String,  includeExternalContent: Bool? = nil,  presetViews: [String]? = nil,  includeHidden: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<BaseItemDtoQueryResult> {
-        let deferred = Promise<BaseItemDtoQueryResult>.pending()
+    open class func getUserViews(userId: String, includeExternalContent: Bool? = nil, presetViews: [String]? = nil, includeHidden: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<BaseItemDtoQueryResult, Error>) -> Void)) {
         getUserViewsWithRequestBuilder(userId: userId, includeExternalContent: includeExternalContent, presetViews: presetViews, includeHidden: includeHidden).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**

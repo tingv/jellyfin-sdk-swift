@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 # **addToCollection**
 ```swift
-    open class func addToCollection( collectionId: String,  ids: [String]) -> Promise<Void>
+    open class func addToCollection(collectionId: String, ids: [String], completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Adds items to a collection.
@@ -25,12 +25,15 @@ let collectionId = "collectionId_example" // String | The collection id.
 let ids = ["inner_example"] // [String] | Item ids, comma delimited.
 
 // Adds items to a collection.
-CollectionAPI.addToCollection(collectionId: collectionId, ids: ids).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+CollectionAPI.addToCollection(collectionId: collectionId, ids: ids) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -58,7 +61,7 @@ Void (empty response body)
 
 # **createCollection**
 ```swift
-    open class func createCollection( name: String? = nil,  ids: [String]? = nil,  parentId: String? = nil,  isLocked: Bool? = nil) -> Promise<CollectionCreationResult>
+    open class func createCollection(name: String? = nil, ids: [String]? = nil, parentId: String? = nil, isLocked: Bool? = nil, completion: @escaping (_ data: CollectionCreationResult?, _ error: Error?) -> Void)
 ```
 
 Creates a new collection.
@@ -74,12 +77,15 @@ let parentId = "parentId_example" // String | Optional. Create the collection wi
 let isLocked = true // Bool | Whether or not to lock the new collection. (optional) (default to false)
 
 // Creates a new collection.
-CollectionAPI.createCollection(name: name, ids: ids, parentId: parentId, isLocked: isLocked).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+CollectionAPI.createCollection(name: name, ids: ids, parentId: parentId, isLocked: isLocked) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -109,7 +115,7 @@ Name | Type | Description  | Notes
 
 # **removeFromCollection**
 ```swift
-    open class func removeFromCollection( collectionId: String,  ids: [String]) -> Promise<Void>
+    open class func removeFromCollection(collectionId: String, ids: [String], completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Removes items from a collection.
@@ -123,12 +129,15 @@ let collectionId = "collectionId_example" // String | The collection id.
 let ids = ["inner_example"] // [String] | Item ids, comma delimited.
 
 // Removes items from a collection.
-CollectionAPI.removeFromCollection(collectionId: collectionId, ids: ids).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+CollectionAPI.removeFromCollection(collectionId: collectionId, ids: ids) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 

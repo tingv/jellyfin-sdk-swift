@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 # **getLogEntries**
 ```swift
-    open class func getLogEntries( startIndex: Int? = nil,  limit: Int? = nil,  minDate: Date? = nil,  hasUserId: Bool? = nil) -> Promise<ActivityLogEntryQueryResult>
+    open class func getLogEntries(startIndex: Int? = nil, limit: Int? = nil, minDate: Date? = nil, hasUserId: Bool? = nil, completion: @escaping (_ data: ActivityLogEntryQueryResult?, _ error: Error?) -> Void)
 ```
 
 Gets activity log entries.
@@ -25,12 +25,15 @@ let minDate = Date() // Date | Optional. The minimum date. Format = ISO. (option
 let hasUserId = true // Bool | Optional. Filter log entries if it has user id, or not. (optional)
 
 // Gets activity log entries.
-ActivityLogAPI.getLogEntries(startIndex: startIndex, limit: limit, minDate: minDate, hasUserId: hasUserId).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+ActivityLogAPI.getLogEntries(startIndex: startIndex, limit: limit, minDate: minDate, hasUserId: hasUserId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 

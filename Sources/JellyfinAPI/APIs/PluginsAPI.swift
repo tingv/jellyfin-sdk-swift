@@ -7,7 +7,6 @@
 
 import AnyCodable
 import Foundation
-import PromiseKit
 
 open class PluginsAPI {
     /**
@@ -16,19 +15,17 @@ open class PluginsAPI {
      - parameter pluginId: (path) Plugin id. 
      - parameter version: (path) Plugin version. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func disablePlugin( pluginId: String,  version: Version, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func disablePlugin(pluginId: String, version: Version, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         disablePluginWithRequestBuilder(pluginId: pluginId, version: version).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -71,19 +68,17 @@ open class PluginsAPI {
      - parameter pluginId: (path) Plugin id. 
      - parameter version: (path) Plugin version. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func enablePlugin( pluginId: String,  version: Version, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func enablePlugin(pluginId: String, version: Version, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         enablePluginWithRequestBuilder(pluginId: pluginId, version: version).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -125,19 +120,17 @@ open class PluginsAPI {
      
      - parameter pluginId: (path) Plugin id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<AnyCodable>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getPluginConfiguration( pluginId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<AnyCodable> {
-        let deferred = Promise<AnyCodable>.pending()
+    open class func getPluginConfiguration(pluginId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<AnyCodable, Error>) -> Void)) {
         getPluginConfigurationWithRequestBuilder(pluginId: pluginId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -176,19 +169,17 @@ open class PluginsAPI {
      - parameter pluginId: (path) Plugin id. 
      - parameter version: (path) Plugin version. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getPluginImage( pluginId: String,  version: Version, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func getPluginImage(pluginId: String, version: Version, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         getPluginImageWithRequestBuilder(pluginId: pluginId, version: version).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -230,19 +221,17 @@ open class PluginsAPI {
      
      - parameter pluginId: (path) Plugin id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getPluginManifest( pluginId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func getPluginManifest(pluginId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         getPluginManifestWithRequestBuilder(pluginId: pluginId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -279,19 +268,17 @@ open class PluginsAPI {
      Gets a list of currently installed plugins.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<[PluginInfo]>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getPlugins(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[PluginInfo]> {
-        let deferred = Promise<[PluginInfo]>.pending()
+    open class func getPlugins(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[PluginInfo], Error>) -> Void)) {
         getPluginsWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -325,20 +312,18 @@ open class PluginsAPI {
      
      - parameter pluginId: (path) Plugin id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
     @available(*, deprecated, message: "This operation is deprecated.")
-    open class func uninstallPlugin( pluginId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func uninstallPlugin(pluginId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         uninstallPluginWithRequestBuilder(pluginId: pluginId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -378,19 +363,17 @@ open class PluginsAPI {
      - parameter pluginId: (path) Plugin id. 
      - parameter version: (path) Plugin version. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func uninstallPluginByVersion( pluginId: String,  version: Version, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func uninstallPluginByVersion(pluginId: String, version: Version, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         uninstallPluginByVersionWithRequestBuilder(pluginId: pluginId, version: version).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -432,19 +415,17 @@ open class PluginsAPI {
      
      - parameter pluginId: (path) Plugin id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func updatePluginConfiguration( pluginId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func updatePluginConfiguration(pluginId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         updatePluginConfigurationWithRequestBuilder(pluginId: pluginId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -483,20 +464,18 @@ open class PluginsAPI {
      
      - parameter pluginSecurityInfo: (body) Plugin security info. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
     @available(*, deprecated, message: "This operation is deprecated.")
-    open class func updatePluginSecurityInfo( pluginSecurityInfo: PluginSecurityInfo, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func updatePluginSecurityInfo(pluginSecurityInfo: PluginSecurityInfo, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         updatePluginSecurityInfoWithRequestBuilder(pluginSecurityInfo: pluginSecurityInfo).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**

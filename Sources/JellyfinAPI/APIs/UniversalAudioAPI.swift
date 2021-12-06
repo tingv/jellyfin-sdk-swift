@@ -7,7 +7,6 @@
 
 import AnyCodable
 import Foundation
-import PromiseKit
 
 open class UniversalAudioAPI {
     /**
@@ -32,19 +31,17 @@ open class UniversalAudioAPI {
      - parameter breakOnNonKeyFrames: (query) Optional. Whether to break on non key frames. (optional, default to false)
      - parameter enableRedirection: (query) Whether to enable redirection. Defaults to true. (optional, default to true)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getUniversalAudioStream( itemId: String,  container: [String]? = nil,  mediaSourceId: String? = nil,  deviceId: String? = nil,  userId: String? = nil,  audioCodec: String? = nil,  maxAudioChannels: Int? = nil,  transcodingAudioChannels: Int? = nil,  maxStreamingBitrate: Int? = nil,  audioBitRate: Int? = nil,  startTimeTicks: Int64? = nil,  transcodingContainer: String? = nil,  transcodingProtocol: String? = nil,  maxAudioSampleRate: Int? = nil,  maxAudioBitDepth: Int? = nil,  enableRemoteMedia: Bool? = nil,  breakOnNonKeyFrames: Bool? = nil,  enableRedirection: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func getUniversalAudioStream(itemId: String, container: [String]? = nil, mediaSourceId: String? = nil, deviceId: String? = nil, userId: String? = nil, audioCodec: String? = nil, maxAudioChannels: Int? = nil, transcodingAudioChannels: Int? = nil, maxStreamingBitrate: Int? = nil, audioBitRate: Int? = nil, startTimeTicks: Int64? = nil, transcodingContainer: String? = nil, transcodingProtocol: String? = nil, maxAudioSampleRate: Int? = nil, maxAudioBitDepth: Int? = nil, enableRemoteMedia: Bool? = nil, breakOnNonKeyFrames: Bool? = nil, enableRedirection: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         getUniversalAudioStreamWithRequestBuilder(itemId: itemId, container: container, mediaSourceId: mediaSourceId, deviceId: deviceId, userId: userId, audioCodec: audioCodec, maxAudioChannels: maxAudioChannels, transcodingAudioChannels: transcodingAudioChannels, maxStreamingBitrate: maxStreamingBitrate, audioBitRate: audioBitRate, startTimeTicks: startTimeTicks, transcodingContainer: transcodingContainer, transcodingProtocol: transcodingProtocol, maxAudioSampleRate: maxAudioSampleRate, maxAudioBitDepth: maxAudioBitDepth, enableRemoteMedia: enableRemoteMedia, breakOnNonKeyFrames: breakOnNonKeyFrames, enableRedirection: enableRedirection).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -135,19 +132,17 @@ open class UniversalAudioAPI {
      - parameter breakOnNonKeyFrames: (query) Optional. Whether to break on non key frames. (optional, default to false)
      - parameter enableRedirection: (query) Whether to enable redirection. Defaults to true. (optional, default to true)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func headUniversalAudioStream( itemId: String,  container: [String]? = nil,  mediaSourceId: String? = nil,  deviceId: String? = nil,  userId: String? = nil,  audioCodec: String? = nil,  maxAudioChannels: Int? = nil,  transcodingAudioChannels: Int? = nil,  maxStreamingBitrate: Int? = nil,  audioBitRate: Int? = nil,  startTimeTicks: Int64? = nil,  transcodingContainer: String? = nil,  transcodingProtocol: String? = nil,  maxAudioSampleRate: Int? = nil,  maxAudioBitDepth: Int? = nil,  enableRemoteMedia: Bool? = nil,  breakOnNonKeyFrames: Bool? = nil,  enableRedirection: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func headUniversalAudioStream(itemId: String, container: [String]? = nil, mediaSourceId: String? = nil, deviceId: String? = nil, userId: String? = nil, audioCodec: String? = nil, maxAudioChannels: Int? = nil, transcodingAudioChannels: Int? = nil, maxStreamingBitrate: Int? = nil, audioBitRate: Int? = nil, startTimeTicks: Int64? = nil, transcodingContainer: String? = nil, transcodingProtocol: String? = nil, maxAudioSampleRate: Int? = nil, maxAudioBitDepth: Int? = nil, enableRemoteMedia: Bool? = nil, breakOnNonKeyFrames: Bool? = nil, enableRedirection: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         headUniversalAudioStreamWithRequestBuilder(itemId: itemId, container: container, mediaSourceId: mediaSourceId, deviceId: deviceId, userId: userId, audioCodec: audioCodec, maxAudioChannels: maxAudioChannels, transcodingAudioChannels: transcodingAudioChannels, maxStreamingBitrate: maxStreamingBitrate, audioBitRate: audioBitRate, startTimeTicks: startTimeTicks, transcodingContainer: transcodingContainer, transcodingProtocol: transcodingProtocol, maxAudioSampleRate: maxAudioSampleRate, maxAudioBitDepth: maxAudioBitDepth, enableRemoteMedia: enableRemoteMedia, breakOnNonKeyFrames: breakOnNonKeyFrames, enableRedirection: enableRedirection).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**

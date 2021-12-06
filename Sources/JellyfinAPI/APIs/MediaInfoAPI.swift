@@ -7,7 +7,6 @@
 
 import AnyCodable
 import Foundation
-import PromiseKit
 
 open class MediaInfoAPI {
     /**
@@ -15,19 +14,17 @@ open class MediaInfoAPI {
      
      - parameter liveStreamId: (query) The livestream id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func closeLiveStream( liveStreamId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func closeLiveStream(liveStreamId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         closeLiveStreamWithRequestBuilder(liveStreamId: liveStreamId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -65,19 +62,17 @@ open class MediaInfoAPI {
      
      - parameter size: (query) The bitrate. Defaults to 102400. (optional, default to 102400)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getBitrateTestBytes( size: Int? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func getBitrateTestBytes(size: Int? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         getBitrateTestBytesWithRequestBuilder(size: size).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -116,19 +111,17 @@ open class MediaInfoAPI {
      - parameter itemId: (path) The item id. 
      - parameter userId: (query) The user id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<PlaybackInfoResponse>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getPlaybackInfo( itemId: String,  userId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<PlaybackInfoResponse> {
-        let deferred = Promise<PlaybackInfoResponse>.pending()
+    open class func getPlaybackInfo(itemId: String, userId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<PlaybackInfoResponse, Error>) -> Void)) {
         getPlaybackInfoWithRequestBuilder(itemId: itemId, userId: userId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -185,19 +178,17 @@ open class MediaInfoAPI {
      - parameter allowAudioStreamCopy: (query) Whether to allow to copy the audio stream. Default: true. (optional)
      - parameter playbackInfoDto: (body) The playback info. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<PlaybackInfoResponse>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getPostedPlaybackInfo( itemId: String,  userId: String? = nil,  maxStreamingBitrate: Int? = nil,  startTimeTicks: Int64? = nil,  audioStreamIndex: Int? = nil,  subtitleStreamIndex: Int? = nil,  maxAudioChannels: Int? = nil,  mediaSourceId: String? = nil,  liveStreamId: String? = nil,  autoOpenLiveStream: Bool? = nil,  enableDirectPlay: Bool? = nil,  enableDirectStream: Bool? = nil,  enableTranscoding: Bool? = nil,  allowVideoStreamCopy: Bool? = nil,  allowAudioStreamCopy: Bool? = nil,  playbackInfoDto: PlaybackInfoDto? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<PlaybackInfoResponse> {
-        let deferred = Promise<PlaybackInfoResponse>.pending()
+    open class func getPostedPlaybackInfo(itemId: String, userId: String? = nil, maxStreamingBitrate: Int? = nil, startTimeTicks: Int64? = nil, audioStreamIndex: Int? = nil, subtitleStreamIndex: Int? = nil, maxAudioChannels: Int? = nil, mediaSourceId: String? = nil, liveStreamId: String? = nil, autoOpenLiveStream: Bool? = nil, enableDirectPlay: Bool? = nil, enableDirectStream: Bool? = nil, enableTranscoding: Bool? = nil, allowVideoStreamCopy: Bool? = nil, allowAudioStreamCopy: Bool? = nil, playbackInfoDto: PlaybackInfoDto? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<PlaybackInfoResponse, Error>) -> Void)) {
         getPostedPlaybackInfoWithRequestBuilder(itemId: itemId, userId: userId, maxStreamingBitrate: maxStreamingBitrate, startTimeTicks: startTimeTicks, audioStreamIndex: audioStreamIndex, subtitleStreamIndex: subtitleStreamIndex, maxAudioChannels: maxAudioChannels, mediaSourceId: mediaSourceId, liveStreamId: liveStreamId, autoOpenLiveStream: autoOpenLiveStream, enableDirectPlay: enableDirectPlay, enableDirectStream: enableDirectStream, enableTranscoding: enableTranscoding, allowVideoStreamCopy: allowVideoStreamCopy, allowAudioStreamCopy: allowAudioStreamCopy, playbackInfoDto: playbackInfoDto).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -278,19 +269,17 @@ open class MediaInfoAPI {
      - parameter enableDirectStream: (query) Whether to enable direct stream. Default: true. (optional)
      - parameter openLiveStreamDto: (body) The open live stream dto. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<LiveStreamResponse>
+     - parameter completion: completion handler to receive the result
      */
-    open class func openLiveStream( openToken: String? = nil,  userId: String? = nil,  playSessionId: String? = nil,  maxStreamingBitrate: Int? = nil,  startTimeTicks: Int64? = nil,  audioStreamIndex: Int? = nil,  subtitleStreamIndex: Int? = nil,  maxAudioChannels: Int? = nil,  itemId: String? = nil,  enableDirectPlay: Bool? = nil,  enableDirectStream: Bool? = nil,  openLiveStreamDto: OpenLiveStreamDto? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<LiveStreamResponse> {
-        let deferred = Promise<LiveStreamResponse>.pending()
+    open class func openLiveStream(openToken: String? = nil, userId: String? = nil, playSessionId: String? = nil, maxStreamingBitrate: Int? = nil, startTimeTicks: Int64? = nil, audioStreamIndex: Int? = nil, subtitleStreamIndex: Int? = nil, maxAudioChannels: Int? = nil, itemId: String? = nil, enableDirectPlay: Bool? = nil, enableDirectStream: Bool? = nil, openLiveStreamDto: OpenLiveStreamDto? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<LiveStreamResponse, Error>) -> Void)) {
         openLiveStreamWithRequestBuilder(openToken: openToken, userId: userId, playSessionId: playSessionId, maxStreamingBitrate: maxStreamingBitrate, startTimeTicks: startTimeTicks, audioStreamIndex: audioStreamIndex, subtitleStreamIndex: subtitleStreamIndex, maxAudioChannels: maxAudioChannels, itemId: itemId, enableDirectPlay: enableDirectPlay, enableDirectStream: enableDirectStream, openLiveStreamDto: openLiveStreamDto).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**

@@ -7,7 +7,6 @@
 
 import AnyCodable
 import Foundation
-import PromiseKit
 
 open class DevicesAPI {
     /**
@@ -15,19 +14,17 @@ open class DevicesAPI {
      
      - parameter id: (query) Device Id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func deleteDevice( id: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func deleteDevice(id: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         deleteDeviceWithRequestBuilder(id: id).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -65,19 +62,17 @@ open class DevicesAPI {
      
      - parameter id: (query) Device Id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<DeviceInfo>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getDeviceInfo( id: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<DeviceInfo> {
-        let deferred = Promise<DeviceInfo>.pending()
+    open class func getDeviceInfo(id: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<DeviceInfo, Error>) -> Void)) {
         getDeviceInfoWithRequestBuilder(id: id).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -115,19 +110,17 @@ open class DevicesAPI {
      
      - parameter id: (query) Device Id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<DeviceOptions>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getDeviceOptions( id: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<DeviceOptions> {
-        let deferred = Promise<DeviceOptions>.pending()
+    open class func getDeviceOptions(id: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<DeviceOptions, Error>) -> Void)) {
         getDeviceOptionsWithRequestBuilder(id: id).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -166,19 +159,17 @@ open class DevicesAPI {
      - parameter supportsSync: (query) Gets or sets a value indicating whether [supports synchronize]. (optional)
      - parameter userId: (query) Gets or sets the user identifier. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<DeviceInfoQueryResult>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getDevices( supportsSync: Bool? = nil,  userId: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<DeviceInfoQueryResult> {
-        let deferred = Promise<DeviceInfoQueryResult>.pending()
+    open class func getDevices(supportsSync: Bool? = nil, userId: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<DeviceInfoQueryResult, Error>) -> Void)) {
         getDevicesWithRequestBuilder(supportsSync: supportsSync, userId: userId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -219,19 +210,17 @@ open class DevicesAPI {
      - parameter id: (query) Device Id. 
      - parameter deviceOptions: (body) Device Options. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func updateDeviceOptions( id: String,  deviceOptions: DeviceOptions, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func updateDeviceOptions(id: String, deviceOptions: DeviceOptions, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         updateDeviceOptionsWithRequestBuilder(id: id, deviceOptions: deviceOptions).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**

@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 # **getEndpointInfo**
 ```swift
-    open class func getEndpointInfo() -> Promise<EndPointInfo>
+    open class func getEndpointInfo(completion: @escaping (_ data: EndPointInfo?, _ error: Error?) -> Void)
 ```
 
 Gets information about the request endpoint.
@@ -30,12 +30,15 @@ import JellyfinAPI
 
 
 // Gets information about the request endpoint.
-SystemAPI.getEndpointInfo().then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+SystemAPI.getEndpointInfo() { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -59,7 +62,7 @@ This endpoint does not need any parameter.
 
 # **getLogFile**
 ```swift
-    open class func getLogFile( name: String) -> Promise<URL>
+    open class func getLogFile(name: String, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
 ```
 
 Gets a log file.
@@ -72,12 +75,15 @@ import JellyfinAPI
 let name = "name_example" // String | The name of the log file to get.
 
 // Gets a log file.
-SystemAPI.getLogFile(name: name).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+SystemAPI.getLogFile(name: name) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -104,7 +110,7 @@ Name | Type | Description  | Notes
 
 # **getPingSystem**
 ```swift
-    open class func getPingSystem() -> Promise<String>
+    open class func getPingSystem(completion: @escaping (_ data: String?, _ error: Error?) -> Void)
 ```
 
 Pings the system.
@@ -116,12 +122,15 @@ import JellyfinAPI
 
 
 // Pings the system.
-SystemAPI.getPingSystem().then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+SystemAPI.getPingSystem() { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -145,7 +154,7 @@ No authorization required
 
 # **getPublicSystemInfo**
 ```swift
-    open class func getPublicSystemInfo() -> Promise<PublicSystemInfo>
+    open class func getPublicSystemInfo(completion: @escaping (_ data: PublicSystemInfo?, _ error: Error?) -> Void)
 ```
 
 Gets public information about the server.
@@ -157,12 +166,15 @@ import JellyfinAPI
 
 
 // Gets public information about the server.
-SystemAPI.getPublicSystemInfo().then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+SystemAPI.getPublicSystemInfo() { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -186,7 +198,7 @@ No authorization required
 
 # **getServerLogs**
 ```swift
-    open class func getServerLogs() -> Promise<[LogFile]>
+    open class func getServerLogs(completion: @escaping (_ data: [LogFile]?, _ error: Error?) -> Void)
 ```
 
 Gets a list of available server log files.
@@ -198,12 +210,15 @@ import JellyfinAPI
 
 
 // Gets a list of available server log files.
-SystemAPI.getServerLogs().then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+SystemAPI.getServerLogs() { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -227,7 +242,7 @@ This endpoint does not need any parameter.
 
 # **getSystemInfo**
 ```swift
-    open class func getSystemInfo() -> Promise<SystemInfo>
+    open class func getSystemInfo(completion: @escaping (_ data: SystemInfo?, _ error: Error?) -> Void)
 ```
 
 Gets information about the server.
@@ -239,12 +254,15 @@ import JellyfinAPI
 
 
 // Gets information about the server.
-SystemAPI.getSystemInfo().then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+SystemAPI.getSystemInfo() { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -268,7 +286,7 @@ This endpoint does not need any parameter.
 
 # **getWakeOnLanInfo**
 ```swift
-    open class func getWakeOnLanInfo() -> Promise<[WakeOnLanInfo]>
+    open class func getWakeOnLanInfo(completion: @escaping (_ data: [WakeOnLanInfo]?, _ error: Error?) -> Void)
 ```
 
 Gets wake on lan information.
@@ -280,12 +298,15 @@ import JellyfinAPI
 
 
 // Gets wake on lan information.
-SystemAPI.getWakeOnLanInfo().then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+SystemAPI.getWakeOnLanInfo() { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -309,7 +330,7 @@ This endpoint does not need any parameter.
 
 # **postPingSystem**
 ```swift
-    open class func postPingSystem() -> Promise<String>
+    open class func postPingSystem(completion: @escaping (_ data: String?, _ error: Error?) -> Void)
 ```
 
 Pings the system.
@@ -321,12 +342,15 @@ import JellyfinAPI
 
 
 // Pings the system.
-SystemAPI.postPingSystem().then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+SystemAPI.postPingSystem() { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -350,7 +374,7 @@ No authorization required
 
 # **restartApplication**
 ```swift
-    open class func restartApplication() -> Promise<Void>
+    open class func restartApplication(completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Restarts the application.
@@ -362,12 +386,15 @@ import JellyfinAPI
 
 
 // Restarts the application.
-SystemAPI.restartApplication().then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+SystemAPI.restartApplication() { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -391,7 +418,7 @@ Void (empty response body)
 
 # **shutdownApplication**
 ```swift
-    open class func shutdownApplication() -> Promise<Void>
+    open class func shutdownApplication(completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Shuts down the application.
@@ -403,12 +430,15 @@ import JellyfinAPI
 
 
 // Shuts down the application.
-SystemAPI.shutdownApplication().then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+SystemAPI.shutdownApplication() { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 

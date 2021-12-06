@@ -7,7 +7,6 @@
 
 import AnyCodable
 import Foundation
-import PromiseKit
 
 open class VideosAPI {
     /**
@@ -15,19 +14,17 @@ open class VideosAPI {
      
      - parameter itemId: (path) The item id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func deleteAlternateSources( itemId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func deleteAlternateSources(itemId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         deleteAlternateSourcesWithRequestBuilder(itemId: itemId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -66,19 +63,17 @@ open class VideosAPI {
      - parameter itemId: (path) The item id. 
      - parameter userId: (query) Optional. Filter by user id, and attach user data. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<BaseItemDtoQueryResult>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getAdditionalPart( itemId: String,  userId: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<BaseItemDtoQueryResult> {
-        let deferred = Promise<BaseItemDtoQueryResult>.pending()
+    open class func getAdditionalPart(itemId: String, userId: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<BaseItemDtoQueryResult, Error>) -> Void)) {
         getAdditionalPartWithRequestBuilder(itemId: itemId, userId: userId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -168,19 +163,17 @@ open class VideosAPI {
      - parameter context: (query) Optional. The MediaBrowser.Model.Dlna.EncodingContext. (optional)
      - parameter streamOptions: (query) Optional. The streaming options. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getVideoStream( itemId: String,  container: String? = nil,  _static: Bool? = nil,  params: String? = nil,  tag: String? = nil,  deviceProfileId: String? = nil,  playSessionId: String? = nil,  segmentContainer: String? = nil,  segmentLength: Int? = nil,  minSegments: Int? = nil,  mediaSourceId: String? = nil,  deviceId: String? = nil,  audioCodec: String? = nil,  enableAutoStreamCopy: Bool? = nil,  allowVideoStreamCopy: Bool? = nil,  allowAudioStreamCopy: Bool? = nil,  breakOnNonKeyFrames: Bool? = nil,  audioSampleRate: Int? = nil,  maxAudioBitDepth: Int? = nil,  audioBitRate: Int? = nil,  audioChannels: Int? = nil,  maxAudioChannels: Int? = nil,  profile: String? = nil,  level: String? = nil,  framerate: Float? = nil,  maxFramerate: Float? = nil,  copyTimestamps: Bool? = nil,  startTimeTicks: Int64? = nil,  width: Int? = nil,  height: Int? = nil,  videoBitRate: Int? = nil,  subtitleStreamIndex: Int? = nil,  subtitleMethod: SubtitleDeliveryMethod? = nil,  maxRefFrames: Int? = nil,  maxVideoBitDepth: Int? = nil,  requireAvc: Bool? = nil,  deInterlace: Bool? = nil,  requireNonAnamorphic: Bool? = nil,  transcodingMaxAudioChannels: Int? = nil,  cpuCoreLimit: Int? = nil,  liveStreamId: String? = nil,  enableMpegtsM2TsMode: Bool? = nil,  videoCodec: String? = nil,  subtitleCodec: String? = nil,  transcodeReasons: String? = nil,  audioStreamIndex: Int? = nil,  videoStreamIndex: Int? = nil,  context: EncodingContext? = nil,  streamOptions: [String: String]? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func getVideoStream(itemId: String, container: String? = nil, _static: Bool? = nil, params: String? = nil, tag: String? = nil, deviceProfileId: String? = nil, playSessionId: String? = nil, segmentContainer: String? = nil, segmentLength: Int? = nil, minSegments: Int? = nil, mediaSourceId: String? = nil, deviceId: String? = nil, audioCodec: String? = nil, enableAutoStreamCopy: Bool? = nil, allowVideoStreamCopy: Bool? = nil, allowAudioStreamCopy: Bool? = nil, breakOnNonKeyFrames: Bool? = nil, audioSampleRate: Int? = nil, maxAudioBitDepth: Int? = nil, audioBitRate: Int? = nil, audioChannels: Int? = nil, maxAudioChannels: Int? = nil, profile: String? = nil, level: String? = nil, framerate: Float? = nil, maxFramerate: Float? = nil, copyTimestamps: Bool? = nil, startTimeTicks: Int64? = nil, width: Int? = nil, height: Int? = nil, videoBitRate: Int? = nil, subtitleStreamIndex: Int? = nil, subtitleMethod: SubtitleDeliveryMethod? = nil, maxRefFrames: Int? = nil, maxVideoBitDepth: Int? = nil, requireAvc: Bool? = nil, deInterlace: Bool? = nil, requireNonAnamorphic: Bool? = nil, transcodingMaxAudioChannels: Int? = nil, cpuCoreLimit: Int? = nil, liveStreamId: String? = nil, enableMpegtsM2TsMode: Bool? = nil, videoCodec: String? = nil, subtitleCodec: String? = nil, transcodeReasons: String? = nil, audioStreamIndex: Int? = nil, videoStreamIndex: Int? = nil, context: EncodingContext? = nil, streamOptions: [String: String]? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         getVideoStreamWithRequestBuilder(itemId: itemId, container: container, _static: _static, params: params, tag: tag, deviceProfileId: deviceProfileId, playSessionId: playSessionId, segmentContainer: segmentContainer, segmentLength: segmentLength, minSegments: minSegments, mediaSourceId: mediaSourceId, deviceId: deviceId, audioCodec: audioCodec, enableAutoStreamCopy: enableAutoStreamCopy, allowVideoStreamCopy: allowVideoStreamCopy, allowAudioStreamCopy: allowAudioStreamCopy, breakOnNonKeyFrames: breakOnNonKeyFrames, audioSampleRate: audioSampleRate, maxAudioBitDepth: maxAudioBitDepth, audioBitRate: audioBitRate, audioChannels: audioChannels, maxAudioChannels: maxAudioChannels, profile: profile, level: level, framerate: framerate, maxFramerate: maxFramerate, copyTimestamps: copyTimestamps, startTimeTicks: startTimeTicks, width: width, height: height, videoBitRate: videoBitRate, subtitleStreamIndex: subtitleStreamIndex, subtitleMethod: subtitleMethod, maxRefFrames: maxRefFrames, maxVideoBitDepth: maxVideoBitDepth, requireAvc: requireAvc, deInterlace: deInterlace, requireNonAnamorphic: requireNonAnamorphic, transcodingMaxAudioChannels: transcodingMaxAudioChannels, cpuCoreLimit: cpuCoreLimit, liveStreamId: liveStreamId, enableMpegtsM2TsMode: enableMpegtsM2TsMode, videoCodec: videoCodec, subtitleCodec: subtitleCodec, transcodeReasons: transcodeReasons, audioStreamIndex: audioStreamIndex, videoStreamIndex: videoStreamIndex, context: context, streamOptions: streamOptions).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -361,19 +354,17 @@ open class VideosAPI {
      - parameter context: (query) Optional. The MediaBrowser.Model.Dlna.EncodingContext. (optional)
      - parameter streamOptions: (query) Optional. The streaming options. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getVideoStreamByContainer( itemId: String,  container: String,  _static: Bool? = nil,  params: String? = nil,  tag: String? = nil,  deviceProfileId: String? = nil,  playSessionId: String? = nil,  segmentContainer: String? = nil,  segmentLength: Int? = nil,  minSegments: Int? = nil,  mediaSourceId: String? = nil,  deviceId: String? = nil,  audioCodec: String? = nil,  enableAutoStreamCopy: Bool? = nil,  allowVideoStreamCopy: Bool? = nil,  allowAudioStreamCopy: Bool? = nil,  breakOnNonKeyFrames: Bool? = nil,  audioSampleRate: Int? = nil,  maxAudioBitDepth: Int? = nil,  audioBitRate: Int? = nil,  audioChannels: Int? = nil,  maxAudioChannels: Int? = nil,  profile: String? = nil,  level: String? = nil,  framerate: Float? = nil,  maxFramerate: Float? = nil,  copyTimestamps: Bool? = nil,  startTimeTicks: Int64? = nil,  width: Int? = nil,  height: Int? = nil,  videoBitRate: Int? = nil,  subtitleStreamIndex: Int? = nil,  subtitleMethod: SubtitleDeliveryMethod? = nil,  maxRefFrames: Int? = nil,  maxVideoBitDepth: Int? = nil,  requireAvc: Bool? = nil,  deInterlace: Bool? = nil,  requireNonAnamorphic: Bool? = nil,  transcodingMaxAudioChannels: Int? = nil,  cpuCoreLimit: Int? = nil,  liveStreamId: String? = nil,  enableMpegtsM2TsMode: Bool? = nil,  videoCodec: String? = nil,  subtitleCodec: String? = nil,  transcodeReasons: String? = nil,  audioStreamIndex: Int? = nil,  videoStreamIndex: Int? = nil,  context: EncodingContext? = nil,  streamOptions: [String: String]? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func getVideoStreamByContainer(itemId: String, container: String, _static: Bool? = nil, params: String? = nil, tag: String? = nil, deviceProfileId: String? = nil, playSessionId: String? = nil, segmentContainer: String? = nil, segmentLength: Int? = nil, minSegments: Int? = nil, mediaSourceId: String? = nil, deviceId: String? = nil, audioCodec: String? = nil, enableAutoStreamCopy: Bool? = nil, allowVideoStreamCopy: Bool? = nil, allowAudioStreamCopy: Bool? = nil, breakOnNonKeyFrames: Bool? = nil, audioSampleRate: Int? = nil, maxAudioBitDepth: Int? = nil, audioBitRate: Int? = nil, audioChannels: Int? = nil, maxAudioChannels: Int? = nil, profile: String? = nil, level: String? = nil, framerate: Float? = nil, maxFramerate: Float? = nil, copyTimestamps: Bool? = nil, startTimeTicks: Int64? = nil, width: Int? = nil, height: Int? = nil, videoBitRate: Int? = nil, subtitleStreamIndex: Int? = nil, subtitleMethod: SubtitleDeliveryMethod? = nil, maxRefFrames: Int? = nil, maxVideoBitDepth: Int? = nil, requireAvc: Bool? = nil, deInterlace: Bool? = nil, requireNonAnamorphic: Bool? = nil, transcodingMaxAudioChannels: Int? = nil, cpuCoreLimit: Int? = nil, liveStreamId: String? = nil, enableMpegtsM2TsMode: Bool? = nil, videoCodec: String? = nil, subtitleCodec: String? = nil, transcodeReasons: String? = nil, audioStreamIndex: Int? = nil, videoStreamIndex: Int? = nil, context: EncodingContext? = nil, streamOptions: [String: String]? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         getVideoStreamByContainerWithRequestBuilder(itemId: itemId, container: container, _static: _static, params: params, tag: tag, deviceProfileId: deviceProfileId, playSessionId: playSessionId, segmentContainer: segmentContainer, segmentLength: segmentLength, minSegments: minSegments, mediaSourceId: mediaSourceId, deviceId: deviceId, audioCodec: audioCodec, enableAutoStreamCopy: enableAutoStreamCopy, allowVideoStreamCopy: allowVideoStreamCopy, allowAudioStreamCopy: allowAudioStreamCopy, breakOnNonKeyFrames: breakOnNonKeyFrames, audioSampleRate: audioSampleRate, maxAudioBitDepth: maxAudioBitDepth, audioBitRate: audioBitRate, audioChannels: audioChannels, maxAudioChannels: maxAudioChannels, profile: profile, level: level, framerate: framerate, maxFramerate: maxFramerate, copyTimestamps: copyTimestamps, startTimeTicks: startTimeTicks, width: width, height: height, videoBitRate: videoBitRate, subtitleStreamIndex: subtitleStreamIndex, subtitleMethod: subtitleMethod, maxRefFrames: maxRefFrames, maxVideoBitDepth: maxVideoBitDepth, requireAvc: requireAvc, deInterlace: deInterlace, requireNonAnamorphic: requireNonAnamorphic, transcodingMaxAudioChannels: transcodingMaxAudioChannels, cpuCoreLimit: cpuCoreLimit, liveStreamId: liveStreamId, enableMpegtsM2TsMode: enableMpegtsM2TsMode, videoCodec: videoCodec, subtitleCodec: subtitleCodec, transcodeReasons: transcodeReasons, audioStreamIndex: audioStreamIndex, videoStreamIndex: videoStreamIndex, context: context, streamOptions: streamOptions).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -556,19 +547,17 @@ open class VideosAPI {
      - parameter context: (query) Optional. The MediaBrowser.Model.Dlna.EncodingContext. (optional)
      - parameter streamOptions: (query) Optional. The streaming options. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func headVideoStream( itemId: String,  container: String? = nil,  _static: Bool? = nil,  params: String? = nil,  tag: String? = nil,  deviceProfileId: String? = nil,  playSessionId: String? = nil,  segmentContainer: String? = nil,  segmentLength: Int? = nil,  minSegments: Int? = nil,  mediaSourceId: String? = nil,  deviceId: String? = nil,  audioCodec: String? = nil,  enableAutoStreamCopy: Bool? = nil,  allowVideoStreamCopy: Bool? = nil,  allowAudioStreamCopy: Bool? = nil,  breakOnNonKeyFrames: Bool? = nil,  audioSampleRate: Int? = nil,  maxAudioBitDepth: Int? = nil,  audioBitRate: Int? = nil,  audioChannels: Int? = nil,  maxAudioChannels: Int? = nil,  profile: String? = nil,  level: String? = nil,  framerate: Float? = nil,  maxFramerate: Float? = nil,  copyTimestamps: Bool? = nil,  startTimeTicks: Int64? = nil,  width: Int? = nil,  height: Int? = nil,  videoBitRate: Int? = nil,  subtitleStreamIndex: Int? = nil,  subtitleMethod: SubtitleDeliveryMethod? = nil,  maxRefFrames: Int? = nil,  maxVideoBitDepth: Int? = nil,  requireAvc: Bool? = nil,  deInterlace: Bool? = nil,  requireNonAnamorphic: Bool? = nil,  transcodingMaxAudioChannels: Int? = nil,  cpuCoreLimit: Int? = nil,  liveStreamId: String? = nil,  enableMpegtsM2TsMode: Bool? = nil,  videoCodec: String? = nil,  subtitleCodec: String? = nil,  transcodeReasons: String? = nil,  audioStreamIndex: Int? = nil,  videoStreamIndex: Int? = nil,  context: EncodingContext? = nil,  streamOptions: [String: String]? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func headVideoStream(itemId: String, container: String? = nil, _static: Bool? = nil, params: String? = nil, tag: String? = nil, deviceProfileId: String? = nil, playSessionId: String? = nil, segmentContainer: String? = nil, segmentLength: Int? = nil, minSegments: Int? = nil, mediaSourceId: String? = nil, deviceId: String? = nil, audioCodec: String? = nil, enableAutoStreamCopy: Bool? = nil, allowVideoStreamCopy: Bool? = nil, allowAudioStreamCopy: Bool? = nil, breakOnNonKeyFrames: Bool? = nil, audioSampleRate: Int? = nil, maxAudioBitDepth: Int? = nil, audioBitRate: Int? = nil, audioChannels: Int? = nil, maxAudioChannels: Int? = nil, profile: String? = nil, level: String? = nil, framerate: Float? = nil, maxFramerate: Float? = nil, copyTimestamps: Bool? = nil, startTimeTicks: Int64? = nil, width: Int? = nil, height: Int? = nil, videoBitRate: Int? = nil, subtitleStreamIndex: Int? = nil, subtitleMethod: SubtitleDeliveryMethod? = nil, maxRefFrames: Int? = nil, maxVideoBitDepth: Int? = nil, requireAvc: Bool? = nil, deInterlace: Bool? = nil, requireNonAnamorphic: Bool? = nil, transcodingMaxAudioChannels: Int? = nil, cpuCoreLimit: Int? = nil, liveStreamId: String? = nil, enableMpegtsM2TsMode: Bool? = nil, videoCodec: String? = nil, subtitleCodec: String? = nil, transcodeReasons: String? = nil, audioStreamIndex: Int? = nil, videoStreamIndex: Int? = nil, context: EncodingContext? = nil, streamOptions: [String: String]? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         headVideoStreamWithRequestBuilder(itemId: itemId, container: container, _static: _static, params: params, tag: tag, deviceProfileId: deviceProfileId, playSessionId: playSessionId, segmentContainer: segmentContainer, segmentLength: segmentLength, minSegments: minSegments, mediaSourceId: mediaSourceId, deviceId: deviceId, audioCodec: audioCodec, enableAutoStreamCopy: enableAutoStreamCopy, allowVideoStreamCopy: allowVideoStreamCopy, allowAudioStreamCopy: allowAudioStreamCopy, breakOnNonKeyFrames: breakOnNonKeyFrames, audioSampleRate: audioSampleRate, maxAudioBitDepth: maxAudioBitDepth, audioBitRate: audioBitRate, audioChannels: audioChannels, maxAudioChannels: maxAudioChannels, profile: profile, level: level, framerate: framerate, maxFramerate: maxFramerate, copyTimestamps: copyTimestamps, startTimeTicks: startTimeTicks, width: width, height: height, videoBitRate: videoBitRate, subtitleStreamIndex: subtitleStreamIndex, subtitleMethod: subtitleMethod, maxRefFrames: maxRefFrames, maxVideoBitDepth: maxVideoBitDepth, requireAvc: requireAvc, deInterlace: deInterlace, requireNonAnamorphic: requireNonAnamorphic, transcodingMaxAudioChannels: transcodingMaxAudioChannels, cpuCoreLimit: cpuCoreLimit, liveStreamId: liveStreamId, enableMpegtsM2TsMode: enableMpegtsM2TsMode, videoCodec: videoCodec, subtitleCodec: subtitleCodec, transcodeReasons: transcodeReasons, audioStreamIndex: audioStreamIndex, videoStreamIndex: videoStreamIndex, context: context, streamOptions: streamOptions).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -749,19 +738,17 @@ open class VideosAPI {
      - parameter context: (query) Optional. The MediaBrowser.Model.Dlna.EncodingContext. (optional)
      - parameter streamOptions: (query) Optional. The streaming options. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func headVideoStreamByContainer( itemId: String,  container: String,  _static: Bool? = nil,  params: String? = nil,  tag: String? = nil,  deviceProfileId: String? = nil,  playSessionId: String? = nil,  segmentContainer: String? = nil,  segmentLength: Int? = nil,  minSegments: Int? = nil,  mediaSourceId: String? = nil,  deviceId: String? = nil,  audioCodec: String? = nil,  enableAutoStreamCopy: Bool? = nil,  allowVideoStreamCopy: Bool? = nil,  allowAudioStreamCopy: Bool? = nil,  breakOnNonKeyFrames: Bool? = nil,  audioSampleRate: Int? = nil,  maxAudioBitDepth: Int? = nil,  audioBitRate: Int? = nil,  audioChannels: Int? = nil,  maxAudioChannels: Int? = nil,  profile: String? = nil,  level: String? = nil,  framerate: Float? = nil,  maxFramerate: Float? = nil,  copyTimestamps: Bool? = nil,  startTimeTicks: Int64? = nil,  width: Int? = nil,  height: Int? = nil,  videoBitRate: Int? = nil,  subtitleStreamIndex: Int? = nil,  subtitleMethod: SubtitleDeliveryMethod? = nil,  maxRefFrames: Int? = nil,  maxVideoBitDepth: Int? = nil,  requireAvc: Bool? = nil,  deInterlace: Bool? = nil,  requireNonAnamorphic: Bool? = nil,  transcodingMaxAudioChannels: Int? = nil,  cpuCoreLimit: Int? = nil,  liveStreamId: String? = nil,  enableMpegtsM2TsMode: Bool? = nil,  videoCodec: String? = nil,  subtitleCodec: String? = nil,  transcodeReasons: String? = nil,  audioStreamIndex: Int? = nil,  videoStreamIndex: Int? = nil,  context: EncodingContext? = nil,  streamOptions: [String: String]? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func headVideoStreamByContainer(itemId: String, container: String, _static: Bool? = nil, params: String? = nil, tag: String? = nil, deviceProfileId: String? = nil, playSessionId: String? = nil, segmentContainer: String? = nil, segmentLength: Int? = nil, minSegments: Int? = nil, mediaSourceId: String? = nil, deviceId: String? = nil, audioCodec: String? = nil, enableAutoStreamCopy: Bool? = nil, allowVideoStreamCopy: Bool? = nil, allowAudioStreamCopy: Bool? = nil, breakOnNonKeyFrames: Bool? = nil, audioSampleRate: Int? = nil, maxAudioBitDepth: Int? = nil, audioBitRate: Int? = nil, audioChannels: Int? = nil, maxAudioChannels: Int? = nil, profile: String? = nil, level: String? = nil, framerate: Float? = nil, maxFramerate: Float? = nil, copyTimestamps: Bool? = nil, startTimeTicks: Int64? = nil, width: Int? = nil, height: Int? = nil, videoBitRate: Int? = nil, subtitleStreamIndex: Int? = nil, subtitleMethod: SubtitleDeliveryMethod? = nil, maxRefFrames: Int? = nil, maxVideoBitDepth: Int? = nil, requireAvc: Bool? = nil, deInterlace: Bool? = nil, requireNonAnamorphic: Bool? = nil, transcodingMaxAudioChannels: Int? = nil, cpuCoreLimit: Int? = nil, liveStreamId: String? = nil, enableMpegtsM2TsMode: Bool? = nil, videoCodec: String? = nil, subtitleCodec: String? = nil, transcodeReasons: String? = nil, audioStreamIndex: Int? = nil, videoStreamIndex: Int? = nil, context: EncodingContext? = nil, streamOptions: [String: String]? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         headVideoStreamByContainerWithRequestBuilder(itemId: itemId, container: container, _static: _static, params: params, tag: tag, deviceProfileId: deviceProfileId, playSessionId: playSessionId, segmentContainer: segmentContainer, segmentLength: segmentLength, minSegments: minSegments, mediaSourceId: mediaSourceId, deviceId: deviceId, audioCodec: audioCodec, enableAutoStreamCopy: enableAutoStreamCopy, allowVideoStreamCopy: allowVideoStreamCopy, allowAudioStreamCopy: allowAudioStreamCopy, breakOnNonKeyFrames: breakOnNonKeyFrames, audioSampleRate: audioSampleRate, maxAudioBitDepth: maxAudioBitDepth, audioBitRate: audioBitRate, audioChannels: audioChannels, maxAudioChannels: maxAudioChannels, profile: profile, level: level, framerate: framerate, maxFramerate: maxFramerate, copyTimestamps: copyTimestamps, startTimeTicks: startTimeTicks, width: width, height: height, videoBitRate: videoBitRate, subtitleStreamIndex: subtitleStreamIndex, subtitleMethod: subtitleMethod, maxRefFrames: maxRefFrames, maxVideoBitDepth: maxVideoBitDepth, requireAvc: requireAvc, deInterlace: deInterlace, requireNonAnamorphic: requireNonAnamorphic, transcodingMaxAudioChannels: transcodingMaxAudioChannels, cpuCoreLimit: cpuCoreLimit, liveStreamId: liveStreamId, enableMpegtsM2TsMode: enableMpegtsM2TsMode, videoCodec: videoCodec, subtitleCodec: subtitleCodec, transcodeReasons: transcodeReasons, audioStreamIndex: audioStreamIndex, videoStreamIndex: videoStreamIndex, context: context, streamOptions: streamOptions).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -896,19 +883,17 @@ open class VideosAPI {
      
      - parameter ids: (query) Item id list. This allows multiple, comma delimited. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func mergeVersions( ids: [String], apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func mergeVersions(ids: [String], apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         mergeVersionsWithRequestBuilder(ids: ids).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**

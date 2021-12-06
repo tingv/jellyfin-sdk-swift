@@ -7,26 +7,23 @@
 
 import AnyCodable
 import Foundation
-import PromiseKit
 
 open class BrandingAPI {
     /**
      Gets branding css.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<String>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getBrandingCss(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<String> {
-        let deferred = Promise<String>.pending()
+    open class func getBrandingCss(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<String, Error>) -> Void)) {
         getBrandingCssWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -56,19 +53,17 @@ open class BrandingAPI {
      Gets branding css.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<String>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getBrandingCss2(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<String> {
-        let deferred = Promise<String>.pending()
+    open class func getBrandingCss2(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<String, Error>) -> Void)) {
         getBrandingCss2WithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -98,19 +93,17 @@ open class BrandingAPI {
      Gets branding configuration.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<BrandingOptions>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getBrandingOptions(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<BrandingOptions> {
-        let deferred = Promise<BrandingOptions>.pending()
+    open class func getBrandingOptions(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<BrandingOptions, Error>) -> Void)) {
         getBrandingOptionsWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**

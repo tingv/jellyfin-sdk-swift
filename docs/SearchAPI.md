@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 # **callGet**
 ```swift
-    open class func callGet( searchTerm: String,  startIndex: Int? = nil,  limit: Int? = nil,  userId: String? = nil,  includeItemTypes: [String]? = nil,  excludeItemTypes: [String]? = nil,  mediaTypes: [String]? = nil,  parentId: String? = nil,  isMovie: Bool? = nil,  isSeries: Bool? = nil,  isNews: Bool? = nil,  isKids: Bool? = nil,  isSports: Bool? = nil,  includePeople: Bool? = nil,  includeMedia: Bool? = nil,  includeGenres: Bool? = nil,  includeStudios: Bool? = nil,  includeArtists: Bool? = nil) -> Promise<SearchHintResult>
+    open class func callGet(searchTerm: String, startIndex: Int? = nil, limit: Int? = nil, userId: String? = nil, includeItemTypes: [String]? = nil, excludeItemTypes: [String]? = nil, mediaTypes: [String]? = nil, parentId: String? = nil, isMovie: Bool? = nil, isSeries: Bool? = nil, isNews: Bool? = nil, isKids: Bool? = nil, isSports: Bool? = nil, includePeople: Bool? = nil, includeMedia: Bool? = nil, includeGenres: Bool? = nil, includeStudios: Bool? = nil, includeArtists: Bool? = nil, completion: @escaping (_ data: SearchHintResult?, _ error: Error?) -> Void)
 ```
 
 Gets the search hint result.
@@ -39,12 +39,15 @@ let includeStudios = true // Bool | Optional filter whether to include studios. 
 let includeArtists = true // Bool | Optional filter whether to include artists. (optional) (default to true)
 
 // Gets the search hint result.
-SearchAPI.callGet(searchTerm: searchTerm, startIndex: startIndex, limit: limit, userId: userId, includeItemTypes: includeItemTypes, excludeItemTypes: excludeItemTypes, mediaTypes: mediaTypes, parentId: parentId, isMovie: isMovie, isSeries: isSeries, isNews: isNews, isKids: isKids, isSports: isSports, includePeople: includePeople, includeMedia: includeMedia, includeGenres: includeGenres, includeStudios: includeStudios, includeArtists: includeArtists).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+SearchAPI.callGet(searchTerm: searchTerm, startIndex: startIndex, limit: limit, userId: userId, includeItemTypes: includeItemTypes, excludeItemTypes: excludeItemTypes, mediaTypes: mediaTypes, parentId: parentId, isMovie: isMovie, isSeries: isSeries, isNews: isNews, isKids: isKids, isSports: isSports, includePeople: includePeople, includeMedia: includeMedia, includeGenres: includeGenres, includeStudios: includeStudios, includeArtists: includeArtists) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 

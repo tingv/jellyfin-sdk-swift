@@ -24,7 +24,7 @@ Method | HTTP request | Description
 
 # **addUserToSession**
 ```swift
-    open class func addUserToSession( sessionId: String,  userId: String) -> Promise<Void>
+    open class func addUserToSession(sessionId: String, userId: String, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Adds an additional user to a session.
@@ -38,12 +38,15 @@ let sessionId = "sessionId_example" // String | The session id.
 let userId = "userId_example" // String | The user id.
 
 // Adds an additional user to a session.
-SessionAPI.addUserToSession(sessionId: sessionId, userId: userId).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+SessionAPI.addUserToSession(sessionId: sessionId, userId: userId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -71,7 +74,7 @@ Void (empty response body)
 
 # **displayContent**
 ```swift
-    open class func displayContent( sessionId: String,  itemType: String,  itemId: String,  itemName: String) -> Promise<Void>
+    open class func displayContent(sessionId: String, itemType: String, itemId: String, itemName: String, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Instructs a session to browse to an item or view.
@@ -87,12 +90,15 @@ let itemId = "itemId_example" // String | The Id of the item.
 let itemName = "itemName_example" // String | The name of the item.
 
 // Instructs a session to browse to an item or view.
-SessionAPI.displayContent(sessionId: sessionId, itemType: itemType, itemId: itemId, itemName: itemName).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+SessionAPI.displayContent(sessionId: sessionId, itemType: itemType, itemId: itemId, itemName: itemName) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -122,7 +128,7 @@ Void (empty response body)
 
 # **getAuthProviders**
 ```swift
-    open class func getAuthProviders() -> Promise<[NameIdPair]>
+    open class func getAuthProviders(completion: @escaping (_ data: [NameIdPair]?, _ error: Error?) -> Void)
 ```
 
 Get all auth providers.
@@ -134,12 +140,15 @@ import JellyfinAPI
 
 
 // Get all auth providers.
-SessionAPI.getAuthProviders().then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+SessionAPI.getAuthProviders() { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -163,7 +172,7 @@ This endpoint does not need any parameter.
 
 # **getPasswordResetProviders**
 ```swift
-    open class func getPasswordResetProviders() -> Promise<[NameIdPair]>
+    open class func getPasswordResetProviders(completion: @escaping (_ data: [NameIdPair]?, _ error: Error?) -> Void)
 ```
 
 Get all password reset providers.
@@ -175,12 +184,15 @@ import JellyfinAPI
 
 
 // Get all password reset providers.
-SessionAPI.getPasswordResetProviders().then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+SessionAPI.getPasswordResetProviders() { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -204,7 +216,7 @@ This endpoint does not need any parameter.
 
 # **getSessions**
 ```swift
-    open class func getSessions( controllableByUserId: String? = nil,  deviceId: String? = nil,  activeWithinSeconds: Int? = nil) -> Promise<[SessionInfo]>
+    open class func getSessions(controllableByUserId: String? = nil, deviceId: String? = nil, activeWithinSeconds: Int? = nil, completion: @escaping (_ data: [SessionInfo]?, _ error: Error?) -> Void)
 ```
 
 Gets a list of sessions.
@@ -219,12 +231,15 @@ let deviceId = "deviceId_example" // String | Filter by device Id. (optional)
 let activeWithinSeconds = 987 // Int | Optional. Filter by sessions that were active in the last n seconds. (optional)
 
 // Gets a list of sessions.
-SessionAPI.getSessions(controllableByUserId: controllableByUserId, deviceId: deviceId, activeWithinSeconds: activeWithinSeconds).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+SessionAPI.getSessions(controllableByUserId: controllableByUserId, deviceId: deviceId, activeWithinSeconds: activeWithinSeconds) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -253,7 +268,7 @@ Name | Type | Description  | Notes
 
 # **play**
 ```swift
-    open class func play( sessionId: String,  playCommand: PlayCommand,  itemIds: [String],  startPositionTicks: Int64? = nil,  mediaSourceId: String? = nil,  audioStreamIndex: Int? = nil,  subtitleStreamIndex: Int? = nil,  startIndex: Int? = nil) -> Promise<Void>
+    open class func play(sessionId: String, playCommand: PlayCommand, itemIds: [String], startPositionTicks: Int64? = nil, mediaSourceId: String? = nil, audioStreamIndex: Int? = nil, subtitleStreamIndex: Int? = nil, startIndex: Int? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Instructs a session to play an item.
@@ -273,12 +288,15 @@ let subtitleStreamIndex = 987 // Int | Optional. The index of the subtitle strea
 let startIndex = 987 // Int | Optional. The start index. (optional)
 
 // Instructs a session to play an item.
-SessionAPI.play(sessionId: sessionId, playCommand: playCommand, itemIds: itemIds, startPositionTicks: startPositionTicks, mediaSourceId: mediaSourceId, audioStreamIndex: audioStreamIndex, subtitleStreamIndex: subtitleStreamIndex, startIndex: startIndex).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+SessionAPI.play(sessionId: sessionId, playCommand: playCommand, itemIds: itemIds, startPositionTicks: startPositionTicks, mediaSourceId: mediaSourceId, audioStreamIndex: audioStreamIndex, subtitleStreamIndex: subtitleStreamIndex, startIndex: startIndex) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -312,7 +330,7 @@ Void (empty response body)
 
 # **postCapabilities**
 ```swift
-    open class func postCapabilities( id: String? = nil,  playableMediaTypes: [String]? = nil,  supportedCommands: [GeneralCommandType]? = nil,  supportsMediaControl: Bool? = nil,  supportsSync: Bool? = nil,  supportsPersistentIdentifier: Bool? = nil) -> Promise<Void>
+    open class func postCapabilities(id: String? = nil, playableMediaTypes: [String]? = nil, supportedCommands: [GeneralCommandType]? = nil, supportsMediaControl: Bool? = nil, supportsSync: Bool? = nil, supportsPersistentIdentifier: Bool? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Updates capabilities for a device.
@@ -330,12 +348,15 @@ let supportsSync = true // Bool | Determines whether sync is supported. (optiona
 let supportsPersistentIdentifier = true // Bool | Determines whether the device supports a unique identifier. (optional) (default to true)
 
 // Updates capabilities for a device.
-SessionAPI.postCapabilities(id: id, playableMediaTypes: playableMediaTypes, supportedCommands: supportedCommands, supportsMediaControl: supportsMediaControl, supportsSync: supportsSync, supportsPersistentIdentifier: supportsPersistentIdentifier).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+SessionAPI.postCapabilities(id: id, playableMediaTypes: playableMediaTypes, supportedCommands: supportedCommands, supportsMediaControl: supportsMediaControl, supportsSync: supportsSync, supportsPersistentIdentifier: supportsPersistentIdentifier) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -367,7 +388,7 @@ Void (empty response body)
 
 # **postFullCapabilities**
 ```swift
-    open class func postFullCapabilities( clientCapabilitiesDto: ClientCapabilitiesDto,  id: String? = nil) -> Promise<Void>
+    open class func postFullCapabilities(clientCapabilitiesDto: ClientCapabilitiesDto, id: String? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Updates capabilities for a device.
@@ -381,12 +402,15 @@ let clientCapabilitiesDto = ClientCapabilitiesDto(playableMediaTypes: ["playable
 let id = "id_example" // String | The session id. (optional)
 
 // Updates capabilities for a device.
-SessionAPI.postFullCapabilities(clientCapabilitiesDto: clientCapabilitiesDto, id: id).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+SessionAPI.postFullCapabilities(clientCapabilitiesDto: clientCapabilitiesDto, id: id) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -414,7 +438,7 @@ Void (empty response body)
 
 # **removeUserFromSession**
 ```swift
-    open class func removeUserFromSession( sessionId: String,  userId: String) -> Promise<Void>
+    open class func removeUserFromSession(sessionId: String, userId: String, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Removes an additional user from a session.
@@ -428,12 +452,15 @@ let sessionId = "sessionId_example" // String | The session id.
 let userId = "userId_example" // String | The user id.
 
 // Removes an additional user from a session.
-SessionAPI.removeUserFromSession(sessionId: sessionId, userId: userId).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+SessionAPI.removeUserFromSession(sessionId: sessionId, userId: userId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -461,7 +488,7 @@ Void (empty response body)
 
 # **reportSessionEnded**
 ```swift
-    open class func reportSessionEnded() -> Promise<Void>
+    open class func reportSessionEnded(completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Reports that a session has ended.
@@ -473,12 +500,15 @@ import JellyfinAPI
 
 
 // Reports that a session has ended.
-SessionAPI.reportSessionEnded().then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+SessionAPI.reportSessionEnded() { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -502,7 +532,7 @@ Void (empty response body)
 
 # **reportViewing**
 ```swift
-    open class func reportViewing( itemId: String,  sessionId: String? = nil) -> Promise<Void>
+    open class func reportViewing(itemId: String, sessionId: String? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Reports that a session is viewing an item.
@@ -516,12 +546,15 @@ let itemId = "itemId_example" // String | The item id.
 let sessionId = "sessionId_example" // String | The session id. (optional)
 
 // Reports that a session is viewing an item.
-SessionAPI.reportViewing(itemId: itemId, sessionId: sessionId).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+SessionAPI.reportViewing(itemId: itemId, sessionId: sessionId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -549,7 +582,7 @@ Void (empty response body)
 
 # **sendFullGeneralCommand**
 ```swift
-    open class func sendFullGeneralCommand( sessionId: String,  generalCommand: GeneralCommand) -> Promise<Void>
+    open class func sendFullGeneralCommand(sessionId: String, generalCommand: GeneralCommand, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Issues a full general command to a client.
@@ -563,12 +596,15 @@ let sessionId = "sessionId_example" // String | The session id.
 let generalCommand = GeneralCommand(name: GeneralCommandType(), controllingUserId: "controllingUserId_example", arguments: "TODO") // GeneralCommand | The MediaBrowser.Model.Session.GeneralCommand.
 
 // Issues a full general command to a client.
-SessionAPI.sendFullGeneralCommand(sessionId: sessionId, generalCommand: generalCommand).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+SessionAPI.sendFullGeneralCommand(sessionId: sessionId, generalCommand: generalCommand) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -596,7 +632,7 @@ Void (empty response body)
 
 # **sendGeneralCommand**
 ```swift
-    open class func sendGeneralCommand( sessionId: String,  command: GeneralCommandType) -> Promise<Void>
+    open class func sendGeneralCommand(sessionId: String, command: GeneralCommandType, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Issues a general command to a client.
@@ -610,12 +646,15 @@ let sessionId = "sessionId_example" // String | The session id.
 let command = GeneralCommandType() // GeneralCommandType | The command to send.
 
 // Issues a general command to a client.
-SessionAPI.sendGeneralCommand(sessionId: sessionId, command: command).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+SessionAPI.sendGeneralCommand(sessionId: sessionId, command: command) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -643,7 +682,7 @@ Void (empty response body)
 
 # **sendMessageCommand**
 ```swift
-    open class func sendMessageCommand( sessionId: String,  messageCommand: MessageCommand) -> Promise<Void>
+    open class func sendMessageCommand(sessionId: String, messageCommand: MessageCommand, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Issues a command to a client to display a message to the user.
@@ -657,12 +696,15 @@ let sessionId = "sessionId_example" // String | The session id.
 let messageCommand = MessageCommand(header: "header_example", text: "text_example", timeoutMs: 123) // MessageCommand | The MediaBrowser.Model.Session.MessageCommand object containing Header, Message Text, and TimeoutMs.
 
 // Issues a command to a client to display a message to the user.
-SessionAPI.sendMessageCommand(sessionId: sessionId, messageCommand: messageCommand).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+SessionAPI.sendMessageCommand(sessionId: sessionId, messageCommand: messageCommand) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -690,7 +732,7 @@ Void (empty response body)
 
 # **sendPlaystateCommand**
 ```swift
-    open class func sendPlaystateCommand( sessionId: String,  command: PlaystateCommand,  seekPositionTicks: Int64? = nil,  controllingUserId: String? = nil) -> Promise<Void>
+    open class func sendPlaystateCommand(sessionId: String, command: PlaystateCommand, seekPositionTicks: Int64? = nil, controllingUserId: String? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Issues a playstate command to a client.
@@ -706,12 +748,15 @@ let seekPositionTicks = 987 // Int64 | The optional position ticks. (optional)
 let controllingUserId = "controllingUserId_example" // String | The optional controlling user id. (optional)
 
 // Issues a playstate command to a client.
-SessionAPI.sendPlaystateCommand(sessionId: sessionId, command: command, seekPositionTicks: seekPositionTicks, controllingUserId: controllingUserId).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+SessionAPI.sendPlaystateCommand(sessionId: sessionId, command: command, seekPositionTicks: seekPositionTicks, controllingUserId: controllingUserId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -741,7 +786,7 @@ Void (empty response body)
 
 # **sendSystemCommand**
 ```swift
-    open class func sendSystemCommand( sessionId: String,  command: GeneralCommandType) -> Promise<Void>
+    open class func sendSystemCommand(sessionId: String, command: GeneralCommandType, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Issues a system command to a client.
@@ -755,12 +800,15 @@ let sessionId = "sessionId_example" // String | The session id.
 let command = GeneralCommandType() // GeneralCommandType | The command to send.
 
 // Issues a system command to a client.
-SessionAPI.sendSystemCommand(sessionId: sessionId, command: command).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+SessionAPI.sendSystemCommand(sessionId: sessionId, command: command) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 

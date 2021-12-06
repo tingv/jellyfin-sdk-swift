@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 # **getDefaultDirectoryBrowser**
 ```swift
-    open class func getDefaultDirectoryBrowser() -> Promise<DefaultDirectoryBrowserInfoDto>
+    open class func getDefaultDirectoryBrowser(completion: @escaping (_ data: DefaultDirectoryBrowserInfoDto?, _ error: Error?) -> Void)
 ```
 
 Get Default directory browser.
@@ -26,12 +26,15 @@ import JellyfinAPI
 
 
 // Get Default directory browser.
-EnvironmentAPI.getDefaultDirectoryBrowser().then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+EnvironmentAPI.getDefaultDirectoryBrowser() { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -55,7 +58,7 @@ This endpoint does not need any parameter.
 
 # **getDirectoryContents**
 ```swift
-    open class func getDirectoryContents( path: String,  includeFiles: Bool? = nil,  includeDirectories: Bool? = nil) -> Promise<[FileSystemEntryInfo]>
+    open class func getDirectoryContents(path: String, includeFiles: Bool? = nil, includeDirectories: Bool? = nil, completion: @escaping (_ data: [FileSystemEntryInfo]?, _ error: Error?) -> Void)
 ```
 
 Gets the contents of a given directory in the file system.
@@ -70,12 +73,15 @@ let includeFiles = true // Bool | An optional filter to include or exclude files
 let includeDirectories = true // Bool | An optional filter to include or exclude folders from the results. true/false. (optional) (default to false)
 
 // Gets the contents of a given directory in the file system.
-EnvironmentAPI.getDirectoryContents(path: path, includeFiles: includeFiles, includeDirectories: includeDirectories).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+EnvironmentAPI.getDirectoryContents(path: path, includeFiles: includeFiles, includeDirectories: includeDirectories) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -104,7 +110,7 @@ Name | Type | Description  | Notes
 
 # **getDrives**
 ```swift
-    open class func getDrives() -> Promise<[FileSystemEntryInfo]>
+    open class func getDrives(completion: @escaping (_ data: [FileSystemEntryInfo]?, _ error: Error?) -> Void)
 ```
 
 Gets available drives from the server's file system.
@@ -116,12 +122,15 @@ import JellyfinAPI
 
 
 // Gets available drives from the server's file system.
-EnvironmentAPI.getDrives().then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+EnvironmentAPI.getDrives() { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -145,7 +154,7 @@ This endpoint does not need any parameter.
 
 # **getNetworkShares**
 ```swift
-    open class func getNetworkShares() -> Promise<[FileSystemEntryInfo]>
+    open class func getNetworkShares(completion: @escaping (_ data: [FileSystemEntryInfo]?, _ error: Error?) -> Void)
 ```
 
 Gets network paths.
@@ -157,12 +166,15 @@ import JellyfinAPI
 
 
 // Gets network paths.
-EnvironmentAPI.getNetworkShares().then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+EnvironmentAPI.getNetworkShares() { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -186,7 +198,7 @@ This endpoint does not need any parameter.
 
 # **getParentPath**
 ```swift
-    open class func getParentPath( path: String) -> Promise<String>
+    open class func getParentPath(path: String, completion: @escaping (_ data: String?, _ error: Error?) -> Void)
 ```
 
 Gets the parent path of a given path.
@@ -199,12 +211,15 @@ import JellyfinAPI
 let path = "path_example" // String | The path.
 
 // Gets the parent path of a given path.
-EnvironmentAPI.getParentPath(path: path).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+EnvironmentAPI.getParentPath(path: path) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -231,7 +246,7 @@ Name | Type | Description  | Notes
 
 # **validatePath**
 ```swift
-    open class func validatePath( validatePathDto: ValidatePathDto) -> Promise<Void>
+    open class func validatePath(validatePathDto: ValidatePathDto, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Validates path.
@@ -244,12 +259,15 @@ import JellyfinAPI
 let validatePathDto = ValidatePathDto(validateWritable: false, path: "path_example", isFile: false) // ValidatePathDto | Validate request object.
 
 // Validates path.
-EnvironmentAPI.validatePath(validatePathDto: validatePathDto).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+EnvironmentAPI.validatePath(validatePathDto: validatePathDto) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 

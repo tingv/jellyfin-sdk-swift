@@ -7,26 +7,23 @@
 
 import AnyCodable
 import Foundation
-import PromiseKit
 
 open class StartupAPI {
     /**
      Completes the startup wizard.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func completeWizard(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func completeWizard(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         completeWizardWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -59,19 +56,17 @@ open class StartupAPI {
      Gets the first user.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<StartupUserDto>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getFirstUser(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<StartupUserDto> {
-        let deferred = Promise<StartupUserDto>.pending()
+    open class func getFirstUser(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<StartupUserDto, Error>) -> Void)) {
         getFirstUserWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -104,19 +99,17 @@ open class StartupAPI {
      Gets the first user.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<StartupUserDto>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getFirstUser2(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<StartupUserDto> {
-        let deferred = Promise<StartupUserDto>.pending()
+    open class func getFirstUser2(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<StartupUserDto, Error>) -> Void)) {
         getFirstUser2WithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -149,19 +142,17 @@ open class StartupAPI {
      Gets the initial startup wizard configuration.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<StartupConfigurationDto>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getStartupConfiguration(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<StartupConfigurationDto> {
-        let deferred = Promise<StartupConfigurationDto>.pending()
+    open class func getStartupConfiguration(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<StartupConfigurationDto, Error>) -> Void)) {
         getStartupConfigurationWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -195,19 +186,17 @@ open class StartupAPI {
      
      - parameter startupRemoteAccessDto: (body) The startup remote access dto. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func setRemoteAccess( startupRemoteAccessDto: StartupRemoteAccessDto, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func setRemoteAccess(startupRemoteAccessDto: StartupRemoteAccessDto, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         setRemoteAccessWithRequestBuilder(startupRemoteAccessDto: startupRemoteAccessDto).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -242,19 +231,17 @@ open class StartupAPI {
      
      - parameter startupConfigurationDto: (body) The updated startup configuration. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func updateInitialConfiguration( startupConfigurationDto: StartupConfigurationDto, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func updateInitialConfiguration(startupConfigurationDto: StartupConfigurationDto, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         updateInitialConfigurationWithRequestBuilder(startupConfigurationDto: startupConfigurationDto).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -289,19 +276,17 @@ open class StartupAPI {
      
      - parameter startupUserDto: (body) The DTO containing username and password. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func updateStartupUser( startupUserDto: StartupUserDto? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func updateStartupUser(startupUserDto: StartupUserDto? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         updateStartupUserWithRequestBuilder(startupUserDto: startupUserDto).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**

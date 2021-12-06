@@ -7,7 +7,6 @@
 
 import AnyCodable
 import Foundation
-import PromiseKit
 
 open class SearchAPI {
     /**
@@ -32,19 +31,17 @@ open class SearchAPI {
      - parameter includeStudios: (query) Optional filter whether to include studios. (optional, default to true)
      - parameter includeArtists: (query) Optional filter whether to include artists. (optional, default to true)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<SearchHintResult>
+     - parameter completion: completion handler to receive the result
      */
-    open class func callGet( searchTerm: String,  startIndex: Int? = nil,  limit: Int? = nil,  userId: String? = nil,  includeItemTypes: [String]? = nil,  excludeItemTypes: [String]? = nil,  mediaTypes: [String]? = nil,  parentId: String? = nil,  isMovie: Bool? = nil,  isSeries: Bool? = nil,  isNews: Bool? = nil,  isKids: Bool? = nil,  isSports: Bool? = nil,  includePeople: Bool? = nil,  includeMedia: Bool? = nil,  includeGenres: Bool? = nil,  includeStudios: Bool? = nil,  includeArtists: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<SearchHintResult> {
-        let deferred = Promise<SearchHintResult>.pending()
+    open class func callGet(searchTerm: String, startIndex: Int? = nil, limit: Int? = nil, userId: String? = nil, includeItemTypes: [String]? = nil, excludeItemTypes: [String]? = nil, mediaTypes: [String]? = nil, parentId: String? = nil, isMovie: Bool? = nil, isSeries: Bool? = nil, isNews: Bool? = nil, isKids: Bool? = nil, isSports: Bool? = nil, includePeople: Bool? = nil, includeMedia: Bool? = nil, includeGenres: Bool? = nil, includeStudios: Bool? = nil, includeArtists: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<SearchHintResult, Error>) -> Void)) {
         callGetWithRequestBuilder(searchTerm: searchTerm, startIndex: startIndex, limit: limit, userId: userId, includeItemTypes: includeItemTypes, excludeItemTypes: excludeItemTypes, mediaTypes: mediaTypes, parentId: parentId, isMovie: isMovie, isSeries: isSeries, isNews: isNews, isKids: isKids, isSports: isSports, includePeople: includePeople, includeMedia: includeMedia, includeGenres: includeGenres, includeStudios: includeStudios, includeArtists: includeArtists).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**

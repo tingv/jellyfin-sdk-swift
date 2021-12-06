@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 # **getHlsAudioSegmentLegacyAac**
 ```swift
-    open class func getHlsAudioSegmentLegacyAac( itemId: String,  segmentId: String) -> Promise<URL>
+    open class func getHlsAudioSegmentLegacyAac(itemId: String, segmentId: String, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
 ```
 
 Gets the specified audio segment for an audio item.
@@ -27,12 +27,15 @@ let itemId = "itemId_example" // String | The item id.
 let segmentId = "segmentId_example" // String | The segment id.
 
 // Gets the specified audio segment for an audio item.
-HlsSegmentAPI.getHlsAudioSegmentLegacyAac(itemId: itemId, segmentId: segmentId).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+HlsSegmentAPI.getHlsAudioSegmentLegacyAac(itemId: itemId, segmentId: segmentId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -60,7 +63,7 @@ No authorization required
 
 # **getHlsAudioSegmentLegacyMp3**
 ```swift
-    open class func getHlsAudioSegmentLegacyMp3( itemId: String,  segmentId: String) -> Promise<URL>
+    open class func getHlsAudioSegmentLegacyMp3(itemId: String, segmentId: String, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
 ```
 
 Gets the specified audio segment for an audio item.
@@ -74,12 +77,15 @@ let itemId = "itemId_example" // String | The item id.
 let segmentId = "segmentId_example" // String | The segment id.
 
 // Gets the specified audio segment for an audio item.
-HlsSegmentAPI.getHlsAudioSegmentLegacyMp3(itemId: itemId, segmentId: segmentId).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+HlsSegmentAPI.getHlsAudioSegmentLegacyMp3(itemId: itemId, segmentId: segmentId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -107,7 +113,7 @@ No authorization required
 
 # **getHlsPlaylistLegacy**
 ```swift
-    open class func getHlsPlaylistLegacy( itemId: String,  playlistId: String) -> Promise<URL>
+    open class func getHlsPlaylistLegacy(itemId: String, playlistId: String, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
 ```
 
 Gets a hls video playlist.
@@ -121,12 +127,15 @@ let itemId = "itemId_example" // String | The video id.
 let playlistId = "playlistId_example" // String | The playlist id.
 
 // Gets a hls video playlist.
-HlsSegmentAPI.getHlsPlaylistLegacy(itemId: itemId, playlistId: playlistId).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+HlsSegmentAPI.getHlsPlaylistLegacy(itemId: itemId, playlistId: playlistId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -154,7 +163,7 @@ Name | Type | Description  | Notes
 
 # **getHlsVideoSegmentLegacy**
 ```swift
-    open class func getHlsVideoSegmentLegacy( itemId: String,  playlistId: String,  segmentId: String,  segmentContainer: String) -> Promise<URL>
+    open class func getHlsVideoSegmentLegacy(itemId: String, playlistId: String, segmentId: String, segmentContainer: String, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
 ```
 
 Gets a hls video segment.
@@ -170,12 +179,15 @@ let segmentId = "segmentId_example" // String | The segment id.
 let segmentContainer = "segmentContainer_example" // String | The segment container.
 
 // Gets a hls video segment.
-HlsSegmentAPI.getHlsVideoSegmentLegacy(itemId: itemId, playlistId: playlistId, segmentId: segmentId, segmentContainer: segmentContainer).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+HlsSegmentAPI.getHlsVideoSegmentLegacy(itemId: itemId, playlistId: playlistId, segmentId: segmentId, segmentContainer: segmentContainer) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -205,7 +217,7 @@ No authorization required
 
 # **stopEncodingProcess**
 ```swift
-    open class func stopEncodingProcess( deviceId: String,  playSessionId: String) -> Promise<Void>
+    open class func stopEncodingProcess(deviceId: String, playSessionId: String, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Stops an active encoding.
@@ -219,12 +231,15 @@ let deviceId = "deviceId_example" // String | The device id of the client reques
 let playSessionId = "playSessionId_example" // String | The play session id.
 
 // Stops an active encoding.
-HlsSegmentAPI.stopEncodingProcess(deviceId: deviceId, playSessionId: playSessionId).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+HlsSegmentAPI.stopEncodingProcess(deviceId: deviceId, playSessionId: playSessionId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 

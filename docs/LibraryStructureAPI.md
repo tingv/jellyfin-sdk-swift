@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 # **addMediaPath**
 ```swift
-    open class func addMediaPath( mediaPathDto: MediaPathDto,  refreshLibrary: Bool? = nil) -> Promise<Void>
+    open class func addMediaPath(mediaPathDto: MediaPathDto, refreshLibrary: Bool? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Add a media path to a library.
@@ -30,12 +30,15 @@ let mediaPathDto = MediaPathDto(name: "name_example", path: "path_example", path
 let refreshLibrary = true // Bool | Whether to refresh the library. (optional) (default to false)
 
 // Add a media path to a library.
-LibraryStructureAPI.addMediaPath(mediaPathDto: mediaPathDto, refreshLibrary: refreshLibrary).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+LibraryStructureAPI.addMediaPath(mediaPathDto: mediaPathDto, refreshLibrary: refreshLibrary) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -63,7 +66,7 @@ Void (empty response body)
 
 # **addVirtualFolder**
 ```swift
-    open class func addVirtualFolder( name: String? = nil,  collectionType: CollectionTypeOptions? = nil,  paths: [String]? = nil,  refreshLibrary: Bool? = nil,  addVirtualFolderDto: AddVirtualFolderDto? = nil) -> Promise<Void>
+    open class func addVirtualFolder(name: String? = nil, collectionType: CollectionTypeOptions? = nil, paths: [String]? = nil, refreshLibrary: Bool? = nil, addVirtualFolderDto: AddVirtualFolderDto? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Adds a virtual folder.
@@ -80,12 +83,15 @@ let refreshLibrary = true // Bool | Whether to refresh the library. (optional) (
 let addVirtualFolderDto = AddVirtualFolderDto(libraryOptions: LibraryOptions(enablePhotos: false, enableRealtimeMonitor: false, enableChapterImageExtraction: false, extractChapterImagesDuringLibraryScan: false, pathInfos: [MediaPathInfo(path: "path_example", networkPath: "networkPath_example")], saveLocalMetadata: false, enableInternetProviders: false, enableAutomaticSeriesGrouping: false, enableEmbeddedTitles: false, enableEmbeddedEpisodeInfos: false, automaticRefreshIntervalDays: 123, preferredMetadataLanguage: "preferredMetadataLanguage_example", metadataCountryCode: "metadataCountryCode_example", seasonZeroDisplayName: "seasonZeroDisplayName_example", metadataSavers: ["metadataSavers_example"], disabledLocalMetadataReaders: ["disabledLocalMetadataReaders_example"], localMetadataReaderOrder: ["localMetadataReaderOrder_example"], disabledSubtitleFetchers: ["disabledSubtitleFetchers_example"], subtitleFetcherOrder: ["subtitleFetcherOrder_example"], skipSubtitlesIfEmbeddedSubtitlesPresent: false, skipSubtitlesIfAudioTrackMatches: false, subtitleDownloadLanguages: ["subtitleDownloadLanguages_example"], requirePerfectSubtitleMatch: false, saveSubtitlesWithMedia: false, typeOptions: [TypeOptions(type: "type_example", metadataFetchers: ["metadataFetchers_example"], metadataFetcherOrder: ["metadataFetcherOrder_example"], imageFetchers: ["imageFetchers_example"], imageFetcherOrder: ["imageFetcherOrder_example"], imageOptions: [ImageOption(type: ImageType(), limit: 123, minWidth: 123)])])) // AddVirtualFolderDto | The library options. (optional)
 
 // Adds a virtual folder.
-LibraryStructureAPI.addVirtualFolder(name: name, collectionType: collectionType, paths: paths, refreshLibrary: refreshLibrary, addVirtualFolderDto: addVirtualFolderDto).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+LibraryStructureAPI.addVirtualFolder(name: name, collectionType: collectionType, paths: paths, refreshLibrary: refreshLibrary, addVirtualFolderDto: addVirtualFolderDto) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -116,7 +122,7 @@ Void (empty response body)
 
 # **getVirtualFolders**
 ```swift
-    open class func getVirtualFolders() -> Promise<[VirtualFolderInfo]>
+    open class func getVirtualFolders(completion: @escaping (_ data: [VirtualFolderInfo]?, _ error: Error?) -> Void)
 ```
 
 Gets all virtual folders.
@@ -128,12 +134,15 @@ import JellyfinAPI
 
 
 // Gets all virtual folders.
-LibraryStructureAPI.getVirtualFolders().then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+LibraryStructureAPI.getVirtualFolders() { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -157,7 +166,7 @@ This endpoint does not need any parameter.
 
 # **removeMediaPath**
 ```swift
-    open class func removeMediaPath( name: String? = nil,  path: String? = nil,  refreshLibrary: Bool? = nil) -> Promise<Void>
+    open class func removeMediaPath(name: String? = nil, path: String? = nil, refreshLibrary: Bool? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Remove a media path.
@@ -172,12 +181,15 @@ let path = "path_example" // String | The path to remove. (optional)
 let refreshLibrary = true // Bool | Whether to refresh the library. (optional) (default to false)
 
 // Remove a media path.
-LibraryStructureAPI.removeMediaPath(name: name, path: path, refreshLibrary: refreshLibrary).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+LibraryStructureAPI.removeMediaPath(name: name, path: path, refreshLibrary: refreshLibrary) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -206,7 +218,7 @@ Void (empty response body)
 
 # **removeVirtualFolder**
 ```swift
-    open class func removeVirtualFolder( name: String? = nil,  refreshLibrary: Bool? = nil) -> Promise<Void>
+    open class func removeVirtualFolder(name: String? = nil, refreshLibrary: Bool? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Removes a virtual folder.
@@ -220,12 +232,15 @@ let name = "name_example" // String | The name of the folder. (optional)
 let refreshLibrary = true // Bool | Whether to refresh the library. (optional) (default to false)
 
 // Removes a virtual folder.
-LibraryStructureAPI.removeVirtualFolder(name: name, refreshLibrary: refreshLibrary).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+LibraryStructureAPI.removeVirtualFolder(name: name, refreshLibrary: refreshLibrary) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -253,7 +268,7 @@ Void (empty response body)
 
 # **renameVirtualFolder**
 ```swift
-    open class func renameVirtualFolder( name: String? = nil,  newName: String? = nil,  refreshLibrary: Bool? = nil) -> Promise<Void>
+    open class func renameVirtualFolder(name: String? = nil, newName: String? = nil, refreshLibrary: Bool? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Renames a virtual folder.
@@ -268,12 +283,15 @@ let newName = "newName_example" // String | The new name. (optional)
 let refreshLibrary = true // Bool | Whether to refresh the library. (optional) (default to false)
 
 // Renames a virtual folder.
-LibraryStructureAPI.renameVirtualFolder(name: name, newName: newName, refreshLibrary: refreshLibrary).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+LibraryStructureAPI.renameVirtualFolder(name: name, newName: newName, refreshLibrary: refreshLibrary) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -302,7 +320,7 @@ Void (empty response body)
 
 # **updateLibraryOptions**
 ```swift
-    open class func updateLibraryOptions( updateLibraryOptionsDto: UpdateLibraryOptionsDto? = nil) -> Promise<Void>
+    open class func updateLibraryOptions(updateLibraryOptionsDto: UpdateLibraryOptionsDto? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Update library options.
@@ -315,12 +333,15 @@ import JellyfinAPI
 let updateLibraryOptionsDto = UpdateLibraryOptionsDto(id: "id_example", libraryOptions: LibraryOptions(enablePhotos: false, enableRealtimeMonitor: false, enableChapterImageExtraction: false, extractChapterImagesDuringLibraryScan: false, pathInfos: [MediaPathInfo(path: "path_example", networkPath: "networkPath_example")], saveLocalMetadata: false, enableInternetProviders: false, enableAutomaticSeriesGrouping: false, enableEmbeddedTitles: false, enableEmbeddedEpisodeInfos: false, automaticRefreshIntervalDays: 123, preferredMetadataLanguage: "preferredMetadataLanguage_example", metadataCountryCode: "metadataCountryCode_example", seasonZeroDisplayName: "seasonZeroDisplayName_example", metadataSavers: ["metadataSavers_example"], disabledLocalMetadataReaders: ["disabledLocalMetadataReaders_example"], localMetadataReaderOrder: ["localMetadataReaderOrder_example"], disabledSubtitleFetchers: ["disabledSubtitleFetchers_example"], subtitleFetcherOrder: ["subtitleFetcherOrder_example"], skipSubtitlesIfEmbeddedSubtitlesPresent: false, skipSubtitlesIfAudioTrackMatches: false, subtitleDownloadLanguages: ["subtitleDownloadLanguages_example"], requirePerfectSubtitleMatch: false, saveSubtitlesWithMedia: false, typeOptions: [TypeOptions(type: "type_example", metadataFetchers: ["metadataFetchers_example"], metadataFetcherOrder: ["metadataFetcherOrder_example"], imageFetchers: ["imageFetchers_example"], imageFetcherOrder: ["imageFetcherOrder_example"], imageOptions: [ImageOption(type: ImageType(), limit: 123, minWidth: 123)])])) // UpdateLibraryOptionsDto | The library name and options. (optional)
 
 // Update library options.
-LibraryStructureAPI.updateLibraryOptions(updateLibraryOptionsDto: updateLibraryOptionsDto).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+LibraryStructureAPI.updateLibraryOptions(updateLibraryOptionsDto: updateLibraryOptionsDto) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -347,7 +368,7 @@ Void (empty response body)
 
 # **updateMediaPath**
 ```swift
-    open class func updateMediaPath( updateMediaPathRequestDto: UpdateMediaPathRequestDto) -> Promise<Void>
+    open class func updateMediaPath(updateMediaPathRequestDto: UpdateMediaPathRequestDto, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Updates a media path.
@@ -360,12 +381,15 @@ import JellyfinAPI
 let updateMediaPathRequestDto = UpdateMediaPathRequestDto(name: "name_example", pathInfo: MediaPathInfo(path: "path_example", networkPath: "networkPath_example")) // UpdateMediaPathRequestDto | The name of the library and path infos.
 
 // Updates a media path.
-LibraryStructureAPI.updateMediaPath(updateMediaPathRequestDto: updateMediaPathRequestDto).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+LibraryStructureAPI.updateMediaPath(updateMediaPathRequestDto: updateMediaPathRequestDto) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 

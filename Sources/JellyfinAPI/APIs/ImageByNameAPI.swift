@@ -7,7 +7,6 @@
 
 import AnyCodable
 import Foundation
-import PromiseKit
 
 open class ImageByNameAPI {
     /**
@@ -16,19 +15,17 @@ open class ImageByNameAPI {
      - parameter name: (path) The name of the image. 
      - parameter type: (path) Image Type (primary, backdrop, logo, etc). 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getGeneralImage( name: String,  type: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func getGeneralImage(name: String, type: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         getGeneralImageWithRequestBuilder(name: name, type: type).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -66,19 +63,17 @@ open class ImageByNameAPI {
      Get all general images.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<[ImageByNameInfo]>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getGeneralImages(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[ImageByNameInfo]> {
-        let deferred = Promise<[ImageByNameInfo]>.pending()
+    open class func getGeneralImages(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[ImageByNameInfo], Error>) -> Void)) {
         getGeneralImagesWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -113,19 +108,17 @@ open class ImageByNameAPI {
      - parameter theme: (path) The theme to get the image from. 
      - parameter name: (path) The name of the image. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getMediaInfoImage( theme: String,  name: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func getMediaInfoImage(theme: String, name: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         getMediaInfoImageWithRequestBuilder(theme: theme, name: name).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -163,19 +156,17 @@ open class ImageByNameAPI {
      Get all media info images.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<[ImageByNameInfo]>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getMediaInfoImages(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[ImageByNameInfo]> {
-        let deferred = Promise<[ImageByNameInfo]>.pending()
+    open class func getMediaInfoImages(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[ImageByNameInfo], Error>) -> Void)) {
         getMediaInfoImagesWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -210,19 +201,17 @@ open class ImageByNameAPI {
      - parameter theme: (path) The theme to get the image from. 
      - parameter name: (path) The name of the image. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getRatingImage( theme: String,  name: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func getRatingImage(theme: String, name: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         getRatingImageWithRequestBuilder(theme: theme, name: name).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -260,19 +249,17 @@ open class ImageByNameAPI {
      Get all general images.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<[ImageByNameInfo]>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getRatingImages(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[ImageByNameInfo]> {
-        let deferred = Promise<[ImageByNameInfo]>.pending()
+    open class func getRatingImages(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[ImageByNameInfo], Error>) -> Void)) {
         getRatingImagesWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**

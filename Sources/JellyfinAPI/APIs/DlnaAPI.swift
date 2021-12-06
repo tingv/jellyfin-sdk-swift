@@ -7,7 +7,6 @@
 
 import AnyCodable
 import Foundation
-import PromiseKit
 
 open class DlnaAPI {
     /**
@@ -15,19 +14,17 @@ open class DlnaAPI {
      
      - parameter deviceProfile: (body) Device profile. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func createProfile( deviceProfile: DeviceProfile? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func createProfile(deviceProfile: DeviceProfile? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         createProfileWithRequestBuilder(deviceProfile: deviceProfile).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -62,19 +59,17 @@ open class DlnaAPI {
      
      - parameter profileId: (path) Profile id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func deleteProfile( profileId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func deleteProfile(profileId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         deleteProfileWithRequestBuilder(profileId: profileId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -111,19 +106,17 @@ open class DlnaAPI {
      Gets the default profile.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<DeviceProfile>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getDefaultProfile(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<DeviceProfile> {
-        let deferred = Promise<DeviceProfile>.pending()
+    open class func getDefaultProfile(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<DeviceProfile, Error>) -> Void)) {
         getDefaultProfileWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -157,19 +150,17 @@ open class DlnaAPI {
      
      - parameter profileId: (path) Profile Id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<DeviceProfile>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getProfile( profileId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<DeviceProfile> {
-        let deferred = Promise<DeviceProfile>.pending()
+    open class func getProfile(profileId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<DeviceProfile, Error>) -> Void)) {
         getProfileWithRequestBuilder(profileId: profileId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -206,19 +197,17 @@ open class DlnaAPI {
      Get profile infos.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<[DeviceProfileInfo]>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getProfileInfos(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[DeviceProfileInfo]> {
-        let deferred = Promise<[DeviceProfileInfo]>.pending()
+    open class func getProfileInfos(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[DeviceProfileInfo], Error>) -> Void)) {
         getProfileInfosWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -253,19 +242,17 @@ open class DlnaAPI {
      - parameter profileId: (path) Profile id. 
      - parameter deviceProfile: (body) Device profile. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func updateProfile( profileId: String,  deviceProfile: DeviceProfile? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func updateProfile(profileId: String, deviceProfile: DeviceProfile? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         updateProfileWithRequestBuilder(profileId: profileId, deviceProfile: deviceProfile).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**

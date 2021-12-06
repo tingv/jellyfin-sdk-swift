@@ -7,7 +7,6 @@
 
 import AnyCodable
 import Foundation
-import PromiseKit
 
 open class UserLibraryAPI {
     /**
@@ -16,19 +15,17 @@ open class UserLibraryAPI {
      - parameter userId: (path) User id. 
      - parameter itemId: (path) Item id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<UserItemDataDto>
+     - parameter completion: completion handler to receive the result
      */
-    open class func deleteUserItemRating( userId: String,  itemId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<UserItemDataDto> {
-        let deferred = Promise<UserItemDataDto>.pending()
+    open class func deleteUserItemRating(userId: String, itemId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<UserItemDataDto, Error>) -> Void)) {
         deleteUserItemRatingWithRequestBuilder(userId: userId, itemId: itemId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -71,19 +68,17 @@ open class UserLibraryAPI {
      - parameter userId: (path) User id. 
      - parameter itemId: (path) Item id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<BaseItemDtoQueryResult>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getIntros( userId: String,  itemId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<BaseItemDtoQueryResult> {
-        let deferred = Promise<BaseItemDtoQueryResult>.pending()
+    open class func getIntros(userId: String, itemId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<BaseItemDtoQueryResult, Error>) -> Void)) {
         getIntrosWithRequestBuilder(userId: userId, itemId: itemId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -126,19 +121,17 @@ open class UserLibraryAPI {
      - parameter userId: (path) User id. 
      - parameter itemId: (path) Item id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<BaseItemDto>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getItem( userId: String,  itemId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<BaseItemDto> {
-        let deferred = Promise<BaseItemDto>.pending()
+    open class func getItem(userId: String, itemId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<BaseItemDto, Error>) -> Void)) {
         getItemWithRequestBuilder(userId: userId, itemId: itemId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -190,19 +183,17 @@ open class UserLibraryAPI {
      - parameter limit: (query) Return item limit. (optional, default to 20)
      - parameter groupItems: (query) Whether or not to group items into a parent container. (optional, default to true)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<[BaseItemDto]>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getLatestMedia( userId: String,  parentId: String? = nil,  fields: [ItemFields]? = nil,  includeItemTypes: [String]? = nil,  isPlayed: Bool? = nil,  enableImages: Bool? = nil,  imageTypeLimit: Int? = nil,  enableImageTypes: [ImageType]? = nil,  enableUserData: Bool? = nil,  limit: Int? = nil,  groupItems: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[BaseItemDto]> {
-        let deferred = Promise<[BaseItemDto]>.pending()
+    open class func getLatestMedia(userId: String, parentId: String? = nil, fields: [ItemFields]? = nil, includeItemTypes: [String]? = nil, isPlayed: Bool? = nil, enableImages: Bool? = nil, imageTypeLimit: Int? = nil, enableImageTypes: [ImageType]? = nil, enableUserData: Bool? = nil, limit: Int? = nil, groupItems: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[BaseItemDto], Error>) -> Void)) {
         getLatestMediaWithRequestBuilder(userId: userId, parentId: parentId, fields: fields, includeItemTypes: includeItemTypes, isPlayed: isPlayed, enableImages: enableImages, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes, enableUserData: enableUserData, limit: limit, groupItems: groupItems).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -263,19 +254,17 @@ open class UserLibraryAPI {
      - parameter userId: (path) User id. 
      - parameter itemId: (path) Item id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<[BaseItemDto]>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getLocalTrailers( userId: String,  itemId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[BaseItemDto]> {
-        let deferred = Promise<[BaseItemDto]>.pending()
+    open class func getLocalTrailers(userId: String, itemId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[BaseItemDto], Error>) -> Void)) {
         getLocalTrailersWithRequestBuilder(userId: userId, itemId: itemId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -317,19 +306,17 @@ open class UserLibraryAPI {
      
      - parameter userId: (path) User id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<BaseItemDto>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getRootFolder( userId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<BaseItemDto> {
-        let deferred = Promise<BaseItemDto>.pending()
+    open class func getRootFolder(userId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<BaseItemDto, Error>) -> Void)) {
         getRootFolderWithRequestBuilder(userId: userId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -368,19 +355,17 @@ open class UserLibraryAPI {
      - parameter userId: (path) User id. 
      - parameter itemId: (path) Item id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<[BaseItemDto]>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getSpecialFeatures( userId: String,  itemId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[BaseItemDto]> {
-        let deferred = Promise<[BaseItemDto]>.pending()
+    open class func getSpecialFeatures(userId: String, itemId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[BaseItemDto], Error>) -> Void)) {
         getSpecialFeaturesWithRequestBuilder(userId: userId, itemId: itemId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -423,19 +408,17 @@ open class UserLibraryAPI {
      - parameter userId: (path) User id. 
      - parameter itemId: (path) Item id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<UserItemDataDto>
+     - parameter completion: completion handler to receive the result
      */
-    open class func markFavoriteItem( userId: String,  itemId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<UserItemDataDto> {
-        let deferred = Promise<UserItemDataDto>.pending()
+    open class func markFavoriteItem(userId: String, itemId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<UserItemDataDto, Error>) -> Void)) {
         markFavoriteItemWithRequestBuilder(userId: userId, itemId: itemId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -478,19 +461,17 @@ open class UserLibraryAPI {
      - parameter userId: (path) User id. 
      - parameter itemId: (path) Item id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<UserItemDataDto>
+     - parameter completion: completion handler to receive the result
      */
-    open class func unmarkFavoriteItem( userId: String,  itemId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<UserItemDataDto> {
-        let deferred = Promise<UserItemDataDto>.pending()
+    open class func unmarkFavoriteItem(userId: String, itemId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<UserItemDataDto, Error>) -> Void)) {
         unmarkFavoriteItemWithRequestBuilder(userId: userId, itemId: itemId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -534,19 +515,17 @@ open class UserLibraryAPI {
      - parameter itemId: (path) Item id. 
      - parameter likes: (query) Whether this M:Jellyfin.Api.Controllers.UserLibraryController.UpdateUserItemRating(System.Guid,System.Guid,System.Nullable{System.Boolean}) is likes. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<UserItemDataDto>
+     - parameter completion: completion handler to receive the result
      */
-    open class func updateUserItemRating( userId: String,  itemId: String,  likes: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<UserItemDataDto> {
-        let deferred = Promise<UserItemDataDto>.pending()
+    open class func updateUserItemRating(userId: String, itemId: String, likes: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<UserItemDataDto, Error>) -> Void)) {
         updateUserItemRatingWithRequestBuilder(userId: userId, itemId: itemId, likes: likes).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**

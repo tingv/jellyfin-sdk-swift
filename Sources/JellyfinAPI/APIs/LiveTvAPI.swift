@@ -7,7 +7,6 @@
 
 import AnyCodable
 import Foundation
-import PromiseKit
 
 open class LiveTvAPI {
     /**
@@ -18,19 +17,17 @@ open class LiveTvAPI {
      - parameter validateLogin: (query) Validate login. (optional, default to false)
      - parameter listingsProviderInfo: (body) New listings info. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<ListingsProviderInfo>
+     - parameter completion: completion handler to receive the result
      */
-    open class func addListingProvider( pw: String? = nil,  validateListings: Bool? = nil,  validateLogin: Bool? = nil,  listingsProviderInfo: ListingsProviderInfo? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<ListingsProviderInfo> {
-        let deferred = Promise<ListingsProviderInfo>.pending()
+    open class func addListingProvider(pw: String? = nil, validateListings: Bool? = nil, validateLogin: Bool? = nil, listingsProviderInfo: ListingsProviderInfo? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<ListingsProviderInfo, Error>) -> Void)) {
         addListingProviderWithRequestBuilder(pw: pw, validateListings: validateListings, validateLogin: validateLogin, listingsProviderInfo: listingsProviderInfo).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -73,19 +70,17 @@ open class LiveTvAPI {
      
      - parameter tunerHostInfo: (body) New tuner host. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<TunerHostInfo>
+     - parameter completion: completion handler to receive the result
      */
-    open class func addTunerHost( tunerHostInfo: TunerHostInfo? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<TunerHostInfo> {
-        let deferred = Promise<TunerHostInfo>.pending()
+    open class func addTunerHost(tunerHostInfo: TunerHostInfo? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<TunerHostInfo, Error>) -> Void)) {
         addTunerHostWithRequestBuilder(tunerHostInfo: tunerHostInfo).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -120,19 +115,17 @@ open class LiveTvAPI {
      
      - parameter timerId: (path) Timer id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func cancelSeriesTimer( timerId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func cancelSeriesTimer(timerId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         cancelSeriesTimerWithRequestBuilder(timerId: timerId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -170,19 +163,17 @@ open class LiveTvAPI {
      
      - parameter timerId: (path) Timer id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func cancelTimer( timerId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func cancelTimer(timerId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         cancelTimerWithRequestBuilder(timerId: timerId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -220,19 +211,17 @@ open class LiveTvAPI {
      
      - parameter seriesTimerInfoDto: (body) New series timer info. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func createSeriesTimer( seriesTimerInfoDto: SeriesTimerInfoDto? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func createSeriesTimer(seriesTimerInfoDto: SeriesTimerInfoDto? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         createSeriesTimerWithRequestBuilder(seriesTimerInfoDto: seriesTimerInfoDto).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -267,19 +256,17 @@ open class LiveTvAPI {
      
      - parameter timerInfoDto: (body) New timer info. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func createTimer( timerInfoDto: TimerInfoDto? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func createTimer(timerInfoDto: TimerInfoDto? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         createTimerWithRequestBuilder(timerInfoDto: timerInfoDto).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -314,19 +301,17 @@ open class LiveTvAPI {
      
      - parameter id: (query) Listing provider id. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func deleteListingProvider( id: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func deleteListingProvider(id: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         deleteListingProviderWithRequestBuilder(id: id).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -364,19 +349,17 @@ open class LiveTvAPI {
      
      - parameter recordingId: (path) Recording id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func deleteRecording( recordingId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func deleteRecording(recordingId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         deleteRecordingWithRequestBuilder(recordingId: recordingId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -414,19 +397,17 @@ open class LiveTvAPI {
      
      - parameter id: (query) Tuner host id. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func deleteTunerHost( id: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func deleteTunerHost(id: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         deleteTunerHostWithRequestBuilder(id: id).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -464,19 +445,17 @@ open class LiveTvAPI {
      
      - parameter newDevicesOnly: (query) Only discover new tuners. (optional, default to false)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<[TunerHostInfo]>
+     - parameter completion: completion handler to receive the result
      */
-    open class func discoverTuners( newDevicesOnly: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[TunerHostInfo]> {
-        let deferred = Promise<[TunerHostInfo]>.pending()
+    open class func discoverTuners(newDevicesOnly: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[TunerHostInfo], Error>) -> Void)) {
         discoverTunersWithRequestBuilder(newDevicesOnly: newDevicesOnly).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -514,19 +493,17 @@ open class LiveTvAPI {
      
      - parameter newDevicesOnly: (query) Only discover new tuners. (optional, default to false)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<[TunerHostInfo]>
+     - parameter completion: completion handler to receive the result
      */
-    open class func discvoverTuners( newDevicesOnly: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[TunerHostInfo]> {
-        let deferred = Promise<[TunerHostInfo]>.pending()
+    open class func discvoverTuners(newDevicesOnly: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[TunerHostInfo], Error>) -> Void)) {
         discvoverTunersWithRequestBuilder(newDevicesOnly: newDevicesOnly).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -565,19 +542,17 @@ open class LiveTvAPI {
      - parameter channelId: (path) Channel id. 
      - parameter userId: (query) Optional. Attach user data. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<BaseItemDto>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getChannel( channelId: String,  userId: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<BaseItemDto> {
-        let deferred = Promise<BaseItemDto>.pending()
+    open class func getChannel(channelId: String, userId: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<BaseItemDto, Error>) -> Void)) {
         getChannelWithRequestBuilder(channelId: channelId, userId: userId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -619,19 +594,17 @@ open class LiveTvAPI {
      
      - parameter providerId: (query) Provider id. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<ChannelMappingOptionsDto>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getChannelMappingOptions( providerId: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<ChannelMappingOptionsDto> {
-        let deferred = Promise<ChannelMappingOptionsDto>.pending()
+    open class func getChannelMappingOptions(providerId: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<ChannelMappingOptionsDto, Error>) -> Void)) {
         getChannelMappingOptionsWithRequestBuilder(providerId: providerId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -668,19 +641,17 @@ open class LiveTvAPI {
      Gets default listings provider info.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<ListingsProviderInfo>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getDefaultListingProvider(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<ListingsProviderInfo> {
-        let deferred = Promise<ListingsProviderInfo>.pending()
+    open class func getDefaultListingProvider(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<ListingsProviderInfo, Error>) -> Void)) {
         getDefaultListingProviderWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -714,19 +685,17 @@ open class LiveTvAPI {
      
      - parameter programId: (query) Optional. To attach default values based on a program. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<SeriesTimerInfoDto>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getDefaultTimer( programId: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<SeriesTimerInfoDto> {
-        let deferred = Promise<SeriesTimerInfoDto>.pending()
+    open class func getDefaultTimer(programId: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<SeriesTimerInfoDto, Error>) -> Void)) {
         getDefaultTimerWithRequestBuilder(programId: programId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -763,19 +732,17 @@ open class LiveTvAPI {
      Get guid info.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<GuideInfo>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getGuideInfo(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<GuideInfo> {
-        let deferred = Promise<GuideInfo>.pending()
+    open class func getGuideInfo(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<GuideInfo, Error>) -> Void)) {
         getGuideInfoWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -812,19 +779,17 @@ open class LiveTvAPI {
      - parameter location: (query) Location. (optional)
      - parameter country: (query) Country. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<[NameIdPair]>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getLineups( id: String? = nil,  type: String? = nil,  location: String? = nil,  country: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[NameIdPair]> {
-        let deferred = Promise<[NameIdPair]>.pending()
+    open class func getLineups(id: String? = nil, type: String? = nil, location: String? = nil, country: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[NameIdPair], Error>) -> Void)) {
         getLineupsWithRequestBuilder(id: id, type: type, location: location, country: country).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -868,19 +833,17 @@ open class LiveTvAPI {
      
      - parameter recordingId: (path) Recording id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getLiveRecordingFile( recordingId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func getLiveRecordingFile(recordingId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         getLiveRecordingFileWithRequestBuilder(recordingId: recordingId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -916,19 +879,17 @@ open class LiveTvAPI {
      - parameter streamId: (path) Stream id. 
      - parameter container: (path) Container type. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getLiveStreamFile( streamId: String,  container: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func getLiveStreamFile(streamId: String, container: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         getLiveStreamFileWithRequestBuilder(streamId: streamId, container: container).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -987,19 +948,17 @@ open class LiveTvAPI {
      - parameter enableFavoriteSorting: (query) Optional. Incorporate favorite and like status into channel sorting. (optional, default to false)
      - parameter addCurrentProgram: (query) Optional. Adds current program info to each channel. (optional, default to true)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<BaseItemDtoQueryResult>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getLiveTvChannels( type: ChannelType? = nil,  userId: String? = nil,  startIndex: Int? = nil,  isMovie: Bool? = nil,  isSeries: Bool? = nil,  isNews: Bool? = nil,  isKids: Bool? = nil,  isSports: Bool? = nil,  limit: Int? = nil,  isFavorite: Bool? = nil,  isLiked: Bool? = nil,  isDisliked: Bool? = nil,  enableImages: Bool? = nil,  imageTypeLimit: Int? = nil,  enableImageTypes: [ImageType]? = nil,  fields: [ItemFields]? = nil,  enableUserData: Bool? = nil,  sortBy: [String]? = nil,  sortOrder: APISortOrder? = nil,  enableFavoriteSorting: Bool? = nil,  addCurrentProgram: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<BaseItemDtoQueryResult> {
-        let deferred = Promise<BaseItemDtoQueryResult>.pending()
+    open class func getLiveTvChannels(type: ChannelType? = nil, userId: String? = nil, startIndex: Int? = nil, isMovie: Bool? = nil, isSeries: Bool? = nil, isNews: Bool? = nil, isKids: Bool? = nil, isSports: Bool? = nil, limit: Int? = nil, isFavorite: Bool? = nil, isLiked: Bool? = nil, isDisliked: Bool? = nil, enableImages: Bool? = nil, imageTypeLimit: Int? = nil, enableImageTypes: [ImageType]? = nil, fields: [ItemFields]? = nil, enableUserData: Bool? = nil, sortBy: [String]? = nil, sortOrder: APISortOrder? = nil, enableFavoriteSorting: Bool? = nil, addCurrentProgram: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<BaseItemDtoQueryResult, Error>) -> Void)) {
         getLiveTvChannelsWithRequestBuilder(type: type, userId: userId, startIndex: startIndex, isMovie: isMovie, isSeries: isSeries, isNews: isNews, isKids: isKids, isSports: isSports, limit: limit, isFavorite: isFavorite, isLiked: isLiked, isDisliked: isDisliked, enableImages: enableImages, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes, fields: fields, enableUserData: enableUserData, sortBy: sortBy, sortOrder: sortOrder, enableFavoriteSorting: enableFavoriteSorting, addCurrentProgram: addCurrentProgram).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -1076,19 +1035,17 @@ open class LiveTvAPI {
      Gets available live tv services.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<LiveTvInfo>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getLiveTvInfo(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<LiveTvInfo> {
-        let deferred = Promise<LiveTvInfo>.pending()
+    open class func getLiveTvInfo(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<LiveTvInfo, Error>) -> Void)) {
         getLiveTvInfoWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -1148,19 +1105,17 @@ open class LiveTvAPI {
      - parameter fields: (query) Optional. Specify additional fields of information to return in the output. (optional)
      - parameter enableTotalRecordCount: (query) Retrieve total record count. (optional, default to true)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<BaseItemDtoQueryResult>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getLiveTvPrograms( channelIds: [String]? = nil,  userId: String? = nil,  minStartDate: Date? = nil,  hasAired: Bool? = nil,  isAiring: Bool? = nil,  maxStartDate: Date? = nil,  minEndDate: Date? = nil,  maxEndDate: Date? = nil,  isMovie: Bool? = nil,  isSeries: Bool? = nil,  isNews: Bool? = nil,  isKids: Bool? = nil,  isSports: Bool? = nil,  startIndex: Int? = nil,  limit: Int? = nil,  sortBy: [String]? = nil,  sortOrder: [APISortOrder]? = nil,  genres: [String]? = nil,  genreIds: [String]? = nil,  enableImages: Bool? = nil,  imageTypeLimit: Int? = nil,  enableImageTypes: [ImageType]? = nil,  enableUserData: Bool? = nil,  seriesTimerId: String? = nil,  librarySeriesId: String? = nil,  fields: [ItemFields]? = nil,  enableTotalRecordCount: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<BaseItemDtoQueryResult> {
-        let deferred = Promise<BaseItemDtoQueryResult>.pending()
+    open class func getLiveTvPrograms(channelIds: [String]? = nil, userId: String? = nil, minStartDate: Date? = nil, hasAired: Bool? = nil, isAiring: Bool? = nil, maxStartDate: Date? = nil, minEndDate: Date? = nil, maxEndDate: Date? = nil, isMovie: Bool? = nil, isSeries: Bool? = nil, isNews: Bool? = nil, isKids: Bool? = nil, isSports: Bool? = nil, startIndex: Int? = nil, limit: Int? = nil, sortBy: [String]? = nil, sortOrder: [APISortOrder]? = nil, genres: [String]? = nil, genreIds: [String]? = nil, enableImages: Bool? = nil, imageTypeLimit: Int? = nil, enableImageTypes: [ImageType]? = nil, enableUserData: Bool? = nil, seriesTimerId: String? = nil, librarySeriesId: String? = nil, fields: [ItemFields]? = nil, enableTotalRecordCount: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<BaseItemDtoQueryResult, Error>) -> Void)) {
         getLiveTvProgramsWithRequestBuilder(channelIds: channelIds, userId: userId, minStartDate: minStartDate, hasAired: hasAired, isAiring: isAiring, maxStartDate: maxStartDate, minEndDate: minEndDate, maxEndDate: maxEndDate, isMovie: isMovie, isSeries: isSeries, isNews: isNews, isKids: isKids, isSports: isSports, startIndex: startIndex, limit: limit, sortBy: sortBy, sortOrder: sortOrder, genres: genres, genreIds: genreIds, enableImages: enableImages, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes, enableUserData: enableUserData, seriesTimerId: seriesTimerId, librarySeriesId: librarySeriesId, fields: fields, enableTotalRecordCount: enableTotalRecordCount).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -1251,19 +1206,17 @@ open class LiveTvAPI {
      - parameter programId: (path) Program id. 
      - parameter userId: (query) Optional. Attach user data. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<BaseItemDto>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getProgram( programId: String,  userId: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<BaseItemDto> {
-        let deferred = Promise<BaseItemDto>.pending()
+    open class func getProgram(programId: String, userId: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<BaseItemDto, Error>) -> Void)) {
         getProgramWithRequestBuilder(programId: programId, userId: userId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -1305,19 +1258,17 @@ open class LiveTvAPI {
      
      - parameter getProgramsDto: (body) Request body. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<BaseItemDtoQueryResult>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getPrograms( getProgramsDto: GetProgramsDto? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<BaseItemDtoQueryResult> {
-        let deferred = Promise<BaseItemDtoQueryResult>.pending()
+    open class func getPrograms(getProgramsDto: GetProgramsDto? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<BaseItemDtoQueryResult, Error>) -> Void)) {
         getProgramsWithRequestBuilder(getProgramsDto: getProgramsDto).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -1367,19 +1318,17 @@ open class LiveTvAPI {
      - parameter enableUserData: (query) Optional. include user data. (optional)
      - parameter enableTotalRecordCount: (query) Retrieve total record count. (optional, default to true)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<BaseItemDtoQueryResult>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getRecommendedPrograms( userId: String? = nil,  limit: Int? = nil,  isAiring: Bool? = nil,  hasAired: Bool? = nil,  isSeries: Bool? = nil,  isMovie: Bool? = nil,  isNews: Bool? = nil,  isKids: Bool? = nil,  isSports: Bool? = nil,  enableImages: Bool? = nil,  imageTypeLimit: Int? = nil,  enableImageTypes: [ImageType]? = nil,  genreIds: [String]? = nil,  fields: [ItemFields]? = nil,  enableUserData: Bool? = nil,  enableTotalRecordCount: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<BaseItemDtoQueryResult> {
-        let deferred = Promise<BaseItemDtoQueryResult>.pending()
+    open class func getRecommendedPrograms(userId: String? = nil, limit: Int? = nil, isAiring: Bool? = nil, hasAired: Bool? = nil, isSeries: Bool? = nil, isMovie: Bool? = nil, isNews: Bool? = nil, isKids: Bool? = nil, isSports: Bool? = nil, enableImages: Bool? = nil, imageTypeLimit: Int? = nil, enableImageTypes: [ImageType]? = nil, genreIds: [String]? = nil, fields: [ItemFields]? = nil, enableUserData: Bool? = nil, enableTotalRecordCount: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<BaseItemDtoQueryResult, Error>) -> Void)) {
         getRecommendedProgramsWithRequestBuilder(userId: userId, limit: limit, isAiring: isAiring, hasAired: hasAired, isSeries: isSeries, isMovie: isMovie, isNews: isNews, isKids: isKids, isSports: isSports, enableImages: enableImages, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes, genreIds: genreIds, fields: fields, enableUserData: enableUserData, enableTotalRecordCount: enableTotalRecordCount).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -1448,19 +1397,17 @@ open class LiveTvAPI {
      - parameter recordingId: (path) Recording id. 
      - parameter userId: (query) Optional. Attach user data. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<BaseItemDto>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getRecording( recordingId: String,  userId: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<BaseItemDto> {
-        let deferred = Promise<BaseItemDto>.pending()
+    open class func getRecording(recordingId: String, userId: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<BaseItemDto, Error>) -> Void)) {
         getRecordingWithRequestBuilder(recordingId: recordingId, userId: userId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -1502,19 +1449,17 @@ open class LiveTvAPI {
      
      - parameter userId: (query) Optional. Filter by user and attach user data. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<BaseItemDtoQueryResult>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getRecordingFolders( userId: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<BaseItemDtoQueryResult> {
-        let deferred = Promise<BaseItemDtoQueryResult>.pending()
+    open class func getRecordingFolders(userId: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<BaseItemDtoQueryResult, Error>) -> Void)) {
         getRecordingFoldersWithRequestBuilder(userId: userId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -1552,20 +1497,18 @@ open class LiveTvAPI {
      
      - parameter groupId: (path) Group id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
     @available(*, deprecated, message: "This operation is deprecated.")
-    open class func getRecordingGroup( groupId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func getRecordingGroup(groupId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         getRecordingGroupWithRequestBuilder(groupId: groupId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -1604,20 +1547,18 @@ open class LiveTvAPI {
      
      - parameter userId: (query) Optional. Filter by user and attach user data. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<BaseItemDtoQueryResult>
+     - parameter completion: completion handler to receive the result
      */
     @available(*, deprecated, message: "This operation is deprecated.")
-    open class func getRecordingGroups( userId: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<BaseItemDtoQueryResult> {
-        let deferred = Promise<BaseItemDtoQueryResult>.pending()
+    open class func getRecordingGroups(userId: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<BaseItemDtoQueryResult, Error>) -> Void)) {
         getRecordingGroupsWithRequestBuilder(userId: userId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -1674,19 +1615,17 @@ open class LiveTvAPI {
      - parameter isLibraryItem: (query) Optional. Filter for is library item. (optional)
      - parameter enableTotalRecordCount: (query) Optional. Return total record count. (optional, default to true)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<BaseItemDtoQueryResult>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getRecordings( channelId: String? = nil,  userId: String? = nil,  startIndex: Int? = nil,  limit: Int? = nil,  status: RecordingStatus? = nil,  isInProgress: Bool? = nil,  seriesTimerId: String? = nil,  enableImages: Bool? = nil,  imageTypeLimit: Int? = nil,  enableImageTypes: [ImageType]? = nil,  fields: [ItemFields]? = nil,  enableUserData: Bool? = nil,  isMovie: Bool? = nil,  isSeries: Bool? = nil,  isKids: Bool? = nil,  isSports: Bool? = nil,  isNews: Bool? = nil,  isLibraryItem: Bool? = nil,  enableTotalRecordCount: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<BaseItemDtoQueryResult> {
-        let deferred = Promise<BaseItemDtoQueryResult>.pending()
+    open class func getRecordings(channelId: String? = nil, userId: String? = nil, startIndex: Int? = nil, limit: Int? = nil, status: RecordingStatus? = nil, isInProgress: Bool? = nil, seriesTimerId: String? = nil, enableImages: Bool? = nil, imageTypeLimit: Int? = nil, enableImageTypes: [ImageType]? = nil, fields: [ItemFields]? = nil, enableUserData: Bool? = nil, isMovie: Bool? = nil, isSeries: Bool? = nil, isKids: Bool? = nil, isSports: Bool? = nil, isNews: Bool? = nil, isLibraryItem: Bool? = nil, enableTotalRecordCount: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<BaseItemDtoQueryResult, Error>) -> Void)) {
         getRecordingsWithRequestBuilder(channelId: channelId, userId: userId, startIndex: startIndex, limit: limit, status: status, isInProgress: isInProgress, seriesTimerId: seriesTimerId, enableImages: enableImages, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes, fields: fields, enableUserData: enableUserData, isMovie: isMovie, isSeries: isSeries, isKids: isKids, isSports: isSports, isNews: isNews, isLibraryItem: isLibraryItem, enableTotalRecordCount: enableTotalRecordCount).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -1773,20 +1712,18 @@ open class LiveTvAPI {
      - parameter enableUserData: (query) Optional. Include user data. (optional)
      - parameter enableTotalRecordCount: (query) Optional. Return total record count. (optional, default to true)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<BaseItemDtoQueryResult>
+     - parameter completion: completion handler to receive the result
      */
     @available(*, deprecated, message: "This operation is deprecated.")
-    open class func getRecordingsSeries( channelId: String? = nil,  userId: String? = nil,  groupId: String? = nil,  startIndex: Int? = nil,  limit: Int? = nil,  status: RecordingStatus? = nil,  isInProgress: Bool? = nil,  seriesTimerId: String? = nil,  enableImages: Bool? = nil,  imageTypeLimit: Int? = nil,  enableImageTypes: [ImageType]? = nil,  fields: [ItemFields]? = nil,  enableUserData: Bool? = nil,  enableTotalRecordCount: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<BaseItemDtoQueryResult> {
-        let deferred = Promise<BaseItemDtoQueryResult>.pending()
+    open class func getRecordingsSeries(channelId: String? = nil, userId: String? = nil, groupId: String? = nil, startIndex: Int? = nil, limit: Int? = nil, status: RecordingStatus? = nil, isInProgress: Bool? = nil, seriesTimerId: String? = nil, enableImages: Bool? = nil, imageTypeLimit: Int? = nil, enableImageTypes: [ImageType]? = nil, fields: [ItemFields]? = nil, enableUserData: Bool? = nil, enableTotalRecordCount: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<BaseItemDtoQueryResult, Error>) -> Void)) {
         getRecordingsSeriesWithRequestBuilder(channelId: channelId, userId: userId, groupId: groupId, startIndex: startIndex, limit: limit, status: status, isInProgress: isInProgress, seriesTimerId: seriesTimerId, enableImages: enableImages, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes, fields: fields, enableUserData: enableUserData, enableTotalRecordCount: enableTotalRecordCount).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -1850,19 +1787,17 @@ open class LiveTvAPI {
      Gets available countries.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getSchedulesDirectCountries(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func getSchedulesDirectCountries(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         getSchedulesDirectCountriesWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -1896,19 +1831,17 @@ open class LiveTvAPI {
      
      - parameter timerId: (path) Timer id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<SeriesTimerInfoDto>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getSeriesTimer( timerId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<SeriesTimerInfoDto> {
-        let deferred = Promise<SeriesTimerInfoDto>.pending()
+    open class func getSeriesTimer(timerId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<SeriesTimerInfoDto, Error>) -> Void)) {
         getSeriesTimerWithRequestBuilder(timerId: timerId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -1947,19 +1880,17 @@ open class LiveTvAPI {
      - parameter sortBy: (query) Optional. Sort by SortName or Priority. (optional)
      - parameter sortOrder: (query) Optional. Sort in Ascending or Descending order. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<SeriesTimerInfoDtoQueryResult>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getSeriesTimers( sortBy: String? = nil,  sortOrder: APISortOrder? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<SeriesTimerInfoDtoQueryResult> {
-        let deferred = Promise<SeriesTimerInfoDtoQueryResult>.pending()
+    open class func getSeriesTimers(sortBy: String? = nil, sortOrder: APISortOrder? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<SeriesTimerInfoDtoQueryResult, Error>) -> Void)) {
         getSeriesTimersWithRequestBuilder(sortBy: sortBy, sortOrder: sortOrder).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -1999,19 +1930,17 @@ open class LiveTvAPI {
      
      - parameter timerId: (path) Timer id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<TimerInfoDto>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getTimer( timerId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<TimerInfoDto> {
-        let deferred = Promise<TimerInfoDto>.pending()
+    open class func getTimer(timerId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<TimerInfoDto, Error>) -> Void)) {
         getTimerWithRequestBuilder(timerId: timerId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -2052,19 +1981,17 @@ open class LiveTvAPI {
      - parameter isActive: (query) Optional. Filter by timers that are active. (optional)
      - parameter isScheduled: (query) Optional. Filter by timers that are scheduled. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<TimerInfoDtoQueryResult>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getTimers( channelId: String? = nil,  seriesTimerId: String? = nil,  isActive: Bool? = nil,  isScheduled: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<TimerInfoDtoQueryResult> {
-        let deferred = Promise<TimerInfoDtoQueryResult>.pending()
+    open class func getTimers(channelId: String? = nil, seriesTimerId: String? = nil, isActive: Bool? = nil, isScheduled: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<TimerInfoDtoQueryResult, Error>) -> Void)) {
         getTimersWithRequestBuilder(channelId: channelId, seriesTimerId: seriesTimerId, isActive: isActive, isScheduled: isScheduled).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -2107,19 +2034,17 @@ open class LiveTvAPI {
      Get tuner host types.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<[NameIdPair]>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getTunerHostTypes(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[NameIdPair]> {
-        let deferred = Promise<[NameIdPair]>.pending()
+    open class func getTunerHostTypes(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[NameIdPair], Error>) -> Void)) {
         getTunerHostTypesWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -2153,19 +2078,17 @@ open class LiveTvAPI {
      
      - parameter tunerId: (path) Tuner id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func resetTuner( tunerId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func resetTuner(tunerId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         resetTunerWithRequestBuilder(tunerId: tunerId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -2203,19 +2126,17 @@ open class LiveTvAPI {
      
      - parameter setChannelMappingDto: (body) The set channel mapping dto. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<TunerChannelMapping>
+     - parameter completion: completion handler to receive the result
      */
-    open class func setChannelMapping( setChannelMappingDto: SetChannelMappingDto, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<TunerChannelMapping> {
-        let deferred = Promise<TunerChannelMapping>.pending()
+    open class func setChannelMapping(setChannelMappingDto: SetChannelMappingDto, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<TunerChannelMapping, Error>) -> Void)) {
         setChannelMappingWithRequestBuilder(setChannelMappingDto: setChannelMappingDto).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -2251,19 +2172,17 @@ open class LiveTvAPI {
      - parameter timerId: (path) Timer id. 
      - parameter seriesTimerInfoDto: (body) New series timer info. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func updateSeriesTimer( timerId: String,  seriesTimerInfoDto: SeriesTimerInfoDto? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func updateSeriesTimer(timerId: String, seriesTimerInfoDto: SeriesTimerInfoDto? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         updateSeriesTimerWithRequestBuilder(timerId: timerId, seriesTimerInfoDto: seriesTimerInfoDto).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -2303,19 +2222,17 @@ open class LiveTvAPI {
      - parameter timerId: (path) Timer id. 
      - parameter timerInfoDto: (body) New timer info. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func updateTimer( timerId: String,  timerInfoDto: TimerInfoDto? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func updateTimer(timerId: String, timerInfoDto: TimerInfoDto? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         updateTimerWithRequestBuilder(timerId: timerId, timerInfoDto: timerInfoDto).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**

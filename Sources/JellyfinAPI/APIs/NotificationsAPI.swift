@@ -7,7 +7,6 @@
 
 import AnyCodable
 import Foundation
-import PromiseKit
 
 open class NotificationsAPI {
     /**
@@ -15,19 +14,17 @@ open class NotificationsAPI {
      
      - parameter adminNotificationDto: (body) The notification request. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func createAdminNotification( adminNotificationDto: AdminNotificationDto, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func createAdminNotification(adminNotificationDto: AdminNotificationDto, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         createAdminNotificationWithRequestBuilder(adminNotificationDto: adminNotificationDto).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -61,19 +58,17 @@ open class NotificationsAPI {
      Gets notification services.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<[NameIdPair]>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getNotificationServices(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[NameIdPair]> {
-        let deferred = Promise<[NameIdPair]>.pending()
+    open class func getNotificationServices(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[NameIdPair], Error>) -> Void)) {
         getNotificationServicesWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -106,19 +101,17 @@ open class NotificationsAPI {
      Gets notification types.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<[NotificationTypeInfo]>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getNotificationTypes(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[NotificationTypeInfo]> {
-        let deferred = Promise<[NotificationTypeInfo]>.pending()
+    open class func getNotificationTypes(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[NotificationTypeInfo], Error>) -> Void)) {
         getNotificationTypesWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -152,19 +145,17 @@ open class NotificationsAPI {
      
      - parameter userId: (path)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<NotificationResultDto>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getNotifications( userId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<NotificationResultDto> {
-        let deferred = Promise<NotificationResultDto>.pending()
+    open class func getNotifications(userId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<NotificationResultDto, Error>) -> Void)) {
         getNotificationsWithRequestBuilder(userId: userId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -202,19 +193,17 @@ open class NotificationsAPI {
      
      - parameter userId: (path)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<NotificationsSummaryDto>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getNotificationsSummary( userId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<NotificationsSummaryDto> {
-        let deferred = Promise<NotificationsSummaryDto>.pending()
+    open class func getNotificationsSummary(userId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<NotificationsSummaryDto, Error>) -> Void)) {
         getNotificationsSummaryWithRequestBuilder(userId: userId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -252,19 +241,17 @@ open class NotificationsAPI {
      
      - parameter userId: (path)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func setRead( userId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func setRead(userId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         setReadWithRequestBuilder(userId: userId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -302,19 +289,17 @@ open class NotificationsAPI {
      
      - parameter userId: (path)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func setUnread( userId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func setUnread(userId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         setUnreadWithRequestBuilder(userId: userId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**

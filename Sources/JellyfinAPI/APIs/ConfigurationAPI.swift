@@ -7,26 +7,23 @@
 
 import AnyCodable
 import Foundation
-import PromiseKit
 
 open class ConfigurationAPI {
     /**
      Gets application configuration.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<ServerConfiguration>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getConfiguration(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<ServerConfiguration> {
-        let deferred = Promise<ServerConfiguration>.pending()
+    open class func getConfiguration(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<ServerConfiguration, Error>) -> Void)) {
         getConfigurationWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -59,19 +56,17 @@ open class ConfigurationAPI {
      Gets a default MetadataOptions object.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<MetadataOptions>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getDefaultMetadataOptions(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<MetadataOptions> {
-        let deferred = Promise<MetadataOptions>.pending()
+    open class func getDefaultMetadataOptions(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<MetadataOptions, Error>) -> Void)) {
         getDefaultMetadataOptionsWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -105,19 +100,17 @@ open class ConfigurationAPI {
      
      - parameter key: (path) Configuration key. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getNamedConfiguration( key: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func getNamedConfiguration(key: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         getNamedConfigurationWithRequestBuilder(key: key).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -155,19 +148,17 @@ open class ConfigurationAPI {
      
      - parameter serverConfiguration: (body) Configuration. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func updateConfiguration( serverConfiguration: ServerConfiguration, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func updateConfiguration(serverConfiguration: ServerConfiguration, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         updateConfigurationWithRequestBuilder(serverConfiguration: serverConfiguration).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -202,19 +193,17 @@ open class ConfigurationAPI {
      
      - parameter mediaEncoderPathDto: (body) Media encoder path form body. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func updateMediaEncoderPath( mediaEncoderPathDto: MediaEncoderPathDto, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func updateMediaEncoderPath(mediaEncoderPathDto: MediaEncoderPathDto, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         updateMediaEncoderPathWithRequestBuilder(mediaEncoderPathDto: mediaEncoderPathDto).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -249,19 +238,17 @@ open class ConfigurationAPI {
      
      - parameter key: (path) Configuration key. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func updateNamedConfiguration( key: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func updateNamedConfiguration(key: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         updateNamedConfigurationWithRequestBuilder(key: key).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**

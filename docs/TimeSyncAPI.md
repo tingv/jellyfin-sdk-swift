@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 # **getUtcTime**
 ```swift
-    open class func getUtcTime() -> Promise<UtcTimeResponse>
+    open class func getUtcTime(completion: @escaping (_ data: UtcTimeResponse?, _ error: Error?) -> Void)
 ```
 
 Gets the current UTC time.
@@ -21,12 +21,15 @@ import JellyfinAPI
 
 
 // Gets the current UTC time.
-TimeSyncAPI.getUtcTime().then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+TimeSyncAPI.getUtcTime() { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 

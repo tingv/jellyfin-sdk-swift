@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 # **getAllChannelFeatures**
 ```swift
-    open class func getAllChannelFeatures() -> Promise<[ChannelFeatures]>
+    open class func getAllChannelFeatures(completion: @escaping (_ data: [ChannelFeatures]?, _ error: Error?) -> Void)
 ```
 
 Get all channel features.
@@ -25,12 +25,15 @@ import JellyfinAPI
 
 
 // Get all channel features.
-ChannelsAPI.getAllChannelFeatures().then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+ChannelsAPI.getAllChannelFeatures() { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -54,7 +57,7 @@ This endpoint does not need any parameter.
 
 # **getChannelFeatures**
 ```swift
-    open class func getChannelFeatures( channelId: String) -> Promise<ChannelFeatures>
+    open class func getChannelFeatures(channelId: String, completion: @escaping (_ data: ChannelFeatures?, _ error: Error?) -> Void)
 ```
 
 Get channel features.
@@ -67,12 +70,15 @@ import JellyfinAPI
 let channelId = "channelId_example" // String | Channel id.
 
 // Get channel features.
-ChannelsAPI.getChannelFeatures(channelId: channelId).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+ChannelsAPI.getChannelFeatures(channelId: channelId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -99,7 +105,7 @@ Name | Type | Description  | Notes
 
 # **getChannelItems**
 ```swift
-    open class func getChannelItems( channelId: String,  folderId: String? = nil,  userId: String? = nil,  startIndex: Int? = nil,  limit: Int? = nil,  sortOrder: [APISortOrder]? = nil,  filters: [ItemFilter]? = nil,  sortBy: [String]? = nil,  fields: [ItemFields]? = nil) -> Promise<BaseItemDtoQueryResult>
+    open class func getChannelItems(channelId: String, folderId: String? = nil, userId: String? = nil, startIndex: Int? = nil, limit: Int? = nil, sortOrder: [APISortOrder]? = nil, filters: [ItemFilter]? = nil, sortBy: [String]? = nil, fields: [ItemFields]? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
 ```
 
 Get channel items.
@@ -120,12 +126,15 @@ let sortBy = ["inner_example"] // [String] | Optional. Specify one or more sort 
 let fields = [ItemFields()] // [ItemFields] | Optional. Specify additional fields of information to return in the output. (optional)
 
 // Get channel items.
-ChannelsAPI.getChannelItems(channelId: channelId, folderId: folderId, userId: userId, startIndex: startIndex, limit: limit, sortOrder: sortOrder, filters: filters, sortBy: sortBy, fields: fields).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+ChannelsAPI.getChannelItems(channelId: channelId, folderId: folderId, userId: userId, startIndex: startIndex, limit: limit, sortOrder: sortOrder, filters: filters, sortBy: sortBy, fields: fields) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -160,7 +169,7 @@ Name | Type | Description  | Notes
 
 # **getChannels**
 ```swift
-    open class func getChannels( userId: String? = nil,  startIndex: Int? = nil,  limit: Int? = nil,  supportsLatestItems: Bool? = nil,  supportsMediaDeletion: Bool? = nil,  isFavorite: Bool? = nil) -> Promise<BaseItemDtoQueryResult>
+    open class func getChannels(userId: String? = nil, startIndex: Int? = nil, limit: Int? = nil, supportsLatestItems: Bool? = nil, supportsMediaDeletion: Bool? = nil, isFavorite: Bool? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
 ```
 
 Gets available channels.
@@ -178,12 +187,15 @@ let supportsMediaDeletion = true // Bool | Optional. Filter by channels that sup
 let isFavorite = true // Bool | Optional. Filter by channels that are favorite. (optional)
 
 // Gets available channels.
-ChannelsAPI.getChannels(userId: userId, startIndex: startIndex, limit: limit, supportsLatestItems: supportsLatestItems, supportsMediaDeletion: supportsMediaDeletion, isFavorite: isFavorite).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+ChannelsAPI.getChannels(userId: userId, startIndex: startIndex, limit: limit, supportsLatestItems: supportsLatestItems, supportsMediaDeletion: supportsMediaDeletion, isFavorite: isFavorite) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -215,7 +227,7 @@ Name | Type | Description  | Notes
 
 # **getLatestChannelItems**
 ```swift
-    open class func getLatestChannelItems( userId: String? = nil,  startIndex: Int? = nil,  limit: Int? = nil,  filters: [ItemFilter]? = nil,  fields: [ItemFields]? = nil,  channelIds: [String]? = nil) -> Promise<BaseItemDtoQueryResult>
+    open class func getLatestChannelItems(userId: String? = nil, startIndex: Int? = nil, limit: Int? = nil, filters: [ItemFilter]? = nil, fields: [ItemFields]? = nil, channelIds: [String]? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
 ```
 
 Gets latest channel items.
@@ -233,12 +245,15 @@ let fields = [ItemFields()] // [ItemFields] | Optional. Specify additional field
 let channelIds = ["inner_example"] // [String] | Optional. Specify one or more channel id's, comma delimited. (optional)
 
 // Gets latest channel items.
-ChannelsAPI.getLatestChannelItems(userId: userId, startIndex: startIndex, limit: limit, filters: filters, fields: fields, channelIds: channelIds).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+ChannelsAPI.getLatestChannelItems(userId: userId, startIndex: startIndex, limit: limit, filters: filters, fields: fields, channelIds: channelIds) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 

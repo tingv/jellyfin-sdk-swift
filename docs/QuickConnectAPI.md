@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 # **activate**
 ```swift
-    open class func activate() -> Promise<Void>
+    open class func activate(completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Temporarily activates quick connect for five minutes.
@@ -27,12 +27,15 @@ import JellyfinAPI
 
 
 // Temporarily activates quick connect for five minutes.
-QuickConnectAPI.activate().then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+QuickConnectAPI.activate() { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -56,7 +59,7 @@ Void (empty response body)
 
 # **authorize**
 ```swift
-    open class func authorize( code: String) -> Promise<Bool>
+    open class func authorize(code: String, completion: @escaping (_ data: Bool?, _ error: Error?) -> Void)
 ```
 
 Authorizes a pending quick connect request.
@@ -69,12 +72,15 @@ import JellyfinAPI
 let code = "code_example" // String | Quick connect code to authorize.
 
 // Authorizes a pending quick connect request.
-QuickConnectAPI.authorize(code: code).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+QuickConnectAPI.authorize(code: code) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -101,7 +107,7 @@ Name | Type | Description  | Notes
 
 # **available**
 ```swift
-    open class func available( status: QuickConnectState? = nil) -> Promise<Void>
+    open class func available(status: QuickConnectState? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Enables or disables quick connect.
@@ -114,12 +120,15 @@ import JellyfinAPI
 let status = QuickConnectState() // QuickConnectState | New MediaBrowser.Model.QuickConnect.QuickConnectState. (optional)
 
 // Enables or disables quick connect.
-QuickConnectAPI.available(status: status).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+QuickConnectAPI.available(status: status) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -146,7 +155,7 @@ Void (empty response body)
 
 # **connect**
 ```swift
-    open class func connect( secret: String) -> Promise<QuickConnectResult>
+    open class func connect(secret: String, completion: @escaping (_ data: QuickConnectResult?, _ error: Error?) -> Void)
 ```
 
 Attempts to retrieve authentication information.
@@ -159,12 +168,15 @@ import JellyfinAPI
 let secret = "secret_example" // String | Secret previously returned from the Initiate endpoint.
 
 // Attempts to retrieve authentication information.
-QuickConnectAPI.connect(secret: secret).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+QuickConnectAPI.connect(secret: secret) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -191,7 +203,7 @@ No authorization required
 
 # **deauthorize**
 ```swift
-    open class func deauthorize() -> Promise<Int>
+    open class func deauthorize(completion: @escaping (_ data: Int?, _ error: Error?) -> Void)
 ```
 
 Deauthorize all quick connect devices for the current user.
@@ -203,12 +215,15 @@ import JellyfinAPI
 
 
 // Deauthorize all quick connect devices for the current user.
-QuickConnectAPI.deauthorize().then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+QuickConnectAPI.deauthorize() { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -232,7 +247,7 @@ This endpoint does not need any parameter.
 
 # **getStatus**
 ```swift
-    open class func getStatus() -> Promise<QuickConnectState>
+    open class func getStatus(completion: @escaping (_ data: QuickConnectState?, _ error: Error?) -> Void)
 ```
 
 Gets the current quick connect state.
@@ -244,12 +259,15 @@ import JellyfinAPI
 
 
 // Gets the current quick connect state.
-QuickConnectAPI.getStatus().then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+QuickConnectAPI.getStatus() { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -273,7 +291,7 @@ No authorization required
 
 # **initiate**
 ```swift
-    open class func initiate() -> Promise<QuickConnectResult>
+    open class func initiate(completion: @escaping (_ data: QuickConnectResult?, _ error: Error?) -> Void)
 ```
 
 Initiate a new quick connect request.
@@ -285,12 +303,15 @@ import JellyfinAPI
 
 
 // Initiate a new quick connect request.
-QuickConnectAPI.initiate().then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+QuickConnectAPI.initiate() { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 

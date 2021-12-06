@@ -7,7 +7,6 @@
 
 import AnyCodable
 import Foundation
-import PromiseKit
 
 open class ActivityLogAPI {
     /**
@@ -18,19 +17,17 @@ open class ActivityLogAPI {
      - parameter minDate: (query) Optional. The minimum date. Format &#x3D; ISO. (optional)
      - parameter hasUserId: (query) Optional. Filter log entries if it has user id, or not. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<ActivityLogEntryQueryResult>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getLogEntries( startIndex: Int? = nil,  limit: Int? = nil,  minDate: Date? = nil,  hasUserId: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<ActivityLogEntryQueryResult> {
-        let deferred = Promise<ActivityLogEntryQueryResult>.pending()
+    open class func getLogEntries(startIndex: Int? = nil, limit: Int? = nil, minDate: Date? = nil, hasUserId: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<ActivityLogEntryQueryResult, Error>) -> Void)) {
         getLogEntriesWithRequestBuilder(startIndex: startIndex, limit: limit, minDate: minDate, hasUserId: hasUserId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**

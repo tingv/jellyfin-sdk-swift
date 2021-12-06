@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 # **getPerson**
 ```swift
-    open class func getPerson( name: String,  userId: String? = nil) -> Promise<BaseItemDto>
+    open class func getPerson(name: String, userId: String? = nil, completion: @escaping (_ data: BaseItemDto?, _ error: Error?) -> Void)
 ```
 
 Get person by name.
@@ -24,12 +24,15 @@ let name = "name_example" // String | Person name.
 let userId = "userId_example" // String | Optional. Filter by user id, and attach user data. (optional)
 
 // Get person by name.
-PersonsAPI.getPerson(name: name, userId: userId).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+PersonsAPI.getPerson(name: name, userId: userId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -57,7 +60,7 @@ Name | Type | Description  | Notes
 
 # **getPersons**
 ```swift
-    open class func getPersons( limit: Int? = nil,  searchTerm: String? = nil,  fields: [ItemFields]? = nil,  filters: [ItemFilter]? = nil,  isFavorite: Bool? = nil,  enableUserData: Bool? = nil,  imageTypeLimit: Int? = nil,  enableImageTypes: [ImageType]? = nil,  excludePersonTypes: [String]? = nil,  personTypes: [String]? = nil,  appearsInItemId: String? = nil,  userId: String? = nil,  enableImages: Bool? = nil) -> Promise<BaseItemDtoQueryResult>
+    open class func getPersons(limit: Int? = nil, searchTerm: String? = nil, fields: [ItemFields]? = nil, filters: [ItemFilter]? = nil, isFavorite: Bool? = nil, enableUserData: Bool? = nil, imageTypeLimit: Int? = nil, enableImageTypes: [ImageType]? = nil, excludePersonTypes: [String]? = nil, personTypes: [String]? = nil, appearsInItemId: String? = nil, userId: String? = nil, enableImages: Bool? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
 ```
 
 Gets all persons.
@@ -82,12 +85,15 @@ let userId = "userId_example" // String | User id. (optional)
 let enableImages = true // Bool | Optional, include image information in output. (optional) (default to true)
 
 // Gets all persons.
-PersonsAPI.getPersons(limit: limit, searchTerm: searchTerm, fields: fields, filters: filters, isFavorite: isFavorite, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes, excludePersonTypes: excludePersonTypes, personTypes: personTypes, appearsInItemId: appearsInItemId, userId: userId, enableImages: enableImages).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+PersonsAPI.getPersons(limit: limit, searchTerm: searchTerm, fields: fields, filters: filters, isFavorite: isFavorite, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes, excludePersonTypes: excludePersonTypes, personTypes: personTypes, appearsInItemId: appearsInItemId, userId: userId, enableImages: enableImages) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 

@@ -7,7 +7,6 @@
 
 import AnyCodable
 import Foundation
-import PromiseKit
 
 open class MoviesAPI {
     /**
@@ -19,19 +18,17 @@ open class MoviesAPI {
      - parameter categoryLimit: (query) The max number of categories to return. (optional, default to 5)
      - parameter itemLimit: (query) The max number of items to return per category. (optional, default to 8)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<[RecommendationDto]>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getMovieRecommendations( userId: String? = nil,  parentId: String? = nil,  fields: [ItemFields]? = nil,  categoryLimit: Int? = nil,  itemLimit: Int? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[RecommendationDto]> {
-        let deferred = Promise<[RecommendationDto]>.pending()
+    open class func getMovieRecommendations(userId: String? = nil, parentId: String? = nil, fields: [ItemFields]? = nil, categoryLimit: Int? = nil, itemLimit: Int? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[RecommendationDto], Error>) -> Void)) {
         getMovieRecommendationsWithRequestBuilder(userId: userId, parentId: parentId, fields: fields, categoryLimit: categoryLimit, itemLimit: itemLimit).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**

@@ -7,7 +7,6 @@
 
 import AnyCodable
 import Foundation
-import PromiseKit
 
 open class PackageAPI {
     /**
@@ -15,19 +14,17 @@ open class PackageAPI {
      
      - parameter packageId: (path) Installation Id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func cancelPackageInstallation( packageId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func cancelPackageInstallation(packageId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         cancelPackageInstallationWithRequestBuilder(packageId: packageId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -66,19 +63,17 @@ open class PackageAPI {
      - parameter name: (path) The name of the package. 
      - parameter assemblyGuid: (query) The GUID of the associated assembly. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<PackageInfo>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getPackageInfo( name: String,  assemblyGuid: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<PackageInfo> {
-        let deferred = Promise<PackageInfo>.pending()
+    open class func getPackageInfo(name: String, assemblyGuid: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<PackageInfo, Error>) -> Void)) {
         getPackageInfoWithRequestBuilder(name: name, assemblyGuid: assemblyGuid).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -119,19 +114,17 @@ open class PackageAPI {
      Gets available packages.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<[PackageInfo]>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getPackages(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[PackageInfo]> {
-        let deferred = Promise<[PackageInfo]>.pending()
+    open class func getPackages(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[PackageInfo], Error>) -> Void)) {
         getPackagesWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -164,19 +157,17 @@ open class PackageAPI {
      Gets all package repositories.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<[RepositoryInfo]>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getRepositories(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[RepositoryInfo]> {
-        let deferred = Promise<[RepositoryInfo]>.pending()
+    open class func getRepositories(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[RepositoryInfo], Error>) -> Void)) {
         getRepositoriesWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -213,19 +204,17 @@ open class PackageAPI {
      - parameter version: (query) Optional version. Defaults to latest version. (optional)
      - parameter repositoryUrl: (query) Optional. Specify the repository to install from. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func installPackage( name: String,  assemblyGuid: String? = nil,  version: String? = nil,  repositoryUrl: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func installPackage(name: String, assemblyGuid: String? = nil, version: String? = nil, repositoryUrl: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         installPackageWithRequestBuilder(name: name, assemblyGuid: assemblyGuid, version: version, repositoryUrl: repositoryUrl).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -271,19 +260,17 @@ open class PackageAPI {
      
      - parameter repositoryInfo: (body) The list of package repositories. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func setRepositories( repositoryInfo: [RepositoryInfo], apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func setRepositories(repositoryInfo: [RepositoryInfo], apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         setRepositoriesWithRequestBuilder(repositoryInfo: repositoryInfo).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**

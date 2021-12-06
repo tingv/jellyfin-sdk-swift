@@ -7,7 +7,6 @@
 
 import AnyCodable
 import Foundation
-import PromiseKit
 
 open class SubtitleAPI {
     /**
@@ -16,19 +15,17 @@ open class SubtitleAPI {
      - parameter itemId: (path) The item id. 
      - parameter index: (path) The index of the subtitle file. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func deleteSubtitle( itemId: String,  index: Int, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func deleteSubtitle(itemId: String, index: Int, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         deleteSubtitleWithRequestBuilder(itemId: itemId, index: index).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -71,19 +68,17 @@ open class SubtitleAPI {
      - parameter itemId: (path) The item id. 
      - parameter subtitleId: (path) The subtitle id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func downloadRemoteSubtitles( itemId: String,  subtitleId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func downloadRemoteSubtitles(itemId: String, subtitleId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         downloadRemoteSubtitlesWithRequestBuilder(itemId: itemId, subtitleId: subtitleId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -125,19 +120,17 @@ open class SubtitleAPI {
      
      - parameter name: (path) The name of the fallback font file to get. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getFallbackFont( name: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func getFallbackFont(name: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         getFallbackFontWithRequestBuilder(name: name).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -174,19 +167,17 @@ open class SubtitleAPI {
      Gets a list of available fallback font files.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<[FontFile]>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getFallbackFontList(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[FontFile]> {
-        let deferred = Promise<[FontFile]>.pending()
+    open class func getFallbackFontList(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[FontFile], Error>) -> Void)) {
         getFallbackFontListWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -220,19 +211,17 @@ open class SubtitleAPI {
      
      - parameter id: (path) The item id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getRemoteSubtitles( id: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func getRemoteSubtitles(id: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         getRemoteSubtitlesWithRequestBuilder(id: id).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -281,19 +270,17 @@ open class SubtitleAPI {
      - parameter addVttTimeMap: (query) Optional. Whether to add a VTT time map. (optional, default to false)
      - parameter startPositionTicks: (query) The start position of the subtitle in ticks. (optional, default to 0)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getSubtitle( routeItemId: String,  routeMediaSourceId: String,  routeIndex: Int,  routeFormat: String,  itemId: String? = nil,  mediaSourceId: String? = nil,  index: Int? = nil,  format: String? = nil,  endPositionTicks: Int64? = nil,  copyTimestamps: Bool? = nil,  addVttTimeMap: Bool? = nil,  startPositionTicks: Int64? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func getSubtitle(routeItemId: String, routeMediaSourceId: String, routeIndex: Int, routeFormat: String, itemId: String? = nil, mediaSourceId: String? = nil, index: Int? = nil, format: String? = nil, endPositionTicks: Int64? = nil, copyTimestamps: Bool? = nil, addVttTimeMap: Bool? = nil, startPositionTicks: Int64? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         getSubtitleWithRequestBuilder(routeItemId: routeItemId, routeMediaSourceId: routeMediaSourceId, routeIndex: routeIndex, routeFormat: routeFormat, itemId: itemId, mediaSourceId: mediaSourceId, index: index, format: format, endPositionTicks: endPositionTicks, copyTimestamps: copyTimestamps, addVttTimeMap: addVttTimeMap, startPositionTicks: startPositionTicks).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -361,19 +348,17 @@ open class SubtitleAPI {
      - parameter mediaSourceId: (path) The media source id. 
      - parameter segmentLength: (query) The subtitle segment length. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getSubtitlePlaylist( itemId: String,  index: Int,  mediaSourceId: String,  segmentLength: Int, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func getSubtitlePlaylist(itemId: String, index: Int, mediaSourceId: String, segmentLength: Int, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         getSubtitlePlaylistWithRequestBuilder(itemId: itemId, index: index, mediaSourceId: mediaSourceId, segmentLength: segmentLength).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -435,19 +420,17 @@ open class SubtitleAPI {
      - parameter copyTimestamps: (query) Optional. Whether to copy the timestamps. (optional, default to false)
      - parameter addVttTimeMap: (query) Optional. Whether to add a VTT time map. (optional, default to false)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getSubtitleWithTicks( routeItemId: String,  routeMediaSourceId: String,  routeIndex: Int,  routeStartPositionTicks: Int64,  routeFormat: String,  itemId: String? = nil,  mediaSourceId: String? = nil,  index: Int? = nil,  startPositionTicks: Int64? = nil,  format: String? = nil,  endPositionTicks: Int64? = nil,  copyTimestamps: Bool? = nil,  addVttTimeMap: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func getSubtitleWithTicks(routeItemId: String, routeMediaSourceId: String, routeIndex: Int, routeStartPositionTicks: Int64, routeFormat: String, itemId: String? = nil, mediaSourceId: String? = nil, index: Int? = nil, startPositionTicks: Int64? = nil, format: String? = nil, endPositionTicks: Int64? = nil, copyTimestamps: Bool? = nil, addVttTimeMap: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         getSubtitleWithTicksWithRequestBuilder(routeItemId: routeItemId, routeMediaSourceId: routeMediaSourceId, routeIndex: routeIndex, routeStartPositionTicks: routeStartPositionTicks, routeFormat: routeFormat, itemId: itemId, mediaSourceId: mediaSourceId, index: index, startPositionTicks: startPositionTicks, format: format, endPositionTicks: endPositionTicks, copyTimestamps: copyTimestamps, addVttTimeMap: addVttTimeMap).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -518,19 +501,17 @@ open class SubtitleAPI {
      - parameter language: (path) The language of the subtitles. 
      - parameter isPerfectMatch: (query) Optional. Only show subtitles which are a perfect match. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<[RemoteSubtitleInfo]>
+     - parameter completion: completion handler to receive the result
      */
-    open class func searchRemoteSubtitles( itemId: String,  language: String,  isPerfectMatch: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[RemoteSubtitleInfo]> {
-        let deferred = Promise<[RemoteSubtitleInfo]>.pending()
+    open class func searchRemoteSubtitles(itemId: String, language: String, isPerfectMatch: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[RemoteSubtitleInfo], Error>) -> Void)) {
         searchRemoteSubtitlesWithRequestBuilder(itemId: itemId, language: language, isPerfectMatch: isPerfectMatch).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -577,19 +558,17 @@ open class SubtitleAPI {
      - parameter itemId: (path) The item the subtitle belongs to. 
      - parameter uploadSubtitleDto: (body) The request body. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func uploadSubtitle( itemId: String,  uploadSubtitleDto: UploadSubtitleDto, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func uploadSubtitle(itemId: String, uploadSubtitleDto: UploadSubtitleDto, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         uploadSubtitleWithRequestBuilder(itemId: itemId, uploadSubtitleDto: uploadSubtitleDto).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**

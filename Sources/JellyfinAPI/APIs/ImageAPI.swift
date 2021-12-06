@@ -7,7 +7,6 @@
 
 import AnyCodable
 import Foundation
-import PromiseKit
 
 open class ImageAPI {
     /**
@@ -17,19 +16,17 @@ open class ImageAPI {
      - parameter imageType: (path) Image type. 
      - parameter imageIndex: (query) The image index. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func deleteItemImage( itemId: String,  imageType: ImageType,  imageIndex: Int? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func deleteItemImage(itemId: String, imageType: ImageType, imageIndex: Int? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         deleteItemImageWithRequestBuilder(itemId: itemId, imageType: imageType, imageIndex: imageIndex).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -77,19 +74,17 @@ open class ImageAPI {
      - parameter imageType: (path) Image type. 
      - parameter imageIndex: (path) The image index. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func deleteItemImageByIndex( itemId: String,  imageType: ImageType,  imageIndex: Int, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func deleteItemImageByIndex(itemId: String, imageType: ImageType, imageIndex: Int, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         deleteItemImageByIndexWithRequestBuilder(itemId: itemId, imageType: imageType, imageIndex: imageIndex).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -137,19 +132,17 @@ open class ImageAPI {
      - parameter imageType: (path) (Unused) Image type. 
      - parameter index: (query) (Unused) Image index. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func deleteUserImage( userId: String,  imageType: ImageType,  index: Int? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func deleteUserImage(userId: String, imageType: ImageType, index: Int? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         deleteUserImageWithRequestBuilder(userId: userId, imageType: imageType, index: index).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -197,19 +190,17 @@ open class ImageAPI {
      - parameter imageType: (path) (Unused) Image type. 
      - parameter index: (path) (Unused) Image index. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func deleteUserImageByIndex( userId: String,  imageType: ImageType,  index: Int, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func deleteUserImageByIndex(userId: String, imageType: ImageType, index: Int, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         deleteUserImageByIndexWithRequestBuilder(userId: userId, imageType: imageType, index: index).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -273,19 +264,17 @@ open class ImageAPI {
      - parameter backgroundColor: (query) Optional. Apply a background color for transparent images. (optional)
      - parameter foregroundLayer: (query) Optional. Apply a foreground layer on top of the image. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getArtistImage( name: String,  imageType: ImageType,  imageIndex: Int,  tag: String? = nil,  format: ImageFormat? = nil,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func getArtistImage(name: String, imageType: ImageType, imageIndex: Int, tag: String? = nil, format: ImageFormat? = nil, maxWidth: Int? = nil, maxHeight: Int? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         getArtistImageWithRequestBuilder(name: name, imageType: imageType, imageIndex: imageIndex, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -380,19 +369,17 @@ open class ImageAPI {
      - parameter foregroundLayer: (query) Optional. Apply a foreground layer on top of the image. (optional)
      - parameter imageIndex: (query) Image index. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getGenreImage( name: String,  imageType: ImageType,  tag: String? = nil,  format: ImageFormat? = nil,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil,  imageIndex: Int? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func getGenreImage(name: String, imageType: ImageType, tag: String? = nil, format: ImageFormat? = nil, maxWidth: Int? = nil, maxHeight: Int? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, imageIndex: Int? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         getGenreImageWithRequestBuilder(name: name, imageType: imageType, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer, imageIndex: imageIndex).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -485,19 +472,17 @@ open class ImageAPI {
      - parameter backgroundColor: (query) Optional. Apply a background color for transparent images. (optional)
      - parameter foregroundLayer: (query) Optional. Apply a foreground layer on top of the image. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getGenreImageByIndex( name: String,  imageType: ImageType,  imageIndex: Int,  tag: String? = nil,  format: ImageFormat? = nil,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func getGenreImageByIndex(name: String, imageType: ImageType, imageIndex: Int, tag: String? = nil, format: ImageFormat? = nil, maxWidth: Int? = nil, maxHeight: Int? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         getGenreImageByIndexWithRequestBuilder(name: name, imageType: imageType, imageIndex: imageIndex, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -592,19 +577,17 @@ open class ImageAPI {
      - parameter foregroundLayer: (query) Optional. Apply a foreground layer on top of the image. (optional)
      - parameter imageIndex: (query) Image index. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getItemImage( itemId: String,  imageType: ImageType,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  tag: String? = nil,  cropWhitespace: Bool? = nil,  format: ImageFormat? = nil,  addPlayedIndicator: Bool? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil,  imageIndex: Int? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func getItemImage(itemId: String, imageType: ImageType, maxWidth: Int? = nil, maxHeight: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, tag: String? = nil, cropWhitespace: Bool? = nil, format: ImageFormat? = nil, addPlayedIndicator: Bool? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, imageIndex: Int? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         getItemImageWithRequestBuilder(itemId: itemId, imageType: imageType, maxWidth: maxWidth, maxHeight: maxHeight, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, tag: tag, cropWhitespace: cropWhitespace, format: format, addPlayedIndicator: addPlayedIndicator, percentPlayed: percentPlayed, unplayedCount: unplayedCount, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer, imageIndex: imageIndex).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -697,19 +680,17 @@ open class ImageAPI {
      - parameter backgroundColor: (query) Optional. Apply a background color for transparent images. (optional)
      - parameter foregroundLayer: (query) Optional. Apply a foreground layer on top of the image. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getItemImage2( itemId: String,  imageType: ImageType,  maxWidth: Int,  maxHeight: Int,  tag: String,  format: ImageFormat,  percentPlayed: Double,  unplayedCount: Int,  imageIndex: Int,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func getItemImage2(itemId: String, imageType: ImageType, maxWidth: Int, maxHeight: Int, tag: String, format: ImageFormat, percentPlayed: Double, unplayedCount: Int, imageIndex: Int, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         getItemImage2WithRequestBuilder(itemId: itemId, imageType: imageType, maxWidth: maxWidth, maxHeight: maxHeight, tag: tag, format: format, percentPlayed: percentPlayed, unplayedCount: unplayedCount, imageIndex: imageIndex, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -816,19 +797,17 @@ open class ImageAPI {
      - parameter backgroundColor: (query) Optional. Apply a background color for transparent images. (optional)
      - parameter foregroundLayer: (query) Optional. Apply a foreground layer on top of the image. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getItemImageByIndex( itemId: String,  imageType: ImageType,  imageIndex: Int,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  tag: String? = nil,  cropWhitespace: Bool? = nil,  format: ImageFormat? = nil,  addPlayedIndicator: Bool? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func getItemImageByIndex(itemId: String, imageType: ImageType, imageIndex: Int, maxWidth: Int? = nil, maxHeight: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, tag: String? = nil, cropWhitespace: Bool? = nil, format: ImageFormat? = nil, addPlayedIndicator: Bool? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         getItemImageByIndexWithRequestBuilder(itemId: itemId, imageType: imageType, imageIndex: imageIndex, maxWidth: maxWidth, maxHeight: maxHeight, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, tag: tag, cropWhitespace: cropWhitespace, format: format, addPlayedIndicator: addPlayedIndicator, percentPlayed: percentPlayed, unplayedCount: unplayedCount, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -905,19 +884,17 @@ open class ImageAPI {
      
      - parameter itemId: (path) Item id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<[ImageInfo]>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getItemImageInfos( itemId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[ImageInfo]> {
-        let deferred = Promise<[ImageInfo]>.pending()
+    open class func getItemImageInfos(itemId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[ImageInfo], Error>) -> Void)) {
         getItemImageInfosWithRequestBuilder(itemId: itemId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -973,19 +950,17 @@ open class ImageAPI {
      - parameter foregroundLayer: (query) Optional. Apply a foreground layer on top of the image. (optional)
      - parameter imageIndex: (query) Image index. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getMusicGenreImage( name: String,  imageType: ImageType,  tag: String? = nil,  format: ImageFormat? = nil,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil,  imageIndex: Int? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func getMusicGenreImage(name: String, imageType: ImageType, tag: String? = nil, format: ImageFormat? = nil, maxWidth: Int? = nil, maxHeight: Int? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, imageIndex: Int? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         getMusicGenreImageWithRequestBuilder(name: name, imageType: imageType, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer, imageIndex: imageIndex).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -1078,19 +1053,17 @@ open class ImageAPI {
      - parameter backgroundColor: (query) Optional. Apply a background color for transparent images. (optional)
      - parameter foregroundLayer: (query) Optional. Apply a foreground layer on top of the image. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getMusicGenreImageByIndex( name: String,  imageType: ImageType,  imageIndex: Int,  tag: String? = nil,  format: ImageFormat? = nil,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func getMusicGenreImageByIndex(name: String, imageType: ImageType, imageIndex: Int, tag: String? = nil, format: ImageFormat? = nil, maxWidth: Int? = nil, maxHeight: Int? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         getMusicGenreImageByIndexWithRequestBuilder(name: name, imageType: imageType, imageIndex: imageIndex, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -1185,19 +1158,17 @@ open class ImageAPI {
      - parameter foregroundLayer: (query) Optional. Apply a foreground layer on top of the image. (optional)
      - parameter imageIndex: (query) Image index. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getPersonImage( name: String,  imageType: ImageType,  tag: String? = nil,  format: ImageFormat? = nil,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil,  imageIndex: Int? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func getPersonImage(name: String, imageType: ImageType, tag: String? = nil, format: ImageFormat? = nil, maxWidth: Int? = nil, maxHeight: Int? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, imageIndex: Int? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         getPersonImageWithRequestBuilder(name: name, imageType: imageType, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer, imageIndex: imageIndex).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -1290,19 +1261,17 @@ open class ImageAPI {
      - parameter backgroundColor: (query) Optional. Apply a background color for transparent images. (optional)
      - parameter foregroundLayer: (query) Optional. Apply a foreground layer on top of the image. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getPersonImageByIndex( name: String,  imageType: ImageType,  imageIndex: Int,  tag: String? = nil,  format: ImageFormat? = nil,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func getPersonImageByIndex(name: String, imageType: ImageType, imageIndex: Int, tag: String? = nil, format: ImageFormat? = nil, maxWidth: Int? = nil, maxHeight: Int? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         getPersonImageByIndexWithRequestBuilder(name: name, imageType: imageType, imageIndex: imageIndex, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -1397,19 +1366,17 @@ open class ImageAPI {
      - parameter foregroundLayer: (query) Optional. Apply a foreground layer on top of the image. (optional)
      - parameter imageIndex: (query) Image index. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getStudioImage( name: String,  imageType: ImageType,  tag: String? = nil,  format: ImageFormat? = nil,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil,  imageIndex: Int? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func getStudioImage(name: String, imageType: ImageType, tag: String? = nil, format: ImageFormat? = nil, maxWidth: Int? = nil, maxHeight: Int? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, imageIndex: Int? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         getStudioImageWithRequestBuilder(name: name, imageType: imageType, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer, imageIndex: imageIndex).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -1502,19 +1469,17 @@ open class ImageAPI {
      - parameter backgroundColor: (query) Optional. Apply a background color for transparent images. (optional)
      - parameter foregroundLayer: (query) Optional. Apply a foreground layer on top of the image. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getStudioImageByIndex( name: String,  imageType: ImageType,  imageIndex: Int,  tag: String? = nil,  format: ImageFormat? = nil,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func getStudioImageByIndex(name: String, imageType: ImageType, imageIndex: Int, tag: String? = nil, format: ImageFormat? = nil, maxWidth: Int? = nil, maxHeight: Int? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         getStudioImageByIndexWithRequestBuilder(name: name, imageType: imageType, imageIndex: imageIndex, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -1609,19 +1574,17 @@ open class ImageAPI {
      - parameter foregroundLayer: (query) Optional. Apply a foreground layer on top of the image. (optional)
      - parameter imageIndex: (query) Image index. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getUserImage( userId: String,  imageType: ImageType,  tag: String? = nil,  format: ImageFormat? = nil,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil,  imageIndex: Int? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func getUserImage(userId: String, imageType: ImageType, tag: String? = nil, format: ImageFormat? = nil, maxWidth: Int? = nil, maxHeight: Int? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, imageIndex: Int? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         getUserImageWithRequestBuilder(userId: userId, imageType: imageType, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer, imageIndex: imageIndex).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -1714,19 +1677,17 @@ open class ImageAPI {
      - parameter backgroundColor: (query) Optional. Apply a background color for transparent images. (optional)
      - parameter foregroundLayer: (query) Optional. Apply a foreground layer on top of the image. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getUserImageByIndex( userId: String,  imageType: ImageType,  imageIndex: Int,  tag: String? = nil,  format: ImageFormat? = nil,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func getUserImageByIndex(userId: String, imageType: ImageType, imageIndex: Int, tag: String? = nil, format: ImageFormat? = nil, maxWidth: Int? = nil, maxHeight: Int? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         getUserImageByIndexWithRequestBuilder(userId: userId, imageType: imageType, imageIndex: imageIndex, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -1821,19 +1782,17 @@ open class ImageAPI {
      - parameter backgroundColor: (query) Optional. Apply a background color for transparent images. (optional)
      - parameter foregroundLayer: (query) Optional. Apply a foreground layer on top of the image. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func headArtistImage( name: String,  imageType: ImageType,  imageIndex: Int,  tag: String? = nil,  format: ImageFormat? = nil,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func headArtistImage(name: String, imageType: ImageType, imageIndex: Int, tag: String? = nil, format: ImageFormat? = nil, maxWidth: Int? = nil, maxHeight: Int? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         headArtistImageWithRequestBuilder(name: name, imageType: imageType, imageIndex: imageIndex, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -1928,19 +1887,17 @@ open class ImageAPI {
      - parameter foregroundLayer: (query) Optional. Apply a foreground layer on top of the image. (optional)
      - parameter imageIndex: (query) Image index. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func headGenreImage( name: String,  imageType: ImageType,  tag: String? = nil,  format: ImageFormat? = nil,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil,  imageIndex: Int? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func headGenreImage(name: String, imageType: ImageType, tag: String? = nil, format: ImageFormat? = nil, maxWidth: Int? = nil, maxHeight: Int? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, imageIndex: Int? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         headGenreImageWithRequestBuilder(name: name, imageType: imageType, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer, imageIndex: imageIndex).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -2033,19 +1990,17 @@ open class ImageAPI {
      - parameter backgroundColor: (query) Optional. Apply a background color for transparent images. (optional)
      - parameter foregroundLayer: (query) Optional. Apply a foreground layer on top of the image. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func headGenreImageByIndex( name: String,  imageType: ImageType,  imageIndex: Int,  tag: String? = nil,  format: ImageFormat? = nil,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func headGenreImageByIndex(name: String, imageType: ImageType, imageIndex: Int, tag: String? = nil, format: ImageFormat? = nil, maxWidth: Int? = nil, maxHeight: Int? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         headGenreImageByIndexWithRequestBuilder(name: name, imageType: imageType, imageIndex: imageIndex, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -2140,19 +2095,17 @@ open class ImageAPI {
      - parameter foregroundLayer: (query) Optional. Apply a foreground layer on top of the image. (optional)
      - parameter imageIndex: (query) Image index. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func headItemImage( itemId: String,  imageType: ImageType,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  tag: String? = nil,  cropWhitespace: Bool? = nil,  format: ImageFormat? = nil,  addPlayedIndicator: Bool? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil,  imageIndex: Int? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func headItemImage(itemId: String, imageType: ImageType, maxWidth: Int? = nil, maxHeight: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, tag: String? = nil, cropWhitespace: Bool? = nil, format: ImageFormat? = nil, addPlayedIndicator: Bool? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, imageIndex: Int? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         headItemImageWithRequestBuilder(itemId: itemId, imageType: imageType, maxWidth: maxWidth, maxHeight: maxHeight, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, tag: tag, cropWhitespace: cropWhitespace, format: format, addPlayedIndicator: addPlayedIndicator, percentPlayed: percentPlayed, unplayedCount: unplayedCount, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer, imageIndex: imageIndex).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -2245,19 +2198,17 @@ open class ImageAPI {
      - parameter backgroundColor: (query) Optional. Apply a background color for transparent images. (optional)
      - parameter foregroundLayer: (query) Optional. Apply a foreground layer on top of the image. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func headItemImage2( itemId: String,  imageType: ImageType,  maxWidth: Int,  maxHeight: Int,  tag: String,  format: ImageFormat,  percentPlayed: Double,  unplayedCount: Int,  imageIndex: Int,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func headItemImage2(itemId: String, imageType: ImageType, maxWidth: Int, maxHeight: Int, tag: String, format: ImageFormat, percentPlayed: Double, unplayedCount: Int, imageIndex: Int, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         headItemImage2WithRequestBuilder(itemId: itemId, imageType: imageType, maxWidth: maxWidth, maxHeight: maxHeight, tag: tag, format: format, percentPlayed: percentPlayed, unplayedCount: unplayedCount, imageIndex: imageIndex, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -2364,19 +2315,17 @@ open class ImageAPI {
      - parameter backgroundColor: (query) Optional. Apply a background color for transparent images. (optional)
      - parameter foregroundLayer: (query) Optional. Apply a foreground layer on top of the image. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func headItemImageByIndex( itemId: String,  imageType: ImageType,  imageIndex: Int,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  tag: String? = nil,  cropWhitespace: Bool? = nil,  format: ImageFormat? = nil,  addPlayedIndicator: Bool? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func headItemImageByIndex(itemId: String, imageType: ImageType, imageIndex: Int, maxWidth: Int? = nil, maxHeight: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, tag: String? = nil, cropWhitespace: Bool? = nil, format: ImageFormat? = nil, addPlayedIndicator: Bool? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         headItemImageByIndexWithRequestBuilder(itemId: itemId, imageType: imageType, imageIndex: imageIndex, maxWidth: maxWidth, maxHeight: maxHeight, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, tag: tag, cropWhitespace: cropWhitespace, format: format, addPlayedIndicator: addPlayedIndicator, percentPlayed: percentPlayed, unplayedCount: unplayedCount, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -2471,19 +2420,17 @@ open class ImageAPI {
      - parameter foregroundLayer: (query) Optional. Apply a foreground layer on top of the image. (optional)
      - parameter imageIndex: (query) Image index. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func headMusicGenreImage( name: String,  imageType: ImageType,  tag: String? = nil,  format: ImageFormat? = nil,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil,  imageIndex: Int? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func headMusicGenreImage(name: String, imageType: ImageType, tag: String? = nil, format: ImageFormat? = nil, maxWidth: Int? = nil, maxHeight: Int? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, imageIndex: Int? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         headMusicGenreImageWithRequestBuilder(name: name, imageType: imageType, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer, imageIndex: imageIndex).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -2576,19 +2523,17 @@ open class ImageAPI {
      - parameter backgroundColor: (query) Optional. Apply a background color for transparent images. (optional)
      - parameter foregroundLayer: (query) Optional. Apply a foreground layer on top of the image. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func headMusicGenreImageByIndex( name: String,  imageType: ImageType,  imageIndex: Int,  tag: String? = nil,  format: ImageFormat? = nil,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func headMusicGenreImageByIndex(name: String, imageType: ImageType, imageIndex: Int, tag: String? = nil, format: ImageFormat? = nil, maxWidth: Int? = nil, maxHeight: Int? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         headMusicGenreImageByIndexWithRequestBuilder(name: name, imageType: imageType, imageIndex: imageIndex, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -2683,19 +2628,17 @@ open class ImageAPI {
      - parameter foregroundLayer: (query) Optional. Apply a foreground layer on top of the image. (optional)
      - parameter imageIndex: (query) Image index. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func headPersonImage( name: String,  imageType: ImageType,  tag: String? = nil,  format: ImageFormat? = nil,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil,  imageIndex: Int? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func headPersonImage(name: String, imageType: ImageType, tag: String? = nil, format: ImageFormat? = nil, maxWidth: Int? = nil, maxHeight: Int? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, imageIndex: Int? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         headPersonImageWithRequestBuilder(name: name, imageType: imageType, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer, imageIndex: imageIndex).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -2788,19 +2731,17 @@ open class ImageAPI {
      - parameter backgroundColor: (query) Optional. Apply a background color for transparent images. (optional)
      - parameter foregroundLayer: (query) Optional. Apply a foreground layer on top of the image. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func headPersonImageByIndex( name: String,  imageType: ImageType,  imageIndex: Int,  tag: String? = nil,  format: ImageFormat? = nil,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func headPersonImageByIndex(name: String, imageType: ImageType, imageIndex: Int, tag: String? = nil, format: ImageFormat? = nil, maxWidth: Int? = nil, maxHeight: Int? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         headPersonImageByIndexWithRequestBuilder(name: name, imageType: imageType, imageIndex: imageIndex, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -2895,19 +2836,17 @@ open class ImageAPI {
      - parameter foregroundLayer: (query) Optional. Apply a foreground layer on top of the image. (optional)
      - parameter imageIndex: (query) Image index. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func headStudioImage( name: String,  imageType: ImageType,  tag: String? = nil,  format: ImageFormat? = nil,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil,  imageIndex: Int? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func headStudioImage(name: String, imageType: ImageType, tag: String? = nil, format: ImageFormat? = nil, maxWidth: Int? = nil, maxHeight: Int? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, imageIndex: Int? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         headStudioImageWithRequestBuilder(name: name, imageType: imageType, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer, imageIndex: imageIndex).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -3000,19 +2939,17 @@ open class ImageAPI {
      - parameter backgroundColor: (query) Optional. Apply a background color for transparent images. (optional)
      - parameter foregroundLayer: (query) Optional. Apply a foreground layer on top of the image. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func headStudioImageByIndex( name: String,  imageType: ImageType,  imageIndex: Int,  tag: String? = nil,  format: ImageFormat? = nil,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func headStudioImageByIndex(name: String, imageType: ImageType, imageIndex: Int, tag: String? = nil, format: ImageFormat? = nil, maxWidth: Int? = nil, maxHeight: Int? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         headStudioImageByIndexWithRequestBuilder(name: name, imageType: imageType, imageIndex: imageIndex, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -3107,19 +3044,17 @@ open class ImageAPI {
      - parameter foregroundLayer: (query) Optional. Apply a foreground layer on top of the image. (optional)
      - parameter imageIndex: (query) Image index. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func headUserImage( userId: String,  imageType: ImageType,  tag: String? = nil,  format: ImageFormat? = nil,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil,  imageIndex: Int? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func headUserImage(userId: String, imageType: ImageType, tag: String? = nil, format: ImageFormat? = nil, maxWidth: Int? = nil, maxHeight: Int? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, imageIndex: Int? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         headUserImageWithRequestBuilder(userId: userId, imageType: imageType, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer, imageIndex: imageIndex).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -3212,19 +3147,17 @@ open class ImageAPI {
      - parameter backgroundColor: (query) Optional. Apply a background color for transparent images. (optional)
      - parameter foregroundLayer: (query) Optional. Apply a foreground layer on top of the image. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func headUserImageByIndex( userId: String,  imageType: ImageType,  imageIndex: Int,  tag: String? = nil,  format: ImageFormat? = nil,  maxWidth: Int? = nil,  maxHeight: Int? = nil,  percentPlayed: Double? = nil,  unplayedCount: Int? = nil,  width: Int? = nil,  height: Int? = nil,  quality: Int? = nil,  fillWidth: Int? = nil,  fillHeight: Int? = nil,  cropWhitespace: Bool? = nil,  addPlayedIndicator: Bool? = nil,  blur: Int? = nil,  backgroundColor: String? = nil,  foregroundLayer: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func headUserImageByIndex(userId: String, imageType: ImageType, imageIndex: Int, tag: String? = nil, format: ImageFormat? = nil, maxWidth: Int? = nil, maxHeight: Int? = nil, percentPlayed: Double? = nil, unplayedCount: Int? = nil, width: Int? = nil, height: Int? = nil, quality: Int? = nil, fillWidth: Int? = nil, fillHeight: Int? = nil, cropWhitespace: Bool? = nil, addPlayedIndicator: Bool? = nil, blur: Int? = nil, backgroundColor: String? = nil, foregroundLayer: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         headUserImageByIndexWithRequestBuilder(userId: userId, imageType: imageType, imageIndex: imageIndex, tag: tag, format: format, maxWidth: maxWidth, maxHeight: maxHeight, percentPlayed: percentPlayed, unplayedCount: unplayedCount, width: width, height: height, quality: quality, fillWidth: fillWidth, fillHeight: fillHeight, cropWhitespace: cropWhitespace, addPlayedIndicator: addPlayedIndicator, blur: blur, backgroundColor: backgroundColor, foregroundLayer: foregroundLayer).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -3304,19 +3237,17 @@ open class ImageAPI {
      - parameter index: (query) (Unused) Image index. (optional)
      - parameter body: (body)  (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func postUserImage( userId: String,  imageType: ImageType,  index: Int? = nil,  body: URL? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func postUserImage(userId: String, imageType: ImageType, index: Int? = nil, body: URL? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         postUserImageWithRequestBuilder(userId: userId, imageType: imageType, index: index, body: body).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -3366,19 +3297,17 @@ open class ImageAPI {
      - parameter index: (path) (Unused) Image index. 
      - parameter body: (body)  (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func postUserImageByIndex( userId: String,  imageType: ImageType,  index: Int,  body: URL? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func postUserImageByIndex(userId: String, imageType: ImageType, index: Int, body: URL? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         postUserImageByIndexWithRequestBuilder(userId: userId, imageType: imageType, index: index, body: body).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -3427,19 +3356,17 @@ open class ImageAPI {
      - parameter imageType: (path) Image type. 
      - parameter body: (body)  (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func setItemImage( itemId: String,  imageType: ImageType,  body: URL? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func setItemImage(itemId: String, imageType: ImageType, body: URL? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         setItemImageWithRequestBuilder(itemId: itemId, imageType: imageType, body: body).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -3485,19 +3412,17 @@ open class ImageAPI {
      - parameter imageIndex: (path) (Unused) Image index. 
      - parameter body: (body)  (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func setItemImageByIndex( itemId: String,  imageType: ImageType,  imageIndex: Int,  body: URL? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func setItemImageByIndex(itemId: String, imageType: ImageType, imageIndex: Int, body: URL? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         setItemImageByIndexWithRequestBuilder(itemId: itemId, imageType: imageType, imageIndex: imageIndex, body: body).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -3547,19 +3472,17 @@ open class ImageAPI {
      - parameter imageIndex: (path) Old image index. 
      - parameter newIndex: (query) New image index. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func updateItemImageIndex( itemId: String,  imageType: ImageType,  imageIndex: Int,  newIndex: Int, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func updateItemImageIndex(itemId: String, imageType: ImageType, imageIndex: Int, newIndex: Int, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         updateItemImageIndexWithRequestBuilder(itemId: itemId, imageType: imageType, imageIndex: imageIndex, newIndex: newIndex).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**

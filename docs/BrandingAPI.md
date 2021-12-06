@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 # **getBrandingCss**
 ```swift
-    open class func getBrandingCss() -> Promise<String>
+    open class func getBrandingCss(completion: @escaping (_ data: String?, _ error: Error?) -> Void)
 ```
 
 Gets branding css.
@@ -23,12 +23,15 @@ import JellyfinAPI
 
 
 // Gets branding css.
-BrandingAPI.getBrandingCss().then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+BrandingAPI.getBrandingCss() { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -52,7 +55,7 @@ No authorization required
 
 # **getBrandingCss2**
 ```swift
-    open class func getBrandingCss2() -> Promise<String>
+    open class func getBrandingCss2(completion: @escaping (_ data: String?, _ error: Error?) -> Void)
 ```
 
 Gets branding css.
@@ -64,12 +67,15 @@ import JellyfinAPI
 
 
 // Gets branding css.
-BrandingAPI.getBrandingCss2().then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+BrandingAPI.getBrandingCss2() { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -93,7 +99,7 @@ No authorization required
 
 # **getBrandingOptions**
 ```swift
-    open class func getBrandingOptions() -> Promise<BrandingOptions>
+    open class func getBrandingOptions(completion: @escaping (_ data: BrandingOptions?, _ error: Error?) -> Void)
 ```
 
 Gets branding configuration.
@@ -105,12 +111,15 @@ import JellyfinAPI
 
 
 // Gets branding configuration.
-BrandingAPI.getBrandingOptions().then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+BrandingAPI.getBrandingOptions() { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 

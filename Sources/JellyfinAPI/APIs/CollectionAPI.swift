@@ -7,7 +7,6 @@
 
 import AnyCodable
 import Foundation
-import PromiseKit
 
 open class CollectionAPI {
     /**
@@ -16,19 +15,17 @@ open class CollectionAPI {
      - parameter collectionId: (path) The collection id. 
      - parameter ids: (query) Item ids, comma delimited. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func addToCollection( collectionId: String,  ids: [String], apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func addToCollection(collectionId: String, ids: [String], apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         addToCollectionWithRequestBuilder(collectionId: collectionId, ids: ids).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -73,19 +70,17 @@ open class CollectionAPI {
      - parameter parentId: (query) Optional. Create the collection within a specific folder. (optional)
      - parameter isLocked: (query) Whether or not to lock the new collection. (optional, default to false)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<CollectionCreationResult>
+     - parameter completion: completion handler to receive the result
      */
-    open class func createCollection( name: String? = nil,  ids: [String]? = nil,  parentId: String? = nil,  isLocked: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<CollectionCreationResult> {
-        let deferred = Promise<CollectionCreationResult>.pending()
+    open class func createCollection(name: String? = nil, ids: [String]? = nil, parentId: String? = nil, isLocked: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<CollectionCreationResult, Error>) -> Void)) {
         createCollectionWithRequestBuilder(name: name, ids: ids, parentId: parentId, isLocked: isLocked).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -130,19 +125,17 @@ open class CollectionAPI {
      - parameter collectionId: (path) The collection id. 
      - parameter ids: (query) Item ids, comma delimited. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func removeFromCollection( collectionId: String,  ids: [String], apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func removeFromCollection(collectionId: String, ids: [String], apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         removeFromCollectionWithRequestBuilder(collectionId: collectionId, ids: ids).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**

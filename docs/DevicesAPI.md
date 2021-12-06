@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 # **deleteDevice**
 ```swift
-    open class func deleteDevice( id: String) -> Promise<Void>
+    open class func deleteDevice(id: String, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Deletes a device.
@@ -26,12 +26,15 @@ import JellyfinAPI
 let id = "id_example" // String | Device Id.
 
 // Deletes a device.
-DevicesAPI.deleteDevice(id: id).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+DevicesAPI.deleteDevice(id: id) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -58,7 +61,7 @@ Void (empty response body)
 
 # **getDeviceInfo**
 ```swift
-    open class func getDeviceInfo( id: String) -> Promise<DeviceInfo>
+    open class func getDeviceInfo(id: String, completion: @escaping (_ data: DeviceInfo?, _ error: Error?) -> Void)
 ```
 
 Get info for a device.
@@ -71,12 +74,15 @@ import JellyfinAPI
 let id = "id_example" // String | Device Id.
 
 // Get info for a device.
-DevicesAPI.getDeviceInfo(id: id).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+DevicesAPI.getDeviceInfo(id: id) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -103,7 +109,7 @@ Name | Type | Description  | Notes
 
 # **getDeviceOptions**
 ```swift
-    open class func getDeviceOptions( id: String) -> Promise<DeviceOptions>
+    open class func getDeviceOptions(id: String, completion: @escaping (_ data: DeviceOptions?, _ error: Error?) -> Void)
 ```
 
 Get options for a device.
@@ -116,12 +122,15 @@ import JellyfinAPI
 let id = "id_example" // String | Device Id.
 
 // Get options for a device.
-DevicesAPI.getDeviceOptions(id: id).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+DevicesAPI.getDeviceOptions(id: id) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -148,7 +157,7 @@ Name | Type | Description  | Notes
 
 # **getDevices**
 ```swift
-    open class func getDevices( supportsSync: Bool? = nil,  userId: String? = nil) -> Promise<DeviceInfoQueryResult>
+    open class func getDevices(supportsSync: Bool? = nil, userId: String? = nil, completion: @escaping (_ data: DeviceInfoQueryResult?, _ error: Error?) -> Void)
 ```
 
 Get Devices.
@@ -162,12 +171,15 @@ let supportsSync = true // Bool | Gets or sets a value indicating whether [suppo
 let userId = "userId_example" // String | Gets or sets the user identifier. (optional)
 
 // Get Devices.
-DevicesAPI.getDevices(supportsSync: supportsSync, userId: userId).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+DevicesAPI.getDevices(supportsSync: supportsSync, userId: userId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -195,7 +207,7 @@ Name | Type | Description  | Notes
 
 # **updateDeviceOptions**
 ```swift
-    open class func updateDeviceOptions( id: String,  deviceOptions: DeviceOptions) -> Promise<Void>
+    open class func updateDeviceOptions(id: String, deviceOptions: DeviceOptions, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Update device options.
@@ -209,12 +221,15 @@ let id = "id_example" // String | Device Id.
 let deviceOptions = DeviceOptions(customName: "customName_example") // DeviceOptions | Device Options.
 
 // Update device options.
-DevicesAPI.updateDeviceOptions(id: id, deviceOptions: deviceOptions).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+DevicesAPI.updateDeviceOptions(id: id, deviceOptions: deviceOptions) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 

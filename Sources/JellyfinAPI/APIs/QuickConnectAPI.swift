@@ -7,26 +7,23 @@
 
 import AnyCodable
 import Foundation
-import PromiseKit
 
 open class QuickConnectAPI {
     /**
      Temporarily activates quick connect for five minutes.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func activate(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func activate(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         activateWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -60,19 +57,17 @@ open class QuickConnectAPI {
      
      - parameter code: (query) Quick connect code to authorize. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Bool>
+     - parameter completion: completion handler to receive the result
      */
-    open class func authorize( code: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Bool> {
-        let deferred = Promise<Bool>.pending()
+    open class func authorize(code: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Bool, Error>) -> Void)) {
         authorizeWithRequestBuilder(code: code).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -110,19 +105,17 @@ open class QuickConnectAPI {
      
      - parameter status: (query) New MediaBrowser.Model.QuickConnect.QuickConnectState. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func available( status: QuickConnectState? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func available(status: QuickConnectState? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         availableWithRequestBuilder(status: status).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -160,19 +153,17 @@ open class QuickConnectAPI {
      
      - parameter secret: (query) Secret previously returned from the Initiate endpoint. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<QuickConnectResult>
+     - parameter completion: completion handler to receive the result
      */
-    open class func connect( secret: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<QuickConnectResult> {
-        let deferred = Promise<QuickConnectResult>.pending()
+    open class func connect(secret: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<QuickConnectResult, Error>) -> Void)) {
         connectWithRequestBuilder(secret: secret).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -206,19 +197,17 @@ open class QuickConnectAPI {
      Deauthorize all quick connect devices for the current user.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Int>
+     - parameter completion: completion handler to receive the result
      */
-    open class func deauthorize(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Int> {
-        let deferred = Promise<Int>.pending()
+    open class func deauthorize(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Int, Error>) -> Void)) {
         deauthorizeWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -251,19 +240,17 @@ open class QuickConnectAPI {
      Gets the current quick connect state.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<QuickConnectState>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getStatus(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<QuickConnectState> {
-        let deferred = Promise<QuickConnectState>.pending()
+    open class func getStatus(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<QuickConnectState, Error>) -> Void)) {
         getStatusWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -293,19 +280,17 @@ open class QuickConnectAPI {
      Initiate a new quick connect request.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<QuickConnectResult>
+     - parameter completion: completion handler to receive the result
      */
-    open class func initiate(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<QuickConnectResult> {
-        let deferred = Promise<QuickConnectResult>.pending()
+    open class func initiate(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<QuickConnectResult, Error>) -> Void)) {
         initiateWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**

@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 # **cancelPackageInstallation**
 ```swift
-    open class func cancelPackageInstallation( packageId: String) -> Promise<Void>
+    open class func cancelPackageInstallation(packageId: String, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Cancels a package installation.
@@ -27,12 +27,15 @@ import JellyfinAPI
 let packageId = "packageId_example" // String | Installation Id.
 
 // Cancels a package installation.
-PackageAPI.cancelPackageInstallation(packageId: packageId).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+PackageAPI.cancelPackageInstallation(packageId: packageId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -59,7 +62,7 @@ Void (empty response body)
 
 # **getPackageInfo**
 ```swift
-    open class func getPackageInfo( name: String,  assemblyGuid: String? = nil) -> Promise<PackageInfo>
+    open class func getPackageInfo(name: String, assemblyGuid: String? = nil, completion: @escaping (_ data: PackageInfo?, _ error: Error?) -> Void)
 ```
 
 Gets a package by name or assembly GUID.
@@ -73,12 +76,15 @@ let name = "name_example" // String | The name of the package.
 let assemblyGuid = "assemblyGuid_example" // String | The GUID of the associated assembly. (optional)
 
 // Gets a package by name or assembly GUID.
-PackageAPI.getPackageInfo(name: name, assemblyGuid: assemblyGuid).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+PackageAPI.getPackageInfo(name: name, assemblyGuid: assemblyGuid) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -106,7 +112,7 @@ Name | Type | Description  | Notes
 
 # **getPackages**
 ```swift
-    open class func getPackages() -> Promise<[PackageInfo]>
+    open class func getPackages(completion: @escaping (_ data: [PackageInfo]?, _ error: Error?) -> Void)
 ```
 
 Gets available packages.
@@ -118,12 +124,15 @@ import JellyfinAPI
 
 
 // Gets available packages.
-PackageAPI.getPackages().then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+PackageAPI.getPackages() { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -147,7 +156,7 @@ This endpoint does not need any parameter.
 
 # **getRepositories**
 ```swift
-    open class func getRepositories() -> Promise<[RepositoryInfo]>
+    open class func getRepositories(completion: @escaping (_ data: [RepositoryInfo]?, _ error: Error?) -> Void)
 ```
 
 Gets all package repositories.
@@ -159,12 +168,15 @@ import JellyfinAPI
 
 
 // Gets all package repositories.
-PackageAPI.getRepositories().then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+PackageAPI.getRepositories() { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -188,7 +200,7 @@ This endpoint does not need any parameter.
 
 # **installPackage**
 ```swift
-    open class func installPackage( name: String,  assemblyGuid: String? = nil,  version: String? = nil,  repositoryUrl: String? = nil) -> Promise<Void>
+    open class func installPackage(name: String, assemblyGuid: String? = nil, version: String? = nil, repositoryUrl: String? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Installs a package.
@@ -204,12 +216,15 @@ let version = "version_example" // String | Optional version. Defaults to latest
 let repositoryUrl = "repositoryUrl_example" // String | Optional. Specify the repository to install from. (optional)
 
 // Installs a package.
-PackageAPI.installPackage(name: name, assemblyGuid: assemblyGuid, version: version, repositoryUrl: repositoryUrl).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+PackageAPI.installPackage(name: name, assemblyGuid: assemblyGuid, version: version, repositoryUrl: repositoryUrl) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -239,7 +254,7 @@ Void (empty response body)
 
 # **setRepositories**
 ```swift
-    open class func setRepositories( repositoryInfo: [RepositoryInfo]) -> Promise<Void>
+    open class func setRepositories(repositoryInfo: [RepositoryInfo], completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Sets the enabled and existing package repositories.
@@ -252,12 +267,15 @@ import JellyfinAPI
 let repositoryInfo = [RepositoryInfo(name: "name_example", url: "url_example", enabled: false)] // [RepositoryInfo] | The list of package repositories.
 
 // Sets the enabled and existing package repositories.
-PackageAPI.setRepositories(repositoryInfo: repositoryInfo).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+PackageAPI.setRepositories(repositoryInfo: repositoryInfo) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 

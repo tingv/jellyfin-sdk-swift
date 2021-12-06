@@ -7,7 +7,6 @@
 
 import AnyCodable
 import Foundation
-import PromiseKit
 
 open class HlsSegmentAPI {
     /**
@@ -16,19 +15,17 @@ open class HlsSegmentAPI {
      - parameter itemId: (path) The item id. 
      - parameter segmentId: (path) The segment id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getHlsAudioSegmentLegacyAac( itemId: String,  segmentId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func getHlsAudioSegmentLegacyAac(itemId: String, segmentId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         getHlsAudioSegmentLegacyAacWithRequestBuilder(itemId: itemId, segmentId: segmentId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -68,19 +65,17 @@ open class HlsSegmentAPI {
      - parameter itemId: (path) The item id. 
      - parameter segmentId: (path) The segment id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getHlsAudioSegmentLegacyMp3( itemId: String,  segmentId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func getHlsAudioSegmentLegacyMp3(itemId: String, segmentId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         getHlsAudioSegmentLegacyMp3WithRequestBuilder(itemId: itemId, segmentId: segmentId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -120,19 +115,17 @@ open class HlsSegmentAPI {
      - parameter itemId: (path) The video id. 
      - parameter playlistId: (path) The playlist id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getHlsPlaylistLegacy( itemId: String,  playlistId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func getHlsPlaylistLegacy(itemId: String, playlistId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         getHlsPlaylistLegacyWithRequestBuilder(itemId: itemId, playlistId: playlistId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -177,19 +170,17 @@ open class HlsSegmentAPI {
      - parameter segmentId: (path) The segment id. 
      - parameter segmentContainer: (path) The segment container. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getHlsVideoSegmentLegacy( itemId: String,  playlistId: String,  segmentId: String,  segmentContainer: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func getHlsVideoSegmentLegacy(itemId: String, playlistId: String, segmentId: String, segmentContainer: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         getHlsVideoSegmentLegacyWithRequestBuilder(itemId: itemId, playlistId: playlistId, segmentId: segmentId, segmentContainer: segmentContainer).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -237,19 +228,17 @@ open class HlsSegmentAPI {
      - parameter deviceId: (query) The device id of the client requesting. Used to stop encoding processes when needed. 
      - parameter playSessionId: (query) The play session id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func stopEncodingProcess( deviceId: String,  playSessionId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func stopEncodingProcess(deviceId: String, playSessionId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         stopEncodingProcessWithRequestBuilder(deviceId: deviceId, playSessionId: playSessionId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**

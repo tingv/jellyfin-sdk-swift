@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 # **deleteSubtitle**
 ```swift
-    open class func deleteSubtitle( itemId: String,  index: Int) -> Promise<Void>
+    open class func deleteSubtitle(itemId: String, index: Int, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Deletes an external subtitle file.
@@ -32,12 +32,15 @@ let itemId = "itemId_example" // String | The item id.
 let index = 987 // Int | The index of the subtitle file.
 
 // Deletes an external subtitle file.
-SubtitleAPI.deleteSubtitle(itemId: itemId, index: index).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+SubtitleAPI.deleteSubtitle(itemId: itemId, index: index) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -65,7 +68,7 @@ Void (empty response body)
 
 # **downloadRemoteSubtitles**
 ```swift
-    open class func downloadRemoteSubtitles( itemId: String,  subtitleId: String) -> Promise<Void>
+    open class func downloadRemoteSubtitles(itemId: String, subtitleId: String, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Downloads a remote subtitle.
@@ -79,12 +82,15 @@ let itemId = "itemId_example" // String | The item id.
 let subtitleId = "subtitleId_example" // String | The subtitle id.
 
 // Downloads a remote subtitle.
-SubtitleAPI.downloadRemoteSubtitles(itemId: itemId, subtitleId: subtitleId).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+SubtitleAPI.downloadRemoteSubtitles(itemId: itemId, subtitleId: subtitleId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -112,7 +118,7 @@ Void (empty response body)
 
 # **getFallbackFont**
 ```swift
-    open class func getFallbackFont( name: String) -> Promise<URL>
+    open class func getFallbackFont(name: String, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
 ```
 
 Gets a fallback font file.
@@ -125,12 +131,15 @@ import JellyfinAPI
 let name = "name_example" // String | The name of the fallback font file to get.
 
 // Gets a fallback font file.
-SubtitleAPI.getFallbackFont(name: name).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+SubtitleAPI.getFallbackFont(name: name) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -157,7 +166,7 @@ Name | Type | Description  | Notes
 
 # **getFallbackFontList**
 ```swift
-    open class func getFallbackFontList() -> Promise<[FontFile]>
+    open class func getFallbackFontList(completion: @escaping (_ data: [FontFile]?, _ error: Error?) -> Void)
 ```
 
 Gets a list of available fallback font files.
@@ -169,12 +178,15 @@ import JellyfinAPI
 
 
 // Gets a list of available fallback font files.
-SubtitleAPI.getFallbackFontList().then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+SubtitleAPI.getFallbackFontList() { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -198,7 +210,7 @@ This endpoint does not need any parameter.
 
 # **getRemoteSubtitles**
 ```swift
-    open class func getRemoteSubtitles( id: String) -> Promise<URL>
+    open class func getRemoteSubtitles(id: String, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
 ```
 
 Gets the remote subtitles.
@@ -211,12 +223,15 @@ import JellyfinAPI
 let id = "id_example" // String | The item id.
 
 // Gets the remote subtitles.
-SubtitleAPI.getRemoteSubtitles(id: id).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+SubtitleAPI.getRemoteSubtitles(id: id) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -243,7 +258,7 @@ Name | Type | Description  | Notes
 
 # **getSubtitle**
 ```swift
-    open class func getSubtitle( routeItemId: String,  routeMediaSourceId: String,  routeIndex: Int,  routeFormat: String,  itemId: String? = nil,  mediaSourceId: String? = nil,  index: Int? = nil,  format: String? = nil,  endPositionTicks: Int64? = nil,  copyTimestamps: Bool? = nil,  addVttTimeMap: Bool? = nil,  startPositionTicks: Int64? = nil) -> Promise<URL>
+    open class func getSubtitle(routeItemId: String, routeMediaSourceId: String, routeIndex: Int, routeFormat: String, itemId: String? = nil, mediaSourceId: String? = nil, index: Int? = nil, format: String? = nil, endPositionTicks: Int64? = nil, copyTimestamps: Bool? = nil, addVttTimeMap: Bool? = nil, startPositionTicks: Int64? = nil, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
 ```
 
 Gets subtitles in a specified format.
@@ -267,12 +282,15 @@ let addVttTimeMap = true // Bool | Optional. Whether to add a VTT time map. (opt
 let startPositionTicks = 987 // Int64 | The start position of the subtitle in ticks. (optional) (default to 0)
 
 // Gets subtitles in a specified format.
-SubtitleAPI.getSubtitle(routeItemId: routeItemId, routeMediaSourceId: routeMediaSourceId, routeIndex: routeIndex, routeFormat: routeFormat, itemId: itemId, mediaSourceId: mediaSourceId, index: index, format: format, endPositionTicks: endPositionTicks, copyTimestamps: copyTimestamps, addVttTimeMap: addVttTimeMap, startPositionTicks: startPositionTicks).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+SubtitleAPI.getSubtitle(routeItemId: routeItemId, routeMediaSourceId: routeMediaSourceId, routeIndex: routeIndex, routeFormat: routeFormat, itemId: itemId, mediaSourceId: mediaSourceId, index: index, format: format, endPositionTicks: endPositionTicks, copyTimestamps: copyTimestamps, addVttTimeMap: addVttTimeMap, startPositionTicks: startPositionTicks) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -310,7 +328,7 @@ No authorization required
 
 # **getSubtitlePlaylist**
 ```swift
-    open class func getSubtitlePlaylist( itemId: String,  index: Int,  mediaSourceId: String,  segmentLength: Int) -> Promise<URL>
+    open class func getSubtitlePlaylist(itemId: String, index: Int, mediaSourceId: String, segmentLength: Int, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
 ```
 
 Gets an HLS subtitle playlist.
@@ -326,12 +344,15 @@ let mediaSourceId = "mediaSourceId_example" // String | The media source id.
 let segmentLength = 987 // Int | The subtitle segment length.
 
 // Gets an HLS subtitle playlist.
-SubtitleAPI.getSubtitlePlaylist(itemId: itemId, index: index, mediaSourceId: mediaSourceId, segmentLength: segmentLength).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+SubtitleAPI.getSubtitlePlaylist(itemId: itemId, index: index, mediaSourceId: mediaSourceId, segmentLength: segmentLength) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -361,7 +382,7 @@ Name | Type | Description  | Notes
 
 # **getSubtitleWithTicks**
 ```swift
-    open class func getSubtitleWithTicks( routeItemId: String,  routeMediaSourceId: String,  routeIndex: Int,  routeStartPositionTicks: Int64,  routeFormat: String,  itemId: String? = nil,  mediaSourceId: String? = nil,  index: Int? = nil,  startPositionTicks: Int64? = nil,  format: String? = nil,  endPositionTicks: Int64? = nil,  copyTimestamps: Bool? = nil,  addVttTimeMap: Bool? = nil) -> Promise<URL>
+    open class func getSubtitleWithTicks(routeItemId: String, routeMediaSourceId: String, routeIndex: Int, routeStartPositionTicks: Int64, routeFormat: String, itemId: String? = nil, mediaSourceId: String? = nil, index: Int? = nil, startPositionTicks: Int64? = nil, format: String? = nil, endPositionTicks: Int64? = nil, copyTimestamps: Bool? = nil, addVttTimeMap: Bool? = nil, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
 ```
 
 Gets subtitles in a specified format.
@@ -386,12 +407,15 @@ let copyTimestamps = true // Bool | Optional. Whether to copy the timestamps. (o
 let addVttTimeMap = true // Bool | Optional. Whether to add a VTT time map. (optional) (default to false)
 
 // Gets subtitles in a specified format.
-SubtitleAPI.getSubtitleWithTicks(routeItemId: routeItemId, routeMediaSourceId: routeMediaSourceId, routeIndex: routeIndex, routeStartPositionTicks: routeStartPositionTicks, routeFormat: routeFormat, itemId: itemId, mediaSourceId: mediaSourceId, index: index, startPositionTicks: startPositionTicks, format: format, endPositionTicks: endPositionTicks, copyTimestamps: copyTimestamps, addVttTimeMap: addVttTimeMap).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+SubtitleAPI.getSubtitleWithTicks(routeItemId: routeItemId, routeMediaSourceId: routeMediaSourceId, routeIndex: routeIndex, routeStartPositionTicks: routeStartPositionTicks, routeFormat: routeFormat, itemId: itemId, mediaSourceId: mediaSourceId, index: index, startPositionTicks: startPositionTicks, format: format, endPositionTicks: endPositionTicks, copyTimestamps: copyTimestamps, addVttTimeMap: addVttTimeMap) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -430,7 +454,7 @@ No authorization required
 
 # **searchRemoteSubtitles**
 ```swift
-    open class func searchRemoteSubtitles( itemId: String,  language: String,  isPerfectMatch: Bool? = nil) -> Promise<[RemoteSubtitleInfo]>
+    open class func searchRemoteSubtitles(itemId: String, language: String, isPerfectMatch: Bool? = nil, completion: @escaping (_ data: [RemoteSubtitleInfo]?, _ error: Error?) -> Void)
 ```
 
 Search remote subtitles.
@@ -445,12 +469,15 @@ let language = "language_example" // String | The language of the subtitles.
 let isPerfectMatch = true // Bool | Optional. Only show subtitles which are a perfect match. (optional)
 
 // Search remote subtitles.
-SubtitleAPI.searchRemoteSubtitles(itemId: itemId, language: language, isPerfectMatch: isPerfectMatch).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+SubtitleAPI.searchRemoteSubtitles(itemId: itemId, language: language, isPerfectMatch: isPerfectMatch) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -479,7 +506,7 @@ Name | Type | Description  | Notes
 
 # **uploadSubtitle**
 ```swift
-    open class func uploadSubtitle( itemId: String,  uploadSubtitleDto: UploadSubtitleDto) -> Promise<Void>
+    open class func uploadSubtitle(itemId: String, uploadSubtitleDto: UploadSubtitleDto, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Upload an external subtitle file.
@@ -493,12 +520,15 @@ let itemId = "itemId_example" // String | The item the subtitle belongs to.
 let uploadSubtitleDto = UploadSubtitleDto(language: "language_example", format: "format_example", isForced: false, data: "data_example") // UploadSubtitleDto | The request body.
 
 // Upload an external subtitle file.
-SubtitleAPI.uploadSubtitle(itemId: itemId, uploadSubtitleDto: uploadSubtitleDto).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+SubtitleAPI.uploadSubtitle(itemId: itemId, uploadSubtitleDto: uploadSubtitleDto) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 

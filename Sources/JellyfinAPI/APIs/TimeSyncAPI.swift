@@ -7,26 +7,23 @@
 
 import AnyCodable
 import Foundation
-import PromiseKit
 
 open class TimeSyncAPI {
     /**
      Gets the current UTC time.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<UtcTimeResponse>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getUtcTime(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<UtcTimeResponse> {
-        let deferred = Promise<UtcTimeResponse>.pending()
+    open class func getUtcTime(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<UtcTimeResponse, Error>) -> Void)) {
         getUtcTimeWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**

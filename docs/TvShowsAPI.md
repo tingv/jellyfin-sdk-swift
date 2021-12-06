@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 # **getEpisodes**
 ```swift
-    open class func getEpisodes( seriesId: String,  userId: String? = nil,  fields: [ItemFields]? = nil,  season: Int? = nil,  seasonId: String? = nil,  isMissing: Bool? = nil,  adjacentTo: String? = nil,  startItemId: String? = nil,  startIndex: Int? = nil,  limit: Int? = nil,  enableImages: Bool? = nil,  imageTypeLimit: Int? = nil,  enableImageTypes: [ImageType]? = nil,  enableUserData: Bool? = nil,  sortBy: String? = nil) -> Promise<BaseItemDtoQueryResult>
+    open class func getEpisodes(seriesId: String, userId: String? = nil, fields: [ItemFields]? = nil, season: Int? = nil, seasonId: String? = nil, isMissing: Bool? = nil, adjacentTo: String? = nil, startItemId: String? = nil, startIndex: Int? = nil, limit: Int? = nil, enableImages: Bool? = nil, imageTypeLimit: Int? = nil, enableImageTypes: [ImageType]? = nil, enableUserData: Bool? = nil, sortBy: String? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
 ```
 
 Gets episodes for a tv season.
@@ -39,12 +39,15 @@ let enableUserData = true // Bool | Optional. Include user data. (optional)
 let sortBy = "sortBy_example" // String | Optional. Specify one or more sort orders, comma delimited. Options: Album, AlbumArtist, Artist, Budget, CommunityRating, CriticRating, DateCreated, DatePlayed, PlayCount, PremiereDate, ProductionYear, SortName, Random, Revenue, Runtime. (optional)
 
 // Gets episodes for a tv season.
-TvShowsAPI.getEpisodes(seriesId: seriesId, userId: userId, fields: fields, season: season, seasonId: seasonId, isMissing: isMissing, adjacentTo: adjacentTo, startItemId: startItemId, startIndex: startIndex, limit: limit, enableImages: enableImages, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes, enableUserData: enableUserData, sortBy: sortBy).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+TvShowsAPI.getEpisodes(seriesId: seriesId, userId: userId, fields: fields, season: season, seasonId: seasonId, isMissing: isMissing, adjacentTo: adjacentTo, startItemId: startItemId, startIndex: startIndex, limit: limit, enableImages: enableImages, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes, enableUserData: enableUserData, sortBy: sortBy) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -85,7 +88,7 @@ Name | Type | Description  | Notes
 
 # **getNextUp**
 ```swift
-    open class func getNextUp( userId: String? = nil,  startIndex: Int? = nil,  limit: Int? = nil,  fields: [ItemFields]? = nil,  seriesId: String? = nil,  parentId: String? = nil,  enableImges: Bool? = nil,  imageTypeLimit: Int? = nil,  enableImageTypes: [ImageType]? = nil,  enableUserData: Bool? = nil,  enableTotalRecordCount: Bool? = nil,  disableFirstEpisode: Bool? = nil) -> Promise<BaseItemDtoQueryResult>
+    open class func getNextUp(userId: String? = nil, startIndex: Int? = nil, limit: Int? = nil, fields: [ItemFields]? = nil, seriesId: String? = nil, parentId: String? = nil, enableImges: Bool? = nil, imageTypeLimit: Int? = nil, enableImageTypes: [ImageType]? = nil, enableUserData: Bool? = nil, enableTotalRecordCount: Bool? = nil, disableFirstEpisode: Bool? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
 ```
 
 Gets a list of next up episodes.
@@ -109,12 +112,15 @@ let enableTotalRecordCount = true // Bool | Whether to enable the total records 
 let disableFirstEpisode = true // Bool | Whether to disable sending the first episode in a series as next up. (optional) (default to false)
 
 // Gets a list of next up episodes.
-TvShowsAPI.getNextUp(userId: userId, startIndex: startIndex, limit: limit, fields: fields, seriesId: seriesId, parentId: parentId, enableImges: enableImges, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes, enableUserData: enableUserData, enableTotalRecordCount: enableTotalRecordCount, disableFirstEpisode: disableFirstEpisode).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+TvShowsAPI.getNextUp(userId: userId, startIndex: startIndex, limit: limit, fields: fields, seriesId: seriesId, parentId: parentId, enableImges: enableImges, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes, enableUserData: enableUserData, enableTotalRecordCount: enableTotalRecordCount, disableFirstEpisode: disableFirstEpisode) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -152,7 +158,7 @@ Name | Type | Description  | Notes
 
 # **getSeasons**
 ```swift
-    open class func getSeasons( seriesId: String,  userId: String? = nil,  fields: [ItemFields]? = nil,  isSpecialSeason: Bool? = nil,  isMissing: Bool? = nil,  adjacentTo: String? = nil,  enableImages: Bool? = nil,  imageTypeLimit: Int? = nil,  enableImageTypes: [ImageType]? = nil,  enableUserData: Bool? = nil) -> Promise<BaseItemDtoQueryResult>
+    open class func getSeasons(seriesId: String, userId: String? = nil, fields: [ItemFields]? = nil, isSpecialSeason: Bool? = nil, isMissing: Bool? = nil, adjacentTo: String? = nil, enableImages: Bool? = nil, imageTypeLimit: Int? = nil, enableImageTypes: [ImageType]? = nil, enableUserData: Bool? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
 ```
 
 Gets seasons for a tv series.
@@ -174,12 +180,15 @@ let enableImageTypes = [ImageType()] // [ImageType] | Optional. The image types 
 let enableUserData = true // Bool | Optional. Include user data. (optional)
 
 // Gets seasons for a tv series.
-TvShowsAPI.getSeasons(seriesId: seriesId, userId: userId, fields: fields, isSpecialSeason: isSpecialSeason, isMissing: isMissing, adjacentTo: adjacentTo, enableImages: enableImages, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes, enableUserData: enableUserData).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+TvShowsAPI.getSeasons(seriesId: seriesId, userId: userId, fields: fields, isSpecialSeason: isSpecialSeason, isMissing: isMissing, adjacentTo: adjacentTo, enableImages: enableImages, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes, enableUserData: enableUserData) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -215,7 +224,7 @@ Name | Type | Description  | Notes
 
 # **getUpcomingEpisodes**
 ```swift
-    open class func getUpcomingEpisodes( userId: String? = nil,  startIndex: Int? = nil,  limit: Int? = nil,  fields: [ItemFields]? = nil,  parentId: String? = nil,  enableImges: Bool? = nil,  imageTypeLimit: Int? = nil,  enableImageTypes: [ImageType]? = nil,  enableUserData: Bool? = nil) -> Promise<BaseItemDtoQueryResult>
+    open class func getUpcomingEpisodes(userId: String? = nil, startIndex: Int? = nil, limit: Int? = nil, fields: [ItemFields]? = nil, parentId: String? = nil, enableImges: Bool? = nil, imageTypeLimit: Int? = nil, enableImageTypes: [ImageType]? = nil, enableUserData: Bool? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
 ```
 
 Gets a list of upcoming episodes.
@@ -236,12 +245,15 @@ let enableImageTypes = [ImageType()] // [ImageType] | Optional. The image types 
 let enableUserData = true // Bool | Optional. Include user data. (optional)
 
 // Gets a list of upcoming episodes.
-TvShowsAPI.getUpcomingEpisodes(userId: userId, startIndex: startIndex, limit: limit, fields: fields, parentId: parentId, enableImges: enableImges, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes, enableUserData: enableUserData).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+TvShowsAPI.getUpcomingEpisodes(userId: userId, startIndex: startIndex, limit: limit, fields: fields, parentId: parentId, enableImges: enableImges, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes, enableUserData: enableUserData) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 

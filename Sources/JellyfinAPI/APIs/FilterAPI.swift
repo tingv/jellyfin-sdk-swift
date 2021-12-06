@@ -7,7 +7,6 @@
 
 import AnyCodable
 import Foundation
-import PromiseKit
 
 open class FilterAPI {
     /**
@@ -24,19 +23,17 @@ open class FilterAPI {
      - parameter isSeries: (query) Optional. Is item series. (optional)
      - parameter recursive: (query) Optional. Search recursive. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<QueryFilters>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getQueryFilters( userId: String? = nil,  parentId: String? = nil,  includeItemTypes: [String]? = nil,  isAiring: Bool? = nil,  isMovie: Bool? = nil,  isSports: Bool? = nil,  isKids: Bool? = nil,  isNews: Bool? = nil,  isSeries: Bool? = nil,  recursive: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<QueryFilters> {
-        let deferred = Promise<QueryFilters>.pending()
+    open class func getQueryFilters(userId: String? = nil, parentId: String? = nil, includeItemTypes: [String]? = nil, isAiring: Bool? = nil, isMovie: Bool? = nil, isSports: Bool? = nil, isKids: Bool? = nil, isNews: Bool? = nil, isSeries: Bool? = nil, recursive: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<QueryFilters, Error>) -> Void)) {
         getQueryFiltersWithRequestBuilder(userId: userId, parentId: parentId, includeItemTypes: includeItemTypes, isAiring: isAiring, isMovie: isMovie, isSports: isSports, isKids: isKids, isNews: isNews, isSeries: isSeries, recursive: recursive).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -95,19 +92,17 @@ open class FilterAPI {
      - parameter includeItemTypes: (query) Optional. If specified, results will be filtered based on item type. This allows multiple, comma delimited. (optional)
      - parameter mediaTypes: (query) Optional. Filter by MediaType. Allows multiple, comma delimited. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<QueryFiltersLegacy>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getQueryFiltersLegacy( userId: String? = nil,  parentId: String? = nil,  includeItemTypes: [String]? = nil,  mediaTypes: [String]? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<QueryFiltersLegacy> {
-        let deferred = Promise<QueryFiltersLegacy>.pending()
+    open class func getQueryFiltersLegacy(userId: String? = nil, parentId: String? = nil, includeItemTypes: [String]? = nil, mediaTypes: [String]? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<QueryFiltersLegacy, Error>) -> Void)) {
         getQueryFiltersLegacyWithRequestBuilder(userId: userId, parentId: parentId, includeItemTypes: includeItemTypes, mediaTypes: mediaTypes).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**

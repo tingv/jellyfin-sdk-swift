@@ -7,7 +7,6 @@
 
 import AnyCodable
 import Foundation
-import PromiseKit
 
 open class RemoteImageAPI {
     /**
@@ -17,19 +16,17 @@ open class RemoteImageAPI {
      - parameter type: (query) The image type. 
      - parameter imageUrl: (query) The image url. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func downloadRemoteImage( itemId: String,  type: ImageType,  imageUrl: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func downloadRemoteImage(itemId: String, type: ImageType, imageUrl: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         downloadRemoteImageWithRequestBuilder(itemId: itemId, type: type, imageUrl: imageUrl).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -73,19 +70,17 @@ open class RemoteImageAPI {
      
      - parameter itemId: (path) Item Id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<[ImageProviderInfo]>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getRemoteImageProviders( itemId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[ImageProviderInfo]> {
-        let deferred = Promise<[ImageProviderInfo]>.pending()
+    open class func getRemoteImageProviders(itemId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[ImageProviderInfo], Error>) -> Void)) {
         getRemoteImageProvidersWithRequestBuilder(itemId: itemId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -128,19 +123,17 @@ open class RemoteImageAPI {
      - parameter providerName: (query) Optional. The image provider to use. (optional)
      - parameter includeAllLanguages: (query) Optional. Include all languages. (optional, default to false)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<RemoteImageResult>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getRemoteImages( itemId: String,  type: ImageType? = nil,  startIndex: Int? = nil,  limit: Int? = nil,  providerName: String? = nil,  includeAllLanguages: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<RemoteImageResult> {
-        let deferred = Promise<RemoteImageResult>.pending()
+    open class func getRemoteImages(itemId: String, type: ImageType? = nil, startIndex: Int? = nil, limit: Int? = nil, providerName: String? = nil, includeAllLanguages: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<RemoteImageResult, Error>) -> Void)) {
         getRemoteImagesWithRequestBuilder(itemId: itemId, type: type, startIndex: startIndex, limit: limit, providerName: providerName, includeAllLanguages: includeAllLanguages).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**

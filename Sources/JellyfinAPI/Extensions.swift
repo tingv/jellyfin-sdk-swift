@@ -8,7 +8,6 @@ import Foundation
 #if canImport(AnyCodable)
 import AnyCodable
 #endif
-import PromiseKit
 
 extension Bool: JSONEncodable {}
 extension Float: JSONEncodable {}
@@ -155,20 +154,5 @@ extension KeyedDecodingContainerProtocol {
 extension HTTPURLResponse {
     var isStatusCodeSuccessful: Bool {
         return (200 ..< 300).contains(statusCode)
-    }
-}
-
-extension RequestBuilder {
-    public func execute() -> Promise<Response<T>> {
-        let deferred = Promise<Response<T>>.pending()
-        self.execute { result in
-            switch result {
-            case let .success(response):
-                deferred.resolver.fulfill(response)
-            case let .failure(error):
-                deferred.resolver.reject(error)
-            }
-        }
-        return deferred.promise
     }
 }

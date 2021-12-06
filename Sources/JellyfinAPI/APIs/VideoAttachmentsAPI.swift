@@ -7,7 +7,6 @@
 
 import AnyCodable
 import Foundation
-import PromiseKit
 
 open class VideoAttachmentsAPI {
     /**
@@ -17,19 +16,17 @@ open class VideoAttachmentsAPI {
      - parameter mediaSourceId: (path) Media Source ID. 
      - parameter index: (path) Attachment Index. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getAttachment( videoId: String,  mediaSourceId: String,  index: Int, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func getAttachment(videoId: String, mediaSourceId: String, index: Int, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         getAttachmentWithRequestBuilder(videoId: videoId, mediaSourceId: mediaSourceId, index: index).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**

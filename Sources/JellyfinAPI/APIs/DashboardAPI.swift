@@ -7,7 +7,6 @@
 
 import AnyCodable
 import Foundation
-import PromiseKit
 
 open class DashboardAPI {
     /**
@@ -16,19 +15,17 @@ open class DashboardAPI {
      - parameter enableInMainMenu: (query) Whether to enable in the main menu. (optional)
      - parameter pageType: (query) The Jellyfin.Api.Models.ConfigurationPageInfo. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<[ConfigurationPageInfo]>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getConfigurationPages( enableInMainMenu: Bool? = nil,  pageType: ConfigurationPageType? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[ConfigurationPageInfo]> {
-        let deferred = Promise<[ConfigurationPageInfo]>.pending()
+    open class func getConfigurationPages(enableInMainMenu: Bool? = nil, pageType: ConfigurationPageType? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[ConfigurationPageInfo], Error>) -> Void)) {
         getConfigurationPagesWithRequestBuilder(enableInMainMenu: enableInMainMenu, pageType: pageType).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -65,19 +62,17 @@ open class DashboardAPI {
      
      - parameter name: (query) The name of the page. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<URL>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getDashboardConfigurationPage( name: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<URL> {
-        let deferred = Promise<URL>.pending()
+    open class func getDashboardConfigurationPage(name: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<URL, Error>) -> Void)) {
         getDashboardConfigurationPageWithRequestBuilder(name: name).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**

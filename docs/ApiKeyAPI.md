@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 # **createKey**
 ```swift
-    open class func createKey( app: String) -> Promise<Void>
+    open class func createKey(app: String, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Create a new api key.
@@ -24,12 +24,15 @@ import JellyfinAPI
 let app = "app_example" // String | Name of the app using the authentication key.
 
 // Create a new api key.
-ApiKeyAPI.createKey(app: app).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+ApiKeyAPI.createKey(app: app) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -56,7 +59,7 @@ Void (empty response body)
 
 # **getKeys**
 ```swift
-    open class func getKeys() -> Promise<AuthenticationInfoQueryResult>
+    open class func getKeys(completion: @escaping (_ data: AuthenticationInfoQueryResult?, _ error: Error?) -> Void)
 ```
 
 Get all keys.
@@ -68,12 +71,15 @@ import JellyfinAPI
 
 
 // Get all keys.
-ApiKeyAPI.getKeys().then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+ApiKeyAPI.getKeys() { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -97,7 +103,7 @@ This endpoint does not need any parameter.
 
 # **revokeKey**
 ```swift
-    open class func revokeKey( key: String) -> Promise<Void>
+    open class func revokeKey(key: String, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Remove an api key.
@@ -110,12 +116,15 @@ import JellyfinAPI
 let key = "key_example" // String | The access token to delete.
 
 // Remove an api key.
-ApiKeyAPI.revokeKey(key: key).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+ApiKeyAPI.revokeKey(key: key) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 

@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 # **getDisplayPreferences**
 ```swift
-    open class func getDisplayPreferences( displayPreferencesId: String,  userId: String,  client: String) -> Promise<DisplayPreferencesDto>
+    open class func getDisplayPreferences(displayPreferencesId: String, userId: String, client: String, completion: @escaping (_ data: DisplayPreferencesDto?, _ error: Error?) -> Void)
 ```
 
 Get Display Preferences.
@@ -25,12 +25,15 @@ let userId = "userId_example" // String | User id.
 let client = "client_example" // String | Client.
 
 // Get Display Preferences.
-DisplayPreferencesAPI.getDisplayPreferences(displayPreferencesId: displayPreferencesId, userId: userId, client: client).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+DisplayPreferencesAPI.getDisplayPreferences(displayPreferencesId: displayPreferencesId, userId: userId, client: client) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -59,7 +62,7 @@ Name | Type | Description  | Notes
 
 # **updateDisplayPreferences**
 ```swift
-    open class func updateDisplayPreferences( displayPreferencesId: String,  userId: String,  client: String,  displayPreferencesDto: DisplayPreferencesDto) -> Promise<Void>
+    open class func updateDisplayPreferences(displayPreferencesId: String, userId: String, client: String, displayPreferencesDto: DisplayPreferencesDto, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Update Display Preferences.
@@ -75,12 +78,15 @@ let client = "client_example" // String | Client.
 let displayPreferencesDto = DisplayPreferencesDto(id: "id_example", viewType: "viewType_example", sortBy: "sortBy_example", indexBy: "indexBy_example", rememberIndexing: false, primaryImageHeight: 123, primaryImageWidth: 123, customPrefs: "TODO", scrollDirection: ScrollDirection(), showBackdrop: false, rememberSorting: false, aPISortOrder: APISortOrder(), showSidebar: false, client: "client_example") // DisplayPreferencesDto | New Display Preferences object.
 
 // Update Display Preferences.
-DisplayPreferencesAPI.updateDisplayPreferences(displayPreferencesId: displayPreferencesId, userId: userId, client: client, displayPreferencesDto: displayPreferencesDto).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+DisplayPreferencesAPI.updateDisplayPreferences(displayPreferencesId: displayPreferencesId, userId: userId, client: client, displayPreferencesDto: displayPreferencesDto) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 

@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 # **createAdminNotification**
 ```swift
-    open class func createAdminNotification( adminNotificationDto: AdminNotificationDto) -> Promise<Void>
+    open class func createAdminNotification(adminNotificationDto: AdminNotificationDto, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Sends a notification to all admins.
@@ -28,12 +28,15 @@ import JellyfinAPI
 let adminNotificationDto = AdminNotificationDto(name: "name_example", description: "description_example", notificationLevel: NotificationLevel(), url: "url_example") // AdminNotificationDto | The notification request.
 
 // Sends a notification to all admins.
-NotificationsAPI.createAdminNotification(adminNotificationDto: adminNotificationDto).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+NotificationsAPI.createAdminNotification(adminNotificationDto: adminNotificationDto) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -60,7 +63,7 @@ Void (empty response body)
 
 # **getNotificationServices**
 ```swift
-    open class func getNotificationServices() -> Promise<[NameIdPair]>
+    open class func getNotificationServices(completion: @escaping (_ data: [NameIdPair]?, _ error: Error?) -> Void)
 ```
 
 Gets notification services.
@@ -72,12 +75,15 @@ import JellyfinAPI
 
 
 // Gets notification services.
-NotificationsAPI.getNotificationServices().then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+NotificationsAPI.getNotificationServices() { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -101,7 +107,7 @@ This endpoint does not need any parameter.
 
 # **getNotificationTypes**
 ```swift
-    open class func getNotificationTypes() -> Promise<[NotificationTypeInfo]>
+    open class func getNotificationTypes(completion: @escaping (_ data: [NotificationTypeInfo]?, _ error: Error?) -> Void)
 ```
 
 Gets notification types.
@@ -113,12 +119,15 @@ import JellyfinAPI
 
 
 // Gets notification types.
-NotificationsAPI.getNotificationTypes().then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+NotificationsAPI.getNotificationTypes() { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -142,7 +151,7 @@ This endpoint does not need any parameter.
 
 # **getNotifications**
 ```swift
-    open class func getNotifications( userId: String) -> Promise<NotificationResultDto>
+    open class func getNotifications(userId: String, completion: @escaping (_ data: NotificationResultDto?, _ error: Error?) -> Void)
 ```
 
 Gets a user's notifications.
@@ -155,12 +164,15 @@ import JellyfinAPI
 let userId = "userId_example" // String | 
 
 // Gets a user's notifications.
-NotificationsAPI.getNotifications(userId: userId).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+NotificationsAPI.getNotifications(userId: userId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -187,7 +199,7 @@ Name | Type | Description  | Notes
 
 # **getNotificationsSummary**
 ```swift
-    open class func getNotificationsSummary( userId: String) -> Promise<NotificationsSummaryDto>
+    open class func getNotificationsSummary(userId: String, completion: @escaping (_ data: NotificationsSummaryDto?, _ error: Error?) -> Void)
 ```
 
 Gets a user's notification summary.
@@ -200,12 +212,15 @@ import JellyfinAPI
 let userId = "userId_example" // String | 
 
 // Gets a user's notification summary.
-NotificationsAPI.getNotificationsSummary(userId: userId).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+NotificationsAPI.getNotificationsSummary(userId: userId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -232,7 +247,7 @@ Name | Type | Description  | Notes
 
 # **setRead**
 ```swift
-    open class func setRead( userId: String) -> Promise<Void>
+    open class func setRead(userId: String, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Sets notifications as read.
@@ -245,12 +260,15 @@ import JellyfinAPI
 let userId = "userId_example" // String | 
 
 // Sets notifications as read.
-NotificationsAPI.setRead(userId: userId).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+NotificationsAPI.setRead(userId: userId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 
@@ -277,7 +295,7 @@ Void (empty response body)
 
 # **setUnread**
 ```swift
-    open class func setUnread( userId: String) -> Promise<Void>
+    open class func setUnread(userId: String, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Sets notifications as unread.
@@ -290,12 +308,15 @@ import JellyfinAPI
 let userId = "userId_example" // String | 
 
 // Sets notifications as unread.
-NotificationsAPI.setUnread(userId: userId).then {
-         // when the promise is fulfilled
-     }.always {
-         // regardless of whether the promise is fulfilled, or rejected
-     }.catch { errorType in
-         // when the promise is rejected
+NotificationsAPI.setUnread(userId: userId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
 }
 ```
 

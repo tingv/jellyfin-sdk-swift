@@ -7,7 +7,6 @@
 
 import AnyCodable
 import Foundation
-import PromiseKit
 
 open class ScheduledTasksAPI {
     /**
@@ -15,19 +14,17 @@ open class ScheduledTasksAPI {
      
      - parameter taskId: (path) Task Id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<TaskInfo>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getTask( taskId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<TaskInfo> {
-        let deferred = Promise<TaskInfo>.pending()
+    open class func getTask(taskId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<TaskInfo, Error>) -> Void)) {
         getTaskWithRequestBuilder(taskId: taskId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -66,19 +63,17 @@ open class ScheduledTasksAPI {
      - parameter isHidden: (query) Optional filter tasks that are hidden, or not. (optional)
      - parameter isEnabled: (query) Optional filter tasks that are enabled, or not. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<[TaskInfo]>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getTasks( isHidden: Bool? = nil,  isEnabled: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[TaskInfo]> {
-        let deferred = Promise<[TaskInfo]>.pending()
+    open class func getTasks(isHidden: Bool? = nil, isEnabled: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[TaskInfo], Error>) -> Void)) {
         getTasksWithRequestBuilder(isHidden: isHidden, isEnabled: isEnabled).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -118,19 +113,17 @@ open class ScheduledTasksAPI {
      
      - parameter taskId: (path) Task Id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func startTask( taskId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func startTask(taskId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         startTaskWithRequestBuilder(taskId: taskId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -168,19 +161,17 @@ open class ScheduledTasksAPI {
      
      - parameter taskId: (path) Task Id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func stopTask( taskId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func stopTask(taskId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         stopTaskWithRequestBuilder(taskId: taskId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -219,19 +210,17 @@ open class ScheduledTasksAPI {
      - parameter taskId: (path) Task Id. 
      - parameter taskTriggerInfo: (body) Triggers. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func updateTask( taskId: String,  taskTriggerInfo: [TaskTriggerInfo], apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func updateTask(taskId: String, taskTriggerInfo: [TaskTriggerInfo], apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         updateTaskWithRequestBuilder(taskId: taskId, taskTriggerInfo: taskTriggerInfo).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**

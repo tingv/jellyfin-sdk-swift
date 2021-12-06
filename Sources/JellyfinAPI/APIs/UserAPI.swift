@@ -7,7 +7,6 @@
 
 import AnyCodable
 import Foundation
-import PromiseKit
 
 open class UserAPI {
     /**
@@ -17,19 +16,17 @@ open class UserAPI {
      - parameter pw: (query) The password as plain text. 
      - parameter password: (query) The password sha1-hash. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<AuthenticationResult>
+     - parameter completion: completion handler to receive the result
      */
-    open class func authenticateUser( userId: String,  pw: String,  password: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<AuthenticationResult> {
-        let deferred = Promise<AuthenticationResult>.pending()
+    open class func authenticateUser(userId: String, pw: String, password: String? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<AuthenticationResult, Error>) -> Void)) {
         authenticateUserWithRequestBuilder(userId: userId, pw: pw, password: password).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -70,19 +67,17 @@ open class UserAPI {
      
      - parameter authenticateUserByName: (body) The M:Jellyfin.Api.Controllers.UserController.AuthenticateUserByName(Jellyfin.Api.Models.UserDtos.AuthenticateUserByName) request. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<AuthenticationResult>
+     - parameter completion: completion handler to receive the result
      */
-    open class func authenticateUserByName( authenticateUserByName: AuthenticateUserByName, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<AuthenticationResult> {
-        let deferred = Promise<AuthenticationResult>.pending()
+    open class func authenticateUserByName(authenticateUserByName: AuthenticateUserByName, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<AuthenticationResult, Error>) -> Void)) {
         authenticateUserByNameWithRequestBuilder(authenticateUserByName: authenticateUserByName).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -114,19 +109,17 @@ open class UserAPI {
      
      - parameter quickConnectDto: (body) The Jellyfin.Api.Models.UserDtos.QuickConnectDto request. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<AuthenticationResult>
+     - parameter completion: completion handler to receive the result
      */
-    open class func authenticateWithQuickConnect( quickConnectDto: QuickConnectDto, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<AuthenticationResult> {
-        let deferred = Promise<AuthenticationResult>.pending()
+    open class func authenticateWithQuickConnect(quickConnectDto: QuickConnectDto, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<AuthenticationResult, Error>) -> Void)) {
         authenticateWithQuickConnectWithRequestBuilder(quickConnectDto: quickConnectDto).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -158,19 +151,17 @@ open class UserAPI {
      
      - parameter createUserByName: (body) The create user by name request body. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<UserDto>
+     - parameter completion: completion handler to receive the result
      */
-    open class func createUserByName( createUserByName: CreateUserByName, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<UserDto> {
-        let deferred = Promise<UserDto>.pending()
+    open class func createUserByName(createUserByName: CreateUserByName, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<UserDto, Error>) -> Void)) {
         createUserByNameWithRequestBuilder(createUserByName: createUserByName).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -205,19 +196,17 @@ open class UserAPI {
      
      - parameter userId: (path) The user id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func deleteUser( userId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func deleteUser(userId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         deleteUserWithRequestBuilder(userId: userId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -255,19 +244,17 @@ open class UserAPI {
      
      - parameter forgotPasswordDto: (body) The forgot password request containing the entered username. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<ForgotPasswordResult>
+     - parameter completion: completion handler to receive the result
      */
-    open class func forgotPassword( forgotPasswordDto: ForgotPasswordDto, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<ForgotPasswordResult> {
-        let deferred = Promise<ForgotPasswordResult>.pending()
+    open class func forgotPassword(forgotPasswordDto: ForgotPasswordDto, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<ForgotPasswordResult, Error>) -> Void)) {
         forgotPasswordWithRequestBuilder(forgotPasswordDto: forgotPasswordDto).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -299,19 +286,17 @@ open class UserAPI {
      
      - parameter forgotPasswordPinDto: (body) The forgot password pin request containing the entered pin. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<PinRedeemResult>
+     - parameter completion: completion handler to receive the result
      */
-    open class func forgotPasswordPin( forgotPasswordPinDto: ForgotPasswordPinDto, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<PinRedeemResult> {
-        let deferred = Promise<PinRedeemResult>.pending()
+    open class func forgotPasswordPin(forgotPasswordPinDto: ForgotPasswordPinDto, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<PinRedeemResult, Error>) -> Void)) {
         forgotPasswordPinWithRequestBuilder(forgotPasswordPinDto: forgotPasswordPinDto).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -342,19 +327,17 @@ open class UserAPI {
      Gets the user based on auth token.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<UserDto>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getCurrentUser(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<UserDto> {
-        let deferred = Promise<UserDto>.pending()
+    open class func getCurrentUser(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<UserDto, Error>) -> Void)) {
         getCurrentUserWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -387,19 +370,17 @@ open class UserAPI {
      Gets a list of publicly visible users for display on a login screen.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<[UserDto]>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getPublicUsers(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[UserDto]> {
-        let deferred = Promise<[UserDto]>.pending()
+    open class func getPublicUsers(apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[UserDto], Error>) -> Void)) {
         getPublicUsersWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -430,19 +411,17 @@ open class UserAPI {
      
      - parameter userId: (path) The user id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<UserDto>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getUserById( userId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<UserDto> {
-        let deferred = Promise<UserDto>.pending()
+    open class func getUserById(userId: String, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<UserDto, Error>) -> Void)) {
         getUserByIdWithRequestBuilder(userId: userId).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -481,19 +460,17 @@ open class UserAPI {
      - parameter isHidden: (query) Optional filter by IsHidden&#x3D;true or false. (optional)
      - parameter isDisabled: (query) Optional filter by IsDisabled&#x3D;true or false. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<[UserDto]>
+     - parameter completion: completion handler to receive the result
      */
-    open class func getUsers( isHidden: Bool? = nil,  isDisabled: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<[UserDto]> {
-        let deferred = Promise<[UserDto]>.pending()
+    open class func getUsers(isHidden: Bool? = nil, isDisabled: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[UserDto], Error>) -> Void)) {
         getUsersWithRequestBuilder(isHidden: isHidden, isDisabled: isDisabled).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
-                deferred.resolver.fulfill(response.body!)
+                completion(.success(response.body!))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -534,19 +511,17 @@ open class UserAPI {
      - parameter userId: (path) The user id. 
      - parameter userDto: (body) The updated user model. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func updateUser( userId: String,  userDto: UserDto, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func updateUser(userId: String, userDto: UserDto, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         updateUserWithRequestBuilder(userId: userId, userDto: userDto).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -586,19 +561,17 @@ open class UserAPI {
      - parameter userId: (path) The user id. 
      - parameter userConfiguration: (body) The new user configuration. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func updateUserConfiguration( userId: String,  userConfiguration: UserConfiguration, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func updateUserConfiguration(userId: String, userConfiguration: UserConfiguration, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         updateUserConfigurationWithRequestBuilder(userId: userId, userConfiguration: userConfiguration).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -638,19 +611,17 @@ open class UserAPI {
      - parameter userId: (path) The user id. 
      - parameter updateUserEasyPassword: (body) The M:Jellyfin.Api.Controllers.UserController.UpdateUserEasyPassword(System.Guid,Jellyfin.Api.Models.UserDtos.UpdateUserEasyPassword) request. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func updateUserEasyPassword( userId: String,  updateUserEasyPassword: UpdateUserEasyPassword, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func updateUserEasyPassword(userId: String, updateUserEasyPassword: UpdateUserEasyPassword, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         updateUserEasyPasswordWithRequestBuilder(userId: userId, updateUserEasyPassword: updateUserEasyPassword).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -690,19 +661,17 @@ open class UserAPI {
      - parameter userId: (path) The user id. 
      - parameter updateUserPassword: (body) The M:Jellyfin.Api.Controllers.UserController.UpdateUserPassword(System.Guid,Jellyfin.Api.Models.UserDtos.UpdateUserPassword) request. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func updateUserPassword( userId: String,  updateUserPassword: UpdateUserPassword, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func updateUserPassword(userId: String, updateUserPassword: UpdateUserPassword, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         updateUserPasswordWithRequestBuilder(userId: userId, updateUserPassword: updateUserPassword).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
@@ -742,19 +711,17 @@ open class UserAPI {
      - parameter userId: (path) The user id. 
      - parameter userPolicy: (body) The new user policy. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Promise<Void>
+     - parameter completion: completion handler to receive the result
      */
-    open class func updateUserPolicy( userId: String,  userPolicy: UserPolicy, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue) -> Promise<Void> {
-        let deferred = Promise<Void>.pending()
+    open class func updateUserPolicy(userId: String, userPolicy: UserPolicy, apiResponseQueue: DispatchQueue = JellyfinAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, Error>) -> Void)) {
         updateUserPolicyWithRequestBuilder(userId: userId, userPolicy: userPolicy).execute(apiResponseQueue) { result -> Void in
             switch result {
             case .success:
-                deferred.resolver.fulfill(())
+                completion(.success(()))
             case let .failure(error):
-                deferred.resolver.reject(error)
+                completion(.failure(error))
             }
         }
-        return deferred.promise
     }
 
     /**
