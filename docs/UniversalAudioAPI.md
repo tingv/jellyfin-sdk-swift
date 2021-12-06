@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 # **getUniversalAudioStream**
 ```swift
-    open class func getUniversalAudioStream(itemId: String, container: [String]? = nil, mediaSourceId: String? = nil, deviceId: String? = nil, userId: String? = nil, audioCodec: String? = nil, maxAudioChannels: Int? = nil, transcodingAudioChannels: Int? = nil, maxStreamingBitrate: Int? = nil, audioBitRate: Int? = nil, startTimeTicks: Int64? = nil, transcodingContainer: String? = nil, transcodingProtocol: String? = nil, maxAudioSampleRate: Int? = nil, maxAudioBitDepth: Int? = nil, enableRemoteMedia: Bool? = nil, breakOnNonKeyFrames: Bool? = nil, enableRedirection: Bool? = nil, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func getUniversalAudioStream( itemId: String,  container: [String]? = nil,  mediaSourceId: String? = nil,  deviceId: String? = nil,  userId: String? = nil,  audioCodec: String? = nil,  maxAudioChannels: Int? = nil,  transcodingAudioChannels: Int? = nil,  maxStreamingBitrate: Int? = nil,  audioBitRate: Int? = nil,  startTimeTicks: Int64? = nil,  transcodingContainer: String? = nil,  transcodingProtocol: String? = nil,  maxAudioSampleRate: Int? = nil,  maxAudioBitDepth: Int? = nil,  enableRemoteMedia: Bool? = nil,  breakOnNonKeyFrames: Bool? = nil,  enableRedirection: Bool? = nil) -> Promise<URL>
 ```
 
 Gets an audio stream.
@@ -40,15 +40,12 @@ let breakOnNonKeyFrames = true // Bool | Optional. Whether to break on non key f
 let enableRedirection = true // Bool | Whether to enable redirection. Defaults to true. (optional) (default to true)
 
 // Gets an audio stream.
-UniversalAudioAPI.getUniversalAudioStream(itemId: itemId, container: container, mediaSourceId: mediaSourceId, deviceId: deviceId, userId: userId, audioCodec: audioCodec, maxAudioChannels: maxAudioChannels, transcodingAudioChannels: transcodingAudioChannels, maxStreamingBitrate: maxStreamingBitrate, audioBitRate: audioBitRate, startTimeTicks: startTimeTicks, transcodingContainer: transcodingContainer, transcodingProtocol: transcodingProtocol, maxAudioSampleRate: maxAudioSampleRate, maxAudioBitDepth: maxAudioBitDepth, enableRemoteMedia: enableRemoteMedia, breakOnNonKeyFrames: breakOnNonKeyFrames, enableRedirection: enableRedirection) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+UniversalAudioAPI.getUniversalAudioStream(itemId: itemId, container: container, mediaSourceId: mediaSourceId, deviceId: deviceId, userId: userId, audioCodec: audioCodec, maxAudioChannels: maxAudioChannels, transcodingAudioChannels: transcodingAudioChannels, maxStreamingBitrate: maxStreamingBitrate, audioBitRate: audioBitRate, startTimeTicks: startTimeTicks, transcodingContainer: transcodingContainer, transcodingProtocol: transcodingProtocol, maxAudioSampleRate: maxAudioSampleRate, maxAudioBitDepth: maxAudioBitDepth, enableRemoteMedia: enableRemoteMedia, breakOnNonKeyFrames: breakOnNonKeyFrames, enableRedirection: enableRedirection).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -92,7 +89,7 @@ Name | Type | Description  | Notes
 
 # **headUniversalAudioStream**
 ```swift
-    open class func headUniversalAudioStream(itemId: String, container: [String]? = nil, mediaSourceId: String? = nil, deviceId: String? = nil, userId: String? = nil, audioCodec: String? = nil, maxAudioChannels: Int? = nil, transcodingAudioChannels: Int? = nil, maxStreamingBitrate: Int? = nil, audioBitRate: Int? = nil, startTimeTicks: Int64? = nil, transcodingContainer: String? = nil, transcodingProtocol: String? = nil, maxAudioSampleRate: Int? = nil, maxAudioBitDepth: Int? = nil, enableRemoteMedia: Bool? = nil, breakOnNonKeyFrames: Bool? = nil, enableRedirection: Bool? = nil, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func headUniversalAudioStream( itemId: String,  container: [String]? = nil,  mediaSourceId: String? = nil,  deviceId: String? = nil,  userId: String? = nil,  audioCodec: String? = nil,  maxAudioChannels: Int? = nil,  transcodingAudioChannels: Int? = nil,  maxStreamingBitrate: Int? = nil,  audioBitRate: Int? = nil,  startTimeTicks: Int64? = nil,  transcodingContainer: String? = nil,  transcodingProtocol: String? = nil,  maxAudioSampleRate: Int? = nil,  maxAudioBitDepth: Int? = nil,  enableRemoteMedia: Bool? = nil,  breakOnNonKeyFrames: Bool? = nil,  enableRedirection: Bool? = nil) -> Promise<URL>
 ```
 
 Gets an audio stream.
@@ -122,15 +119,12 @@ let breakOnNonKeyFrames = true // Bool | Optional. Whether to break on non key f
 let enableRedirection = true // Bool | Whether to enable redirection. Defaults to true. (optional) (default to true)
 
 // Gets an audio stream.
-UniversalAudioAPI.headUniversalAudioStream(itemId: itemId, container: container, mediaSourceId: mediaSourceId, deviceId: deviceId, userId: userId, audioCodec: audioCodec, maxAudioChannels: maxAudioChannels, transcodingAudioChannels: transcodingAudioChannels, maxStreamingBitrate: maxStreamingBitrate, audioBitRate: audioBitRate, startTimeTicks: startTimeTicks, transcodingContainer: transcodingContainer, transcodingProtocol: transcodingProtocol, maxAudioSampleRate: maxAudioSampleRate, maxAudioBitDepth: maxAudioBitDepth, enableRemoteMedia: enableRemoteMedia, breakOnNonKeyFrames: breakOnNonKeyFrames, enableRedirection: enableRedirection) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+UniversalAudioAPI.headUniversalAudioStream(itemId: itemId, container: container, mediaSourceId: mediaSourceId, deviceId: deviceId, userId: userId, audioCodec: audioCodec, maxAudioChannels: maxAudioChannels, transcodingAudioChannels: transcodingAudioChannels, maxStreamingBitrate: maxStreamingBitrate, audioBitRate: audioBitRate, startTimeTicks: startTimeTicks, transcodingContainer: transcodingContainer, transcodingProtocol: transcodingProtocol, maxAudioSampleRate: maxAudioSampleRate, maxAudioBitDepth: maxAudioBitDepth, enableRemoteMedia: enableRemoteMedia, breakOnNonKeyFrames: breakOnNonKeyFrames, enableRedirection: enableRedirection).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 

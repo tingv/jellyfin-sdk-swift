@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 # **getGeneralImage**
 ```swift
-    open class func getGeneralImage(name: String, type: String, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func getGeneralImage( name: String,  type: String) -> Promise<URL>
 ```
 
 Get General Image.
@@ -28,15 +28,12 @@ let name = "name_example" // String | The name of the image.
 let type = "type_example" // String | Image Type (primary, backdrop, logo, etc).
 
 // Get General Image.
-ImageByNameAPI.getGeneralImage(name: name, type: type) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ImageByNameAPI.getGeneralImage(name: name, type: type).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -64,7 +61,7 @@ No authorization required
 
 # **getGeneralImages**
 ```swift
-    open class func getGeneralImages(completion: @escaping (_ data: [ImageByNameInfo]?, _ error: Error?) -> Void)
+    open class func getGeneralImages() -> Promise<[ImageByNameInfo]>
 ```
 
 Get all general images.
@@ -76,15 +73,12 @@ import JellyfinClient
 
 
 // Get all general images.
-ImageByNameAPI.getGeneralImages() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ImageByNameAPI.getGeneralImages().then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -108,7 +102,7 @@ This endpoint does not need any parameter.
 
 # **getMediaInfoImage**
 ```swift
-    open class func getMediaInfoImage(theme: String, name: String, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func getMediaInfoImage( theme: String,  name: String) -> Promise<URL>
 ```
 
 Get media info image.
@@ -122,15 +116,12 @@ let theme = "theme_example" // String | The theme to get the image from.
 let name = "name_example" // String | The name of the image.
 
 // Get media info image.
-ImageByNameAPI.getMediaInfoImage(theme: theme, name: name) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ImageByNameAPI.getMediaInfoImage(theme: theme, name: name).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -158,7 +149,7 @@ No authorization required
 
 # **getMediaInfoImages**
 ```swift
-    open class func getMediaInfoImages(completion: @escaping (_ data: [ImageByNameInfo]?, _ error: Error?) -> Void)
+    open class func getMediaInfoImages() -> Promise<[ImageByNameInfo]>
 ```
 
 Get all media info images.
@@ -170,15 +161,12 @@ import JellyfinClient
 
 
 // Get all media info images.
-ImageByNameAPI.getMediaInfoImages() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ImageByNameAPI.getMediaInfoImages().then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -202,7 +190,7 @@ This endpoint does not need any parameter.
 
 # **getRatingImage**
 ```swift
-    open class func getRatingImage(theme: String, name: String, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func getRatingImage( theme: String,  name: String) -> Promise<URL>
 ```
 
 Get rating image.
@@ -216,15 +204,12 @@ let theme = "theme_example" // String | The theme to get the image from.
 let name = "name_example" // String | The name of the image.
 
 // Get rating image.
-ImageByNameAPI.getRatingImage(theme: theme, name: name) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ImageByNameAPI.getRatingImage(theme: theme, name: name).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -252,7 +237,7 @@ No authorization required
 
 # **getRatingImages**
 ```swift
-    open class func getRatingImages(completion: @escaping (_ data: [ImageByNameInfo]?, _ error: Error?) -> Void)
+    open class func getRatingImages() -> Promise<[ImageByNameInfo]>
 ```
 
 Get all general images.
@@ -264,15 +249,12 @@ import JellyfinClient
 
 
 // Get all general images.
-ImageByNameAPI.getRatingImages() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ImageByNameAPI.getRatingImages().then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 

@@ -7,9 +7,7 @@
 
 import AnyCodable
 import Foundation
-#if canImport(Combine)
-import Combine
-#endif
+import PromiseKit
 
 open class PluginsAPI {
     /**
@@ -18,23 +16,20 @@ open class PluginsAPI {
      - parameter pluginId: (path) Plugin id. 
      - parameter version: (path) Plugin version. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: Promise<Void>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func disablePlugin(pluginId: String, version: Version, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error>.init { promise in
-            disablePluginWithRequestBuilder(pluginId: pluginId, version: version).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    promise(.success(()))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func disablePlugin( pluginId: String,  version: Version, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<Void> {
+        let deferred = Promise<Void>.pending()
+        disablePluginWithRequestBuilder(pluginId: pluginId, version: version).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case .success:
+                deferred.resolver.fulfill(())
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Disable a plugin.
@@ -76,23 +71,20 @@ open class PluginsAPI {
      - parameter pluginId: (path) Plugin id. 
      - parameter version: (path) Plugin version. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: Promise<Void>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func enablePlugin(pluginId: String, version: Version, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error>.init { promise in
-            enablePluginWithRequestBuilder(pluginId: pluginId, version: version).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    promise(.success(()))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func enablePlugin( pluginId: String,  version: Version, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<Void> {
+        let deferred = Promise<Void>.pending()
+        enablePluginWithRequestBuilder(pluginId: pluginId, version: version).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case .success:
+                deferred.resolver.fulfill(())
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Enables a disabled plugin.
@@ -133,23 +125,20 @@ open class PluginsAPI {
      
      - parameter pluginId: (path) Plugin id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<AnyCodable, Error>
+     - returns: Promise<AnyCodable>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getPluginConfiguration(pluginId: String, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<AnyCodable, Error> {
-        return Future<AnyCodable, Error>.init { promise in
-            getPluginConfigurationWithRequestBuilder(pluginId: pluginId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getPluginConfiguration( pluginId: String, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<AnyCodable> {
+        let deferred = Promise<AnyCodable>.pending()
+        getPluginConfigurationWithRequestBuilder(pluginId: pluginId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets plugin configuration.
@@ -187,23 +176,20 @@ open class PluginsAPI {
      - parameter pluginId: (path) Plugin id. 
      - parameter version: (path) Plugin version. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<URL, Error>
+     - returns: Promise<URL>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getPluginImage(pluginId: String, version: Version, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<URL, Error> {
-        return Future<URL, Error>.init { promise in
-            getPluginImageWithRequestBuilder(pluginId: pluginId, version: version).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getPluginImage( pluginId: String,  version: Version, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<URL> {
+        let deferred = Promise<URL>.pending()
+        getPluginImageWithRequestBuilder(pluginId: pluginId, version: version).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets a plugin's image.
@@ -244,23 +230,20 @@ open class PluginsAPI {
      
      - parameter pluginId: (path) Plugin id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: Promise<Void>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getPluginManifest(pluginId: String, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error>.init { promise in
-            getPluginManifestWithRequestBuilder(pluginId: pluginId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    promise(.success(()))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getPluginManifest( pluginId: String, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<Void> {
+        let deferred = Promise<Void>.pending()
+        getPluginManifestWithRequestBuilder(pluginId: pluginId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case .success:
+                deferred.resolver.fulfill(())
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets a plugin's manifest.
@@ -296,23 +279,20 @@ open class PluginsAPI {
      Gets a list of currently installed plugins.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<[PluginInfo], Error>
+     - returns: Promise<[PluginInfo]>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getPlugins(apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<[PluginInfo], Error> {
-        return Future<[PluginInfo], Error>.init { promise in
-            getPluginsWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getPlugins(apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<[PluginInfo]> {
+        let deferred = Promise<[PluginInfo]>.pending()
+        getPluginsWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets a list of currently installed plugins.
@@ -345,24 +325,21 @@ open class PluginsAPI {
      
      - parameter pluginId: (path) Plugin id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: Promise<Void>
      */
-    #if canImport(Combine)
     @available(*, deprecated, message: "This operation is deprecated.")
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func uninstallPlugin(pluginId: String, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error>.init { promise in
-            uninstallPluginWithRequestBuilder(pluginId: pluginId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    promise(.success(()))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func uninstallPlugin( pluginId: String, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<Void> {
+        let deferred = Promise<Void>.pending()
+        uninstallPluginWithRequestBuilder(pluginId: pluginId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case .success:
+                deferred.resolver.fulfill(())
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Uninstalls a plugin.
@@ -401,23 +378,20 @@ open class PluginsAPI {
      - parameter pluginId: (path) Plugin id. 
      - parameter version: (path) Plugin version. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: Promise<Void>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func uninstallPluginByVersion(pluginId: String, version: Version, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error>.init { promise in
-            uninstallPluginByVersionWithRequestBuilder(pluginId: pluginId, version: version).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    promise(.success(()))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func uninstallPluginByVersion( pluginId: String,  version: Version, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<Void> {
+        let deferred = Promise<Void>.pending()
+        uninstallPluginByVersionWithRequestBuilder(pluginId: pluginId, version: version).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case .success:
+                deferred.resolver.fulfill(())
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Uninstalls a plugin by version.
@@ -458,23 +432,20 @@ open class PluginsAPI {
      
      - parameter pluginId: (path) Plugin id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: Promise<Void>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func updatePluginConfiguration(pluginId: String, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error>.init { promise in
-            updatePluginConfigurationWithRequestBuilder(pluginId: pluginId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    promise(.success(()))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func updatePluginConfiguration( pluginId: String, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<Void> {
+        let deferred = Promise<Void>.pending()
+        updatePluginConfigurationWithRequestBuilder(pluginId: pluginId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case .success:
+                deferred.resolver.fulfill(())
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Updates plugin configuration.
@@ -512,24 +483,21 @@ open class PluginsAPI {
      
      - parameter pluginSecurityInfo: (body) Plugin security info. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: Promise<Void>
      */
-    #if canImport(Combine)
     @available(*, deprecated, message: "This operation is deprecated.")
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func updatePluginSecurityInfo(pluginSecurityInfo: PluginSecurityInfo, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error>.init { promise in
-            updatePluginSecurityInfoWithRequestBuilder(pluginSecurityInfo: pluginSecurityInfo).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    promise(.success(()))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func updatePluginSecurityInfo( pluginSecurityInfo: PluginSecurityInfo, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<Void> {
+        let deferred = Promise<Void>.pending()
+        updatePluginSecurityInfoWithRequestBuilder(pluginSecurityInfo: pluginSecurityInfo).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case .success:
+                deferred.resolver.fulfill(())
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Updates plugin security info.

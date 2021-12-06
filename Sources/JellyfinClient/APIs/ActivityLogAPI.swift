@@ -7,9 +7,7 @@
 
 import AnyCodable
 import Foundation
-#if canImport(Combine)
-import Combine
-#endif
+import PromiseKit
 
 open class ActivityLogAPI {
     /**
@@ -20,23 +18,20 @@ open class ActivityLogAPI {
      - parameter minDate: (query) Optional. The minimum date. Format &#x3D; ISO. (optional)
      - parameter hasUserId: (query) Optional. Filter log entries if it has user id, or not. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<ActivityLogEntryQueryResult, Error>
+     - returns: Promise<ActivityLogEntryQueryResult>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getLogEntries(startIndex: Int? = nil, limit: Int? = nil, minDate: Date? = nil, hasUserId: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<ActivityLogEntryQueryResult, Error> {
-        return Future<ActivityLogEntryQueryResult, Error>.init { promise in
-            getLogEntriesWithRequestBuilder(startIndex: startIndex, limit: limit, minDate: minDate, hasUserId: hasUserId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getLogEntries( startIndex: Int? = nil,  limit: Int? = nil,  minDate: Date? = nil,  hasUserId: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<ActivityLogEntryQueryResult> {
+        let deferred = Promise<ActivityLogEntryQueryResult>.pending()
+        getLogEntriesWithRequestBuilder(startIndex: startIndex, limit: limit, minDate: minDate, hasUserId: hasUserId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets activity log entries.

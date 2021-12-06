@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 # **getMusicGenre**
 ```swift
-    open class func getMusicGenre(genreName: String, userId: String? = nil, completion: @escaping (_ data: BaseItemDto?, _ error: Error?) -> Void)
+    open class func getMusicGenre( genreName: String,  userId: String? = nil) -> Promise<BaseItemDto>
 ```
 
 Gets a music genre, by name.
@@ -24,15 +24,12 @@ let genreName = "genreName_example" // String | The genre name.
 let userId = "userId_example" // String | Optional. Filter by user id, and attach user data. (optional)
 
 // Gets a music genre, by name.
-MusicGenresAPI.getMusicGenre(genreName: genreName, userId: userId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+MusicGenresAPI.getMusicGenre(genreName: genreName, userId: userId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -60,7 +57,7 @@ Name | Type | Description  | Notes
 
 # **getMusicGenres**
 ```swift
-    open class func getMusicGenres(startIndex: Int? = nil, limit: Int? = nil, searchTerm: String? = nil, parentId: String? = nil, fields: [ItemFields]? = nil, excludeItemTypes: [String]? = nil, includeItemTypes: [String]? = nil, isFavorite: Bool? = nil, imageTypeLimit: Int? = nil, enableImageTypes: [ImageType]? = nil, userId: String? = nil, nameStartsWithOrGreater: String? = nil, nameStartsWith: String? = nil, nameLessThan: String? = nil, enableImages: Bool? = nil, enableTotalRecordCount: Bool? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
+    open class func getMusicGenres( startIndex: Int? = nil,  limit: Int? = nil,  searchTerm: String? = nil,  parentId: String? = nil,  fields: [ItemFields]? = nil,  excludeItemTypes: [String]? = nil,  includeItemTypes: [String]? = nil,  isFavorite: Bool? = nil,  imageTypeLimit: Int? = nil,  enableImageTypes: [ImageType]? = nil,  userId: String? = nil,  nameStartsWithOrGreater: String? = nil,  nameStartsWith: String? = nil,  nameLessThan: String? = nil,  enableImages: Bool? = nil,  enableTotalRecordCount: Bool? = nil) -> Promise<BaseItemDtoQueryResult>
 ```
 
 Gets all music genres from a given item, folder, or the entire library.
@@ -88,15 +85,12 @@ let enableImages = true // Bool | Optional, include image information in output.
 let enableTotalRecordCount = true // Bool | Optional. Include total record count. (optional) (default to true)
 
 // Gets all music genres from a given item, folder, or the entire library.
-MusicGenresAPI.getMusicGenres(startIndex: startIndex, limit: limit, searchTerm: searchTerm, parentId: parentId, fields: fields, excludeItemTypes: excludeItemTypes, includeItemTypes: includeItemTypes, isFavorite: isFavorite, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes, userId: userId, nameStartsWithOrGreater: nameStartsWithOrGreater, nameStartsWith: nameStartsWith, nameLessThan: nameLessThan, enableImages: enableImages, enableTotalRecordCount: enableTotalRecordCount) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+MusicGenresAPI.getMusicGenres(startIndex: startIndex, limit: limit, searchTerm: searchTerm, parentId: parentId, fields: fields, excludeItemTypes: excludeItemTypes, includeItemTypes: includeItemTypes, isFavorite: isFavorite, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes, userId: userId, nameStartsWithOrGreater: nameStartsWithOrGreater, nameStartsWith: nameStartsWith, nameLessThan: nameLessThan, enableImages: enableImages, enableTotalRecordCount: enableTotalRecordCount).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 

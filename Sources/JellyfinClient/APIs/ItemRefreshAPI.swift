@@ -7,9 +7,7 @@
 
 import AnyCodable
 import Foundation
-#if canImport(Combine)
-import Combine
-#endif
+import PromiseKit
 
 open class ItemRefreshAPI {
     /**
@@ -21,23 +19,20 @@ open class ItemRefreshAPI {
      - parameter replaceAllMetadata: (query) (Optional) Determines if metadata should be replaced. Only applicable if mode is FullRefresh. (optional, default to false)
      - parameter replaceAllImages: (query) (Optional) Determines if images should be replaced. Only applicable if mode is FullRefresh. (optional, default to false)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: Promise<Void>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func post(itemId: String, metadataRefreshMode: MetadataRefreshMode? = nil, imageRefreshMode: MetadataRefreshMode? = nil, replaceAllMetadata: Bool? = nil, replaceAllImages: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error>.init { promise in
-            postWithRequestBuilder(itemId: itemId, metadataRefreshMode: metadataRefreshMode, imageRefreshMode: imageRefreshMode, replaceAllMetadata: replaceAllMetadata, replaceAllImages: replaceAllImages).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    promise(.success(()))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func post( itemId: String,  metadataRefreshMode: MetadataRefreshMode? = nil,  imageRefreshMode: MetadataRefreshMode? = nil,  replaceAllMetadata: Bool? = nil,  replaceAllImages: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<Void> {
+        let deferred = Promise<Void>.pending()
+        postWithRequestBuilder(itemId: itemId, metadataRefreshMode: metadataRefreshMode, imageRefreshMode: imageRefreshMode, replaceAllMetadata: replaceAllMetadata, replaceAllImages: replaceAllImages).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case .success:
+                deferred.resolver.fulfill(())
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Refreshes metadata for an item.

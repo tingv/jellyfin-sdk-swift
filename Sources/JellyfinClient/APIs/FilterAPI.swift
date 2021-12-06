@@ -7,9 +7,7 @@
 
 import AnyCodable
 import Foundation
-#if canImport(Combine)
-import Combine
-#endif
+import PromiseKit
 
 open class FilterAPI {
     /**
@@ -26,23 +24,20 @@ open class FilterAPI {
      - parameter isSeries: (query) Optional. Is item series. (optional)
      - parameter recursive: (query) Optional. Search recursive. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<QueryFilters, Error>
+     - returns: Promise<QueryFilters>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getQueryFilters(userId: String? = nil, parentId: String? = nil, includeItemTypes: [String]? = nil, isAiring: Bool? = nil, isMovie: Bool? = nil, isSports: Bool? = nil, isKids: Bool? = nil, isNews: Bool? = nil, isSeries: Bool? = nil, recursive: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<QueryFilters, Error> {
-        return Future<QueryFilters, Error>.init { promise in
-            getQueryFiltersWithRequestBuilder(userId: userId, parentId: parentId, includeItemTypes: includeItemTypes, isAiring: isAiring, isMovie: isMovie, isSports: isSports, isKids: isKids, isNews: isNews, isSeries: isSeries, recursive: recursive).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getQueryFilters( userId: String? = nil,  parentId: String? = nil,  includeItemTypes: [String]? = nil,  isAiring: Bool? = nil,  isMovie: Bool? = nil,  isSports: Bool? = nil,  isKids: Bool? = nil,  isNews: Bool? = nil,  isSeries: Bool? = nil,  recursive: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<QueryFilters> {
+        let deferred = Promise<QueryFilters>.pending()
+        getQueryFiltersWithRequestBuilder(userId: userId, parentId: parentId, includeItemTypes: includeItemTypes, isAiring: isAiring, isMovie: isMovie, isSports: isSports, isKids: isKids, isNews: isNews, isSeries: isSeries, recursive: recursive).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets query filters.
@@ -100,23 +95,20 @@ open class FilterAPI {
      - parameter includeItemTypes: (query) Optional. If specified, results will be filtered based on item type. This allows multiple, comma delimited. (optional)
      - parameter mediaTypes: (query) Optional. Filter by MediaType. Allows multiple, comma delimited. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<QueryFiltersLegacy, Error>
+     - returns: Promise<QueryFiltersLegacy>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getQueryFiltersLegacy(userId: String? = nil, parentId: String? = nil, includeItemTypes: [String]? = nil, mediaTypes: [String]? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<QueryFiltersLegacy, Error> {
-        return Future<QueryFiltersLegacy, Error>.init { promise in
-            getQueryFiltersLegacyWithRequestBuilder(userId: userId, parentId: parentId, includeItemTypes: includeItemTypes, mediaTypes: mediaTypes).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getQueryFiltersLegacy( userId: String? = nil,  parentId: String? = nil,  includeItemTypes: [String]? = nil,  mediaTypes: [String]? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<QueryFiltersLegacy> {
+        let deferred = Promise<QueryFiltersLegacy>.pending()
+        getQueryFiltersLegacyWithRequestBuilder(userId: userId, parentId: parentId, includeItemTypes: includeItemTypes, mediaTypes: mediaTypes).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets legacy query filters.

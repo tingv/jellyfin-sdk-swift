@@ -7,9 +7,7 @@
 
 import AnyCodable
 import Foundation
-#if canImport(Combine)
-import Combine
-#endif
+import PromiseKit
 
 open class PlaylistsAPI {
     /**
@@ -19,23 +17,20 @@ open class PlaylistsAPI {
      - parameter ids: (query) Item id, comma delimited. (optional)
      - parameter userId: (query) The userId. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: Promise<Void>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func addToPlaylist(playlistId: String, ids: [String]? = nil, userId: String? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error>.init { promise in
-            addToPlaylistWithRequestBuilder(playlistId: playlistId, ids: ids, userId: userId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    promise(.success(()))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func addToPlaylist( playlistId: String,  ids: [String]? = nil,  userId: String? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<Void> {
+        let deferred = Promise<Void>.pending()
+        addToPlaylistWithRequestBuilder(playlistId: playlistId, ids: ids, userId: userId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case .success:
+                deferred.resolver.fulfill(())
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Adds items to a playlist.
@@ -82,23 +77,20 @@ open class PlaylistsAPI {
      - parameter mediaType: (query) The media type. (optional)
      - parameter createPlaylistDto: (body) The create playlist payload. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<PlaylistCreationResult, Error>
+     - returns: Promise<PlaylistCreationResult>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func createPlaylist(name: String? = nil, ids: [String]? = nil, userId: String? = nil, mediaType: String? = nil, createPlaylistDto: CreatePlaylistDto? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<PlaylistCreationResult, Error> {
-        return Future<PlaylistCreationResult, Error>.init { promise in
-            createPlaylistWithRequestBuilder(name: name, ids: ids, userId: userId, mediaType: mediaType, createPlaylistDto: createPlaylistDto).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func createPlaylist( name: String? = nil,  ids: [String]? = nil,  userId: String? = nil,  mediaType: String? = nil,  createPlaylistDto: CreatePlaylistDto? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<PlaylistCreationResult> {
+        let deferred = Promise<PlaylistCreationResult>.pending()
+        createPlaylistWithRequestBuilder(name: name, ids: ids, userId: userId, mediaType: mediaType, createPlaylistDto: createPlaylistDto).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Creates a new playlist.
@@ -151,23 +143,20 @@ open class PlaylistsAPI {
      - parameter imageTypeLimit: (query) Optional. The max number of images to return, per image type. (optional)
      - parameter enableImageTypes: (query) Optional. The image types to include in the output. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<BaseItemDtoQueryResult, Error>
+     - returns: Promise<BaseItemDtoQueryResult>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getPlaylistItems(playlistId: String, userId: String, startIndex: Int? = nil, limit: Int? = nil, fields: [ItemFields]? = nil, enableImages: Bool? = nil, enableUserData: Bool? = nil, imageTypeLimit: Int? = nil, enableImageTypes: [ImageType]? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<BaseItemDtoQueryResult, Error> {
-        return Future<BaseItemDtoQueryResult, Error>.init { promise in
-            getPlaylistItemsWithRequestBuilder(playlistId: playlistId, userId: userId, startIndex: startIndex, limit: limit, fields: fields, enableImages: enableImages, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getPlaylistItems( playlistId: String,  userId: String,  startIndex: Int? = nil,  limit: Int? = nil,  fields: [ItemFields]? = nil,  enableImages: Bool? = nil,  enableUserData: Bool? = nil,  imageTypeLimit: Int? = nil,  enableImageTypes: [ImageType]? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<BaseItemDtoQueryResult> {
+        let deferred = Promise<BaseItemDtoQueryResult>.pending()
+        getPlaylistItemsWithRequestBuilder(playlistId: playlistId, userId: userId, startIndex: startIndex, limit: limit, fields: fields, enableImages: enableImages, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets the original items of a playlist.
@@ -224,23 +213,20 @@ open class PlaylistsAPI {
      - parameter itemId: (path) The item id. 
      - parameter newIndex: (path) The new index. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: Promise<Void>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func moveItem(playlistId: String, itemId: String, newIndex: Int, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error>.init { promise in
-            moveItemWithRequestBuilder(playlistId: playlistId, itemId: itemId, newIndex: newIndex).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    promise(.success(()))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func moveItem( playlistId: String,  itemId: String,  newIndex: Int, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<Void> {
+        let deferred = Promise<Void>.pending()
+        moveItemWithRequestBuilder(playlistId: playlistId, itemId: itemId, newIndex: newIndex).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case .success:
+                deferred.resolver.fulfill(())
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Moves a playlist item.
@@ -286,23 +272,20 @@ open class PlaylistsAPI {
      - parameter playlistId: (path) The playlist id. 
      - parameter entryIds: (query) The item ids, comma delimited. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: Promise<Void>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func removeFromPlaylist(playlistId: String, entryIds: [String]? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error>.init { promise in
-            removeFromPlaylistWithRequestBuilder(playlistId: playlistId, entryIds: entryIds).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    promise(.success(()))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func removeFromPlaylist( playlistId: String,  entryIds: [String]? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<Void> {
+        let deferred = Promise<Void>.pending()
+        removeFromPlaylistWithRequestBuilder(playlistId: playlistId, entryIds: entryIds).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case .success:
+                deferred.resolver.fulfill(())
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Removes items from a playlist.

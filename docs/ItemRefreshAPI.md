@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 # **post**
 ```swift
-    open class func post(itemId: String, metadataRefreshMode: MetadataRefreshMode? = nil, imageRefreshMode: MetadataRefreshMode? = nil, replaceAllMetadata: Bool? = nil, replaceAllImages: Bool? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func post( itemId: String,  metadataRefreshMode: MetadataRefreshMode? = nil,  imageRefreshMode: MetadataRefreshMode? = nil,  replaceAllMetadata: Bool? = nil,  replaceAllImages: Bool? = nil) -> Promise<Void>
 ```
 
 Refreshes metadata for an item.
@@ -26,15 +26,12 @@ let replaceAllMetadata = true // Bool | (Optional) Determines if metadata should
 let replaceAllImages = true // Bool | (Optional) Determines if images should be replaced. Only applicable if mode is FullRefresh. (optional) (default to false)
 
 // Refreshes metadata for an item.
-ItemRefreshAPI.post(itemId: itemId, metadataRefreshMode: metadataRefreshMode, imageRefreshMode: imageRefreshMode, replaceAllMetadata: replaceAllMetadata, replaceAllImages: replaceAllImages) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ItemRefreshAPI.post(itemId: itemId, metadataRefreshMode: metadataRefreshMode, imageRefreshMode: imageRefreshMode, replaceAllMetadata: replaceAllMetadata, replaceAllImages: replaceAllImages).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 

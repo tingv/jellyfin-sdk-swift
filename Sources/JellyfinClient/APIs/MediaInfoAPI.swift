@@ -7,9 +7,7 @@
 
 import AnyCodable
 import Foundation
-#if canImport(Combine)
-import Combine
-#endif
+import PromiseKit
 
 open class MediaInfoAPI {
     /**
@@ -17,23 +15,20 @@ open class MediaInfoAPI {
      
      - parameter liveStreamId: (query) The livestream id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: Promise<Void>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func closeLiveStream(liveStreamId: String, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error>.init { promise in
-            closeLiveStreamWithRequestBuilder(liveStreamId: liveStreamId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    promise(.success(()))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func closeLiveStream( liveStreamId: String, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<Void> {
+        let deferred = Promise<Void>.pending()
+        closeLiveStreamWithRequestBuilder(liveStreamId: liveStreamId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case .success:
+                deferred.resolver.fulfill(())
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Closes a media source.
@@ -70,23 +65,20 @@ open class MediaInfoAPI {
      
      - parameter size: (query) The bitrate. Defaults to 102400. (optional, default to 102400)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<URL, Error>
+     - returns: Promise<URL>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getBitrateTestBytes(size: Int? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<URL, Error> {
-        return Future<URL, Error>.init { promise in
-            getBitrateTestBytesWithRequestBuilder(size: size).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getBitrateTestBytes( size: Int? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<URL> {
+        let deferred = Promise<URL>.pending()
+        getBitrateTestBytesWithRequestBuilder(size: size).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Tests the network with a request with the size of the bitrate.
@@ -124,23 +116,20 @@ open class MediaInfoAPI {
      - parameter itemId: (path) The item id. 
      - parameter userId: (query) The user id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<PlaybackInfoResponse, Error>
+     - returns: Promise<PlaybackInfoResponse>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getPlaybackInfo(itemId: String, userId: String, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<PlaybackInfoResponse, Error> {
-        return Future<PlaybackInfoResponse, Error>.init { promise in
-            getPlaybackInfoWithRequestBuilder(itemId: itemId, userId: userId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getPlaybackInfo( itemId: String,  userId: String, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<PlaybackInfoResponse> {
+        let deferred = Promise<PlaybackInfoResponse>.pending()
+        getPlaybackInfoWithRequestBuilder(itemId: itemId, userId: userId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets live playback media info for an item.
@@ -196,23 +185,20 @@ open class MediaInfoAPI {
      - parameter allowAudioStreamCopy: (query) Whether to allow to copy the audio stream. Default: true. (optional)
      - parameter playbackInfoDto: (body) The playback info. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<PlaybackInfoResponse, Error>
+     - returns: Promise<PlaybackInfoResponse>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getPostedPlaybackInfo(itemId: String, userId: String? = nil, maxStreamingBitrate: Int? = nil, startTimeTicks: Int64? = nil, audioStreamIndex: Int? = nil, subtitleStreamIndex: Int? = nil, maxAudioChannels: Int? = nil, mediaSourceId: String? = nil, liveStreamId: String? = nil, autoOpenLiveStream: Bool? = nil, enableDirectPlay: Bool? = nil, enableDirectStream: Bool? = nil, enableTranscoding: Bool? = nil, allowVideoStreamCopy: Bool? = nil, allowAudioStreamCopy: Bool? = nil, playbackInfoDto: PlaybackInfoDto? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<PlaybackInfoResponse, Error> {
-        return Future<PlaybackInfoResponse, Error>.init { promise in
-            getPostedPlaybackInfoWithRequestBuilder(itemId: itemId, userId: userId, maxStreamingBitrate: maxStreamingBitrate, startTimeTicks: startTimeTicks, audioStreamIndex: audioStreamIndex, subtitleStreamIndex: subtitleStreamIndex, maxAudioChannels: maxAudioChannels, mediaSourceId: mediaSourceId, liveStreamId: liveStreamId, autoOpenLiveStream: autoOpenLiveStream, enableDirectPlay: enableDirectPlay, enableDirectStream: enableDirectStream, enableTranscoding: enableTranscoding, allowVideoStreamCopy: allowVideoStreamCopy, allowAudioStreamCopy: allowAudioStreamCopy, playbackInfoDto: playbackInfoDto).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getPostedPlaybackInfo( itemId: String,  userId: String? = nil,  maxStreamingBitrate: Int? = nil,  startTimeTicks: Int64? = nil,  audioStreamIndex: Int? = nil,  subtitleStreamIndex: Int? = nil,  maxAudioChannels: Int? = nil,  mediaSourceId: String? = nil,  liveStreamId: String? = nil,  autoOpenLiveStream: Bool? = nil,  enableDirectPlay: Bool? = nil,  enableDirectStream: Bool? = nil,  enableTranscoding: Bool? = nil,  allowVideoStreamCopy: Bool? = nil,  allowAudioStreamCopy: Bool? = nil,  playbackInfoDto: PlaybackInfoDto? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<PlaybackInfoResponse> {
+        let deferred = Promise<PlaybackInfoResponse>.pending()
+        getPostedPlaybackInfoWithRequestBuilder(itemId: itemId, userId: userId, maxStreamingBitrate: maxStreamingBitrate, startTimeTicks: startTimeTicks, audioStreamIndex: audioStreamIndex, subtitleStreamIndex: subtitleStreamIndex, maxAudioChannels: maxAudioChannels, mediaSourceId: mediaSourceId, liveStreamId: liveStreamId, autoOpenLiveStream: autoOpenLiveStream, enableDirectPlay: enableDirectPlay, enableDirectStream: enableDirectStream, enableTranscoding: enableTranscoding, allowVideoStreamCopy: allowVideoStreamCopy, allowAudioStreamCopy: allowAudioStreamCopy, playbackInfoDto: playbackInfoDto).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets live playback media info for an item.
@@ -292,23 +278,20 @@ open class MediaInfoAPI {
      - parameter enableDirectStream: (query) Whether to enable direct stream. Default: true. (optional)
      - parameter openLiveStreamDto: (body) The open live stream dto. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<LiveStreamResponse, Error>
+     - returns: Promise<LiveStreamResponse>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func openLiveStream(openToken: String? = nil, userId: String? = nil, playSessionId: String? = nil, maxStreamingBitrate: Int? = nil, startTimeTicks: Int64? = nil, audioStreamIndex: Int? = nil, subtitleStreamIndex: Int? = nil, maxAudioChannels: Int? = nil, itemId: String? = nil, enableDirectPlay: Bool? = nil, enableDirectStream: Bool? = nil, openLiveStreamDto: OpenLiveStreamDto? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<LiveStreamResponse, Error> {
-        return Future<LiveStreamResponse, Error>.init { promise in
-            openLiveStreamWithRequestBuilder(openToken: openToken, userId: userId, playSessionId: playSessionId, maxStreamingBitrate: maxStreamingBitrate, startTimeTicks: startTimeTicks, audioStreamIndex: audioStreamIndex, subtitleStreamIndex: subtitleStreamIndex, maxAudioChannels: maxAudioChannels, itemId: itemId, enableDirectPlay: enableDirectPlay, enableDirectStream: enableDirectStream, openLiveStreamDto: openLiveStreamDto).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func openLiveStream( openToken: String? = nil,  userId: String? = nil,  playSessionId: String? = nil,  maxStreamingBitrate: Int? = nil,  startTimeTicks: Int64? = nil,  audioStreamIndex: Int? = nil,  subtitleStreamIndex: Int? = nil,  maxAudioChannels: Int? = nil,  itemId: String? = nil,  enableDirectPlay: Bool? = nil,  enableDirectStream: Bool? = nil,  openLiveStreamDto: OpenLiveStreamDto? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<LiveStreamResponse> {
+        let deferred = Promise<LiveStreamResponse>.pending()
+        openLiveStreamWithRequestBuilder(openToken: openToken, userId: userId, playSessionId: playSessionId, maxStreamingBitrate: maxStreamingBitrate, startTimeTicks: startTimeTicks, audioStreamIndex: audioStreamIndex, subtitleStreamIndex: subtitleStreamIndex, maxAudioChannels: maxAudioChannels, itemId: itemId, enableDirectPlay: enableDirectPlay, enableDirectStream: enableDirectStream, openLiveStreamDto: openLiveStreamDto).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Opens a media source.

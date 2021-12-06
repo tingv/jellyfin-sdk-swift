@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 # **getGroupingOptions**
 ```swift
-    open class func getGroupingOptions(userId: String, completion: @escaping (_ data: [SpecialViewOptionDto]?, _ error: Error?) -> Void)
+    open class func getGroupingOptions( userId: String) -> Promise<[SpecialViewOptionDto]>
 ```
 
 Get user view grouping options.
@@ -23,15 +23,12 @@ import JellyfinClient
 let userId = "userId_example" // String | User id.
 
 // Get user view grouping options.
-UserViewsAPI.getGroupingOptions(userId: userId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+UserViewsAPI.getGroupingOptions(userId: userId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -58,7 +55,7 @@ No authorization required
 
 # **getUserViews**
 ```swift
-    open class func getUserViews(userId: String, includeExternalContent: Bool? = nil, presetViews: [String]? = nil, includeHidden: Bool? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
+    open class func getUserViews( userId: String,  includeExternalContent: Bool? = nil,  presetViews: [String]? = nil,  includeHidden: Bool? = nil) -> Promise<BaseItemDtoQueryResult>
 ```
 
 Get user views.
@@ -74,15 +71,12 @@ let presetViews = ["inner_example"] // [String] | Preset views. (optional)
 let includeHidden = true // Bool | Whether or not to include hidden content. (optional) (default to false)
 
 // Get user views.
-UserViewsAPI.getUserViews(userId: userId, includeExternalContent: includeExternalContent, presetViews: presetViews, includeHidden: includeHidden) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+UserViewsAPI.getUserViews(userId: userId, includeExternalContent: includeExternalContent, presetViews: presetViews, includeHidden: includeHidden).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 

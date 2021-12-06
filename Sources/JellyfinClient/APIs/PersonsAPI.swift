@@ -7,9 +7,7 @@
 
 import AnyCodable
 import Foundation
-#if canImport(Combine)
-import Combine
-#endif
+import PromiseKit
 
 open class PersonsAPI {
     /**
@@ -18,23 +16,20 @@ open class PersonsAPI {
      - parameter name: (path) Person name. 
      - parameter userId: (query) Optional. Filter by user id, and attach user data. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<BaseItemDto, Error>
+     - returns: Promise<BaseItemDto>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getPerson(name: String, userId: String? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<BaseItemDto, Error> {
-        return Future<BaseItemDto, Error>.init { promise in
-            getPersonWithRequestBuilder(name: name, userId: userId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getPerson( name: String,  userId: String? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<BaseItemDto> {
+        let deferred = Promise<BaseItemDto>.pending()
+        getPersonWithRequestBuilder(name: name, userId: userId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Get person by name.
@@ -87,23 +82,20 @@ open class PersonsAPI {
      - parameter userId: (query) User id. (optional)
      - parameter enableImages: (query) Optional, include image information in output. (optional, default to true)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<BaseItemDtoQueryResult, Error>
+     - returns: Promise<BaseItemDtoQueryResult>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getPersons(limit: Int? = nil, searchTerm: String? = nil, fields: [ItemFields]? = nil, filters: [ItemFilter]? = nil, isFavorite: Bool? = nil, enableUserData: Bool? = nil, imageTypeLimit: Int? = nil, enableImageTypes: [ImageType]? = nil, excludePersonTypes: [String]? = nil, personTypes: [String]? = nil, appearsInItemId: String? = nil, userId: String? = nil, enableImages: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<BaseItemDtoQueryResult, Error> {
-        return Future<BaseItemDtoQueryResult, Error>.init { promise in
-            getPersonsWithRequestBuilder(limit: limit, searchTerm: searchTerm, fields: fields, filters: filters, isFavorite: isFavorite, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes, excludePersonTypes: excludePersonTypes, personTypes: personTypes, appearsInItemId: appearsInItemId, userId: userId, enableImages: enableImages).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getPersons( limit: Int? = nil,  searchTerm: String? = nil,  fields: [ItemFields]? = nil,  filters: [ItemFilter]? = nil,  isFavorite: Bool? = nil,  enableUserData: Bool? = nil,  imageTypeLimit: Int? = nil,  enableImageTypes: [ImageType]? = nil,  excludePersonTypes: [String]? = nil,  personTypes: [String]? = nil,  appearsInItemId: String? = nil,  userId: String? = nil,  enableImages: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<BaseItemDtoQueryResult> {
+        let deferred = Promise<BaseItemDtoQueryResult>.pending()
+        getPersonsWithRequestBuilder(limit: limit, searchTerm: searchTerm, fields: fields, filters: filters, isFavorite: isFavorite, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes, excludePersonTypes: excludePersonTypes, personTypes: personTypes, appearsInItemId: appearsInItemId, userId: userId, enableImages: enableImages).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets all persons.

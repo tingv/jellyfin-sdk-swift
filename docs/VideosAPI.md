@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 # **deleteAlternateSources**
 ```swift
-    open class func deleteAlternateSources(itemId: String, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func deleteAlternateSources( itemId: String) -> Promise<Void>
 ```
 
 Removes alternate video sources.
@@ -28,15 +28,12 @@ import JellyfinClient
 let itemId = "itemId_example" // String | The item id.
 
 // Removes alternate video sources.
-VideosAPI.deleteAlternateSources(itemId: itemId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+VideosAPI.deleteAlternateSources(itemId: itemId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -63,7 +60,7 @@ Void (empty response body)
 
 # **getAdditionalPart**
 ```swift
-    open class func getAdditionalPart(itemId: String, userId: String? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
+    open class func getAdditionalPart( itemId: String,  userId: String? = nil) -> Promise<BaseItemDtoQueryResult>
 ```
 
 Gets additional parts for a video.
@@ -77,15 +74,12 @@ let itemId = "itemId_example" // String | The item id.
 let userId = "userId_example" // String | Optional. Filter by user id, and attach user data. (optional)
 
 // Gets additional parts for a video.
-VideosAPI.getAdditionalPart(itemId: itemId, userId: userId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+VideosAPI.getAdditionalPart(itemId: itemId, userId: userId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -113,7 +107,7 @@ Name | Type | Description  | Notes
 
 # **getVideoStream**
 ```swift
-    open class func getVideoStream(itemId: String, container: String? = nil, _static: Bool? = nil, params: String? = nil, tag: String? = nil, deviceProfileId: String? = nil, playSessionId: String? = nil, segmentContainer: String? = nil, segmentLength: Int? = nil, minSegments: Int? = nil, mediaSourceId: String? = nil, deviceId: String? = nil, audioCodec: String? = nil, enableAutoStreamCopy: Bool? = nil, allowVideoStreamCopy: Bool? = nil, allowAudioStreamCopy: Bool? = nil, breakOnNonKeyFrames: Bool? = nil, audioSampleRate: Int? = nil, maxAudioBitDepth: Int? = nil, audioBitRate: Int? = nil, audioChannels: Int? = nil, maxAudioChannels: Int? = nil, profile: String? = nil, level: String? = nil, framerate: Float? = nil, maxFramerate: Float? = nil, copyTimestamps: Bool? = nil, startTimeTicks: Int64? = nil, width: Int? = nil, height: Int? = nil, videoBitRate: Int? = nil, subtitleStreamIndex: Int? = nil, subtitleMethod: SubtitleDeliveryMethod? = nil, maxRefFrames: Int? = nil, maxVideoBitDepth: Int? = nil, requireAvc: Bool? = nil, deInterlace: Bool? = nil, requireNonAnamorphic: Bool? = nil, transcodingMaxAudioChannels: Int? = nil, cpuCoreLimit: Int? = nil, liveStreamId: String? = nil, enableMpegtsM2TsMode: Bool? = nil, videoCodec: String? = nil, subtitleCodec: String? = nil, transcodeReasons: String? = nil, audioStreamIndex: Int? = nil, videoStreamIndex: Int? = nil, context: EncodingContext? = nil, streamOptions: [String: String]? = nil, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func getVideoStream( itemId: String,  container: String? = nil,  _static: Bool? = nil,  params: String? = nil,  tag: String? = nil,  deviceProfileId: String? = nil,  playSessionId: String? = nil,  segmentContainer: String? = nil,  segmentLength: Int? = nil,  minSegments: Int? = nil,  mediaSourceId: String? = nil,  deviceId: String? = nil,  audioCodec: String? = nil,  enableAutoStreamCopy: Bool? = nil,  allowVideoStreamCopy: Bool? = nil,  allowAudioStreamCopy: Bool? = nil,  breakOnNonKeyFrames: Bool? = nil,  audioSampleRate: Int? = nil,  maxAudioBitDepth: Int? = nil,  audioBitRate: Int? = nil,  audioChannels: Int? = nil,  maxAudioChannels: Int? = nil,  profile: String? = nil,  level: String? = nil,  framerate: Float? = nil,  maxFramerate: Float? = nil,  copyTimestamps: Bool? = nil,  startTimeTicks: Int64? = nil,  width: Int? = nil,  height: Int? = nil,  videoBitRate: Int? = nil,  subtitleStreamIndex: Int? = nil,  subtitleMethod: SubtitleDeliveryMethod? = nil,  maxRefFrames: Int? = nil,  maxVideoBitDepth: Int? = nil,  requireAvc: Bool? = nil,  deInterlace: Bool? = nil,  requireNonAnamorphic: Bool? = nil,  transcodingMaxAudioChannels: Int? = nil,  cpuCoreLimit: Int? = nil,  liveStreamId: String? = nil,  enableMpegtsM2TsMode: Bool? = nil,  videoCodec: String? = nil,  subtitleCodec: String? = nil,  transcodeReasons: String? = nil,  audioStreamIndex: Int? = nil,  videoStreamIndex: Int? = nil,  context: EncodingContext? = nil,  streamOptions: [String: String]? = nil) -> Promise<URL>
 ```
 
 Gets a video stream.
@@ -174,15 +168,12 @@ let context = EncodingContext() // EncodingContext | Optional. The MediaBrowser.
 let streamOptions = "TODO" // [String: String] | Optional. The streaming options. (optional)
 
 // Gets a video stream.
-VideosAPI.getVideoStream(itemId: itemId, container: container, _static: _static, params: params, tag: tag, deviceProfileId: deviceProfileId, playSessionId: playSessionId, segmentContainer: segmentContainer, segmentLength: segmentLength, minSegments: minSegments, mediaSourceId: mediaSourceId, deviceId: deviceId, audioCodec: audioCodec, enableAutoStreamCopy: enableAutoStreamCopy, allowVideoStreamCopy: allowVideoStreamCopy, allowAudioStreamCopy: allowAudioStreamCopy, breakOnNonKeyFrames: breakOnNonKeyFrames, audioSampleRate: audioSampleRate, maxAudioBitDepth: maxAudioBitDepth, audioBitRate: audioBitRate, audioChannels: audioChannels, maxAudioChannels: maxAudioChannels, profile: profile, level: level, framerate: framerate, maxFramerate: maxFramerate, copyTimestamps: copyTimestamps, startTimeTicks: startTimeTicks, width: width, height: height, videoBitRate: videoBitRate, subtitleStreamIndex: subtitleStreamIndex, subtitleMethod: subtitleMethod, maxRefFrames: maxRefFrames, maxVideoBitDepth: maxVideoBitDepth, requireAvc: requireAvc, deInterlace: deInterlace, requireNonAnamorphic: requireNonAnamorphic, transcodingMaxAudioChannels: transcodingMaxAudioChannels, cpuCoreLimit: cpuCoreLimit, liveStreamId: liveStreamId, enableMpegtsM2TsMode: enableMpegtsM2TsMode, videoCodec: videoCodec, subtitleCodec: subtitleCodec, transcodeReasons: transcodeReasons, audioStreamIndex: audioStreamIndex, videoStreamIndex: videoStreamIndex, context: context, streamOptions: streamOptions) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+VideosAPI.getVideoStream(itemId: itemId, container: container, _static: _static, params: params, tag: tag, deviceProfileId: deviceProfileId, playSessionId: playSessionId, segmentContainer: segmentContainer, segmentLength: segmentLength, minSegments: minSegments, mediaSourceId: mediaSourceId, deviceId: deviceId, audioCodec: audioCodec, enableAutoStreamCopy: enableAutoStreamCopy, allowVideoStreamCopy: allowVideoStreamCopy, allowAudioStreamCopy: allowAudioStreamCopy, breakOnNonKeyFrames: breakOnNonKeyFrames, audioSampleRate: audioSampleRate, maxAudioBitDepth: maxAudioBitDepth, audioBitRate: audioBitRate, audioChannels: audioChannels, maxAudioChannels: maxAudioChannels, profile: profile, level: level, framerate: framerate, maxFramerate: maxFramerate, copyTimestamps: copyTimestamps, startTimeTicks: startTimeTicks, width: width, height: height, videoBitRate: videoBitRate, subtitleStreamIndex: subtitleStreamIndex, subtitleMethod: subtitleMethod, maxRefFrames: maxRefFrames, maxVideoBitDepth: maxVideoBitDepth, requireAvc: requireAvc, deInterlace: deInterlace, requireNonAnamorphic: requireNonAnamorphic, transcodingMaxAudioChannels: transcodingMaxAudioChannels, cpuCoreLimit: cpuCoreLimit, liveStreamId: liveStreamId, enableMpegtsM2TsMode: enableMpegtsM2TsMode, videoCodec: videoCodec, subtitleCodec: subtitleCodec, transcodeReasons: transcodeReasons, audioStreamIndex: audioStreamIndex, videoStreamIndex: videoStreamIndex, context: context, streamOptions: streamOptions).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -257,7 +248,7 @@ No authorization required
 
 # **getVideoStreamByContainer**
 ```swift
-    open class func getVideoStreamByContainer(itemId: String, container: String, _static: Bool? = nil, params: String? = nil, tag: String? = nil, deviceProfileId: String? = nil, playSessionId: String? = nil, segmentContainer: String? = nil, segmentLength: Int? = nil, minSegments: Int? = nil, mediaSourceId: String? = nil, deviceId: String? = nil, audioCodec: String? = nil, enableAutoStreamCopy: Bool? = nil, allowVideoStreamCopy: Bool? = nil, allowAudioStreamCopy: Bool? = nil, breakOnNonKeyFrames: Bool? = nil, audioSampleRate: Int? = nil, maxAudioBitDepth: Int? = nil, audioBitRate: Int? = nil, audioChannels: Int? = nil, maxAudioChannels: Int? = nil, profile: String? = nil, level: String? = nil, framerate: Float? = nil, maxFramerate: Float? = nil, copyTimestamps: Bool? = nil, startTimeTicks: Int64? = nil, width: Int? = nil, height: Int? = nil, videoBitRate: Int? = nil, subtitleStreamIndex: Int? = nil, subtitleMethod: SubtitleDeliveryMethod? = nil, maxRefFrames: Int? = nil, maxVideoBitDepth: Int? = nil, requireAvc: Bool? = nil, deInterlace: Bool? = nil, requireNonAnamorphic: Bool? = nil, transcodingMaxAudioChannels: Int? = nil, cpuCoreLimit: Int? = nil, liveStreamId: String? = nil, enableMpegtsM2TsMode: Bool? = nil, videoCodec: String? = nil, subtitleCodec: String? = nil, transcodeReasons: String? = nil, audioStreamIndex: Int? = nil, videoStreamIndex: Int? = nil, context: EncodingContext? = nil, streamOptions: [String: String]? = nil, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func getVideoStreamByContainer( itemId: String,  container: String,  _static: Bool? = nil,  params: String? = nil,  tag: String? = nil,  deviceProfileId: String? = nil,  playSessionId: String? = nil,  segmentContainer: String? = nil,  segmentLength: Int? = nil,  minSegments: Int? = nil,  mediaSourceId: String? = nil,  deviceId: String? = nil,  audioCodec: String? = nil,  enableAutoStreamCopy: Bool? = nil,  allowVideoStreamCopy: Bool? = nil,  allowAudioStreamCopy: Bool? = nil,  breakOnNonKeyFrames: Bool? = nil,  audioSampleRate: Int? = nil,  maxAudioBitDepth: Int? = nil,  audioBitRate: Int? = nil,  audioChannels: Int? = nil,  maxAudioChannels: Int? = nil,  profile: String? = nil,  level: String? = nil,  framerate: Float? = nil,  maxFramerate: Float? = nil,  copyTimestamps: Bool? = nil,  startTimeTicks: Int64? = nil,  width: Int? = nil,  height: Int? = nil,  videoBitRate: Int? = nil,  subtitleStreamIndex: Int? = nil,  subtitleMethod: SubtitleDeliveryMethod? = nil,  maxRefFrames: Int? = nil,  maxVideoBitDepth: Int? = nil,  requireAvc: Bool? = nil,  deInterlace: Bool? = nil,  requireNonAnamorphic: Bool? = nil,  transcodingMaxAudioChannels: Int? = nil,  cpuCoreLimit: Int? = nil,  liveStreamId: String? = nil,  enableMpegtsM2TsMode: Bool? = nil,  videoCodec: String? = nil,  subtitleCodec: String? = nil,  transcodeReasons: String? = nil,  audioStreamIndex: Int? = nil,  videoStreamIndex: Int? = nil,  context: EncodingContext? = nil,  streamOptions: [String: String]? = nil) -> Promise<URL>
 ```
 
 Gets a video stream.
@@ -318,15 +309,12 @@ let context = EncodingContext() // EncodingContext | Optional. The MediaBrowser.
 let streamOptions = "TODO" // [String: String] | Optional. The streaming options. (optional)
 
 // Gets a video stream.
-VideosAPI.getVideoStreamByContainer(itemId: itemId, container: container, _static: _static, params: params, tag: tag, deviceProfileId: deviceProfileId, playSessionId: playSessionId, segmentContainer: segmentContainer, segmentLength: segmentLength, minSegments: minSegments, mediaSourceId: mediaSourceId, deviceId: deviceId, audioCodec: audioCodec, enableAutoStreamCopy: enableAutoStreamCopy, allowVideoStreamCopy: allowVideoStreamCopy, allowAudioStreamCopy: allowAudioStreamCopy, breakOnNonKeyFrames: breakOnNonKeyFrames, audioSampleRate: audioSampleRate, maxAudioBitDepth: maxAudioBitDepth, audioBitRate: audioBitRate, audioChannels: audioChannels, maxAudioChannels: maxAudioChannels, profile: profile, level: level, framerate: framerate, maxFramerate: maxFramerate, copyTimestamps: copyTimestamps, startTimeTicks: startTimeTicks, width: width, height: height, videoBitRate: videoBitRate, subtitleStreamIndex: subtitleStreamIndex, subtitleMethod: subtitleMethod, maxRefFrames: maxRefFrames, maxVideoBitDepth: maxVideoBitDepth, requireAvc: requireAvc, deInterlace: deInterlace, requireNonAnamorphic: requireNonAnamorphic, transcodingMaxAudioChannels: transcodingMaxAudioChannels, cpuCoreLimit: cpuCoreLimit, liveStreamId: liveStreamId, enableMpegtsM2TsMode: enableMpegtsM2TsMode, videoCodec: videoCodec, subtitleCodec: subtitleCodec, transcodeReasons: transcodeReasons, audioStreamIndex: audioStreamIndex, videoStreamIndex: videoStreamIndex, context: context, streamOptions: streamOptions) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+VideosAPI.getVideoStreamByContainer(itemId: itemId, container: container, _static: _static, params: params, tag: tag, deviceProfileId: deviceProfileId, playSessionId: playSessionId, segmentContainer: segmentContainer, segmentLength: segmentLength, minSegments: minSegments, mediaSourceId: mediaSourceId, deviceId: deviceId, audioCodec: audioCodec, enableAutoStreamCopy: enableAutoStreamCopy, allowVideoStreamCopy: allowVideoStreamCopy, allowAudioStreamCopy: allowAudioStreamCopy, breakOnNonKeyFrames: breakOnNonKeyFrames, audioSampleRate: audioSampleRate, maxAudioBitDepth: maxAudioBitDepth, audioBitRate: audioBitRate, audioChannels: audioChannels, maxAudioChannels: maxAudioChannels, profile: profile, level: level, framerate: framerate, maxFramerate: maxFramerate, copyTimestamps: copyTimestamps, startTimeTicks: startTimeTicks, width: width, height: height, videoBitRate: videoBitRate, subtitleStreamIndex: subtitleStreamIndex, subtitleMethod: subtitleMethod, maxRefFrames: maxRefFrames, maxVideoBitDepth: maxVideoBitDepth, requireAvc: requireAvc, deInterlace: deInterlace, requireNonAnamorphic: requireNonAnamorphic, transcodingMaxAudioChannels: transcodingMaxAudioChannels, cpuCoreLimit: cpuCoreLimit, liveStreamId: liveStreamId, enableMpegtsM2TsMode: enableMpegtsM2TsMode, videoCodec: videoCodec, subtitleCodec: subtitleCodec, transcodeReasons: transcodeReasons, audioStreamIndex: audioStreamIndex, videoStreamIndex: videoStreamIndex, context: context, streamOptions: streamOptions).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -401,7 +389,7 @@ No authorization required
 
 # **headVideoStream**
 ```swift
-    open class func headVideoStream(itemId: String, container: String? = nil, _static: Bool? = nil, params: String? = nil, tag: String? = nil, deviceProfileId: String? = nil, playSessionId: String? = nil, segmentContainer: String? = nil, segmentLength: Int? = nil, minSegments: Int? = nil, mediaSourceId: String? = nil, deviceId: String? = nil, audioCodec: String? = nil, enableAutoStreamCopy: Bool? = nil, allowVideoStreamCopy: Bool? = nil, allowAudioStreamCopy: Bool? = nil, breakOnNonKeyFrames: Bool? = nil, audioSampleRate: Int? = nil, maxAudioBitDepth: Int? = nil, audioBitRate: Int? = nil, audioChannels: Int? = nil, maxAudioChannels: Int? = nil, profile: String? = nil, level: String? = nil, framerate: Float? = nil, maxFramerate: Float? = nil, copyTimestamps: Bool? = nil, startTimeTicks: Int64? = nil, width: Int? = nil, height: Int? = nil, videoBitRate: Int? = nil, subtitleStreamIndex: Int? = nil, subtitleMethod: SubtitleDeliveryMethod? = nil, maxRefFrames: Int? = nil, maxVideoBitDepth: Int? = nil, requireAvc: Bool? = nil, deInterlace: Bool? = nil, requireNonAnamorphic: Bool? = nil, transcodingMaxAudioChannels: Int? = nil, cpuCoreLimit: Int? = nil, liveStreamId: String? = nil, enableMpegtsM2TsMode: Bool? = nil, videoCodec: String? = nil, subtitleCodec: String? = nil, transcodeReasons: String? = nil, audioStreamIndex: Int? = nil, videoStreamIndex: Int? = nil, context: EncodingContext? = nil, streamOptions: [String: String]? = nil, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func headVideoStream( itemId: String,  container: String? = nil,  _static: Bool? = nil,  params: String? = nil,  tag: String? = nil,  deviceProfileId: String? = nil,  playSessionId: String? = nil,  segmentContainer: String? = nil,  segmentLength: Int? = nil,  minSegments: Int? = nil,  mediaSourceId: String? = nil,  deviceId: String? = nil,  audioCodec: String? = nil,  enableAutoStreamCopy: Bool? = nil,  allowVideoStreamCopy: Bool? = nil,  allowAudioStreamCopy: Bool? = nil,  breakOnNonKeyFrames: Bool? = nil,  audioSampleRate: Int? = nil,  maxAudioBitDepth: Int? = nil,  audioBitRate: Int? = nil,  audioChannels: Int? = nil,  maxAudioChannels: Int? = nil,  profile: String? = nil,  level: String? = nil,  framerate: Float? = nil,  maxFramerate: Float? = nil,  copyTimestamps: Bool? = nil,  startTimeTicks: Int64? = nil,  width: Int? = nil,  height: Int? = nil,  videoBitRate: Int? = nil,  subtitleStreamIndex: Int? = nil,  subtitleMethod: SubtitleDeliveryMethod? = nil,  maxRefFrames: Int? = nil,  maxVideoBitDepth: Int? = nil,  requireAvc: Bool? = nil,  deInterlace: Bool? = nil,  requireNonAnamorphic: Bool? = nil,  transcodingMaxAudioChannels: Int? = nil,  cpuCoreLimit: Int? = nil,  liveStreamId: String? = nil,  enableMpegtsM2TsMode: Bool? = nil,  videoCodec: String? = nil,  subtitleCodec: String? = nil,  transcodeReasons: String? = nil,  audioStreamIndex: Int? = nil,  videoStreamIndex: Int? = nil,  context: EncodingContext? = nil,  streamOptions: [String: String]? = nil) -> Promise<URL>
 ```
 
 Gets a video stream.
@@ -462,15 +450,12 @@ let context = EncodingContext() // EncodingContext | Optional. The MediaBrowser.
 let streamOptions = "TODO" // [String: String] | Optional. The streaming options. (optional)
 
 // Gets a video stream.
-VideosAPI.headVideoStream(itemId: itemId, container: container, _static: _static, params: params, tag: tag, deviceProfileId: deviceProfileId, playSessionId: playSessionId, segmentContainer: segmentContainer, segmentLength: segmentLength, minSegments: minSegments, mediaSourceId: mediaSourceId, deviceId: deviceId, audioCodec: audioCodec, enableAutoStreamCopy: enableAutoStreamCopy, allowVideoStreamCopy: allowVideoStreamCopy, allowAudioStreamCopy: allowAudioStreamCopy, breakOnNonKeyFrames: breakOnNonKeyFrames, audioSampleRate: audioSampleRate, maxAudioBitDepth: maxAudioBitDepth, audioBitRate: audioBitRate, audioChannels: audioChannels, maxAudioChannels: maxAudioChannels, profile: profile, level: level, framerate: framerate, maxFramerate: maxFramerate, copyTimestamps: copyTimestamps, startTimeTicks: startTimeTicks, width: width, height: height, videoBitRate: videoBitRate, subtitleStreamIndex: subtitleStreamIndex, subtitleMethod: subtitleMethod, maxRefFrames: maxRefFrames, maxVideoBitDepth: maxVideoBitDepth, requireAvc: requireAvc, deInterlace: deInterlace, requireNonAnamorphic: requireNonAnamorphic, transcodingMaxAudioChannels: transcodingMaxAudioChannels, cpuCoreLimit: cpuCoreLimit, liveStreamId: liveStreamId, enableMpegtsM2TsMode: enableMpegtsM2TsMode, videoCodec: videoCodec, subtitleCodec: subtitleCodec, transcodeReasons: transcodeReasons, audioStreamIndex: audioStreamIndex, videoStreamIndex: videoStreamIndex, context: context, streamOptions: streamOptions) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+VideosAPI.headVideoStream(itemId: itemId, container: container, _static: _static, params: params, tag: tag, deviceProfileId: deviceProfileId, playSessionId: playSessionId, segmentContainer: segmentContainer, segmentLength: segmentLength, minSegments: minSegments, mediaSourceId: mediaSourceId, deviceId: deviceId, audioCodec: audioCodec, enableAutoStreamCopy: enableAutoStreamCopy, allowVideoStreamCopy: allowVideoStreamCopy, allowAudioStreamCopy: allowAudioStreamCopy, breakOnNonKeyFrames: breakOnNonKeyFrames, audioSampleRate: audioSampleRate, maxAudioBitDepth: maxAudioBitDepth, audioBitRate: audioBitRate, audioChannels: audioChannels, maxAudioChannels: maxAudioChannels, profile: profile, level: level, framerate: framerate, maxFramerate: maxFramerate, copyTimestamps: copyTimestamps, startTimeTicks: startTimeTicks, width: width, height: height, videoBitRate: videoBitRate, subtitleStreamIndex: subtitleStreamIndex, subtitleMethod: subtitleMethod, maxRefFrames: maxRefFrames, maxVideoBitDepth: maxVideoBitDepth, requireAvc: requireAvc, deInterlace: deInterlace, requireNonAnamorphic: requireNonAnamorphic, transcodingMaxAudioChannels: transcodingMaxAudioChannels, cpuCoreLimit: cpuCoreLimit, liveStreamId: liveStreamId, enableMpegtsM2TsMode: enableMpegtsM2TsMode, videoCodec: videoCodec, subtitleCodec: subtitleCodec, transcodeReasons: transcodeReasons, audioStreamIndex: audioStreamIndex, videoStreamIndex: videoStreamIndex, context: context, streamOptions: streamOptions).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -545,7 +530,7 @@ No authorization required
 
 # **headVideoStreamByContainer**
 ```swift
-    open class func headVideoStreamByContainer(itemId: String, container: String, _static: Bool? = nil, params: String? = nil, tag: String? = nil, deviceProfileId: String? = nil, playSessionId: String? = nil, segmentContainer: String? = nil, segmentLength: Int? = nil, minSegments: Int? = nil, mediaSourceId: String? = nil, deviceId: String? = nil, audioCodec: String? = nil, enableAutoStreamCopy: Bool? = nil, allowVideoStreamCopy: Bool? = nil, allowAudioStreamCopy: Bool? = nil, breakOnNonKeyFrames: Bool? = nil, audioSampleRate: Int? = nil, maxAudioBitDepth: Int? = nil, audioBitRate: Int? = nil, audioChannels: Int? = nil, maxAudioChannels: Int? = nil, profile: String? = nil, level: String? = nil, framerate: Float? = nil, maxFramerate: Float? = nil, copyTimestamps: Bool? = nil, startTimeTicks: Int64? = nil, width: Int? = nil, height: Int? = nil, videoBitRate: Int? = nil, subtitleStreamIndex: Int? = nil, subtitleMethod: SubtitleDeliveryMethod? = nil, maxRefFrames: Int? = nil, maxVideoBitDepth: Int? = nil, requireAvc: Bool? = nil, deInterlace: Bool? = nil, requireNonAnamorphic: Bool? = nil, transcodingMaxAudioChannels: Int? = nil, cpuCoreLimit: Int? = nil, liveStreamId: String? = nil, enableMpegtsM2TsMode: Bool? = nil, videoCodec: String? = nil, subtitleCodec: String? = nil, transcodeReasons: String? = nil, audioStreamIndex: Int? = nil, videoStreamIndex: Int? = nil, context: EncodingContext? = nil, streamOptions: [String: String]? = nil, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func headVideoStreamByContainer( itemId: String,  container: String,  _static: Bool? = nil,  params: String? = nil,  tag: String? = nil,  deviceProfileId: String? = nil,  playSessionId: String? = nil,  segmentContainer: String? = nil,  segmentLength: Int? = nil,  minSegments: Int? = nil,  mediaSourceId: String? = nil,  deviceId: String? = nil,  audioCodec: String? = nil,  enableAutoStreamCopy: Bool? = nil,  allowVideoStreamCopy: Bool? = nil,  allowAudioStreamCopy: Bool? = nil,  breakOnNonKeyFrames: Bool? = nil,  audioSampleRate: Int? = nil,  maxAudioBitDepth: Int? = nil,  audioBitRate: Int? = nil,  audioChannels: Int? = nil,  maxAudioChannels: Int? = nil,  profile: String? = nil,  level: String? = nil,  framerate: Float? = nil,  maxFramerate: Float? = nil,  copyTimestamps: Bool? = nil,  startTimeTicks: Int64? = nil,  width: Int? = nil,  height: Int? = nil,  videoBitRate: Int? = nil,  subtitleStreamIndex: Int? = nil,  subtitleMethod: SubtitleDeliveryMethod? = nil,  maxRefFrames: Int? = nil,  maxVideoBitDepth: Int? = nil,  requireAvc: Bool? = nil,  deInterlace: Bool? = nil,  requireNonAnamorphic: Bool? = nil,  transcodingMaxAudioChannels: Int? = nil,  cpuCoreLimit: Int? = nil,  liveStreamId: String? = nil,  enableMpegtsM2TsMode: Bool? = nil,  videoCodec: String? = nil,  subtitleCodec: String? = nil,  transcodeReasons: String? = nil,  audioStreamIndex: Int? = nil,  videoStreamIndex: Int? = nil,  context: EncodingContext? = nil,  streamOptions: [String: String]? = nil) -> Promise<URL>
 ```
 
 Gets a video stream.
@@ -606,15 +591,12 @@ let context = EncodingContext() // EncodingContext | Optional. The MediaBrowser.
 let streamOptions = "TODO" // [String: String] | Optional. The streaming options. (optional)
 
 // Gets a video stream.
-VideosAPI.headVideoStreamByContainer(itemId: itemId, container: container, _static: _static, params: params, tag: tag, deviceProfileId: deviceProfileId, playSessionId: playSessionId, segmentContainer: segmentContainer, segmentLength: segmentLength, minSegments: minSegments, mediaSourceId: mediaSourceId, deviceId: deviceId, audioCodec: audioCodec, enableAutoStreamCopy: enableAutoStreamCopy, allowVideoStreamCopy: allowVideoStreamCopy, allowAudioStreamCopy: allowAudioStreamCopy, breakOnNonKeyFrames: breakOnNonKeyFrames, audioSampleRate: audioSampleRate, maxAudioBitDepth: maxAudioBitDepth, audioBitRate: audioBitRate, audioChannels: audioChannels, maxAudioChannels: maxAudioChannels, profile: profile, level: level, framerate: framerate, maxFramerate: maxFramerate, copyTimestamps: copyTimestamps, startTimeTicks: startTimeTicks, width: width, height: height, videoBitRate: videoBitRate, subtitleStreamIndex: subtitleStreamIndex, subtitleMethod: subtitleMethod, maxRefFrames: maxRefFrames, maxVideoBitDepth: maxVideoBitDepth, requireAvc: requireAvc, deInterlace: deInterlace, requireNonAnamorphic: requireNonAnamorphic, transcodingMaxAudioChannels: transcodingMaxAudioChannels, cpuCoreLimit: cpuCoreLimit, liveStreamId: liveStreamId, enableMpegtsM2TsMode: enableMpegtsM2TsMode, videoCodec: videoCodec, subtitleCodec: subtitleCodec, transcodeReasons: transcodeReasons, audioStreamIndex: audioStreamIndex, videoStreamIndex: videoStreamIndex, context: context, streamOptions: streamOptions) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+VideosAPI.headVideoStreamByContainer(itemId: itemId, container: container, _static: _static, params: params, tag: tag, deviceProfileId: deviceProfileId, playSessionId: playSessionId, segmentContainer: segmentContainer, segmentLength: segmentLength, minSegments: minSegments, mediaSourceId: mediaSourceId, deviceId: deviceId, audioCodec: audioCodec, enableAutoStreamCopy: enableAutoStreamCopy, allowVideoStreamCopy: allowVideoStreamCopy, allowAudioStreamCopy: allowAudioStreamCopy, breakOnNonKeyFrames: breakOnNonKeyFrames, audioSampleRate: audioSampleRate, maxAudioBitDepth: maxAudioBitDepth, audioBitRate: audioBitRate, audioChannels: audioChannels, maxAudioChannels: maxAudioChannels, profile: profile, level: level, framerate: framerate, maxFramerate: maxFramerate, copyTimestamps: copyTimestamps, startTimeTicks: startTimeTicks, width: width, height: height, videoBitRate: videoBitRate, subtitleStreamIndex: subtitleStreamIndex, subtitleMethod: subtitleMethod, maxRefFrames: maxRefFrames, maxVideoBitDepth: maxVideoBitDepth, requireAvc: requireAvc, deInterlace: deInterlace, requireNonAnamorphic: requireNonAnamorphic, transcodingMaxAudioChannels: transcodingMaxAudioChannels, cpuCoreLimit: cpuCoreLimit, liveStreamId: liveStreamId, enableMpegtsM2TsMode: enableMpegtsM2TsMode, videoCodec: videoCodec, subtitleCodec: subtitleCodec, transcodeReasons: transcodeReasons, audioStreamIndex: audioStreamIndex, videoStreamIndex: videoStreamIndex, context: context, streamOptions: streamOptions).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -689,7 +671,7 @@ No authorization required
 
 # **mergeVersions**
 ```swift
-    open class func mergeVersions(ids: [String], completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func mergeVersions( ids: [String]) -> Promise<Void>
 ```
 
 Merges videos into a single record.
@@ -702,15 +684,12 @@ import JellyfinClient
 let ids = ["inner_example"] // [String] | Item id list. This allows multiple, comma delimited.
 
 // Merges videos into a single record.
-VideosAPI.mergeVersions(ids: ids) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+VideosAPI.mergeVersions(ids: ids).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 

@@ -7,9 +7,7 @@
 
 import AnyCodable
 import Foundation
-#if canImport(Combine)
-import Combine
-#endif
+import PromiseKit
 
 open class YearsAPI {
     /**
@@ -18,23 +16,20 @@ open class YearsAPI {
      - parameter year: (path) The year. 
      - parameter userId: (query) Optional. Filter by user id, and attach user data. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<BaseItemDto, Error>
+     - returns: Promise<BaseItemDto>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getYear(year: Int, userId: String? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<BaseItemDto, Error> {
-        return Future<BaseItemDto, Error>.init { promise in
-            getYearWithRequestBuilder(year: year, userId: userId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getYear( year: Int,  userId: String? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<BaseItemDto> {
+        let deferred = Promise<BaseItemDto>.pending()
+        getYearWithRequestBuilder(year: year, userId: userId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets a year.
@@ -89,23 +84,20 @@ open class YearsAPI {
      - parameter recursive: (query) Search recursively. (optional, default to true)
      - parameter enableImages: (query) Optional. Include image information in output. (optional, default to true)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<BaseItemDtoQueryResult, Error>
+     - returns: Promise<BaseItemDtoQueryResult>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getYears(startIndex: Int? = nil, limit: Int? = nil, sortOrder: [APISortOrder]? = nil, parentId: String? = nil, fields: [ItemFields]? = nil, excludeItemTypes: [String]? = nil, includeItemTypes: [String]? = nil, mediaTypes: [String]? = nil, sortBy: [String]? = nil, enableUserData: Bool? = nil, imageTypeLimit: Int? = nil, enableImageTypes: [ImageType]? = nil, userId: String? = nil, recursive: Bool? = nil, enableImages: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<BaseItemDtoQueryResult, Error> {
-        return Future<BaseItemDtoQueryResult, Error>.init { promise in
-            getYearsWithRequestBuilder(startIndex: startIndex, limit: limit, sortOrder: sortOrder, parentId: parentId, fields: fields, excludeItemTypes: excludeItemTypes, includeItemTypes: includeItemTypes, mediaTypes: mediaTypes, sortBy: sortBy, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes, userId: userId, recursive: recursive, enableImages: enableImages).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getYears( startIndex: Int? = nil,  limit: Int? = nil,  sortOrder: [APISortOrder]? = nil,  parentId: String? = nil,  fields: [ItemFields]? = nil,  excludeItemTypes: [String]? = nil,  includeItemTypes: [String]? = nil,  mediaTypes: [String]? = nil,  sortBy: [String]? = nil,  enableUserData: Bool? = nil,  imageTypeLimit: Int? = nil,  enableImageTypes: [ImageType]? = nil,  userId: String? = nil,  recursive: Bool? = nil,  enableImages: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<BaseItemDtoQueryResult> {
+        let deferred = Promise<BaseItemDtoQueryResult>.pending()
+        getYearsWithRequestBuilder(startIndex: startIndex, limit: limit, sortOrder: sortOrder, parentId: parentId, fields: fields, excludeItemTypes: excludeItemTypes, includeItemTypes: includeItemTypes, mediaTypes: mediaTypes, sortBy: sortBy, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes, userId: userId, recursive: recursive, enableImages: enableImages).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Get years.

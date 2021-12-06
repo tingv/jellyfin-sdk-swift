@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 # **getInstantMixFromAlbum**
 ```swift
-    open class func getInstantMixFromAlbum(id: String, userId: String? = nil, limit: Int? = nil, fields: [ItemFields]? = nil, enableImages: Bool? = nil, enableUserData: Bool? = nil, imageTypeLimit: Int? = nil, enableImageTypes: [ImageType]? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
+    open class func getInstantMixFromAlbum( id: String,  userId: String? = nil,  limit: Int? = nil,  fields: [ItemFields]? = nil,  enableImages: Bool? = nil,  enableUserData: Bool? = nil,  imageTypeLimit: Int? = nil,  enableImageTypes: [ImageType]? = nil) -> Promise<BaseItemDtoQueryResult>
 ```
 
 Creates an instant playlist based on a given album.
@@ -37,15 +37,12 @@ let imageTypeLimit = 987 // Int | Optional. The max number of images to return, 
 let enableImageTypes = [ImageType()] // [ImageType] | Optional. The image types to include in the output. (optional)
 
 // Creates an instant playlist based on a given album.
-InstantMixAPI.getInstantMixFromAlbum(id: id, userId: userId, limit: limit, fields: fields, enableImages: enableImages, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+InstantMixAPI.getInstantMixFromAlbum(id: id, userId: userId, limit: limit, fields: fields, enableImages: enableImages, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -79,7 +76,7 @@ Name | Type | Description  | Notes
 
 # **getInstantMixFromArtists**
 ```swift
-    open class func getInstantMixFromArtists(id: String, userId: String? = nil, limit: Int? = nil, fields: [ItemFields]? = nil, enableImages: Bool? = nil, enableUserData: Bool? = nil, imageTypeLimit: Int? = nil, enableImageTypes: [ImageType]? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
+    open class func getInstantMixFromArtists( id: String,  userId: String? = nil,  limit: Int? = nil,  fields: [ItemFields]? = nil,  enableImages: Bool? = nil,  enableUserData: Bool? = nil,  imageTypeLimit: Int? = nil,  enableImageTypes: [ImageType]? = nil) -> Promise<BaseItemDtoQueryResult>
 ```
 
 Creates an instant playlist based on a given artist.
@@ -99,15 +96,12 @@ let imageTypeLimit = 987 // Int | Optional. The max number of images to return, 
 let enableImageTypes = [ImageType()] // [ImageType] | Optional. The image types to include in the output. (optional)
 
 // Creates an instant playlist based on a given artist.
-InstantMixAPI.getInstantMixFromArtists(id: id, userId: userId, limit: limit, fields: fields, enableImages: enableImages, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+InstantMixAPI.getInstantMixFromArtists(id: id, userId: userId, limit: limit, fields: fields, enableImages: enableImages, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -141,7 +135,7 @@ Name | Type | Description  | Notes
 
 # **getInstantMixFromArtists2**
 ```swift
-    open class func getInstantMixFromArtists2(id: String, userId: String? = nil, limit: Int? = nil, fields: [ItemFields]? = nil, enableImages: Bool? = nil, enableUserData: Bool? = nil, imageTypeLimit: Int? = nil, enableImageTypes: [ImageType]? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
+    open class func getInstantMixFromArtists2( id: String,  userId: String? = nil,  limit: Int? = nil,  fields: [ItemFields]? = nil,  enableImages: Bool? = nil,  enableUserData: Bool? = nil,  imageTypeLimit: Int? = nil,  enableImageTypes: [ImageType]? = nil) -> Promise<BaseItemDtoQueryResult>
 ```
 
 Creates an instant playlist based on a given artist.
@@ -161,15 +155,12 @@ let imageTypeLimit = 987 // Int | Optional. The max number of images to return, 
 let enableImageTypes = [ImageType()] // [ImageType] | Optional. The image types to include in the output. (optional)
 
 // Creates an instant playlist based on a given artist.
-InstantMixAPI.getInstantMixFromArtists2(id: id, userId: userId, limit: limit, fields: fields, enableImages: enableImages, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+InstantMixAPI.getInstantMixFromArtists2(id: id, userId: userId, limit: limit, fields: fields, enableImages: enableImages, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -203,7 +194,7 @@ Name | Type | Description  | Notes
 
 # **getInstantMixFromItem**
 ```swift
-    open class func getInstantMixFromItem(id: String, userId: String? = nil, limit: Int? = nil, fields: [ItemFields]? = nil, enableImages: Bool? = nil, enableUserData: Bool? = nil, imageTypeLimit: Int? = nil, enableImageTypes: [ImageType]? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
+    open class func getInstantMixFromItem( id: String,  userId: String? = nil,  limit: Int? = nil,  fields: [ItemFields]? = nil,  enableImages: Bool? = nil,  enableUserData: Bool? = nil,  imageTypeLimit: Int? = nil,  enableImageTypes: [ImageType]? = nil) -> Promise<BaseItemDtoQueryResult>
 ```
 
 Creates an instant playlist based on a given item.
@@ -223,15 +214,12 @@ let imageTypeLimit = 987 // Int | Optional. The max number of images to return, 
 let enableImageTypes = [ImageType()] // [ImageType] | Optional. The image types to include in the output. (optional)
 
 // Creates an instant playlist based on a given item.
-InstantMixAPI.getInstantMixFromItem(id: id, userId: userId, limit: limit, fields: fields, enableImages: enableImages, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+InstantMixAPI.getInstantMixFromItem(id: id, userId: userId, limit: limit, fields: fields, enableImages: enableImages, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -265,7 +253,7 @@ Name | Type | Description  | Notes
 
 # **getInstantMixFromMusicGenreById**
 ```swift
-    open class func getInstantMixFromMusicGenreById(id: String, userId: String? = nil, limit: Int? = nil, fields: [ItemFields]? = nil, enableImages: Bool? = nil, enableUserData: Bool? = nil, imageTypeLimit: Int? = nil, enableImageTypes: [ImageType]? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
+    open class func getInstantMixFromMusicGenreById( id: String,  userId: String? = nil,  limit: Int? = nil,  fields: [ItemFields]? = nil,  enableImages: Bool? = nil,  enableUserData: Bool? = nil,  imageTypeLimit: Int? = nil,  enableImageTypes: [ImageType]? = nil) -> Promise<BaseItemDtoQueryResult>
 ```
 
 Creates an instant playlist based on a given genre.
@@ -285,15 +273,12 @@ let imageTypeLimit = 987 // Int | Optional. The max number of images to return, 
 let enableImageTypes = [ImageType()] // [ImageType] | Optional. The image types to include in the output. (optional)
 
 // Creates an instant playlist based on a given genre.
-InstantMixAPI.getInstantMixFromMusicGenreById(id: id, userId: userId, limit: limit, fields: fields, enableImages: enableImages, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+InstantMixAPI.getInstantMixFromMusicGenreById(id: id, userId: userId, limit: limit, fields: fields, enableImages: enableImages, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -327,7 +312,7 @@ Name | Type | Description  | Notes
 
 # **getInstantMixFromMusicGenreById2**
 ```swift
-    open class func getInstantMixFromMusicGenreById2(id: String, userId: String? = nil, limit: Int? = nil, fields: [ItemFields]? = nil, enableImages: Bool? = nil, enableUserData: Bool? = nil, imageTypeLimit: Int? = nil, enableImageTypes: [ImageType]? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
+    open class func getInstantMixFromMusicGenreById2( id: String,  userId: String? = nil,  limit: Int? = nil,  fields: [ItemFields]? = nil,  enableImages: Bool? = nil,  enableUserData: Bool? = nil,  imageTypeLimit: Int? = nil,  enableImageTypes: [ImageType]? = nil) -> Promise<BaseItemDtoQueryResult>
 ```
 
 Creates an instant playlist based on a given genre.
@@ -347,15 +332,12 @@ let imageTypeLimit = 987 // Int | Optional. The max number of images to return, 
 let enableImageTypes = [ImageType()] // [ImageType] | Optional. The image types to include in the output. (optional)
 
 // Creates an instant playlist based on a given genre.
-InstantMixAPI.getInstantMixFromMusicGenreById2(id: id, userId: userId, limit: limit, fields: fields, enableImages: enableImages, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+InstantMixAPI.getInstantMixFromMusicGenreById2(id: id, userId: userId, limit: limit, fields: fields, enableImages: enableImages, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -389,7 +371,7 @@ Name | Type | Description  | Notes
 
 # **getInstantMixFromMusicGenreByName**
 ```swift
-    open class func getInstantMixFromMusicGenreByName(name: String, userId: String? = nil, limit: Int? = nil, fields: [ItemFields]? = nil, enableImages: Bool? = nil, enableUserData: Bool? = nil, imageTypeLimit: Int? = nil, enableImageTypes: [ImageType]? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
+    open class func getInstantMixFromMusicGenreByName( name: String,  userId: String? = nil,  limit: Int? = nil,  fields: [ItemFields]? = nil,  enableImages: Bool? = nil,  enableUserData: Bool? = nil,  imageTypeLimit: Int? = nil,  enableImageTypes: [ImageType]? = nil) -> Promise<BaseItemDtoQueryResult>
 ```
 
 Creates an instant playlist based on a given genre.
@@ -409,15 +391,12 @@ let imageTypeLimit = 987 // Int | Optional. The max number of images to return, 
 let enableImageTypes = [ImageType()] // [ImageType] | Optional. The image types to include in the output. (optional)
 
 // Creates an instant playlist based on a given genre.
-InstantMixAPI.getInstantMixFromMusicGenreByName(name: name, userId: userId, limit: limit, fields: fields, enableImages: enableImages, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+InstantMixAPI.getInstantMixFromMusicGenreByName(name: name, userId: userId, limit: limit, fields: fields, enableImages: enableImages, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -451,7 +430,7 @@ Name | Type | Description  | Notes
 
 # **getInstantMixFromPlaylist**
 ```swift
-    open class func getInstantMixFromPlaylist(id: String, userId: String? = nil, limit: Int? = nil, fields: [ItemFields]? = nil, enableImages: Bool? = nil, enableUserData: Bool? = nil, imageTypeLimit: Int? = nil, enableImageTypes: [ImageType]? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
+    open class func getInstantMixFromPlaylist( id: String,  userId: String? = nil,  limit: Int? = nil,  fields: [ItemFields]? = nil,  enableImages: Bool? = nil,  enableUserData: Bool? = nil,  imageTypeLimit: Int? = nil,  enableImageTypes: [ImageType]? = nil) -> Promise<BaseItemDtoQueryResult>
 ```
 
 Creates an instant playlist based on a given playlist.
@@ -471,15 +450,12 @@ let imageTypeLimit = 987 // Int | Optional. The max number of images to return, 
 let enableImageTypes = [ImageType()] // [ImageType] | Optional. The image types to include in the output. (optional)
 
 // Creates an instant playlist based on a given playlist.
-InstantMixAPI.getInstantMixFromPlaylist(id: id, userId: userId, limit: limit, fields: fields, enableImages: enableImages, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+InstantMixAPI.getInstantMixFromPlaylist(id: id, userId: userId, limit: limit, fields: fields, enableImages: enableImages, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -513,7 +489,7 @@ Name | Type | Description  | Notes
 
 # **getInstantMixFromSong**
 ```swift
-    open class func getInstantMixFromSong(id: String, userId: String? = nil, limit: Int? = nil, fields: [ItemFields]? = nil, enableImages: Bool? = nil, enableUserData: Bool? = nil, imageTypeLimit: Int? = nil, enableImageTypes: [ImageType]? = nil, completion: @escaping (_ data: BaseItemDtoQueryResult?, _ error: Error?) -> Void)
+    open class func getInstantMixFromSong( id: String,  userId: String? = nil,  limit: Int? = nil,  fields: [ItemFields]? = nil,  enableImages: Bool? = nil,  enableUserData: Bool? = nil,  imageTypeLimit: Int? = nil,  enableImageTypes: [ImageType]? = nil) -> Promise<BaseItemDtoQueryResult>
 ```
 
 Creates an instant playlist based on a given song.
@@ -533,15 +509,12 @@ let imageTypeLimit = 987 // Int | Optional. The max number of images to return, 
 let enableImageTypes = [ImageType()] // [ImageType] | Optional. The image types to include in the output. (optional)
 
 // Creates an instant playlist based on a given song.
-InstantMixAPI.getInstantMixFromSong(id: id, userId: userId, limit: limit, fields: fields, enableImages: enableImages, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+InstantMixAPI.getInstantMixFromSong(id: id, userId: userId, limit: limit, fields: fields, enableImages: enableImages, enableUserData: enableUserData, imageTypeLimit: imageTypeLimit, enableImageTypes: enableImageTypes).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 

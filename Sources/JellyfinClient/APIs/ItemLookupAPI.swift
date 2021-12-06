@@ -7,9 +7,7 @@
 
 import AnyCodable
 import Foundation
-#if canImport(Combine)
-import Combine
-#endif
+import PromiseKit
 
 open class ItemLookupAPI {
     /**
@@ -19,23 +17,20 @@ open class ItemLookupAPI {
      - parameter remoteSearchResult: (body) The remote search result. 
      - parameter replaceAllImages: (query) Optional. Whether or not to replace all images. Default: True. (optional, default to true)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: Promise<Void>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func applySearchCriteria(itemId: String, remoteSearchResult: RemoteSearchResult, replaceAllImages: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error>.init { promise in
-            applySearchCriteriaWithRequestBuilder(itemId: itemId, remoteSearchResult: remoteSearchResult, replaceAllImages: replaceAllImages).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    promise(.success(()))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func applySearchCriteria( itemId: String,  remoteSearchResult: RemoteSearchResult,  replaceAllImages: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<Void> {
+        let deferred = Promise<Void>.pending()
+        applySearchCriteriaWithRequestBuilder(itemId: itemId, remoteSearchResult: remoteSearchResult, replaceAllImages: replaceAllImages).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case .success:
+                deferred.resolver.fulfill(())
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Applies search criteria to an item and refreshes metadata.
@@ -77,23 +72,20 @@ open class ItemLookupAPI {
      
      - parameter bookInfoRemoteSearchQuery: (body) Remote search query. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<[RemoteSearchResult], Error>
+     - returns: Promise<[RemoteSearchResult]>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getBookRemoteSearchResults(bookInfoRemoteSearchQuery: BookInfoRemoteSearchQuery, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<[RemoteSearchResult], Error> {
-        return Future<[RemoteSearchResult], Error>.init { promise in
-            getBookRemoteSearchResultsWithRequestBuilder(bookInfoRemoteSearchQuery: bookInfoRemoteSearchQuery).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getBookRemoteSearchResults( bookInfoRemoteSearchQuery: BookInfoRemoteSearchQuery, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<[RemoteSearchResult]> {
+        let deferred = Promise<[RemoteSearchResult]>.pending()
+        getBookRemoteSearchResultsWithRequestBuilder(bookInfoRemoteSearchQuery: bookInfoRemoteSearchQuery).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Get book remote search.
@@ -127,23 +119,20 @@ open class ItemLookupAPI {
      
      - parameter boxSetInfoRemoteSearchQuery: (body) Remote search query. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<[RemoteSearchResult], Error>
+     - returns: Promise<[RemoteSearchResult]>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getBoxSetRemoteSearchResults(boxSetInfoRemoteSearchQuery: BoxSetInfoRemoteSearchQuery, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<[RemoteSearchResult], Error> {
-        return Future<[RemoteSearchResult], Error>.init { promise in
-            getBoxSetRemoteSearchResultsWithRequestBuilder(boxSetInfoRemoteSearchQuery: boxSetInfoRemoteSearchQuery).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getBoxSetRemoteSearchResults( boxSetInfoRemoteSearchQuery: BoxSetInfoRemoteSearchQuery, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<[RemoteSearchResult]> {
+        let deferred = Promise<[RemoteSearchResult]>.pending()
+        getBoxSetRemoteSearchResultsWithRequestBuilder(boxSetInfoRemoteSearchQuery: boxSetInfoRemoteSearchQuery).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Get box set remote search.
@@ -177,23 +166,20 @@ open class ItemLookupAPI {
      
      - parameter itemId: (path) Item id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<[ExternalIdInfo], Error>
+     - returns: Promise<[ExternalIdInfo]>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getExternalIdInfos(itemId: String, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<[ExternalIdInfo], Error> {
-        return Future<[ExternalIdInfo], Error>.init { promise in
-            getExternalIdInfosWithRequestBuilder(itemId: itemId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getExternalIdInfos( itemId: String, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<[ExternalIdInfo]> {
+        let deferred = Promise<[ExternalIdInfo]>.pending()
+        getExternalIdInfosWithRequestBuilder(itemId: itemId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Get the item's external id info.
@@ -230,23 +216,20 @@ open class ItemLookupAPI {
      
      - parameter movieInfoRemoteSearchQuery: (body) Remote search query. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<[RemoteSearchResult], Error>
+     - returns: Promise<[RemoteSearchResult]>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getMovieRemoteSearchResults(movieInfoRemoteSearchQuery: MovieInfoRemoteSearchQuery, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<[RemoteSearchResult], Error> {
-        return Future<[RemoteSearchResult], Error>.init { promise in
-            getMovieRemoteSearchResultsWithRequestBuilder(movieInfoRemoteSearchQuery: movieInfoRemoteSearchQuery).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getMovieRemoteSearchResults( movieInfoRemoteSearchQuery: MovieInfoRemoteSearchQuery, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<[RemoteSearchResult]> {
+        let deferred = Promise<[RemoteSearchResult]>.pending()
+        getMovieRemoteSearchResultsWithRequestBuilder(movieInfoRemoteSearchQuery: movieInfoRemoteSearchQuery).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Get movie remote search.
@@ -280,23 +263,20 @@ open class ItemLookupAPI {
      
      - parameter albumInfoRemoteSearchQuery: (body) Remote search query. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<[RemoteSearchResult], Error>
+     - returns: Promise<[RemoteSearchResult]>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getMusicAlbumRemoteSearchResults(albumInfoRemoteSearchQuery: AlbumInfoRemoteSearchQuery, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<[RemoteSearchResult], Error> {
-        return Future<[RemoteSearchResult], Error>.init { promise in
-            getMusicAlbumRemoteSearchResultsWithRequestBuilder(albumInfoRemoteSearchQuery: albumInfoRemoteSearchQuery).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getMusicAlbumRemoteSearchResults( albumInfoRemoteSearchQuery: AlbumInfoRemoteSearchQuery, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<[RemoteSearchResult]> {
+        let deferred = Promise<[RemoteSearchResult]>.pending()
+        getMusicAlbumRemoteSearchResultsWithRequestBuilder(albumInfoRemoteSearchQuery: albumInfoRemoteSearchQuery).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Get music album remote search.
@@ -330,23 +310,20 @@ open class ItemLookupAPI {
      
      - parameter artistInfoRemoteSearchQuery: (body) Remote search query. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<[RemoteSearchResult], Error>
+     - returns: Promise<[RemoteSearchResult]>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getMusicArtistRemoteSearchResults(artistInfoRemoteSearchQuery: ArtistInfoRemoteSearchQuery, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<[RemoteSearchResult], Error> {
-        return Future<[RemoteSearchResult], Error>.init { promise in
-            getMusicArtistRemoteSearchResultsWithRequestBuilder(artistInfoRemoteSearchQuery: artistInfoRemoteSearchQuery).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getMusicArtistRemoteSearchResults( artistInfoRemoteSearchQuery: ArtistInfoRemoteSearchQuery, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<[RemoteSearchResult]> {
+        let deferred = Promise<[RemoteSearchResult]>.pending()
+        getMusicArtistRemoteSearchResultsWithRequestBuilder(artistInfoRemoteSearchQuery: artistInfoRemoteSearchQuery).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Get music artist remote search.
@@ -380,23 +357,20 @@ open class ItemLookupAPI {
      
      - parameter musicVideoInfoRemoteSearchQuery: (body) Remote search query. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<[RemoteSearchResult], Error>
+     - returns: Promise<[RemoteSearchResult]>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getMusicVideoRemoteSearchResults(musicVideoInfoRemoteSearchQuery: MusicVideoInfoRemoteSearchQuery, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<[RemoteSearchResult], Error> {
-        return Future<[RemoteSearchResult], Error>.init { promise in
-            getMusicVideoRemoteSearchResultsWithRequestBuilder(musicVideoInfoRemoteSearchQuery: musicVideoInfoRemoteSearchQuery).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getMusicVideoRemoteSearchResults( musicVideoInfoRemoteSearchQuery: MusicVideoInfoRemoteSearchQuery, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<[RemoteSearchResult]> {
+        let deferred = Promise<[RemoteSearchResult]>.pending()
+        getMusicVideoRemoteSearchResultsWithRequestBuilder(musicVideoInfoRemoteSearchQuery: musicVideoInfoRemoteSearchQuery).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Get music video remote search.
@@ -430,23 +404,20 @@ open class ItemLookupAPI {
      
      - parameter personLookupInfoRemoteSearchQuery: (body) Remote search query. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<[RemoteSearchResult], Error>
+     - returns: Promise<[RemoteSearchResult]>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getPersonRemoteSearchResults(personLookupInfoRemoteSearchQuery: PersonLookupInfoRemoteSearchQuery, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<[RemoteSearchResult], Error> {
-        return Future<[RemoteSearchResult], Error>.init { promise in
-            getPersonRemoteSearchResultsWithRequestBuilder(personLookupInfoRemoteSearchQuery: personLookupInfoRemoteSearchQuery).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getPersonRemoteSearchResults( personLookupInfoRemoteSearchQuery: PersonLookupInfoRemoteSearchQuery, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<[RemoteSearchResult]> {
+        let deferred = Promise<[RemoteSearchResult]>.pending()
+        getPersonRemoteSearchResultsWithRequestBuilder(personLookupInfoRemoteSearchQuery: personLookupInfoRemoteSearchQuery).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Get person remote search.
@@ -480,23 +451,20 @@ open class ItemLookupAPI {
      
      - parameter seriesInfoRemoteSearchQuery: (body) Remote search query. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<[RemoteSearchResult], Error>
+     - returns: Promise<[RemoteSearchResult]>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getSeriesRemoteSearchResults(seriesInfoRemoteSearchQuery: SeriesInfoRemoteSearchQuery, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<[RemoteSearchResult], Error> {
-        return Future<[RemoteSearchResult], Error>.init { promise in
-            getSeriesRemoteSearchResultsWithRequestBuilder(seriesInfoRemoteSearchQuery: seriesInfoRemoteSearchQuery).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getSeriesRemoteSearchResults( seriesInfoRemoteSearchQuery: SeriesInfoRemoteSearchQuery, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<[RemoteSearchResult]> {
+        let deferred = Promise<[RemoteSearchResult]>.pending()
+        getSeriesRemoteSearchResultsWithRequestBuilder(seriesInfoRemoteSearchQuery: seriesInfoRemoteSearchQuery).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Get series remote search.
@@ -530,23 +498,20 @@ open class ItemLookupAPI {
      
      - parameter trailerInfoRemoteSearchQuery: (body) Remote search query. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<[RemoteSearchResult], Error>
+     - returns: Promise<[RemoteSearchResult]>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getTrailerRemoteSearchResults(trailerInfoRemoteSearchQuery: TrailerInfoRemoteSearchQuery, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<[RemoteSearchResult], Error> {
-        return Future<[RemoteSearchResult], Error>.init { promise in
-            getTrailerRemoteSearchResultsWithRequestBuilder(trailerInfoRemoteSearchQuery: trailerInfoRemoteSearchQuery).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getTrailerRemoteSearchResults( trailerInfoRemoteSearchQuery: TrailerInfoRemoteSearchQuery, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<[RemoteSearchResult]> {
+        let deferred = Promise<[RemoteSearchResult]>.pending()
+        getTrailerRemoteSearchResultsWithRequestBuilder(trailerInfoRemoteSearchQuery: trailerInfoRemoteSearchQuery).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Get trailer remote search.

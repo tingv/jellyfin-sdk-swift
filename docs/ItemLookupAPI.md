@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 # **applySearchCriteria**
 ```swift
-    open class func applySearchCriteria(itemId: String, remoteSearchResult: RemoteSearchResult, replaceAllImages: Bool? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func applySearchCriteria( itemId: String,  remoteSearchResult: RemoteSearchResult,  replaceAllImages: Bool? = nil) -> Promise<Void>
 ```
 
 Applies search criteria to an item and refreshes metadata.
@@ -34,15 +34,12 @@ let remoteSearchResult = RemoteSearchResult(name: "name_example", providerIds: "
 let replaceAllImages = true // Bool | Optional. Whether or not to replace all images. Default: True. (optional) (default to true)
 
 // Applies search criteria to an item and refreshes metadata.
-ItemLookupAPI.applySearchCriteria(itemId: itemId, remoteSearchResult: remoteSearchResult, replaceAllImages: replaceAllImages) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ItemLookupAPI.applySearchCriteria(itemId: itemId, remoteSearchResult: remoteSearchResult, replaceAllImages: replaceAllImages).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -71,7 +68,7 @@ Void (empty response body)
 
 # **getBookRemoteSearchResults**
 ```swift
-    open class func getBookRemoteSearchResults(bookInfoRemoteSearchQuery: BookInfoRemoteSearchQuery, completion: @escaping (_ data: [RemoteSearchResult]?, _ error: Error?) -> Void)
+    open class func getBookRemoteSearchResults( bookInfoRemoteSearchQuery: BookInfoRemoteSearchQuery) -> Promise<[RemoteSearchResult]>
 ```
 
 Get book remote search.
@@ -84,15 +81,12 @@ import JellyfinClient
 let bookInfoRemoteSearchQuery = BookInfoRemoteSearchQuery(searchInfo: BookInfo(name: "name_example", path: "path_example", metadataLanguage: "metadataLanguage_example", metadataCountryCode: "metadataCountryCode_example", providerIds: "TODO", year: 123, indexNumber: 123, parentIndexNumber: 123, premiereDate: Date(), isAutomated: false, seriesName: "seriesName_example"), itemId: "itemId_example", searchProviderName: "searchProviderName_example", includeDisabledProviders: false) // BookInfoRemoteSearchQuery | Remote search query.
 
 // Get book remote search.
-ItemLookupAPI.getBookRemoteSearchResults(bookInfoRemoteSearchQuery: bookInfoRemoteSearchQuery) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ItemLookupAPI.getBookRemoteSearchResults(bookInfoRemoteSearchQuery: bookInfoRemoteSearchQuery).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -119,7 +113,7 @@ Name | Type | Description  | Notes
 
 # **getBoxSetRemoteSearchResults**
 ```swift
-    open class func getBoxSetRemoteSearchResults(boxSetInfoRemoteSearchQuery: BoxSetInfoRemoteSearchQuery, completion: @escaping (_ data: [RemoteSearchResult]?, _ error: Error?) -> Void)
+    open class func getBoxSetRemoteSearchResults( boxSetInfoRemoteSearchQuery: BoxSetInfoRemoteSearchQuery) -> Promise<[RemoteSearchResult]>
 ```
 
 Get box set remote search.
@@ -132,15 +126,12 @@ import JellyfinClient
 let boxSetInfoRemoteSearchQuery = BoxSetInfoRemoteSearchQuery(searchInfo: BoxSetInfo(name: "name_example", path: "path_example", metadataLanguage: "metadataLanguage_example", metadataCountryCode: "metadataCountryCode_example", providerIds: "TODO", year: 123, indexNumber: 123, parentIndexNumber: 123, premiereDate: Date(), isAutomated: false), itemId: "itemId_example", searchProviderName: "searchProviderName_example", includeDisabledProviders: false) // BoxSetInfoRemoteSearchQuery | Remote search query.
 
 // Get box set remote search.
-ItemLookupAPI.getBoxSetRemoteSearchResults(boxSetInfoRemoteSearchQuery: boxSetInfoRemoteSearchQuery) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ItemLookupAPI.getBoxSetRemoteSearchResults(boxSetInfoRemoteSearchQuery: boxSetInfoRemoteSearchQuery).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -167,7 +158,7 @@ Name | Type | Description  | Notes
 
 # **getExternalIdInfos**
 ```swift
-    open class func getExternalIdInfos(itemId: String, completion: @escaping (_ data: [ExternalIdInfo]?, _ error: Error?) -> Void)
+    open class func getExternalIdInfos( itemId: String) -> Promise<[ExternalIdInfo]>
 ```
 
 Get the item's external id info.
@@ -180,15 +171,12 @@ import JellyfinClient
 let itemId = "itemId_example" // String | Item id.
 
 // Get the item's external id info.
-ItemLookupAPI.getExternalIdInfos(itemId: itemId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ItemLookupAPI.getExternalIdInfos(itemId: itemId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -215,7 +203,7 @@ Name | Type | Description  | Notes
 
 # **getMovieRemoteSearchResults**
 ```swift
-    open class func getMovieRemoteSearchResults(movieInfoRemoteSearchQuery: MovieInfoRemoteSearchQuery, completion: @escaping (_ data: [RemoteSearchResult]?, _ error: Error?) -> Void)
+    open class func getMovieRemoteSearchResults( movieInfoRemoteSearchQuery: MovieInfoRemoteSearchQuery) -> Promise<[RemoteSearchResult]>
 ```
 
 Get movie remote search.
@@ -228,15 +216,12 @@ import JellyfinClient
 let movieInfoRemoteSearchQuery = MovieInfoRemoteSearchQuery(searchInfo: MovieInfo(name: "name_example", path: "path_example", metadataLanguage: "metadataLanguage_example", metadataCountryCode: "metadataCountryCode_example", providerIds: "TODO", year: 123, indexNumber: 123, parentIndexNumber: 123, premiereDate: Date(), isAutomated: false), itemId: "itemId_example", searchProviderName: "searchProviderName_example", includeDisabledProviders: false) // MovieInfoRemoteSearchQuery | Remote search query.
 
 // Get movie remote search.
-ItemLookupAPI.getMovieRemoteSearchResults(movieInfoRemoteSearchQuery: movieInfoRemoteSearchQuery) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ItemLookupAPI.getMovieRemoteSearchResults(movieInfoRemoteSearchQuery: movieInfoRemoteSearchQuery).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -263,7 +248,7 @@ Name | Type | Description  | Notes
 
 # **getMusicAlbumRemoteSearchResults**
 ```swift
-    open class func getMusicAlbumRemoteSearchResults(albumInfoRemoteSearchQuery: AlbumInfoRemoteSearchQuery, completion: @escaping (_ data: [RemoteSearchResult]?, _ error: Error?) -> Void)
+    open class func getMusicAlbumRemoteSearchResults( albumInfoRemoteSearchQuery: AlbumInfoRemoteSearchQuery) -> Promise<[RemoteSearchResult]>
 ```
 
 Get music album remote search.
@@ -276,15 +261,12 @@ import JellyfinClient
 let albumInfoRemoteSearchQuery = AlbumInfoRemoteSearchQuery(searchInfo: AlbumInfo(name: "name_example", path: "path_example", metadataLanguage: "metadataLanguage_example", metadataCountryCode: "metadataCountryCode_example", providerIds: "TODO", year: 123, indexNumber: 123, parentIndexNumber: 123, premiereDate: Date(), isAutomated: false, albumArtists: ["albumArtists_example"], artistProviderIds: "TODO", songInfos: [SongInfo(name: "name_example", path: "path_example", metadataLanguage: "metadataLanguage_example", metadataCountryCode: "metadataCountryCode_example", providerIds: "TODO", year: 123, indexNumber: 123, parentIndexNumber: 123, premiereDate: Date(), isAutomated: false, albumArtists: ["albumArtists_example"], album: "album_example", artists: ["artists_example"])]), itemId: "itemId_example", searchProviderName: "searchProviderName_example", includeDisabledProviders: false) // AlbumInfoRemoteSearchQuery | Remote search query.
 
 // Get music album remote search.
-ItemLookupAPI.getMusicAlbumRemoteSearchResults(albumInfoRemoteSearchQuery: albumInfoRemoteSearchQuery) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ItemLookupAPI.getMusicAlbumRemoteSearchResults(albumInfoRemoteSearchQuery: albumInfoRemoteSearchQuery).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -311,7 +293,7 @@ Name | Type | Description  | Notes
 
 # **getMusicArtistRemoteSearchResults**
 ```swift
-    open class func getMusicArtistRemoteSearchResults(artistInfoRemoteSearchQuery: ArtistInfoRemoteSearchQuery, completion: @escaping (_ data: [RemoteSearchResult]?, _ error: Error?) -> Void)
+    open class func getMusicArtistRemoteSearchResults( artistInfoRemoteSearchQuery: ArtistInfoRemoteSearchQuery) -> Promise<[RemoteSearchResult]>
 ```
 
 Get music artist remote search.
@@ -324,15 +306,12 @@ import JellyfinClient
 let artistInfoRemoteSearchQuery = ArtistInfoRemoteSearchQuery(searchInfo: ArtistInfo(name: "name_example", path: "path_example", metadataLanguage: "metadataLanguage_example", metadataCountryCode: "metadataCountryCode_example", providerIds: "TODO", year: 123, indexNumber: 123, parentIndexNumber: 123, premiereDate: Date(), isAutomated: false, songInfos: [SongInfo(name: "name_example", path: "path_example", metadataLanguage: "metadataLanguage_example", metadataCountryCode: "metadataCountryCode_example", providerIds: "TODO", year: 123, indexNumber: 123, parentIndexNumber: 123, premiereDate: Date(), isAutomated: false, albumArtists: ["albumArtists_example"], album: "album_example", artists: ["artists_example"])]), itemId: "itemId_example", searchProviderName: "searchProviderName_example", includeDisabledProviders: false) // ArtistInfoRemoteSearchQuery | Remote search query.
 
 // Get music artist remote search.
-ItemLookupAPI.getMusicArtistRemoteSearchResults(artistInfoRemoteSearchQuery: artistInfoRemoteSearchQuery) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ItemLookupAPI.getMusicArtistRemoteSearchResults(artistInfoRemoteSearchQuery: artistInfoRemoteSearchQuery).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -359,7 +338,7 @@ Name | Type | Description  | Notes
 
 # **getMusicVideoRemoteSearchResults**
 ```swift
-    open class func getMusicVideoRemoteSearchResults(musicVideoInfoRemoteSearchQuery: MusicVideoInfoRemoteSearchQuery, completion: @escaping (_ data: [RemoteSearchResult]?, _ error: Error?) -> Void)
+    open class func getMusicVideoRemoteSearchResults( musicVideoInfoRemoteSearchQuery: MusicVideoInfoRemoteSearchQuery) -> Promise<[RemoteSearchResult]>
 ```
 
 Get music video remote search.
@@ -372,15 +351,12 @@ import JellyfinClient
 let musicVideoInfoRemoteSearchQuery = MusicVideoInfoRemoteSearchQuery(searchInfo: MusicVideoInfo(name: "name_example", path: "path_example", metadataLanguage: "metadataLanguage_example", metadataCountryCode: "metadataCountryCode_example", providerIds: "TODO", year: 123, indexNumber: 123, parentIndexNumber: 123, premiereDate: Date(), isAutomated: false, artists: ["artists_example"]), itemId: "itemId_example", searchProviderName: "searchProviderName_example", includeDisabledProviders: false) // MusicVideoInfoRemoteSearchQuery | Remote search query.
 
 // Get music video remote search.
-ItemLookupAPI.getMusicVideoRemoteSearchResults(musicVideoInfoRemoteSearchQuery: musicVideoInfoRemoteSearchQuery) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ItemLookupAPI.getMusicVideoRemoteSearchResults(musicVideoInfoRemoteSearchQuery: musicVideoInfoRemoteSearchQuery).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -407,7 +383,7 @@ Name | Type | Description  | Notes
 
 # **getPersonRemoteSearchResults**
 ```swift
-    open class func getPersonRemoteSearchResults(personLookupInfoRemoteSearchQuery: PersonLookupInfoRemoteSearchQuery, completion: @escaping (_ data: [RemoteSearchResult]?, _ error: Error?) -> Void)
+    open class func getPersonRemoteSearchResults( personLookupInfoRemoteSearchQuery: PersonLookupInfoRemoteSearchQuery) -> Promise<[RemoteSearchResult]>
 ```
 
 Get person remote search.
@@ -420,15 +396,12 @@ import JellyfinClient
 let personLookupInfoRemoteSearchQuery = PersonLookupInfoRemoteSearchQuery(searchInfo: PersonLookupInfo(name: "name_example", path: "path_example", metadataLanguage: "metadataLanguage_example", metadataCountryCode: "metadataCountryCode_example", providerIds: "TODO", year: 123, indexNumber: 123, parentIndexNumber: 123, premiereDate: Date(), isAutomated: false), itemId: "itemId_example", searchProviderName: "searchProviderName_example", includeDisabledProviders: false) // PersonLookupInfoRemoteSearchQuery | Remote search query.
 
 // Get person remote search.
-ItemLookupAPI.getPersonRemoteSearchResults(personLookupInfoRemoteSearchQuery: personLookupInfoRemoteSearchQuery) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ItemLookupAPI.getPersonRemoteSearchResults(personLookupInfoRemoteSearchQuery: personLookupInfoRemoteSearchQuery).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -455,7 +428,7 @@ Name | Type | Description  | Notes
 
 # **getSeriesRemoteSearchResults**
 ```swift
-    open class func getSeriesRemoteSearchResults(seriesInfoRemoteSearchQuery: SeriesInfoRemoteSearchQuery, completion: @escaping (_ data: [RemoteSearchResult]?, _ error: Error?) -> Void)
+    open class func getSeriesRemoteSearchResults( seriesInfoRemoteSearchQuery: SeriesInfoRemoteSearchQuery) -> Promise<[RemoteSearchResult]>
 ```
 
 Get series remote search.
@@ -468,15 +441,12 @@ import JellyfinClient
 let seriesInfoRemoteSearchQuery = SeriesInfoRemoteSearchQuery(searchInfo: SeriesInfo(name: "name_example", path: "path_example", metadataLanguage: "metadataLanguage_example", metadataCountryCode: "metadataCountryCode_example", providerIds: "TODO", year: 123, indexNumber: 123, parentIndexNumber: 123, premiereDate: Date(), isAutomated: false), itemId: "itemId_example", searchProviderName: "searchProviderName_example", includeDisabledProviders: false) // SeriesInfoRemoteSearchQuery | Remote search query.
 
 // Get series remote search.
-ItemLookupAPI.getSeriesRemoteSearchResults(seriesInfoRemoteSearchQuery: seriesInfoRemoteSearchQuery) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ItemLookupAPI.getSeriesRemoteSearchResults(seriesInfoRemoteSearchQuery: seriesInfoRemoteSearchQuery).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -503,7 +473,7 @@ Name | Type | Description  | Notes
 
 # **getTrailerRemoteSearchResults**
 ```swift
-    open class func getTrailerRemoteSearchResults(trailerInfoRemoteSearchQuery: TrailerInfoRemoteSearchQuery, completion: @escaping (_ data: [RemoteSearchResult]?, _ error: Error?) -> Void)
+    open class func getTrailerRemoteSearchResults( trailerInfoRemoteSearchQuery: TrailerInfoRemoteSearchQuery) -> Promise<[RemoteSearchResult]>
 ```
 
 Get trailer remote search.
@@ -516,15 +486,12 @@ import JellyfinClient
 let trailerInfoRemoteSearchQuery = TrailerInfoRemoteSearchQuery(searchInfo: TrailerInfo(name: "name_example", path: "path_example", metadataLanguage: "metadataLanguage_example", metadataCountryCode: "metadataCountryCode_example", providerIds: "TODO", year: 123, indexNumber: 123, parentIndexNumber: 123, premiereDate: Date(), isAutomated: false), itemId: "itemId_example", searchProviderName: "searchProviderName_example", includeDisabledProviders: false) // TrailerInfoRemoteSearchQuery | Remote search query.
 
 // Get trailer remote search.
-ItemLookupAPI.getTrailerRemoteSearchResults(trailerInfoRemoteSearchQuery: trailerInfoRemoteSearchQuery) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+ItemLookupAPI.getTrailerRemoteSearchResults(trailerInfoRemoteSearchQuery: trailerInfoRemoteSearchQuery).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 

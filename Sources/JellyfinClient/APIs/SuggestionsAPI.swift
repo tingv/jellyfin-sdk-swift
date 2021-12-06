@@ -7,9 +7,7 @@
 
 import AnyCodable
 import Foundation
-#if canImport(Combine)
-import Combine
-#endif
+import PromiseKit
 
 open class SuggestionsAPI {
     /**
@@ -22,23 +20,20 @@ open class SuggestionsAPI {
      - parameter limit: (query) Optional. The limit. (optional)
      - parameter enableTotalRecordCount: (query) Whether to enable the total record count. (optional, default to false)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<BaseItemDtoQueryResult, Error>
+     - returns: Promise<BaseItemDtoQueryResult>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getSuggestions(userId: String, mediaType: [String]? = nil, type: [String]? = nil, startIndex: Int? = nil, limit: Int? = nil, enableTotalRecordCount: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<BaseItemDtoQueryResult, Error> {
-        return Future<BaseItemDtoQueryResult, Error>.init { promise in
-            getSuggestionsWithRequestBuilder(userId: userId, mediaType: mediaType, type: type, startIndex: startIndex, limit: limit, enableTotalRecordCount: enableTotalRecordCount).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getSuggestions( userId: String,  mediaType: [String]? = nil,  type: [String]? = nil,  startIndex: Int? = nil,  limit: Int? = nil,  enableTotalRecordCount: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<BaseItemDtoQueryResult> {
+        let deferred = Promise<BaseItemDtoQueryResult>.pending()
+        getSuggestionsWithRequestBuilder(userId: userId, mediaType: mediaType, type: type, startIndex: startIndex, limit: limit, enableTotalRecordCount: enableTotalRecordCount).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets suggestions.

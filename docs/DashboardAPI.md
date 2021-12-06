@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 # **getConfigurationPages**
 ```swift
-    open class func getConfigurationPages(enableInMainMenu: Bool? = nil, pageType: ConfigurationPageType? = nil, completion: @escaping (_ data: [ConfigurationPageInfo]?, _ error: Error?) -> Void)
+    open class func getConfigurationPages( enableInMainMenu: Bool? = nil,  pageType: ConfigurationPageType? = nil) -> Promise<[ConfigurationPageInfo]>
 ```
 
 Gets the configuration pages.
@@ -24,15 +24,12 @@ let enableInMainMenu = true // Bool | Whether to enable in the main menu. (optio
 let pageType = ConfigurationPageType() // ConfigurationPageType | The Jellyfin.Api.Models.ConfigurationPageInfo. (optional)
 
 // Gets the configuration pages.
-DashboardAPI.getConfigurationPages(enableInMainMenu: enableInMainMenu, pageType: pageType) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+DashboardAPI.getConfigurationPages(enableInMainMenu: enableInMainMenu, pageType: pageType).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -60,7 +57,7 @@ No authorization required
 
 # **getDashboardConfigurationPage**
 ```swift
-    open class func getDashboardConfigurationPage(name: String? = nil, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func getDashboardConfigurationPage( name: String? = nil) -> Promise<URL>
 ```
 
 Gets a dashboard configuration page.
@@ -73,15 +70,12 @@ import JellyfinClient
 let name = "name_example" // String | The name of the page. (optional)
 
 // Gets a dashboard configuration page.
-DashboardAPI.getDashboardConfigurationPage(name: name) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+DashboardAPI.getDashboardConfigurationPage(name: name).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 

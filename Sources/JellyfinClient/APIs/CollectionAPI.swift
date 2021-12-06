@@ -7,9 +7,7 @@
 
 import AnyCodable
 import Foundation
-#if canImport(Combine)
-import Combine
-#endif
+import PromiseKit
 
 open class CollectionAPI {
     /**
@@ -18,23 +16,20 @@ open class CollectionAPI {
      - parameter collectionId: (path) The collection id. 
      - parameter ids: (query) Item ids, comma delimited. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: Promise<Void>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func addToCollection(collectionId: String, ids: [String], apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error>.init { promise in
-            addToCollectionWithRequestBuilder(collectionId: collectionId, ids: ids).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    promise(.success(()))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func addToCollection( collectionId: String,  ids: [String], apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<Void> {
+        let deferred = Promise<Void>.pending()
+        addToCollectionWithRequestBuilder(collectionId: collectionId, ids: ids).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case .success:
+                deferred.resolver.fulfill(())
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Adds items to a collection.
@@ -78,23 +73,20 @@ open class CollectionAPI {
      - parameter parentId: (query) Optional. Create the collection within a specific folder. (optional)
      - parameter isLocked: (query) Whether or not to lock the new collection. (optional, default to false)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<CollectionCreationResult, Error>
+     - returns: Promise<CollectionCreationResult>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func createCollection(name: String? = nil, ids: [String]? = nil, parentId: String? = nil, isLocked: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<CollectionCreationResult, Error> {
-        return Future<CollectionCreationResult, Error>.init { promise in
-            createCollectionWithRequestBuilder(name: name, ids: ids, parentId: parentId, isLocked: isLocked).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func createCollection( name: String? = nil,  ids: [String]? = nil,  parentId: String? = nil,  isLocked: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<CollectionCreationResult> {
+        let deferred = Promise<CollectionCreationResult>.pending()
+        createCollectionWithRequestBuilder(name: name, ids: ids, parentId: parentId, isLocked: isLocked).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Creates a new collection.
@@ -138,23 +130,20 @@ open class CollectionAPI {
      - parameter collectionId: (path) The collection id. 
      - parameter ids: (query) Item ids, comma delimited. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: Promise<Void>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func removeFromCollection(collectionId: String, ids: [String], apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error>.init { promise in
-            removeFromCollectionWithRequestBuilder(collectionId: collectionId, ids: ids).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    promise(.success(()))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func removeFromCollection( collectionId: String,  ids: [String], apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<Void> {
+        let deferred = Promise<Void>.pending()
+        removeFromCollectionWithRequestBuilder(collectionId: collectionId, ids: ids).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case .success:
+                deferred.resolver.fulfill(())
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Removes items from a collection.

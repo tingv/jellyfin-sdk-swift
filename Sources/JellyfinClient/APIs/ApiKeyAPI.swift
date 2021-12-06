@@ -7,9 +7,7 @@
 
 import AnyCodable
 import Foundation
-#if canImport(Combine)
-import Combine
-#endif
+import PromiseKit
 
 open class ApiKeyAPI {
     /**
@@ -17,23 +15,20 @@ open class ApiKeyAPI {
      
      - parameter app: (query) Name of the app using the authentication key. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: Promise<Void>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func createKey(app: String, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error>.init { promise in
-            createKeyWithRequestBuilder(app: app).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    promise(.success(()))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func createKey( app: String, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<Void> {
+        let deferred = Promise<Void>.pending()
+        createKeyWithRequestBuilder(app: app).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case .success:
+                deferred.resolver.fulfill(())
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Create a new api key.
@@ -69,23 +64,20 @@ open class ApiKeyAPI {
      Get all keys.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<AuthenticationInfoQueryResult, Error>
+     - returns: Promise<AuthenticationInfoQueryResult>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getKeys(apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<AuthenticationInfoQueryResult, Error> {
-        return Future<AuthenticationInfoQueryResult, Error>.init { promise in
-            getKeysWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getKeys(apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<AuthenticationInfoQueryResult> {
+        let deferred = Promise<AuthenticationInfoQueryResult>.pending()
+        getKeysWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Get all keys.
@@ -118,23 +110,20 @@ open class ApiKeyAPI {
      
      - parameter key: (path) The access token to delete. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: Promise<Void>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func revokeKey(key: String, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error>.init { promise in
-            revokeKeyWithRequestBuilder(key: key).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    promise(.success(()))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func revokeKey( key: String, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<Void> {
+        let deferred = Promise<Void>.pending()
+        revokeKeyWithRequestBuilder(key: key).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case .success:
+                deferred.resolver.fulfill(())
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Remove an api key.

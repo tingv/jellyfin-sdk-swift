@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 # **createProfile**
 ```swift
-    open class func createProfile(deviceProfile: DeviceProfile? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func createProfile( deviceProfile: DeviceProfile? = nil) -> Promise<Void>
 ```
 
 Creates a profile.
@@ -27,15 +27,12 @@ import JellyfinClient
 let deviceProfile = DeviceProfile(name: "name_example", id: "id_example", identification: DeviceIdentification(friendlyName: "friendlyName_example", modelNumber: "modelNumber_example", serialNumber: "serialNumber_example", modelName: "modelName_example", modelDescription: "modelDescription_example", modelUrl: "modelUrl_example", manufacturer: "manufacturer_example", manufacturerUrl: "manufacturerUrl_example", headers: [HttpHeaderInfo(name: "name_example", value: "value_example", match: HeaderMatchType())]), friendlyName: "friendlyName_example", manufacturer: "manufacturer_example", manufacturerUrl: "manufacturerUrl_example", modelName: "modelName_example", modelDescription: "modelDescription_example", modelNumber: "modelNumber_example", modelUrl: "modelUrl_example", serialNumber: "serialNumber_example", enableAlbumArtInDidl: false, enableSingleAlbumArtLimit: false, enableSingleSubtitleLimit: false, supportedMediaTypes: "supportedMediaTypes_example", userId: "userId_example", albumArtPn: "albumArtPn_example", maxAlbumArtWidth: 123, maxAlbumArtHeight: 123, maxIconWidth: 123, maxIconHeight: 123, maxStreamingBitrate: 123, maxStaticBitrate: 123, musicStreamingTranscodingBitrate: 123, maxStaticMusicBitrate: 123, sonyAggregationFlags: "sonyAggregationFlags_example", protocolInfo: "protocolInfo_example", timelineOffsetSeconds: 123, requiresPlainVideoItems: false, requiresPlainFolders: false, enableMSMediaReceiverRegistrar: false, ignoreTranscodeByteRangeRequests: false, xmlRootAttributes: [XmlAttribute(name: "name_example", value: "value_example")], directPlayProfiles: [DirectPlayProfile(container: "container_example", audioCodec: "audioCodec_example", videoCodec: "videoCodec_example", type: DlnaProfileType())], transcodingProfiles: [TranscodingProfile(container: "container_example", type: nil, videoCodec: "videoCodec_example", audioCodec: "audioCodec_example", _protocol: "_protocol_example", estimateContentLength: false, enableMpegtsM2TsMode: false, transcodeSeekInfo: TranscodeSeekInfo(), copyTimestamps: false, context: EncodingContext(), enableSubtitlesInManifest: false, maxAudioChannels: "maxAudioChannels_example", minSegments: 123, segmentLength: 123, breakOnNonKeyFrames: false)], containerProfiles: [ContainerProfile(type: nil, conditions: [ProfileCondition(condition: ProfileConditionType(), property: ProfileConditionValue(), value: "value_example", isRequired: false)], container: "container_example")], codecProfiles: [CodecProfile(type: CodecType(), conditions: [nil], applyConditions: [nil], codec: "codec_example", container: "container_example")], responseProfiles: [ResponseProfile(container: "container_example", audioCodec: "audioCodec_example", videoCodec: "videoCodec_example", type: nil, orgPn: "orgPn_example", mimeType: "mimeType_example", conditions: [nil])], subtitleProfiles: [SubtitleProfile(format: "format_example", method: SubtitleDeliveryMethod(), didlMode: "didlMode_example", language: "language_example", container: "container_example")]) // DeviceProfile | Device profile. (optional)
 
 // Creates a profile.
-DlnaAPI.createProfile(deviceProfile: deviceProfile) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+DlnaAPI.createProfile(deviceProfile: deviceProfile).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -62,7 +59,7 @@ Void (empty response body)
 
 # **deleteProfile**
 ```swift
-    open class func deleteProfile(profileId: String, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func deleteProfile( profileId: String) -> Promise<Void>
 ```
 
 Deletes a profile.
@@ -75,15 +72,12 @@ import JellyfinClient
 let profileId = "profileId_example" // String | Profile id.
 
 // Deletes a profile.
-DlnaAPI.deleteProfile(profileId: profileId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+DlnaAPI.deleteProfile(profileId: profileId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -110,7 +104,7 @@ Void (empty response body)
 
 # **getDefaultProfile**
 ```swift
-    open class func getDefaultProfile(completion: @escaping (_ data: DeviceProfile?, _ error: Error?) -> Void)
+    open class func getDefaultProfile() -> Promise<DeviceProfile>
 ```
 
 Gets the default profile.
@@ -122,15 +116,12 @@ import JellyfinClient
 
 
 // Gets the default profile.
-DlnaAPI.getDefaultProfile() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+DlnaAPI.getDefaultProfile().then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -154,7 +145,7 @@ This endpoint does not need any parameter.
 
 # **getProfile**
 ```swift
-    open class func getProfile(profileId: String, completion: @escaping (_ data: DeviceProfile?, _ error: Error?) -> Void)
+    open class func getProfile( profileId: String) -> Promise<DeviceProfile>
 ```
 
 Gets a single profile.
@@ -167,15 +158,12 @@ import JellyfinClient
 let profileId = "profileId_example" // String | Profile Id.
 
 // Gets a single profile.
-DlnaAPI.getProfile(profileId: profileId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+DlnaAPI.getProfile(profileId: profileId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -202,7 +190,7 @@ Name | Type | Description  | Notes
 
 # **getProfileInfos**
 ```swift
-    open class func getProfileInfos(completion: @escaping (_ data: [DeviceProfileInfo]?, _ error: Error?) -> Void)
+    open class func getProfileInfos() -> Promise<[DeviceProfileInfo]>
 ```
 
 Get profile infos.
@@ -214,15 +202,12 @@ import JellyfinClient
 
 
 // Get profile infos.
-DlnaAPI.getProfileInfos() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+DlnaAPI.getProfileInfos().then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -246,7 +231,7 @@ This endpoint does not need any parameter.
 
 # **updateProfile**
 ```swift
-    open class func updateProfile(profileId: String, deviceProfile: DeviceProfile? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func updateProfile( profileId: String,  deviceProfile: DeviceProfile? = nil) -> Promise<Void>
 ```
 
 Updates a profile.
@@ -260,15 +245,12 @@ let profileId = "profileId_example" // String | Profile id.
 let deviceProfile = DeviceProfile(name: "name_example", id: "id_example", identification: DeviceIdentification(friendlyName: "friendlyName_example", modelNumber: "modelNumber_example", serialNumber: "serialNumber_example", modelName: "modelName_example", modelDescription: "modelDescription_example", modelUrl: "modelUrl_example", manufacturer: "manufacturer_example", manufacturerUrl: "manufacturerUrl_example", headers: [HttpHeaderInfo(name: "name_example", value: "value_example", match: HeaderMatchType())]), friendlyName: "friendlyName_example", manufacturer: "manufacturer_example", manufacturerUrl: "manufacturerUrl_example", modelName: "modelName_example", modelDescription: "modelDescription_example", modelNumber: "modelNumber_example", modelUrl: "modelUrl_example", serialNumber: "serialNumber_example", enableAlbumArtInDidl: false, enableSingleAlbumArtLimit: false, enableSingleSubtitleLimit: false, supportedMediaTypes: "supportedMediaTypes_example", userId: "userId_example", albumArtPn: "albumArtPn_example", maxAlbumArtWidth: 123, maxAlbumArtHeight: 123, maxIconWidth: 123, maxIconHeight: 123, maxStreamingBitrate: 123, maxStaticBitrate: 123, musicStreamingTranscodingBitrate: 123, maxStaticMusicBitrate: 123, sonyAggregationFlags: "sonyAggregationFlags_example", protocolInfo: "protocolInfo_example", timelineOffsetSeconds: 123, requiresPlainVideoItems: false, requiresPlainFolders: false, enableMSMediaReceiverRegistrar: false, ignoreTranscodeByteRangeRequests: false, xmlRootAttributes: [XmlAttribute(name: "name_example", value: "value_example")], directPlayProfiles: [DirectPlayProfile(container: "container_example", audioCodec: "audioCodec_example", videoCodec: "videoCodec_example", type: DlnaProfileType())], transcodingProfiles: [TranscodingProfile(container: "container_example", type: nil, videoCodec: "videoCodec_example", audioCodec: "audioCodec_example", _protocol: "_protocol_example", estimateContentLength: false, enableMpegtsM2TsMode: false, transcodeSeekInfo: TranscodeSeekInfo(), copyTimestamps: false, context: EncodingContext(), enableSubtitlesInManifest: false, maxAudioChannels: "maxAudioChannels_example", minSegments: 123, segmentLength: 123, breakOnNonKeyFrames: false)], containerProfiles: [ContainerProfile(type: nil, conditions: [ProfileCondition(condition: ProfileConditionType(), property: ProfileConditionValue(), value: "value_example", isRequired: false)], container: "container_example")], codecProfiles: [CodecProfile(type: CodecType(), conditions: [nil], applyConditions: [nil], codec: "codec_example", container: "container_example")], responseProfiles: [ResponseProfile(container: "container_example", audioCodec: "audioCodec_example", videoCodec: "videoCodec_example", type: nil, orgPn: "orgPn_example", mimeType: "mimeType_example", conditions: [nil])], subtitleProfiles: [SubtitleProfile(format: "format_example", method: SubtitleDeliveryMethod(), didlMode: "didlMode_example", language: "language_example", container: "container_example")]) // DeviceProfile | Device profile. (optional)
 
 // Updates a profile.
-DlnaAPI.updateProfile(profileId: profileId, deviceProfile: deviceProfile) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+DlnaAPI.updateProfile(profileId: profileId, deviceProfile: deviceProfile).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 

@@ -7,32 +7,27 @@
 
 import AnyCodable
 import Foundation
-#if canImport(Combine)
-import Combine
-#endif
+import PromiseKit
 
 open class ChannelsAPI {
     /**
      Get all channel features.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<[ChannelFeatures], Error>
+     - returns: Promise<[ChannelFeatures]>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getAllChannelFeatures(apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<[ChannelFeatures], Error> {
-        return Future<[ChannelFeatures], Error>.init { promise in
-            getAllChannelFeaturesWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getAllChannelFeatures(apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<[ChannelFeatures]> {
+        let deferred = Promise<[ChannelFeatures]>.pending()
+        getAllChannelFeaturesWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Get all channel features.
@@ -65,23 +60,20 @@ open class ChannelsAPI {
      
      - parameter channelId: (path) Channel id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<ChannelFeatures, Error>
+     - returns: Promise<ChannelFeatures>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getChannelFeatures(channelId: String, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<ChannelFeatures, Error> {
-        return Future<ChannelFeatures, Error>.init { promise in
-            getChannelFeaturesWithRequestBuilder(channelId: channelId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getChannelFeatures( channelId: String, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<ChannelFeatures> {
+        let deferred = Promise<ChannelFeatures>.pending()
+        getChannelFeaturesWithRequestBuilder(channelId: channelId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Get channel features.
@@ -126,23 +118,20 @@ open class ChannelsAPI {
      - parameter sortBy: (query) Optional. Specify one or more sort orders, comma delimited. Options: Album, AlbumArtist, Artist, Budget, CommunityRating, CriticRating, DateCreated, DatePlayed, PlayCount, PremiereDate, ProductionYear, SortName, Random, Revenue, Runtime. (optional)
      - parameter fields: (query) Optional. Specify additional fields of information to return in the output. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<BaseItemDtoQueryResult, Error>
+     - returns: Promise<BaseItemDtoQueryResult>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getChannelItems(channelId: String, folderId: String? = nil, userId: String? = nil, startIndex: Int? = nil, limit: Int? = nil, sortOrder: [APISortOrder]? = nil, filters: [ItemFilter]? = nil, sortBy: [String]? = nil, fields: [ItemFields]? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<BaseItemDtoQueryResult, Error> {
-        return Future<BaseItemDtoQueryResult, Error>.init { promise in
-            getChannelItemsWithRequestBuilder(channelId: channelId, folderId: folderId, userId: userId, startIndex: startIndex, limit: limit, sortOrder: sortOrder, filters: filters, sortBy: sortBy, fields: fields).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getChannelItems( channelId: String,  folderId: String? = nil,  userId: String? = nil,  startIndex: Int? = nil,  limit: Int? = nil,  sortOrder: [APISortOrder]? = nil,  filters: [ItemFilter]? = nil,  sortBy: [String]? = nil,  fields: [ItemFields]? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<BaseItemDtoQueryResult> {
+        let deferred = Promise<BaseItemDtoQueryResult>.pending()
+        getChannelItemsWithRequestBuilder(channelId: channelId, folderId: folderId, userId: userId, startIndex: startIndex, limit: limit, sortOrder: sortOrder, filters: filters, sortBy: sortBy, fields: fields).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Get channel items.
@@ -202,23 +191,20 @@ open class ChannelsAPI {
      - parameter supportsMediaDeletion: (query) Optional. Filter by channels that support media deletion. (optional)
      - parameter isFavorite: (query) Optional. Filter by channels that are favorite. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<BaseItemDtoQueryResult, Error>
+     - returns: Promise<BaseItemDtoQueryResult>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getChannels(userId: String? = nil, startIndex: Int? = nil, limit: Int? = nil, supportsLatestItems: Bool? = nil, supportsMediaDeletion: Bool? = nil, isFavorite: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<BaseItemDtoQueryResult, Error> {
-        return Future<BaseItemDtoQueryResult, Error>.init { promise in
-            getChannelsWithRequestBuilder(userId: userId, startIndex: startIndex, limit: limit, supportsLatestItems: supportsLatestItems, supportsMediaDeletion: supportsMediaDeletion, isFavorite: isFavorite).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getChannels( userId: String? = nil,  startIndex: Int? = nil,  limit: Int? = nil,  supportsLatestItems: Bool? = nil,  supportsMediaDeletion: Bool? = nil,  isFavorite: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<BaseItemDtoQueryResult> {
+        let deferred = Promise<BaseItemDtoQueryResult>.pending()
+        getChannelsWithRequestBuilder(userId: userId, startIndex: startIndex, limit: limit, supportsLatestItems: supportsLatestItems, supportsMediaDeletion: supportsMediaDeletion, isFavorite: isFavorite).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets available channels.
@@ -270,23 +256,20 @@ open class ChannelsAPI {
      - parameter fields: (query) Optional. Specify additional fields of information to return in the output. (optional)
      - parameter channelIds: (query) Optional. Specify one or more channel id&#39;s, comma delimited. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<BaseItemDtoQueryResult, Error>
+     - returns: Promise<BaseItemDtoQueryResult>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getLatestChannelItems(userId: String? = nil, startIndex: Int? = nil, limit: Int? = nil, filters: [ItemFilter]? = nil, fields: [ItemFields]? = nil, channelIds: [String]? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<BaseItemDtoQueryResult, Error> {
-        return Future<BaseItemDtoQueryResult, Error>.init { promise in
-            getLatestChannelItemsWithRequestBuilder(userId: userId, startIndex: startIndex, limit: limit, filters: filters, fields: fields, channelIds: channelIds).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getLatestChannelItems( userId: String? = nil,  startIndex: Int? = nil,  limit: Int? = nil,  filters: [ItemFilter]? = nil,  fields: [ItemFields]? = nil,  channelIds: [String]? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<BaseItemDtoQueryResult> {
+        let deferred = Promise<BaseItemDtoQueryResult>.pending()
+        getLatestChannelItemsWithRequestBuilder(userId: userId, startIndex: startIndex, limit: limit, filters: filters, fields: fields, channelIds: channelIds).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets latest channel items.

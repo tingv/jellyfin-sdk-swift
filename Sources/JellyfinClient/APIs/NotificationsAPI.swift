@@ -7,9 +7,7 @@
 
 import AnyCodable
 import Foundation
-#if canImport(Combine)
-import Combine
-#endif
+import PromiseKit
 
 open class NotificationsAPI {
     /**
@@ -17,23 +15,20 @@ open class NotificationsAPI {
      
      - parameter adminNotificationDto: (body) The notification request. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: Promise<Void>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func createAdminNotification(adminNotificationDto: AdminNotificationDto, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error>.init { promise in
-            createAdminNotificationWithRequestBuilder(adminNotificationDto: adminNotificationDto).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    promise(.success(()))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func createAdminNotification( adminNotificationDto: AdminNotificationDto, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<Void> {
+        let deferred = Promise<Void>.pending()
+        createAdminNotificationWithRequestBuilder(adminNotificationDto: adminNotificationDto).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case .success:
+                deferred.resolver.fulfill(())
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Sends a notification to all admins.
@@ -66,23 +61,20 @@ open class NotificationsAPI {
      Gets notification services.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<[NameIdPair], Error>
+     - returns: Promise<[NameIdPair]>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getNotificationServices(apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<[NameIdPair], Error> {
-        return Future<[NameIdPair], Error>.init { promise in
-            getNotificationServicesWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getNotificationServices(apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<[NameIdPair]> {
+        let deferred = Promise<[NameIdPair]>.pending()
+        getNotificationServicesWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets notification services.
@@ -114,23 +106,20 @@ open class NotificationsAPI {
      Gets notification types.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<[NotificationTypeInfo], Error>
+     - returns: Promise<[NotificationTypeInfo]>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getNotificationTypes(apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<[NotificationTypeInfo], Error> {
-        return Future<[NotificationTypeInfo], Error>.init { promise in
-            getNotificationTypesWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getNotificationTypes(apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<[NotificationTypeInfo]> {
+        let deferred = Promise<[NotificationTypeInfo]>.pending()
+        getNotificationTypesWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets notification types.
@@ -163,23 +152,20 @@ open class NotificationsAPI {
      
      - parameter userId: (path)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<NotificationResultDto, Error>
+     - returns: Promise<NotificationResultDto>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getNotifications(userId: String, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<NotificationResultDto, Error> {
-        return Future<NotificationResultDto, Error>.init { promise in
-            getNotificationsWithRequestBuilder(userId: userId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getNotifications( userId: String, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<NotificationResultDto> {
+        let deferred = Promise<NotificationResultDto>.pending()
+        getNotificationsWithRequestBuilder(userId: userId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets a user's notifications.
@@ -216,23 +202,20 @@ open class NotificationsAPI {
      
      - parameter userId: (path)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<NotificationsSummaryDto, Error>
+     - returns: Promise<NotificationsSummaryDto>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getNotificationsSummary(userId: String, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<NotificationsSummaryDto, Error> {
-        return Future<NotificationsSummaryDto, Error>.init { promise in
-            getNotificationsSummaryWithRequestBuilder(userId: userId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getNotificationsSummary( userId: String, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<NotificationsSummaryDto> {
+        let deferred = Promise<NotificationsSummaryDto>.pending()
+        getNotificationsSummaryWithRequestBuilder(userId: userId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets a user's notification summary.
@@ -269,23 +252,20 @@ open class NotificationsAPI {
      
      - parameter userId: (path)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: Promise<Void>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func setRead(userId: String, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error>.init { promise in
-            setReadWithRequestBuilder(userId: userId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    promise(.success(()))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func setRead( userId: String, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<Void> {
+        let deferred = Promise<Void>.pending()
+        setReadWithRequestBuilder(userId: userId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case .success:
+                deferred.resolver.fulfill(())
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Sets notifications as read.
@@ -322,23 +302,20 @@ open class NotificationsAPI {
      
      - parameter userId: (path)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: Promise<Void>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func setUnread(userId: String, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error>.init { promise in
-            setUnreadWithRequestBuilder(userId: userId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    promise(.success(()))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func setUnread( userId: String, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<Void> {
+        let deferred = Promise<Void>.pending()
+        setUnreadWithRequestBuilder(userId: userId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case .success:
+                deferred.resolver.fulfill(())
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Sets notifications as unread.

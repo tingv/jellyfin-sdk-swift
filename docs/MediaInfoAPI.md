@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 # **closeLiveStream**
 ```swift
-    open class func closeLiveStream(liveStreamId: String, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func closeLiveStream( liveStreamId: String) -> Promise<Void>
 ```
 
 Closes a media source.
@@ -26,15 +26,12 @@ import JellyfinClient
 let liveStreamId = "liveStreamId_example" // String | The livestream id.
 
 // Closes a media source.
-MediaInfoAPI.closeLiveStream(liveStreamId: liveStreamId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+MediaInfoAPI.closeLiveStream(liveStreamId: liveStreamId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -61,7 +58,7 @@ Void (empty response body)
 
 # **getBitrateTestBytes**
 ```swift
-    open class func getBitrateTestBytes(size: Int? = nil, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func getBitrateTestBytes( size: Int? = nil) -> Promise<URL>
 ```
 
 Tests the network with a request with the size of the bitrate.
@@ -74,15 +71,12 @@ import JellyfinClient
 let size = 987 // Int | The bitrate. Defaults to 102400. (optional) (default to 102400)
 
 // Tests the network with a request with the size of the bitrate.
-MediaInfoAPI.getBitrateTestBytes(size: size) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+MediaInfoAPI.getBitrateTestBytes(size: size).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -109,7 +103,7 @@ Name | Type | Description  | Notes
 
 # **getPlaybackInfo**
 ```swift
-    open class func getPlaybackInfo(itemId: String, userId: String, completion: @escaping (_ data: PlaybackInfoResponse?, _ error: Error?) -> Void)
+    open class func getPlaybackInfo( itemId: String,  userId: String) -> Promise<PlaybackInfoResponse>
 ```
 
 Gets live playback media info for an item.
@@ -123,15 +117,12 @@ let itemId = "itemId_example" // String | The item id.
 let userId = "userId_example" // String | The user id.
 
 // Gets live playback media info for an item.
-MediaInfoAPI.getPlaybackInfo(itemId: itemId, userId: userId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+MediaInfoAPI.getPlaybackInfo(itemId: itemId, userId: userId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -159,7 +150,7 @@ Name | Type | Description  | Notes
 
 # **getPostedPlaybackInfo**
 ```swift
-    open class func getPostedPlaybackInfo(itemId: String, userId: String? = nil, maxStreamingBitrate: Int? = nil, startTimeTicks: Int64? = nil, audioStreamIndex: Int? = nil, subtitleStreamIndex: Int? = nil, maxAudioChannels: Int? = nil, mediaSourceId: String? = nil, liveStreamId: String? = nil, autoOpenLiveStream: Bool? = nil, enableDirectPlay: Bool? = nil, enableDirectStream: Bool? = nil, enableTranscoding: Bool? = nil, allowVideoStreamCopy: Bool? = nil, allowAudioStreamCopy: Bool? = nil, playbackInfoDto: PlaybackInfoDto? = nil, completion: @escaping (_ data: PlaybackInfoResponse?, _ error: Error?) -> Void)
+    open class func getPostedPlaybackInfo( itemId: String,  userId: String? = nil,  maxStreamingBitrate: Int? = nil,  startTimeTicks: Int64? = nil,  audioStreamIndex: Int? = nil,  subtitleStreamIndex: Int? = nil,  maxAudioChannels: Int? = nil,  mediaSourceId: String? = nil,  liveStreamId: String? = nil,  autoOpenLiveStream: Bool? = nil,  enableDirectPlay: Bool? = nil,  enableDirectStream: Bool? = nil,  enableTranscoding: Bool? = nil,  allowVideoStreamCopy: Bool? = nil,  allowAudioStreamCopy: Bool? = nil,  playbackInfoDto: PlaybackInfoDto? = nil) -> Promise<PlaybackInfoResponse>
 ```
 
 Gets live playback media info for an item.
@@ -189,15 +180,12 @@ let allowAudioStreamCopy = true // Bool | Whether to allow to copy the audio str
 let playbackInfoDto = PlaybackInfoDto(userId: "userId_example", maxStreamingBitrate: 123, startTimeTicks: 123, audioStreamIndex: 123, subtitleStreamIndex: 123, maxAudioChannels: 123, mediaSourceId: "mediaSourceId_example", liveStreamId: "liveStreamId_example", deviceProfile: DeviceProfile(name: "name_example", id: "id_example", identification: DeviceIdentification(friendlyName: "friendlyName_example", modelNumber: "modelNumber_example", serialNumber: "serialNumber_example", modelName: "modelName_example", modelDescription: "modelDescription_example", modelUrl: "modelUrl_example", manufacturer: "manufacturer_example", manufacturerUrl: "manufacturerUrl_example", headers: [HttpHeaderInfo(name: "name_example", value: "value_example", match: HeaderMatchType())]), friendlyName: "friendlyName_example", manufacturer: "manufacturer_example", manufacturerUrl: "manufacturerUrl_example", modelName: "modelName_example", modelDescription: "modelDescription_example", modelNumber: "modelNumber_example", modelUrl: "modelUrl_example", serialNumber: "serialNumber_example", enableAlbumArtInDidl: false, enableSingleAlbumArtLimit: false, enableSingleSubtitleLimit: false, supportedMediaTypes: "supportedMediaTypes_example", userId: "userId_example", albumArtPn: "albumArtPn_example", maxAlbumArtWidth: 123, maxAlbumArtHeight: 123, maxIconWidth: 123, maxIconHeight: 123, maxStreamingBitrate: 123, maxStaticBitrate: 123, musicStreamingTranscodingBitrate: 123, maxStaticMusicBitrate: 123, sonyAggregationFlags: "sonyAggregationFlags_example", protocolInfo: "protocolInfo_example", timelineOffsetSeconds: 123, requiresPlainVideoItems: false, requiresPlainFolders: false, enableMSMediaReceiverRegistrar: false, ignoreTranscodeByteRangeRequests: false, xmlRootAttributes: [XmlAttribute(name: "name_example", value: "value_example")], directPlayProfiles: [DirectPlayProfile(container: "container_example", audioCodec: "audioCodec_example", videoCodec: "videoCodec_example", type: DlnaProfileType())], transcodingProfiles: [TranscodingProfile(container: "container_example", type: nil, videoCodec: "videoCodec_example", audioCodec: "audioCodec_example", _protocol: "_protocol_example", estimateContentLength: false, enableMpegtsM2TsMode: false, transcodeSeekInfo: TranscodeSeekInfo(), copyTimestamps: false, context: EncodingContext(), enableSubtitlesInManifest: false, maxAudioChannels: "maxAudioChannels_example", minSegments: 123, segmentLength: 123, breakOnNonKeyFrames: false)], containerProfiles: [ContainerProfile(type: nil, conditions: [ProfileCondition(condition: ProfileConditionType(), property: ProfileConditionValue(), value: "value_example", isRequired: false)], container: "container_example")], codecProfiles: [CodecProfile(type: CodecType(), conditions: [nil], applyConditions: [nil], codec: "codec_example", container: "container_example")], responseProfiles: [ResponseProfile(container: "container_example", audioCodec: "audioCodec_example", videoCodec: "videoCodec_example", type: nil, orgPn: "orgPn_example", mimeType: "mimeType_example", conditions: [nil])], subtitleProfiles: [SubtitleProfile(format: "format_example", method: SubtitleDeliveryMethod(), didlMode: "didlMode_example", language: "language_example", container: "container_example")]), enableDirectPlay: false, enableDirectStream: false, enableTranscoding: false, allowVideoStreamCopy: false, allowAudioStreamCopy: false, autoOpenLiveStream: false) // PlaybackInfoDto | The playback info. (optional)
 
 // Gets live playback media info for an item.
-MediaInfoAPI.getPostedPlaybackInfo(itemId: itemId, userId: userId, maxStreamingBitrate: maxStreamingBitrate, startTimeTicks: startTimeTicks, audioStreamIndex: audioStreamIndex, subtitleStreamIndex: subtitleStreamIndex, maxAudioChannels: maxAudioChannels, mediaSourceId: mediaSourceId, liveStreamId: liveStreamId, autoOpenLiveStream: autoOpenLiveStream, enableDirectPlay: enableDirectPlay, enableDirectStream: enableDirectStream, enableTranscoding: enableTranscoding, allowVideoStreamCopy: allowVideoStreamCopy, allowAudioStreamCopy: allowAudioStreamCopy, playbackInfoDto: playbackInfoDto) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+MediaInfoAPI.getPostedPlaybackInfo(itemId: itemId, userId: userId, maxStreamingBitrate: maxStreamingBitrate, startTimeTicks: startTimeTicks, audioStreamIndex: audioStreamIndex, subtitleStreamIndex: subtitleStreamIndex, maxAudioChannels: maxAudioChannels, mediaSourceId: mediaSourceId, liveStreamId: liveStreamId, autoOpenLiveStream: autoOpenLiveStream, enableDirectPlay: enableDirectPlay, enableDirectStream: enableDirectStream, enableTranscoding: enableTranscoding, allowVideoStreamCopy: allowVideoStreamCopy, allowAudioStreamCopy: allowAudioStreamCopy, playbackInfoDto: playbackInfoDto).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -239,7 +227,7 @@ Name | Type | Description  | Notes
 
 # **openLiveStream**
 ```swift
-    open class func openLiveStream(openToken: String? = nil, userId: String? = nil, playSessionId: String? = nil, maxStreamingBitrate: Int? = nil, startTimeTicks: Int64? = nil, audioStreamIndex: Int? = nil, subtitleStreamIndex: Int? = nil, maxAudioChannels: Int? = nil, itemId: String? = nil, enableDirectPlay: Bool? = nil, enableDirectStream: Bool? = nil, openLiveStreamDto: OpenLiveStreamDto? = nil, completion: @escaping (_ data: LiveStreamResponse?, _ error: Error?) -> Void)
+    open class func openLiveStream( openToken: String? = nil,  userId: String? = nil,  playSessionId: String? = nil,  maxStreamingBitrate: Int? = nil,  startTimeTicks: Int64? = nil,  audioStreamIndex: Int? = nil,  subtitleStreamIndex: Int? = nil,  maxAudioChannels: Int? = nil,  itemId: String? = nil,  enableDirectPlay: Bool? = nil,  enableDirectStream: Bool? = nil,  openLiveStreamDto: OpenLiveStreamDto? = nil) -> Promise<LiveStreamResponse>
 ```
 
 Opens a media source.
@@ -263,15 +251,12 @@ let enableDirectStream = true // Bool | Whether to enable direct stream. Default
 let openLiveStreamDto = OpenLiveStreamDto(openToken: "openToken_example", userId: "userId_example", playSessionId: "playSessionId_example", maxStreamingBitrate: 123, startTimeTicks: 123, audioStreamIndex: 123, subtitleStreamIndex: 123, maxAudioChannels: 123, itemId: "itemId_example", enableDirectPlay: false, enableDirectStream: false, deviceProfile: DeviceProfile(name: "name_example", id: "id_example", identification: DeviceIdentification(friendlyName: "friendlyName_example", modelNumber: "modelNumber_example", serialNumber: "serialNumber_example", modelName: "modelName_example", modelDescription: "modelDescription_example", modelUrl: "modelUrl_example", manufacturer: "manufacturer_example", manufacturerUrl: "manufacturerUrl_example", headers: [HttpHeaderInfo(name: "name_example", value: "value_example", match: HeaderMatchType())]), friendlyName: "friendlyName_example", manufacturer: "manufacturer_example", manufacturerUrl: "manufacturerUrl_example", modelName: "modelName_example", modelDescription: "modelDescription_example", modelNumber: "modelNumber_example", modelUrl: "modelUrl_example", serialNumber: "serialNumber_example", enableAlbumArtInDidl: false, enableSingleAlbumArtLimit: false, enableSingleSubtitleLimit: false, supportedMediaTypes: "supportedMediaTypes_example", userId: "userId_example", albumArtPn: "albumArtPn_example", maxAlbumArtWidth: 123, maxAlbumArtHeight: 123, maxIconWidth: 123, maxIconHeight: 123, maxStreamingBitrate: 123, maxStaticBitrate: 123, musicStreamingTranscodingBitrate: 123, maxStaticMusicBitrate: 123, sonyAggregationFlags: "sonyAggregationFlags_example", protocolInfo: "protocolInfo_example", timelineOffsetSeconds: 123, requiresPlainVideoItems: false, requiresPlainFolders: false, enableMSMediaReceiverRegistrar: false, ignoreTranscodeByteRangeRequests: false, xmlRootAttributes: [XmlAttribute(name: "name_example", value: "value_example")], directPlayProfiles: [DirectPlayProfile(container: "container_example", audioCodec: "audioCodec_example", videoCodec: "videoCodec_example", type: DlnaProfileType())], transcodingProfiles: [TranscodingProfile(container: "container_example", type: nil, videoCodec: "videoCodec_example", audioCodec: "audioCodec_example", _protocol: "_protocol_example", estimateContentLength: false, enableMpegtsM2TsMode: false, transcodeSeekInfo: TranscodeSeekInfo(), copyTimestamps: false, context: EncodingContext(), enableSubtitlesInManifest: false, maxAudioChannels: "maxAudioChannels_example", minSegments: 123, segmentLength: 123, breakOnNonKeyFrames: false)], containerProfiles: [ContainerProfile(type: nil, conditions: [ProfileCondition(condition: ProfileConditionType(), property: ProfileConditionValue(), value: "value_example", isRequired: false)], container: "container_example")], codecProfiles: [CodecProfile(type: CodecType(), conditions: [nil], applyConditions: [nil], codec: "codec_example", container: "container_example")], responseProfiles: [ResponseProfile(container: "container_example", audioCodec: "audioCodec_example", videoCodec: "videoCodec_example", type: nil, orgPn: "orgPn_example", mimeType: "mimeType_example", conditions: [nil])], subtitleProfiles: [SubtitleProfile(format: "format_example", method: SubtitleDeliveryMethod(), didlMode: "didlMode_example", language: "language_example", container: "container_example")]), directPlayProtocols: [MediaProtocol()]) // OpenLiveStreamDto | The open live stream dto. (optional)
 
 // Opens a media source.
-MediaInfoAPI.openLiveStream(openToken: openToken, userId: userId, playSessionId: playSessionId, maxStreamingBitrate: maxStreamingBitrate, startTimeTicks: startTimeTicks, audioStreamIndex: audioStreamIndex, subtitleStreamIndex: subtitleStreamIndex, maxAudioChannels: maxAudioChannels, itemId: itemId, enableDirectPlay: enableDirectPlay, enableDirectStream: enableDirectStream, openLiveStreamDto: openLiveStreamDto) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+MediaInfoAPI.openLiveStream(openToken: openToken, userId: userId, playSessionId: playSessionId, maxStreamingBitrate: maxStreamingBitrate, startTimeTicks: startTimeTicks, audioStreamIndex: audioStreamIndex, subtitleStreamIndex: subtitleStreamIndex, maxAudioChannels: maxAudioChannels, itemId: itemId, enableDirectPlay: enableDirectPlay, enableDirectStream: enableDirectStream, openLiveStreamDto: openLiveStreamDto).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 

@@ -7,9 +7,7 @@
 
 import AnyCodable
 import Foundation
-#if canImport(Combine)
-import Combine
-#endif
+import PromiseKit
 
 open class DashboardAPI {
     /**
@@ -18,23 +16,20 @@ open class DashboardAPI {
      - parameter enableInMainMenu: (query) Whether to enable in the main menu. (optional)
      - parameter pageType: (query) The Jellyfin.Api.Models.ConfigurationPageInfo. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<[ConfigurationPageInfo], Error>
+     - returns: Promise<[ConfigurationPageInfo]>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getConfigurationPages(enableInMainMenu: Bool? = nil, pageType: ConfigurationPageType? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<[ConfigurationPageInfo], Error> {
-        return Future<[ConfigurationPageInfo], Error>.init { promise in
-            getConfigurationPagesWithRequestBuilder(enableInMainMenu: enableInMainMenu, pageType: pageType).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getConfigurationPages( enableInMainMenu: Bool? = nil,  pageType: ConfigurationPageType? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<[ConfigurationPageInfo]> {
+        let deferred = Promise<[ConfigurationPageInfo]>.pending()
+        getConfigurationPagesWithRequestBuilder(enableInMainMenu: enableInMainMenu, pageType: pageType).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets the configuration pages.
@@ -70,23 +65,20 @@ open class DashboardAPI {
      
      - parameter name: (query) The name of the page. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<URL, Error>
+     - returns: Promise<URL>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getDashboardConfigurationPage(name: String? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<URL, Error> {
-        return Future<URL, Error>.init { promise in
-            getDashboardConfigurationPageWithRequestBuilder(name: name).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getDashboardConfigurationPage( name: String? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<URL> {
+        let deferred = Promise<URL>.pending()
+        getDashboardConfigurationPageWithRequestBuilder(name: name).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Gets a dashboard configuration page.

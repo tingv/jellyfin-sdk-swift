@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 # **getQueryFilters**
 ```swift
-    open class func getQueryFilters(userId: String? = nil, parentId: String? = nil, includeItemTypes: [String]? = nil, isAiring: Bool? = nil, isMovie: Bool? = nil, isSports: Bool? = nil, isKids: Bool? = nil, isNews: Bool? = nil, isSeries: Bool? = nil, recursive: Bool? = nil, completion: @escaping (_ data: QueryFilters?, _ error: Error?) -> Void)
+    open class func getQueryFilters( userId: String? = nil,  parentId: String? = nil,  includeItemTypes: [String]? = nil,  isAiring: Bool? = nil,  isMovie: Bool? = nil,  isSports: Bool? = nil,  isKids: Bool? = nil,  isNews: Bool? = nil,  isSeries: Bool? = nil,  recursive: Bool? = nil) -> Promise<QueryFilters>
 ```
 
 Gets query filters.
@@ -32,15 +32,12 @@ let isSeries = true // Bool | Optional. Is item series. (optional)
 let recursive = true // Bool | Optional. Search recursive. (optional)
 
 // Gets query filters.
-FilterAPI.getQueryFilters(userId: userId, parentId: parentId, includeItemTypes: includeItemTypes, isAiring: isAiring, isMovie: isMovie, isSports: isSports, isKids: isKids, isNews: isNews, isSeries: isSeries, recursive: recursive) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+FilterAPI.getQueryFilters(userId: userId, parentId: parentId, includeItemTypes: includeItemTypes, isAiring: isAiring, isMovie: isMovie, isSports: isSports, isKids: isKids, isNews: isNews, isSeries: isSeries, recursive: recursive).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -76,7 +73,7 @@ Name | Type | Description  | Notes
 
 # **getQueryFiltersLegacy**
 ```swift
-    open class func getQueryFiltersLegacy(userId: String? = nil, parentId: String? = nil, includeItemTypes: [String]? = nil, mediaTypes: [String]? = nil, completion: @escaping (_ data: QueryFiltersLegacy?, _ error: Error?) -> Void)
+    open class func getQueryFiltersLegacy( userId: String? = nil,  parentId: String? = nil,  includeItemTypes: [String]? = nil,  mediaTypes: [String]? = nil) -> Promise<QueryFiltersLegacy>
 ```
 
 Gets legacy query filters.
@@ -92,15 +89,12 @@ let includeItemTypes = ["inner_example"] // [String] | Optional. If specified, r
 let mediaTypes = ["inner_example"] // [String] | Optional. Filter by MediaType. Allows multiple, comma delimited. (optional)
 
 // Gets legacy query filters.
-FilterAPI.getQueryFiltersLegacy(userId: userId, parentId: parentId, includeItemTypes: includeItemTypes, mediaTypes: mediaTypes) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+FilterAPI.getQueryFiltersLegacy(userId: userId, parentId: parentId, includeItemTypes: includeItemTypes, mediaTypes: mediaTypes).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 

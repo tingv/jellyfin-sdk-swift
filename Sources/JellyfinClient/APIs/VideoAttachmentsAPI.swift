@@ -7,9 +7,7 @@
 
 import AnyCodable
 import Foundation
-#if canImport(Combine)
-import Combine
-#endif
+import PromiseKit
 
 open class VideoAttachmentsAPI {
     /**
@@ -19,23 +17,20 @@ open class VideoAttachmentsAPI {
      - parameter mediaSourceId: (path) Media Source ID. 
      - parameter index: (path) Attachment Index. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<URL, Error>
+     - returns: Promise<URL>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getAttachment(videoId: String, mediaSourceId: String, index: Int, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<URL, Error> {
-        return Future<URL, Error>.init { promise in
-            getAttachmentWithRequestBuilder(videoId: videoId, mediaSourceId: mediaSourceId, index: index).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getAttachment( videoId: String,  mediaSourceId: String,  index: Int, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<URL> {
+        let deferred = Promise<URL>.pending()
+        getAttachmentWithRequestBuilder(videoId: videoId, mediaSourceId: mediaSourceId, index: index).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Get video attachment.

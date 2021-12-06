@@ -7,9 +7,7 @@
 
 import AnyCodable
 import Foundation
-#if canImport(Combine)
-import Combine
-#endif
+import PromiseKit
 
 open class DisplayPreferencesAPI {
     /**
@@ -19,23 +17,20 @@ open class DisplayPreferencesAPI {
      - parameter userId: (query) User id. 
      - parameter client: (query) Client. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<DisplayPreferencesDto, Error>
+     - returns: Promise<DisplayPreferencesDto>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getDisplayPreferences(displayPreferencesId: String, userId: String, client: String, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<DisplayPreferencesDto, Error> {
-        return Future<DisplayPreferencesDto, Error>.init { promise in
-            getDisplayPreferencesWithRequestBuilder(displayPreferencesId: displayPreferencesId, userId: userId, client: client).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getDisplayPreferences( displayPreferencesId: String,  userId: String,  client: String, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<DisplayPreferencesDto> {
+        let deferred = Promise<DisplayPreferencesDto>.pending()
+        getDisplayPreferencesWithRequestBuilder(displayPreferencesId: displayPreferencesId, userId: userId, client: client).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Get Display Preferences.
@@ -81,23 +76,20 @@ open class DisplayPreferencesAPI {
      - parameter client: (query) Client. 
      - parameter displayPreferencesDto: (body) New Display Preferences object. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: Promise<Void>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func updateDisplayPreferences(displayPreferencesId: String, userId: String, client: String, displayPreferencesDto: DisplayPreferencesDto, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error>.init { promise in
-            updateDisplayPreferencesWithRequestBuilder(displayPreferencesId: displayPreferencesId, userId: userId, client: client, displayPreferencesDto: displayPreferencesDto).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    promise(.success(()))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func updateDisplayPreferences( displayPreferencesId: String,  userId: String,  client: String,  displayPreferencesDto: DisplayPreferencesDto, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<Void> {
+        let deferred = Promise<Void>.pending()
+        updateDisplayPreferencesWithRequestBuilder(displayPreferencesId: displayPreferencesId, userId: userId, client: client, displayPreferencesDto: displayPreferencesDto).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case .success:
+                deferred.resolver.fulfill(())
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Update Display Preferences.

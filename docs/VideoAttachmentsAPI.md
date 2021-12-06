@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 # **getAttachment**
 ```swift
-    open class func getAttachment(videoId: String, mediaSourceId: String, index: Int, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func getAttachment( videoId: String,  mediaSourceId: String,  index: Int) -> Promise<URL>
 ```
 
 Get video attachment.
@@ -24,15 +24,12 @@ let mediaSourceId = "mediaSourceId_example" // String | Media Source ID.
 let index = 987 // Int | Attachment Index.
 
 // Get video attachment.
-VideoAttachmentsAPI.getAttachment(videoId: videoId, mediaSourceId: mediaSourceId, index: index) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+VideoAttachmentsAPI.getAttachment(videoId: videoId, mediaSourceId: mediaSourceId, index: index).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 

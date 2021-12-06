@@ -7,9 +7,7 @@
 
 import AnyCodable
 import Foundation
-#if canImport(Combine)
-import Combine
-#endif
+import PromiseKit
 
 open class ScheduledTasksAPI {
     /**
@@ -17,23 +15,20 @@ open class ScheduledTasksAPI {
      
      - parameter taskId: (path) Task Id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<TaskInfo, Error>
+     - returns: Promise<TaskInfo>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getTask(taskId: String, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<TaskInfo, Error> {
-        return Future<TaskInfo, Error>.init { promise in
-            getTaskWithRequestBuilder(taskId: taskId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getTask( taskId: String, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<TaskInfo> {
+        let deferred = Promise<TaskInfo>.pending()
+        getTaskWithRequestBuilder(taskId: taskId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Get task by id.
@@ -71,23 +66,20 @@ open class ScheduledTasksAPI {
      - parameter isHidden: (query) Optional filter tasks that are hidden, or not. (optional)
      - parameter isEnabled: (query) Optional filter tasks that are enabled, or not. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<[TaskInfo], Error>
+     - returns: Promise<[TaskInfo]>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getTasks(isHidden: Bool? = nil, isEnabled: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<[TaskInfo], Error> {
-        return Future<[TaskInfo], Error>.init { promise in
-            getTasksWithRequestBuilder(isHidden: isHidden, isEnabled: isEnabled).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func getTasks( isHidden: Bool? = nil,  isEnabled: Bool? = nil, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<[TaskInfo]> {
+        let deferred = Promise<[TaskInfo]>.pending()
+        getTasksWithRequestBuilder(isHidden: isHidden, isEnabled: isEnabled).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case let .success(response):
+                deferred.resolver.fulfill(response.body!)
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Get tasks.
@@ -126,23 +118,20 @@ open class ScheduledTasksAPI {
      
      - parameter taskId: (path) Task Id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: Promise<Void>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func startTask(taskId: String, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error>.init { promise in
-            startTaskWithRequestBuilder(taskId: taskId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    promise(.success(()))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func startTask( taskId: String, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<Void> {
+        let deferred = Promise<Void>.pending()
+        startTaskWithRequestBuilder(taskId: taskId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case .success:
+                deferred.resolver.fulfill(())
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Start specified task.
@@ -179,23 +168,20 @@ open class ScheduledTasksAPI {
      
      - parameter taskId: (path) Task Id. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: Promise<Void>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func stopTask(taskId: String, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error>.init { promise in
-            stopTaskWithRequestBuilder(taskId: taskId).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    promise(.success(()))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func stopTask( taskId: String, apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<Void> {
+        let deferred = Promise<Void>.pending()
+        stopTaskWithRequestBuilder(taskId: taskId).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case .success:
+                deferred.resolver.fulfill(())
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Stop specified task.
@@ -233,23 +219,20 @@ open class ScheduledTasksAPI {
      - parameter taskId: (path) Task Id. 
      - parameter taskTriggerInfo: (body) Triggers. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: Promise<Void>
      */
-    #if canImport(Combine)
-    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func updateTask(taskId: String, taskTriggerInfo: [TaskTriggerInfo], apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error>.init { promise in
-            updateTaskWithRequestBuilder(taskId: taskId, taskTriggerInfo: taskTriggerInfo).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    promise(.success(()))
-                case let .failure(error):
-                    promise(.failure(error))
-                }
+    open class func updateTask( taskId: String,  taskTriggerInfo: [TaskTriggerInfo], apiResponseQueue: DispatchQueue = JellyfinClient.apiResponseQueue) -> Promise<Void> {
+        let deferred = Promise<Void>.pending()
+        updateTaskWithRequestBuilder(taskId: taskId, taskTriggerInfo: taskTriggerInfo).execute(apiResponseQueue) { result -> Void in
+            switch result {
+            case .success:
+                deferred.resolver.fulfill(())
+            case let .failure(error):
+                deferred.resolver.reject(error)
             }
-        }.eraseToAnyPublisher()
+        }
+        return deferred.promise
     }
-    #endif
 
     /**
      Update specified task triggers.

@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 # **disablePlugin**
 ```swift
-    open class func disablePlugin(pluginId: String, version: Version, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func disablePlugin( pluginId: String,  version: Version) -> Promise<Void>
 ```
 
 Disable a plugin.
@@ -32,15 +32,12 @@ let pluginId = "pluginId_example" // String | Plugin id.
 let version = Version(major: 123, minor: 123, build: 123, revision: 123, majorRevision: 123, minorRevision: 123) // Version | Plugin version.
 
 // Disable a plugin.
-PluginsAPI.disablePlugin(pluginId: pluginId, version: version) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+PluginsAPI.disablePlugin(pluginId: pluginId, version: version).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -68,7 +65,7 @@ Void (empty response body)
 
 # **enablePlugin**
 ```swift
-    open class func enablePlugin(pluginId: String, version: Version, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func enablePlugin( pluginId: String,  version: Version) -> Promise<Void>
 ```
 
 Enables a disabled plugin.
@@ -82,15 +79,12 @@ let pluginId = "pluginId_example" // String | Plugin id.
 let version = Version(major: 123, minor: 123, build: 123, revision: 123, majorRevision: 123, minorRevision: 123) // Version | Plugin version.
 
 // Enables a disabled plugin.
-PluginsAPI.enablePlugin(pluginId: pluginId, version: version) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+PluginsAPI.enablePlugin(pluginId: pluginId, version: version).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -118,7 +112,7 @@ Void (empty response body)
 
 # **getPluginConfiguration**
 ```swift
-    open class func getPluginConfiguration(pluginId: String, completion: @escaping (_ data: AnyCodable?, _ error: Error?) -> Void)
+    open class func getPluginConfiguration( pluginId: String) -> Promise<AnyCodable>
 ```
 
 Gets plugin configuration.
@@ -131,15 +125,12 @@ import JellyfinClient
 let pluginId = "pluginId_example" // String | Plugin id.
 
 // Gets plugin configuration.
-PluginsAPI.getPluginConfiguration(pluginId: pluginId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+PluginsAPI.getPluginConfiguration(pluginId: pluginId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -166,7 +157,7 @@ Name | Type | Description  | Notes
 
 # **getPluginImage**
 ```swift
-    open class func getPluginImage(pluginId: String, version: Version, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func getPluginImage( pluginId: String,  version: Version) -> Promise<URL>
 ```
 
 Gets a plugin's image.
@@ -180,15 +171,12 @@ let pluginId = "pluginId_example" // String | Plugin id.
 let version = Version(major: 123, minor: 123, build: 123, revision: 123, majorRevision: 123, minorRevision: 123) // Version | Plugin version.
 
 // Gets a plugin's image.
-PluginsAPI.getPluginImage(pluginId: pluginId, version: version) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+PluginsAPI.getPluginImage(pluginId: pluginId, version: version).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -216,7 +204,7 @@ Name | Type | Description  | Notes
 
 # **getPluginManifest**
 ```swift
-    open class func getPluginManifest(pluginId: String, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func getPluginManifest( pluginId: String) -> Promise<Void>
 ```
 
 Gets a plugin's manifest.
@@ -229,15 +217,12 @@ import JellyfinClient
 let pluginId = "pluginId_example" // String | Plugin id.
 
 // Gets a plugin's manifest.
-PluginsAPI.getPluginManifest(pluginId: pluginId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+PluginsAPI.getPluginManifest(pluginId: pluginId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -264,7 +249,7 @@ Void (empty response body)
 
 # **getPlugins**
 ```swift
-    open class func getPlugins(completion: @escaping (_ data: [PluginInfo]?, _ error: Error?) -> Void)
+    open class func getPlugins() -> Promise<[PluginInfo]>
 ```
 
 Gets a list of currently installed plugins.
@@ -276,15 +261,12 @@ import JellyfinClient
 
 
 // Gets a list of currently installed plugins.
-PluginsAPI.getPlugins() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+PluginsAPI.getPlugins().then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -308,7 +290,7 @@ This endpoint does not need any parameter.
 
 # **uninstallPlugin**
 ```swift
-    open class func uninstallPlugin(pluginId: String, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func uninstallPlugin( pluginId: String) -> Promise<Void>
 ```
 
 Uninstalls a plugin.
@@ -321,15 +303,12 @@ import JellyfinClient
 let pluginId = "pluginId_example" // String | Plugin id.
 
 // Uninstalls a plugin.
-PluginsAPI.uninstallPlugin(pluginId: pluginId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+PluginsAPI.uninstallPlugin(pluginId: pluginId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -356,7 +335,7 @@ Void (empty response body)
 
 # **uninstallPluginByVersion**
 ```swift
-    open class func uninstallPluginByVersion(pluginId: String, version: Version, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func uninstallPluginByVersion( pluginId: String,  version: Version) -> Promise<Void>
 ```
 
 Uninstalls a plugin by version.
@@ -370,15 +349,12 @@ let pluginId = "pluginId_example" // String | Plugin id.
 let version = Version(major: 123, minor: 123, build: 123, revision: 123, majorRevision: 123, minorRevision: 123) // Version | Plugin version.
 
 // Uninstalls a plugin by version.
-PluginsAPI.uninstallPluginByVersion(pluginId: pluginId, version: version) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+PluginsAPI.uninstallPluginByVersion(pluginId: pluginId, version: version).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -406,7 +382,7 @@ Void (empty response body)
 
 # **updatePluginConfiguration**
 ```swift
-    open class func updatePluginConfiguration(pluginId: String, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func updatePluginConfiguration( pluginId: String) -> Promise<Void>
 ```
 
 Updates plugin configuration.
@@ -421,15 +397,12 @@ import JellyfinClient
 let pluginId = "pluginId_example" // String | Plugin id.
 
 // Updates plugin configuration.
-PluginsAPI.updatePluginConfiguration(pluginId: pluginId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+PluginsAPI.updatePluginConfiguration(pluginId: pluginId).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -456,7 +429,7 @@ Void (empty response body)
 
 # **updatePluginSecurityInfo**
 ```swift
-    open class func updatePluginSecurityInfo(pluginSecurityInfo: PluginSecurityInfo, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func updatePluginSecurityInfo( pluginSecurityInfo: PluginSecurityInfo) -> Promise<Void>
 ```
 
 Updates plugin security info.
@@ -469,15 +442,12 @@ import JellyfinClient
 let pluginSecurityInfo = PluginSecurityInfo(supporterKey: "supporterKey_example", isMbSupporter: false) // PluginSecurityInfo | Plugin security info.
 
 // Updates plugin security info.
-PluginsAPI.updatePluginSecurityInfo(pluginSecurityInfo: pluginSecurityInfo) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+PluginsAPI.updatePluginSecurityInfo(pluginSecurityInfo: pluginSecurityInfo).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 

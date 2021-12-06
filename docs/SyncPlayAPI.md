@@ -29,7 +29,7 @@ Method | HTTP request | Description
 
 # **syncPlayBuffering**
 ```swift
-    open class func syncPlayBuffering(bufferRequestDto: BufferRequestDto, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func syncPlayBuffering( bufferRequestDto: BufferRequestDto) -> Promise<Void>
 ```
 
 Notify SyncPlay group that member is buffering.
@@ -42,15 +42,12 @@ import JellyfinClient
 let bufferRequestDto = BufferRequestDto(when: Date(), positionTicks: 123, isPlaying: false, playlistItemId: "playlistItemId_example") // BufferRequestDto | The player status.
 
 // Notify SyncPlay group that member is buffering.
-SyncPlayAPI.syncPlayBuffering(bufferRequestDto: bufferRequestDto) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+SyncPlayAPI.syncPlayBuffering(bufferRequestDto: bufferRequestDto).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -77,7 +74,7 @@ Void (empty response body)
 
 # **syncPlayCreateGroup**
 ```swift
-    open class func syncPlayCreateGroup(newGroupRequestDto: NewGroupRequestDto, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func syncPlayCreateGroup( newGroupRequestDto: NewGroupRequestDto) -> Promise<Void>
 ```
 
 Create a new SyncPlay group.
@@ -90,15 +87,12 @@ import JellyfinClient
 let newGroupRequestDto = NewGroupRequestDto(groupName: "groupName_example") // NewGroupRequestDto | The settings of the new group.
 
 // Create a new SyncPlay group.
-SyncPlayAPI.syncPlayCreateGroup(newGroupRequestDto: newGroupRequestDto) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+SyncPlayAPI.syncPlayCreateGroup(newGroupRequestDto: newGroupRequestDto).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -125,7 +119,7 @@ Void (empty response body)
 
 # **syncPlayGetGroups**
 ```swift
-    open class func syncPlayGetGroups(completion: @escaping (_ data: [GroupInfoDto]?, _ error: Error?) -> Void)
+    open class func syncPlayGetGroups() -> Promise<[GroupInfoDto]>
 ```
 
 Gets all SyncPlay groups.
@@ -137,15 +131,12 @@ import JellyfinClient
 
 
 // Gets all SyncPlay groups.
-SyncPlayAPI.syncPlayGetGroups() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+SyncPlayAPI.syncPlayGetGroups().then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -169,7 +160,7 @@ This endpoint does not need any parameter.
 
 # **syncPlayJoinGroup**
 ```swift
-    open class func syncPlayJoinGroup(joinGroupRequestDto: JoinGroupRequestDto, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func syncPlayJoinGroup( joinGroupRequestDto: JoinGroupRequestDto) -> Promise<Void>
 ```
 
 Join an existing SyncPlay group.
@@ -182,15 +173,12 @@ import JellyfinClient
 let joinGroupRequestDto = JoinGroupRequestDto(groupId: "groupId_example") // JoinGroupRequestDto | The group to join.
 
 // Join an existing SyncPlay group.
-SyncPlayAPI.syncPlayJoinGroup(joinGroupRequestDto: joinGroupRequestDto) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+SyncPlayAPI.syncPlayJoinGroup(joinGroupRequestDto: joinGroupRequestDto).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -217,7 +205,7 @@ Void (empty response body)
 
 # **syncPlayLeaveGroup**
 ```swift
-    open class func syncPlayLeaveGroup(completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func syncPlayLeaveGroup() -> Promise<Void>
 ```
 
 Leave the joined SyncPlay group.
@@ -229,15 +217,12 @@ import JellyfinClient
 
 
 // Leave the joined SyncPlay group.
-SyncPlayAPI.syncPlayLeaveGroup() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+SyncPlayAPI.syncPlayLeaveGroup().then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -261,7 +246,7 @@ Void (empty response body)
 
 # **syncPlayMovePlaylistItem**
 ```swift
-    open class func syncPlayMovePlaylistItem(movePlaylistItemRequestDto: MovePlaylistItemRequestDto, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func syncPlayMovePlaylistItem( movePlaylistItemRequestDto: MovePlaylistItemRequestDto) -> Promise<Void>
 ```
 
 Request to move an item in the playlist in SyncPlay group.
@@ -274,15 +259,12 @@ import JellyfinClient
 let movePlaylistItemRequestDto = MovePlaylistItemRequestDto(playlistItemId: "playlistItemId_example", newIndex: 123) // MovePlaylistItemRequestDto | The new position for the item.
 
 // Request to move an item in the playlist in SyncPlay group.
-SyncPlayAPI.syncPlayMovePlaylistItem(movePlaylistItemRequestDto: movePlaylistItemRequestDto) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+SyncPlayAPI.syncPlayMovePlaylistItem(movePlaylistItemRequestDto: movePlaylistItemRequestDto).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -309,7 +291,7 @@ Void (empty response body)
 
 # **syncPlayNextItem**
 ```swift
-    open class func syncPlayNextItem(nextItemRequestDto: NextItemRequestDto, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func syncPlayNextItem( nextItemRequestDto: NextItemRequestDto) -> Promise<Void>
 ```
 
 Request next item in SyncPlay group.
@@ -322,15 +304,12 @@ import JellyfinClient
 let nextItemRequestDto = NextItemRequestDto(playlistItemId: "playlistItemId_example") // NextItemRequestDto | The current item information.
 
 // Request next item in SyncPlay group.
-SyncPlayAPI.syncPlayNextItem(nextItemRequestDto: nextItemRequestDto) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+SyncPlayAPI.syncPlayNextItem(nextItemRequestDto: nextItemRequestDto).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -357,7 +336,7 @@ Void (empty response body)
 
 # **syncPlayPause**
 ```swift
-    open class func syncPlayPause(completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func syncPlayPause() -> Promise<Void>
 ```
 
 Request pause in SyncPlay group.
@@ -369,15 +348,12 @@ import JellyfinClient
 
 
 // Request pause in SyncPlay group.
-SyncPlayAPI.syncPlayPause() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+SyncPlayAPI.syncPlayPause().then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -401,7 +377,7 @@ Void (empty response body)
 
 # **syncPlayPing**
 ```swift
-    open class func syncPlayPing(pingRequestDto: PingRequestDto, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func syncPlayPing( pingRequestDto: PingRequestDto) -> Promise<Void>
 ```
 
 Update session ping.
@@ -414,15 +390,12 @@ import JellyfinClient
 let pingRequestDto = PingRequestDto(ping: 123) // PingRequestDto | The new ping.
 
 // Update session ping.
-SyncPlayAPI.syncPlayPing(pingRequestDto: pingRequestDto) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+SyncPlayAPI.syncPlayPing(pingRequestDto: pingRequestDto).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -449,7 +422,7 @@ Void (empty response body)
 
 # **syncPlayPreviousItem**
 ```swift
-    open class func syncPlayPreviousItem(previousItemRequestDto: PreviousItemRequestDto, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func syncPlayPreviousItem( previousItemRequestDto: PreviousItemRequestDto) -> Promise<Void>
 ```
 
 Request previous item in SyncPlay group.
@@ -462,15 +435,12 @@ import JellyfinClient
 let previousItemRequestDto = PreviousItemRequestDto(playlistItemId: "playlistItemId_example") // PreviousItemRequestDto | The current item information.
 
 // Request previous item in SyncPlay group.
-SyncPlayAPI.syncPlayPreviousItem(previousItemRequestDto: previousItemRequestDto) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+SyncPlayAPI.syncPlayPreviousItem(previousItemRequestDto: previousItemRequestDto).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -497,7 +467,7 @@ Void (empty response body)
 
 # **syncPlayQueue**
 ```swift
-    open class func syncPlayQueue(queueRequestDto: QueueRequestDto, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func syncPlayQueue( queueRequestDto: QueueRequestDto) -> Promise<Void>
 ```
 
 Request to queue items to the playlist of a SyncPlay group.
@@ -510,15 +480,12 @@ import JellyfinClient
 let queueRequestDto = QueueRequestDto(itemIds: ["itemIds_example"], mode: GroupQueueMode()) // QueueRequestDto | The items to add.
 
 // Request to queue items to the playlist of a SyncPlay group.
-SyncPlayAPI.syncPlayQueue(queueRequestDto: queueRequestDto) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+SyncPlayAPI.syncPlayQueue(queueRequestDto: queueRequestDto).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -545,7 +512,7 @@ Void (empty response body)
 
 # **syncPlayReady**
 ```swift
-    open class func syncPlayReady(readyRequestDto: ReadyRequestDto, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func syncPlayReady( readyRequestDto: ReadyRequestDto) -> Promise<Void>
 ```
 
 Notify SyncPlay group that member is ready for playback.
@@ -558,15 +525,12 @@ import JellyfinClient
 let readyRequestDto = ReadyRequestDto(when: Date(), positionTicks: 123, isPlaying: false, playlistItemId: "playlistItemId_example") // ReadyRequestDto | The player status.
 
 // Notify SyncPlay group that member is ready for playback.
-SyncPlayAPI.syncPlayReady(readyRequestDto: readyRequestDto) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+SyncPlayAPI.syncPlayReady(readyRequestDto: readyRequestDto).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -593,7 +557,7 @@ Void (empty response body)
 
 # **syncPlayRemoveFromPlaylist**
 ```swift
-    open class func syncPlayRemoveFromPlaylist(removeFromPlaylistRequestDto: RemoveFromPlaylistRequestDto, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func syncPlayRemoveFromPlaylist( removeFromPlaylistRequestDto: RemoveFromPlaylistRequestDto) -> Promise<Void>
 ```
 
 Request to remove items from the playlist in SyncPlay group.
@@ -606,15 +570,12 @@ import JellyfinClient
 let removeFromPlaylistRequestDto = RemoveFromPlaylistRequestDto(playlistItemIds: ["playlistItemIds_example"]) // RemoveFromPlaylistRequestDto | The items to remove.
 
 // Request to remove items from the playlist in SyncPlay group.
-SyncPlayAPI.syncPlayRemoveFromPlaylist(removeFromPlaylistRequestDto: removeFromPlaylistRequestDto) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+SyncPlayAPI.syncPlayRemoveFromPlaylist(removeFromPlaylistRequestDto: removeFromPlaylistRequestDto).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -641,7 +602,7 @@ Void (empty response body)
 
 # **syncPlaySeek**
 ```swift
-    open class func syncPlaySeek(seekRequestDto: SeekRequestDto, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func syncPlaySeek( seekRequestDto: SeekRequestDto) -> Promise<Void>
 ```
 
 Request seek in SyncPlay group.
@@ -654,15 +615,12 @@ import JellyfinClient
 let seekRequestDto = SeekRequestDto(positionTicks: 123) // SeekRequestDto | The new playback position.
 
 // Request seek in SyncPlay group.
-SyncPlayAPI.syncPlaySeek(seekRequestDto: seekRequestDto) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+SyncPlayAPI.syncPlaySeek(seekRequestDto: seekRequestDto).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -689,7 +647,7 @@ Void (empty response body)
 
 # **syncPlaySetIgnoreWait**
 ```swift
-    open class func syncPlaySetIgnoreWait(ignoreWaitRequestDto: IgnoreWaitRequestDto, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func syncPlaySetIgnoreWait( ignoreWaitRequestDto: IgnoreWaitRequestDto) -> Promise<Void>
 ```
 
 Request SyncPlay group to ignore member during group-wait.
@@ -702,15 +660,12 @@ import JellyfinClient
 let ignoreWaitRequestDto = IgnoreWaitRequestDto(ignoreWait: false) // IgnoreWaitRequestDto | The settings to set.
 
 // Request SyncPlay group to ignore member during group-wait.
-SyncPlayAPI.syncPlaySetIgnoreWait(ignoreWaitRequestDto: ignoreWaitRequestDto) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+SyncPlayAPI.syncPlaySetIgnoreWait(ignoreWaitRequestDto: ignoreWaitRequestDto).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -737,7 +692,7 @@ Void (empty response body)
 
 # **syncPlaySetNewQueue**
 ```swift
-    open class func syncPlaySetNewQueue(playRequestDto: PlayRequestDto, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func syncPlaySetNewQueue( playRequestDto: PlayRequestDto) -> Promise<Void>
 ```
 
 Request to set new playlist in SyncPlay group.
@@ -750,15 +705,12 @@ import JellyfinClient
 let playRequestDto = PlayRequestDto(playingQueue: ["playingQueue_example"], playingItemPosition: 123, startPositionTicks: 123) // PlayRequestDto | The new playlist to play in the group.
 
 // Request to set new playlist in SyncPlay group.
-SyncPlayAPI.syncPlaySetNewQueue(playRequestDto: playRequestDto) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+SyncPlayAPI.syncPlaySetNewQueue(playRequestDto: playRequestDto).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -785,7 +737,7 @@ Void (empty response body)
 
 # **syncPlaySetPlaylistItem**
 ```swift
-    open class func syncPlaySetPlaylistItem(setPlaylistItemRequestDto: SetPlaylistItemRequestDto, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func syncPlaySetPlaylistItem( setPlaylistItemRequestDto: SetPlaylistItemRequestDto) -> Promise<Void>
 ```
 
 Request to change playlist item in SyncPlay group.
@@ -798,15 +750,12 @@ import JellyfinClient
 let setPlaylistItemRequestDto = SetPlaylistItemRequestDto(playlistItemId: "playlistItemId_example") // SetPlaylistItemRequestDto | The new item to play.
 
 // Request to change playlist item in SyncPlay group.
-SyncPlayAPI.syncPlaySetPlaylistItem(setPlaylistItemRequestDto: setPlaylistItemRequestDto) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+SyncPlayAPI.syncPlaySetPlaylistItem(setPlaylistItemRequestDto: setPlaylistItemRequestDto).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -833,7 +782,7 @@ Void (empty response body)
 
 # **syncPlaySetRepeatMode**
 ```swift
-    open class func syncPlaySetRepeatMode(setRepeatModeRequestDto: SetRepeatModeRequestDto, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func syncPlaySetRepeatMode( setRepeatModeRequestDto: SetRepeatModeRequestDto) -> Promise<Void>
 ```
 
 Request to set repeat mode in SyncPlay group.
@@ -846,15 +795,12 @@ import JellyfinClient
 let setRepeatModeRequestDto = SetRepeatModeRequestDto(mode: GroupRepeatMode()) // SetRepeatModeRequestDto | The new repeat mode.
 
 // Request to set repeat mode in SyncPlay group.
-SyncPlayAPI.syncPlaySetRepeatMode(setRepeatModeRequestDto: setRepeatModeRequestDto) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+SyncPlayAPI.syncPlaySetRepeatMode(setRepeatModeRequestDto: setRepeatModeRequestDto).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -881,7 +827,7 @@ Void (empty response body)
 
 # **syncPlaySetShuffleMode**
 ```swift
-    open class func syncPlaySetShuffleMode(setShuffleModeRequestDto: SetShuffleModeRequestDto, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func syncPlaySetShuffleMode( setShuffleModeRequestDto: SetShuffleModeRequestDto) -> Promise<Void>
 ```
 
 Request to set shuffle mode in SyncPlay group.
@@ -894,15 +840,12 @@ import JellyfinClient
 let setShuffleModeRequestDto = SetShuffleModeRequestDto(mode: GroupShuffleMode()) // SetShuffleModeRequestDto | The new shuffle mode.
 
 // Request to set shuffle mode in SyncPlay group.
-SyncPlayAPI.syncPlaySetShuffleMode(setShuffleModeRequestDto: setShuffleModeRequestDto) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+SyncPlayAPI.syncPlaySetShuffleMode(setShuffleModeRequestDto: setShuffleModeRequestDto).then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -929,7 +872,7 @@ Void (empty response body)
 
 # **syncPlayStop**
 ```swift
-    open class func syncPlayStop(completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func syncPlayStop() -> Promise<Void>
 ```
 
 Request stop in SyncPlay group.
@@ -941,15 +884,12 @@ import JellyfinClient
 
 
 // Request stop in SyncPlay group.
-SyncPlayAPI.syncPlayStop() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+SyncPlayAPI.syncPlayStop().then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
@@ -973,7 +913,7 @@ Void (empty response body)
 
 # **syncPlayUnpause**
 ```swift
-    open class func syncPlayUnpause(completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func syncPlayUnpause() -> Promise<Void>
 ```
 
 Request unpause in SyncPlay group.
@@ -985,15 +925,12 @@ import JellyfinClient
 
 
 // Request unpause in SyncPlay group.
-SyncPlayAPI.syncPlayUnpause() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+SyncPlayAPI.syncPlayUnpause().then {
+         // when the promise is fulfilled
+     }.always {
+         // regardless of whether the promise is fulfilled, or rejected
+     }.catch { errorType in
+         // when the promise is rejected
 }
 ```
 
